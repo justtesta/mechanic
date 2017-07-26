@@ -1,0 +1,107 @@
+<h3 class="page-header">
+  订单详情 #<%= @order.id %>
+  <small>
+    <% if @order.canceled? %>
+      <%= te @order, :state %> - <%= te @order, :cancel %>
+    <% elsif @order.refunded? %>
+      <%= te @order, :state %> - <%= te @order, :refund %>
+    <% else %>
+      <%= te @order, :state %>
+    <% end %>
+  </small>
+</h3>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h4 class="col-sm-offset-1">交易信息</h4>
+
+    <%= show_for @order, class: "dl-horizontal" do |i| %>
+      <%= i.attribute :merchant_nickname %>
+      <%= i.attribute :merchant_mobile %>
+      <%= i.attribute :contact_nickname %>
+      <%= i.attribute :contact_mobile %>
+      <%= i.attribute :state do |order| %>
+        <% if order.canceled? %>
+          <%= te order, :state %> - <%= te order, :cancel %>
+        <% elsif order.refunded? %>
+          <%= te order, :state %> - <%= te order, :refund %>
+        <% else %>
+          <%= te order, :state %>
+        <% end %>
+      <% end %>
+
+      <%= i.attribute :skill %>
+      <%= i.attribute :brand %>
+      <%= i.attribute :series %>
+      <%= i.attribute :created_at, format: :long %>
+      <%= i.attribute :start_working_at, format: :long %>
+      <%= i.attribute :finish_working_at, format: :long %>
+      <%= i.attribute :remark %>
+      <%= i.attribute :merchant_remark %>
+    <% end %>
+  </div>
+
+  <div class="col-sm-6">
+    <h4 class="col-sm-offset-1">价格信息</h4>
+
+    <%= show_for @order, class: "dl-horizontal" do |i| %>
+      <%= i.attribute :price, label: "总价" %>
+      <%= i.attribute :quoted_price %>
+      <%= i.attribute :markup_price %>
+      <%= i.attribute :offline? %>
+    <% end %>
+  </div>
+
+</div>
+
+<div class="pull-right">
+  <%= link_to "修改商户备注", remark_merchants_order_path(@order), class: "btn btn-primary" %>
+</div>
+
+<% if @order.assigned? %>
+
+  <h3 class="page-header">技师信息</h3>
+
+  <div class="row">
+    <div class="col-sm-3 text-right">
+      <%= image_tag(@order.mechanic.user.avatar.url(:thumb)) %>
+    </div>
+
+    <div class="col-sm-9">
+      <%= show_for @order.mechanic, class: "dl-horizontal" do |i| %>
+        <%= i.attribute :user_nickname %>
+        <%= i.attribute :user_mobile unless @order.hosting? %>
+        <%= i.attribute :user_address %>
+        <%= i.attribute :description %>
+        <%= i.attribute :available_orders_count %>
+        <%= i.attribute :professionality_average %>
+        <%= i.attribute :timeliness_average %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @order.has_attach? %>
+  <h3 class="page-header">施工凭证 <small>点击施工照片查看原图</small></h3>
+  <div class="images">
+    <%= link_to @order.mechanic_attach_1.url(:original) do %>
+      <%= image_tag @order.mechanic_attach_1.url(:thumb), class: "img-rounded" %>
+    <% end if @order.mechanic_attach_1.present? %>
+    <%= link_to @order.mechanic_attach_2.url(:original) do %>
+      <%= image_tag @order.mechanic_attach_2.url(:thumb), class: "img-rounded" %>
+    <% end if @order.mechanic_attach_2.present? %>
+  </div>
+<% end %>
+
+<% case @order.state %>
+<% when :pended %>
+  <div class="pull-right">
+    <%= link_to "余额支付", pay_merchants_orders_path(@order, format: :balance), class: "btn btn-primary" %>
+    <%#= link_to "微信支付", pay_merchants_orders_path(@order, format: :weixin), class: "btn btn-primary" %>
+    <%= link_to "支付宝支付", pay_merchants_orders_path(@order, format: :alipay), class: "btn btn-primary" %>
+  </div>
+<% when :reviewed %>
+  <div class="pull-right">
+    <%= link_to "完成结算", close_merchants_admin_order_path(@order), method: :post, class: "btn btn-primary" %>
+  </div>
+<% end %>

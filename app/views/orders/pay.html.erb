@@ -1,0 +1,25 @@
+<%= content_for :title do %>
+  订单支付
+<% end %>
+
+<% if @order_params %>
+  <script type="text/javascript">
+    wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseWXPay)).to_json %>);
+    wx.error(function(res){ console.log(res) });
+    wx.ready(function() {
+      wx.chooseWXPay({
+        timestamp: "<%= @order_params[:timeStamp] %>",
+        nonceStr: "<%= @order_params[:nonceStr] %>",
+        package: "<%= @order_params[:package] %>",
+        signType: "<%= @order_params[:signType] %>",
+        paySign: "<%= @order_params[:paySign] %>",
+        success: function (res) {
+          window.location.href = "/orders/<%= @order.id %>/result";
+        },
+        cancel: function (res) {
+          window.location.href = "/orders/<%= @order.id %>/bids";
+        }
+      });
+    });
+  </script>
+<% end %>

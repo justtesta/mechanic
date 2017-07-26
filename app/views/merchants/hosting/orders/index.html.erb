@@ -1,0 +1,37 @@
+<h3 class="page-header">托管订单</h3>
+
+<%
+  def order_state_link_to state, text
+    link = link_to text, merchants_hosting_orders_path(state: state)
+    class_name = (@state == state) ? "active" : ""
+    %{<li class="#{class_name}">#{link}</li>}.html_safe
+  end
+%>
+
+<div class="row">
+  <div class="col-md-2 col-xs-4">
+    <ul class="nav nav-pills nav-stacked">
+      <%= order_state_link_to :unassigneds, "未分配" %>
+      <%= order_state_link_to :assigneds, "待服务" %>
+      <%= order_state_link_to :workings, "服务中" %>
+      <%= order_state_link_to :finisheds, "待评价" %>
+    </ul>
+  </div>
+
+  <% @orders = @orders.includes(:store, :mechanic_user) %>
+
+  <div class="col-md-10 col-xs-8">
+    <%= index_for [ :merchants, :hosting, @orders ], class: "table table-hover data-tables" do |i| %>
+      <%= i.attribute :store_nickname %>
+      <%= i.attribute :contact_nickname %>
+      <%= i.attribute :contact_mobile %>
+      <%= i.attribute :appointment, format: :short %>
+      <%= i.attribute :skill  %>
+      <%= i.attribute :price %>
+      <%= i.attribute :offline? %>
+      <%= i.attribute :mechanic_nickname %>
+
+      <%= i.actions :show %>
+    <% end %>
+  </div>
+</div>

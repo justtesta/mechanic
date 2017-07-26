@@ -1,0 +1,222 @@
+zh-CN:
+  authlogic:
+    error_messages:
+      login_invalid: 只能包含数字
+      login_blank: 不能为空
+      login_not_found: 验证失败
+      password_blank: 不能为空
+      password_invalid: 错误
+      login_invalid: 错误
+      verification_code_blank: 不能为空
+      verification_code_invalid: 错误
+      not_confirmed: 您的帐号还未验证通过
+      not_active: 您的帐号已被锁定，请联系管理员
+      store_not_confirmed: 您的店铺还未验证通过
+      store_not_active: 您的店铺已被锁定，请联系管理员
+      no_authentication_details: 您没用提供登录所需的信息
+      general_credentials_error: 手机号码/验证码 错误
+    attributes:
+      user_session:
+        mobile: 手机号码
+        verification_code: 验证码
+        remember_me: 记住我
+      merchant_session:
+        mobile: 手机号码
+        password: 登录密码
+      administrator_session:
+        mobile: 手机号码
+        password: 登录密码
+  enums:
+    gender:
+      male: 男
+      female: 女
+    role:
+      admin: 管理员
+      dispatcher: 派单员
+      operator: 操作员
+      client: 车主
+      mechanic: 技师
+      merchant: 商户
+    state:
+      pending: 等待应答
+      paying: 支付中
+      pended: 待付款
+      canceled: 已取消
+      refunding: 退款中
+      refunded: 已退款
+      paid: 已支付
+      working: 施工中
+      confirming: 待完工确认
+      finished: 已完工
+      reviewed: 已评价
+      closed: 已结算
+    cancel:
+      pending_timeout: 无技师响应
+      paying_timeout: 支付超时
+      user_abstain: 未选择技师
+      user_cancel: 用户取消
+    refund:
+      user_cancel: 用户退款
+      merchant_revoke: 商户撤单
+      admin_freeze: 管理员冻结
+  simple_form:
+    labels:
+      defaults:
+        use_system_commission_percent: 使用系统佣金比例
+        commission_percent: 网页端每笔交易佣金比例
+        mobile_commission_percent: 手机单每笔交易佣金比例
+        client_commission_percent: 车主堂主佣金比例
+        mechanic_commission_percent: 技师堂主佣金比例
+  activerecord:
+    attributes:
+      user:
+        avatar: 头像
+        nickname: 姓名
+        weixin_openid: 微信号
+        available_orders_count: 预约次数
+        total_cost: 总支出
+        gender: 性别
+        address: 地址
+        mobile: 手机号码
+        qq: QQ
+        balance: 余额
+        balance_update_amount: 余额变动金额
+        balance_update_description: 余额变动说明
+      mechanic:
+        unique_id: 店铺编号
+        user_nickname: 姓名
+        user_mobile: 手机号码
+        user_address: 地址
+        description: 简介
+        available_orders_count: 接单次数
+        revoke_orders_count: 被撤单次数
+        total_income: 总收入
+        professionality_average: 专业
+        timeliness_average: 守时
+        skill_cds: 擅长技能
+        skills: 擅长技能
+        province_cd: 省份
+        province: 省份
+        city_cd: 城市
+        city: 城市
+        district_cd: 区县
+        district: 区县
+        _check: 选中技师
+      merchant:
+        nickname: 姓名
+        mobile: 手机号码
+        verification_code: 验证码
+        current_password: 当前密码
+        password: 登录密码
+        password_confirmation: 确认密码
+        role: 系统角色
+        login_count: 登录次数
+        current_login_at: 最近登录时间
+      administrator:
+        nickname: 姓名
+        mobile: 手机号码
+        verification_code: 验证码
+        current_password: 当前密码
+        password: 登录密码
+        password_confirmation: 确认密码
+        role: 系统角色
+        login_count: 登录次数
+        current_login_at: 最近登录时间
+      store:
+        avatar: 头像
+        nickname: 店铺名称
+        available_orders_count: 预约次数
+        total_cost: 总支出
+        qq: QQ
+        hotline: 服务热线
+        balance: 余额
+        balance_update_amount: 余额变动金额
+        balance_update_description: 余额变动说明
+      user_group:
+        nickname: 分堂昵称
+        user_nickname: 堂主
+        user_role: 类型
+        description: 申请简介
+        settled_orders_count: 分堂业绩
+        total_commission: 分堂佣金
+        users_count: 分堂成员
+        weixin_qr_code_url: 二维码
+      order:
+        user: 发布人
+        user_nickname: 发布人
+        user_mobile: 手机号码
+        merchant: 发布人
+        merchant_nickname: 发布人
+        merchant_mobile: 手机号码
+        merchant: 发布人
+        mechanic: 技师
+        mechanic_nickname: 技师
+        mechanic_mobile: 手机号码
+        store_nickname: 店铺名称
+        store_hotline: 服务热线
+        contact: 联系人
+        contact_nickname: 联系人
+        contact_mobile: 手机号码
+        mechanic: 技师
+        address: 地址
+        province_cd: 省份
+        province: 省份
+        city_cd: 城市
+        city: 城市
+        appointment: 预约时间
+        skill_cd: 类型
+        skill: 类型
+        brand_cd: 车型
+        brand: 车型
+        series_cd: 车系
+        series: 车系
+        quoted_price: 出价
+        markup_price: 加价
+        mechanic_income: 价格
+        procedure_price: 手续费
+        remark: 备注
+        merchant_remark: 商户备注
+        hosting_remark: 派单备注
+        price: 价格
+        professionality: 专业
+        timeliness: 守时
+        review: 评论
+        mechanic_attach_1: 车主短信照片
+        mechanic_attach_2: 施工照片
+        mobile: 联系电话
+        created_at: 订单创建
+        start_working_at: 开工时间
+        finish_working_at: 完工时间
+        state: 状态
+        custom_location: 使用自定义技师用人信息发送范围
+        hosting: 汽车堂托管
+        appointing: 指派技师
+        offline: 线下交易
+        offline?: 线下交易
+        refund_at: 退款申请时间
+      bid:
+        markup_price: 加价
+      skill:
+        name: 名称
+      brand:
+        name: 名称
+      series:
+        name: 名称
+        brand: 车型
+      withdrawal:
+        user: 用户
+        amount: 金额
+        created_at: 申请日期
+        paid_at: 提现日期
+        state: 状态
+      recharge:
+        user: 用户
+        store: 店铺
+        amount: 充值金额
+        created_at: 申请日期
+        paid_at: 充值日期
+        state: 状态
+      fellowship:
+        remark: 备注
+      note:
+        content: 内容

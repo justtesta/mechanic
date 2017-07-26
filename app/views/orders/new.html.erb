@@ -1,0 +1,77 @@
+<%= content_for :title do %>
+  预约技师
+<% end %>
+
+<%
+  series_map = types_option_pairs Series, :brand_id
+%>
+
+<%= simple_form_for(@order) do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :lbs_id %>
+
+  <div class="content-padded">
+    <div class="input">
+      <%= f.label :user %>
+      <span class="info"><%= current_user.nickname %>（<%= current_user.mobile %>）</span>
+    </div>
+
+    <%= f.input :address %>
+    <%= f.input :appointment %>
+    <%= f.input :skill_cd, collection: Skill.all %>
+
+    <%= f.input :brand_cd, collection: Brand.all %>
+    <%= f.input :series_cd, collection: series_map[@order.brand_cd] || [] %>
+
+    <%= f.input :quoted_price %>
+    <%= f.input :remark, input_html: { rows: 4 } %>
+
+    <%= f.button :submit, "确定", class: "btn-block btn-positive" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  var seriesMap = <%= raw series_map.to_json %>;
+
+  var brand = order_brand_cd;
+  var series = order_series_cd;
+  var brandCallback = function() {
+    removeOptions(series.querySelectorAll("option"));
+    appendOptions(series, seriesMap[brand.value]);
+  };
+
+  brand.addEventListener("change", brandCallback);
+
+  var getLocationCallback = function(res) {
+    url = "http://apis.map.qq.com/ws/geocoder/v1";
+    url += "?location=" + encodeURI(res.latitude + "," + res.longitude);
+    url += "&coord_type=1"
+    url += "&output=jsonp";
+    url += "&key=<%= LBS::Key %>";
+
+    jsonp(url, function(res) {
+      address = res["result"]["formatted_addresses"]["recommend"];
+      order_lbs_id.value = res["result"]["ad_info"]["adcode"];
+      if (order_address.value !== address && confirm("使用定位地址：" + address)) {
+        order_address.value = address;
+      }
+    });
+  };
+
+  <% if weixin? %>
+    wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(getLocation)).to_json %>);
+    wx.error(function(res){ console.log(res) });
+    wx.ready(function() {
+      wx.getLocation({
+        type: 'wgs84',
+        success: getLocationCallback
+      });
+    });
+  <% else %>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        getLocationCallback(position.coords);
+      });
+    }
+  <% end %>
+</script>

@@ -1,0 +1,38 @@
+zh-CN:
+  index_for:
+    blank: "无"
+    # If you want to use html tags with blank value use blank html translation
+    # blank_html: "<span>Not specified</span>"
+    "yes": "是"
+    "no": "否"
+    actions:
+      actions: 操作
+      show: 详情
+      new: 新建
+      edit: 编辑
+      destroy: 删除
+      confirm: 批准申请
+      cancel: 拒绝申请
+      unfollow: 取消关注
+      follow: 关注
+      inactive: 锁定
+      active: 取消锁定
+      hide: 隐藏
+      unhide: 显示
+      confirmation: "你确定要删除这条记录？"
+  views:
+    pagination:
+      first: "&laquo; 首页"
+      last: "末页 &raquo;"
+      previous: "&lsaquo; 上页"
+      next: "下页 &rsaquo;"
+      truncate: "..."
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "没有数据"
+          one: "从 1 到 1 条 /共 1 条数据"
+          other: "从 1 到 %{count} 条 /共 %{count} 条数据"
+      more_pages:
+        display_entries: "从 %{first} 到 %{last} 条 /共 %{total} 条数据"

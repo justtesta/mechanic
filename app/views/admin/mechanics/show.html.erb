@@ -1,0 +1,43 @@
+<h3 class="page-header">技师详情 #<%= @mechanic.mechanic.id %></h3>
+
+<div class="row">
+  <div class="col-sm-3 text-right">
+    <%= image_tag(@mechanic.avatar.url(:thumb)) %>
+  </div>
+
+  <div class="col-sm-9">
+    <%= show_for @mechanic, class: "dl-horizontal" do |i| %>
+      <%= i.attribute :nickname %>
+      <%= i.attribute :mobile %>
+      <%= i.attribute :weixin_openid %>
+      <%= i.attribute :gender do |user| %>
+        <%= te user, :gender %>
+      <% end %>
+      <%= i.attribute :address %>
+      <%= i.attribute :balance %>
+
+      <%= i.fields_for :mechanic do |ii| %>
+        <%= ii.attribute :unique_id %>
+        <%= ii.attribute :skills do |mechanic| %>
+          <%= mechanic.skills.join("、") %>
+        <% end %>
+        <%= ii.attribute :province %>
+        <%= ii.attribute :city %>
+        <%= ii.attribute :district %>
+        <%= ii.attribute :available_orders_count %>
+        <%= ii.attribute :revoke_orders_count %>
+        <%= ii.attribute :total_income %>
+        <%= ii.attribute :professionality_average %>
+        <%= ii.attribute :timeliness_average %>
+        <%= ii.attribute :description %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="pull-right">
+  <%= link_to "相关订单", admin_mechanic_orders_path(@mechanic), class: "btn btn-primary" %>
+  <% if current_admin.admin? %>
+    <%= link_to "修改账户余额", balance_admin_user_path(@mechanic), class: "btn btn-primary" %>
+  <% end %>
+</div>

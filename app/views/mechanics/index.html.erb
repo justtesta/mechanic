@@ -1,0 +1,28 @@
+<%= content_for :title do %>
+  收藏技师
+<% end %>
+
+<% if current_user.followed_mechanics.empty? %>
+  <div class="alert alert-block alert-warning">
+    您还没有收藏任何技师！
+  </div>
+<% end %>
+
+<% @mechanics = current_user.followed_mechanics.includes(:user) %>
+
+<ul class="table-view">
+  <% @mechanics.each do |mechanic| %>
+    <li class="table-view-cell media">
+      <%= image_tag mechanic.user.avatar.url(:thumb), class: "media-object pull-left" %>
+      <div class="media-body">
+        <div class="media-block">
+          <%= mechanic.user_nickname %>
+        </div>
+        <div class="media-block">
+          <p class="pull-right">接单 <%= mechanic.available_orders_count %> 次</p>
+          <p>专业 <%= mechanic.professionality_average %> 分 守时 <%= mechanic.timeliness_average %> 分</p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

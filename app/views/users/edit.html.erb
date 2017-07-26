@@ -1,0 +1,75 @@
+<%= content_for :title do %>
+  我的信息
+<% end %>
+
+<% if @user.mechanic?
+  city_map = types_option_pairs City, :province_id
+  district_map = types_option_pairs District, :city_id
+end %>
+
+<%= simple_form_for(@user, url: user_path, method: :put) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="jumbotron vertical-parent">
+    <div class="text-center vertical-middle">
+      <div class="input image">
+        <%= f.input_field :avatar, accept: "image/*" %>
+        <%= image_tag current_user.avatar.url(:thumb), class: "img-circle", id: "user_avatar_preview" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-padded">
+    <%= f.input :nickname %>
+    <%= f.input :gender, collection: enum_option_pairs(User, :gender) %>
+    <%= f.input :address %>
+
+    <% if @user.mechanic? %>
+      <%= f.fields_for :mechanic do |ff| %>
+        <%= ff.input :skill_cds, as: :check_boxes, collection: Skill.all %>
+
+        <%= ff.input :province_cd, collection: Province.all %>
+        <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [] %>
+        <%= ff.input :district_cd, collection: district_map[ff.object.city_cd] || [] %>
+
+        <%= ff.input :description, as: :text, input_html: { rows: 4 } %>
+      <% end %>
+    <% end %>
+
+    <%= f.button :submit, "确定", class: "btn-block btn-positive" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  <% if @user.mechanic? %>
+    var cityMap = <%= raw city_map.to_json %>;
+    var districtMap = <%= raw district_map.to_json %>;
+
+    var province = user_mechanic_attributes_province_cd;
+    var city = user_mechanic_attributes_city_cd;
+    var district = user_mechanic_attributes_district_cd;
+
+    var provinceCallback = function() {
+      removeOptions(city.querySelectorAll("option"));
+      removeOptions(district.querySelectorAll("option"));
+      appendOptions(city, cityMap[province.value]);
+    };
+
+    var cityCallback = function() {
+      removeOptions(district.querySelectorAll("option"));
+      appendOptions(district, districtMap[city.value]);
+    };
+
+    province.addEventListener("change", provinceCallback);
+    city.addEventListener("change", cityCallback);
+  <% end %>
+
+  var input = user_avatar;
+  var preview = user_avatar_preview;
+
+  input.addEventListener("change", function() {
+    var URL = window.URL || window.webkitURL;
+    var src = URL.createObjectURL(input.files[0]);
+    preview.src = src;
+  }, false);
+</script>

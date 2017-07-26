@@ -1,0 +1,46 @@
+<%= content_for :title do %>
+  订单列表
+<% end %>
+
+<%
+  def order_state_link_to state, text
+    class_name = "control-item"
+    class_name << " active" if @state == state
+    link_to orders_path(state: state), class: class_name do
+      count = order_klass.send(state).count
+      content = text
+      content << %{ <span class="badge">#{count}</span>} if count != 0
+      content.html_safe
+    end
+  end
+%>
+
+<div class="content-padded">
+  <div class="segmented-control">
+    <%= order_state_link_to :paids, "待服务" %>
+    <%= order_state_link_to :workings, "服务中" %>
+    <%= order_state_link_to :settleds, "已完成" %>
+  </div>
+</div>
+
+<% @orders = @orders.includes(mechanic: :user).order(id: :desc) %>
+
+<ul class="table-view">
+  <% @orders.each do |order| %>
+    <li class="table-view-cell media">
+      <%= link_to order_path(order), class: "navigate-right" do %>
+        <%= image_tag order.mechanic.user.avatar.url(:thumb), class: "media-object pull-left" %>
+        <div class="media-body">
+          <%= order.title %>
+          <p>预约时间：<%= l order.appointment, format: :short %></p>
+
+          <% if current_user.mechanic? %>
+            <p>成交价格：<%= order.mechanic_income %> 元 <%= "【线下交易】" if order.offline? %></p>
+          <% else %>
+            <p>成交价格：<%= order.price %> 元</p>
+          <% end %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

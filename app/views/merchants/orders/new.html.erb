@@ -1,0 +1,89 @@
+<h3 class="page-header">预约技师</h3>
+
+<%
+  city_map = types_option_pairs City, :province_id
+  series_map = types_option_pairs Series, :brand_id
+%>
+
+<%= bootstrap_simple_form_for([ :merchants, @order ]) do |f| %>
+  <div class="row">
+    <div class="col-md-7">
+      <%= f.error_messages %>
+
+      <h5 class="text-muted">需求信息</h5>
+
+      <%= f.input :address %>
+
+      <%= f.input :custom_location, as: :boolean %>
+      <div class="form-inline" id="custom_location" style="display: none;">
+        <%= f.input :province_cd, collection: Province.all, input_html: { class: "select2" } %>
+        <%= f.input :city_cd, collection: city_map[@order.province_cd] || [], input_html: { class: "select2" } %>
+        <p class="help-block">技师用人信息发送范围，范围内的技师将收到用人信息</p>
+      </div>
+
+      <%= f.input :appointment do %>
+        <div class="datetime-input-group">
+          <%= f.input_field :appointment, class: "form-control" %>
+        </div>
+      <% end %>
+
+      <%= f.input :skill_cd, collection: Skill.all, input_html: { class: "select2" } %>
+
+      <%= f.input :brand_cd, collection: Brand.all, input_html: { class: "select2" } %>
+      <%= f.input :series_cd, collection: series_map[@order.brand_cd] || [], input_html: { class: "select2" } %>
+
+      <%= f.input :quoted_price %>
+      <%= f.input :offline, hint: "订单在线下完成交易，不通过汽车堂进行付款" %>
+
+      <%= f.input :remark, hint: "备注对所有人可见", input_html: { rows: 4 } %>
+      <%= f.input :merchant_remark, hint: "商户备注仅对当前商户可见", input_html: { rows: 4 } %>
+
+      <h5 class="text-muted">联系人信息</h5>
+
+      <%= f.input :contact_nickname %>
+      <%= f.input :contact_mobile %>
+
+      <h5 class="text-muted">托管信息</h5>
+
+      <%= f.input :hosting, hint: "订单由汽车堂进行托管，汽车堂会帮您完成派单、确认完工等操作" %>
+
+      <h5 class="text-muted">指派信息</h5>
+
+      <%= f.input :appointing, hint: "订单由您直接指派技师，不参与竞标" %>
+
+      <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  (function() {
+    var seriesMap = <%= raw series_map.to_json %>;
+
+    var $brand = $("#order_brand_cd");
+    var $series = $("#order_series_cd");
+    $brand.change(function() {
+      $series.removeOptions();
+      $series.appendOptions(seriesMap[$brand.val()]);
+    });
+
+    var $useCustomLocation = $("#order_custom_location");
+    var $customLocation = $("#custom_location");
+    var useCustomLocationCallback = function() {
+      if ($useCustomLocation.is(":checked")) $customLocation.show();
+      else $customLocation.hide();
+    };
+
+    $useCustomLocation.on("change", useCustomLocationCallback);
+    useCustomLocationCallback();
+
+    var cityMap = <%= raw city_map.to_json %>;
+
+    var $province = $("#order_province_cd");
+    var $city = $("#order_city_cd");
+    $province.change(function() {
+      $city.removeOptions();
+      $city.appendOptions(cityMap[$province.val()]);
+    });
+  })();
+</script>

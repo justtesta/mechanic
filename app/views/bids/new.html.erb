@@ -1,0 +1,45 @@
+<%= content_for :title do %>
+  新订单
+<% end %>
+
+<% if @order.pending? %>
+
+  <div class="jumbotron mini vertical-parent">
+    <div class="image vertical-middle">
+      <%= image_tag @order.user.avatar.url(:thumb), class: "img-circle" %>
+    </div>
+    <div class="vertical-bottom">
+      <% if current_user.mechanic.regular_client? @order.user %>
+        <div class="btn btn-mini btn-primary">老用户</div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="content-padded">
+    <%= show_for @order do |i| %>
+      <%= i.attribute :address %>
+      <%= i.attribute :appointment, format: :short %>
+      <%= i.attribute :skill %>
+      <%= i.attribute :brand %>
+      <%= i.attribute :series %>
+      <%= i.attribute :mechanic_income %>
+      <%= i.attribute :remark %>
+    <% end %>
+  </div>
+
+  <%= simple_form_for([ :order, @bid ]) do |f| %>
+    <%= f.error_messages %>
+
+    <div class="content-padded">
+      <%= f.input :markup_price %>
+
+      <%= f.button :submit, "确定", class: "btn-block btn-positive" %>
+    </div>
+  <% end %>
+
+<% else %>
+  <script type="text/javascript">
+    alert("非常抱歉\r\n当前订单竞价已经结束\r\n点击确认关闭窗口");
+    ready(closeWindow);
+  </script>
+<% end %>

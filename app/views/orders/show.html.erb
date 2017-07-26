@@ -1,0 +1,162 @@
+<%= content_for :title do %>
+  订单详情
+<% end %>
+
+<div class="content-padded">
+  <%= show_for @order do |i| %>
+    <% if current_user.mechanic? && @order.available? %>
+      <%= i.attribute :user do |order| %>
+        <%= order.user_nickname %> <%= tel_link_to order.user_mobile %>
+      <% end %>
+      <% unless @order.mobile? %>
+        <%= i.attribute :contact do |order| %>
+          <%= order.contact_nickname %> <%= tel_link_to order.contact_mobile %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= i.attribute :address %>
+    <%= i.attribute :appointment, format: :long %>
+    <%= i.attribute :skill %>
+    <%= i.attribute :brand %>
+    <%= i.attribute :series %>
+    <% if current_user.mechanic? %>
+      <%= i.attribute :mechanic_income do |order| %>
+        <%= order.mechanic_income %> 元 <%= "【线下交易】" if order.offline? %>
+      <% end %>
+    <% else %>
+      <%= i.attribute :quoted_price do |order| %>
+        <%= order.quoted_price %> 元
+      <% end %>
+    <% end %>
+    <%= i.attribute :remark %>
+  <% end %>
+</div>
+
+<% if @order.assigned? %>
+  <ul class="table-view">
+    <li class="table-view-cell media">
+      <%= image_tag @order.mechanic.user.avatar.url(:thumb), class: "media-object pull-left" %>
+      <div class="media-body">
+        <div class="media-block">
+          <p class="pull-right">加价 <%= @order.markup_price %> 元</p>
+          <%= @order.mechanic.user_nickname %>
+        </div>
+        <div class="media-block">
+          <p class="pull-right">接单 <%= @order.mechanic.available_orders_count %> 次</p>
+          <p>专业 <%= @order.mechanic.professionality_average %> 分 守时 <%= @order.mechanic.timeliness_average %> 分</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="content-padded">
+    <% if !current_user.mechanic? && @order.available? %>
+      手机号码：<%= @order.mechanic.user_mobile %><br>
+      地址：<%= @order.mechanic.user_address %><br>
+    <% end %>
+    简介：<%= @order.mechanic.description %>
+  </div>
+<% end %>
+
+<div class="content-padded margin-top-large">
+  <% if current_user.mechanic? %>
+    <% case @order.state %>
+    <% when :paid %>
+      <%= link_to "开始服务", work_order_path(@order), class: "btn btn-block btn-positive" %>
+    <% when :working %>
+
+      <%= simple_form_for(@order, url: finish_order_path(@order)) do |f| %>
+        <%= f.input :mechanic_attach_1 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="order_mechanic_attach_1_button" readonly></input>
+          <%= f.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
+          <%= f.input_field :mechanic_attach_1_media_id, type: :hidden %>
+        <% end %>
+        <%= f.input :mechanic_attach_2 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="order_mechanic_attach_2_button" readonly></input>
+          <%= f.input_field :mechanic_attach_2, style: "display: none;", accept: "image/*" %>
+          <%= f.input_field :mechanic_attach_2_media_id, type: :hidden %>
+        <% end %>
+        <%= f.button :submit, "服务完工", class: "btn-block btn-positive" %>
+      <% end %>
+
+      <p>
+        注：网页端派单请上传车主短信照片
+      </p>
+
+      <script type="text/javascript">
+        <% if weixin? %>
+          wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
+          wx.error(function(res) { alert(JSON.stringify(res)) });
+          function fakeFileInput(fileInput, fakeInput, mediaIdInput) {
+            fakeInput.addEventListener("click", function() {
+              wx.chooseImage({
+                count: 1,
+                success: function (res) {
+                  setTimeout(function() {
+                    wx.uploadImage({
+                      localId: res.localIds[0],
+                      isShowProgressTips: true,
+                      success: function (res) {
+                        mediaIdInput.value = res.serverId;
+                        fakeInput.value = "点击更换图片";
+                      }
+                    });
+                  }, 0);
+                }
+              });
+            });
+          }
+        <% else %>
+          function fakeFileInput(fileInput, fakeInput) {
+            fakeInput.addEventListener("click", function() {
+              fileInput.click();
+            });
+            fileInput.addEventListener("change", function() {
+              fakeInput.value = "点击更换图片";
+            });
+          }
+        <% end %>
+        fakeFileInput(order_mechanic_attach_1, order_mechanic_attach_1_button, order_mechanic_attach_1_media_id);
+        fakeFileInput(order_mechanic_attach_2, order_mechanic_attach_2_button,
+          order_mechanic_attach_2_media_id);
+      </script>
+
+    <% end %>
+  <% else %>
+    <% case @order.state %>
+    <% when :paid %>
+      <span class="btn btn-block btn-negative" id="refund_order_button">申请退款</span>
+      <script type="text/javascript">
+        refund_order_button.addEventListener("click", function() {
+          if (confirm("您确定要申请退款？")) {
+            window.location.href = "<%= refund_order_path(@order) %>";
+          }
+        });
+      </script>
+    <% when :confirming %>
+      <% if @order.mechanic_attach_1 || @order.mechanic_attach_2 %>
+        施工照片：点击查看原图<br>
+        <%= link_to @order.mechanic_attach_1.url(:original) do %>
+          <%= image_tag @order.mechanic_attach_1.url(:thumb) %>
+        <% end if @order.mechanic_attach_1.present? %>
+        <%= link_to @order.mechanic_attach_2.url(:original) do %>
+          <%= image_tag @order.mechanic_attach_2.url(:thumb) %>
+        <% end if @order.mechanic_attach_2.present? %>
+      <% end %>
+      <%= link_to "确认完工", confirm_order_path(@order), class: "btn btn-block btn-positive" %>
+    <% when :finished %>
+      <% if current_user.follow? @order.mechanic %>
+        <%= link_to "取消收藏技师", unfollow_mechanic_path(@order.mechanic), class: "btn btn-block btn-negative" %>
+      <% else %>
+        <%= link_to "收藏技师", follow_mechanic_path(@order.mechanic), class: "btn btn-block btn-positive" %>
+      <% end %>
+      <%= link_to "点评技师", review_order_path(@order), class: "btn btn-block btn-positive" %>
+    <% when :reviewed %>
+      <% if current_user.follow? @order.mechanic %>
+        <%= link_to "取消收藏技师", unfollow_mechanic_path(@order.mechanic), class: "btn btn-block btn-negative" %>
+      <% else %>
+        <%= link_to "收藏技师", follow_mechanic_path(@order.mechanic), class: "btn btn-block btn-positive" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

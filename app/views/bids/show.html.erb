@@ -1,0 +1,51 @@
+<% owner = @order.user_id == current_user.id %>
+<%= content_for :title do %>
+  <% if owner %>
+    选择技师
+  <% else %>
+    顾客正在选人
+  <% end %>
+<% end %>
+
+<span class="alert alert-block segmented-items">
+  <span class="item"><%= raw l(@order.appointment, format: :short).sub(" ", "<br>") %></span>
+  <span class="item">类型：<br><%= @order.skill %></span>
+  <span class="item">价格：<br><%= @order.quoted_price + @bid.markup_price %></span>
+</span>
+<ul class="table-view">
+  <li class="table-view-cell media">
+    <%= image_tag @bid.mechanic.user.avatar.url(:thumb), class: "media-object pull-left" %>
+    <div class="media-body">
+      <div class="media-block">
+        <p class="pull-right">加价 <%= @bid.markup_price %> 元</p>
+        <%= @bid.mechanic.user_nickname %>
+      </div>
+      <div class="media-block">
+        <p class="pull-right">接单 <%= @bid.mechanic.available_orders_count %> 次</p>
+        <p>专业 <%= @bid.mechanic.professionality_average %> 分 守时 <%= @bid.mechanic.timeliness_average %> 分</p>
+      </div>
+    </div>
+  </li>
+  <li class="table-view-cell">
+    <%= link_to "查看全部评价", reviews_mechanic_path(@bid.mechanic), class: "pull-right navigate-right" %>
+  </li>
+</ul>
+<div class="content-padded">
+  地址：<%= @bid.mechanic.user_address %><br>
+  简介：<%= @bid.mechanic.description %>
+</div>
+
+<div class="content-padded margin-top-large">
+  <% if owner %>
+    <%= link_to "选择此技师", pick_order_bid_path(@order, @bid), class: "btn btn-block btn-positive" %>
+    <%= link_to "返回竞价列表", order_bids_path(@order), class: "btn btn-block btn-negative" %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  var interval = setInterval(function() {
+    xhrRequest("GET", window.location.href + ".js", function(xhr) {
+      eval(xhr.responseText);
+    });
+  }, 5000);
+</script>

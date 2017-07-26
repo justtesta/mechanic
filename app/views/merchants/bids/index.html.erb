@@ -1,0 +1,13 @@
+<h3 class="page-header">选择技师</h3>
+
+<div id="content">
+  <%= render "index" %>
+</div>
+
+<%= link_to "取消订单", cancel_merchants_order_path(@order), method: :post, class: "btn btn-danger pull-right" %>
+
+<script type="text/javascript">
+  var interval = setInterval(function() {
+    $.getScript(window.location.href + ".js");
+  }, 5000);
+</script>

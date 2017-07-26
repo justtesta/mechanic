@@ -1,0 +1,26 @@
+<h3 class="page-header">退款管理</h3>
+
+<% @orders = @orders.includes(:user, :mechanic_user) %>
+
+<%= index_for [ :admin, @orders ], class: "table table-hover data-tables" do |i| %>
+  <%= i.attribute :user_nickname %>
+  <%= i.attribute :contact %>
+  <%= i.attribute :skill %>
+  <%= i.attribute :price %>
+  <%= i.attribute :mechanic_nickname %>
+  <%= i.attribute :refund_at, format: :long %>
+  <%= i.attribute :state do |order| %>
+    <% if order.canceled? %>
+      <%= te order, :cancel %>
+    <% elsif order.refunded? %>
+      <%= te order, :refund %>
+    <% else %>
+      <%= te order, :state %>
+    <% end %>
+  <% end %>
+
+  <%= i.actions do |a| %>
+    <%= a.action_link :show, url: admin_refund_path(i.object) %>
+    <%= a.action_link :confirm, url: confirm_admin_refund_path(i.object), method: :post, confirm: "你确定要通过这条申请？", html: { target: "_blank" } %>
+  <% end %>
+<% end %>
