@@ -1,0 +1,75 @@
+<%= content_for :title do %>
+  我的信息
+<% end %>
+
+<%
+  city_map = types_option_pairs City, :province_id
+  district_map = types_option_pairs District, :city_id
+%>
+
+<%= simple_form_for(@user, url: user_path, method: :post) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="content-padded margin-top-large">
+    <%= f.input :nickname %>
+  <div  style="display: none;" ><%= f.input :gender, collection: enum_option_pairs(User, :gender) %> </div>
+    <%= f.input :address %>
+
+    <%= f.fields_for :mechanic do |ff| %>
+      <%= ff.input :_create,  as: :boolean, label: "我是技师", input_html: { checked: @user.mechanic? } %>
+
+      <div id="user_mechanic_attributes" style="display: none;">
+	    
+        <%= ff.input :skill_cds, as: :check_boxes, collection: Skill.all %>
+
+        <%= ff.input :province_cd, collection: Province.all %>
+        <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [] %>
+        <%= ff.input :district_cd, collection: district_map[ff.object.city_cd] || [] %>
+
+        <%= ff.input :description, as: :text, input_html: { rows: 4 } %>
+      </div>
+    <% end %>
+
+    <%= f.button :submit, "确定", class: "btn-block btn-positive" %>
+  </div>
+<% end %>
+
+<div class="content-padded margin-top-large">
+  <p>
+    如果是技师（或者汽车服务店），请选择【我是技师】
+  </p>
+</div>
+
+<script type="text/javascript">
+  var isMechanic = user_mechanic_attributes__create;
+  var mechanic = user_mechanic_attributes;
+  var isMechanicCallback = function() {
+    if (isMechanic.checked) mechanic.style.display = "";
+    else mechanic.style.display = "none";
+  };
+  isMechanic.checked = true;
+  isMechanic.addEventListener("change", isMechanicCallback);
+  isMechanicCallback();
+ 
+
+  var cityMap = <%= raw city_map.to_json %>
+  var districtMap = <%= raw district_map.to_json %>
+
+  var province = user_mechanic_attributes_province_cd;
+  var city = user_mechanic_attributes_city_cd;
+  var district = user_mechanic_attributes_district_cd;
+
+  var provinceCallback = function() {
+    removeOptions(city.querySelectorAll("option"));
+    removeOptions(district.querySelectorAll("option"));
+    appendOptions(city, cityMap[province.value]);
+  };
+
+  var cityCallback = function() {
+    removeOptions(district.querySelectorAll("option"));
+    appendOptions(district, districtMap[city.value]);
+  };
+
+  province.addEventListener("change", provinceCallback);
+  city.addEventListener("change", cityCallback);
+</script>

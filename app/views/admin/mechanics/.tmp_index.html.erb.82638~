@@ -1,0 +1,52 @@
+<h3 class="page-header">
+  技师管理
+  <small><%= link_to "添加技师", new_admin_mechanic_path %></small>
+  <small><%= link_to "导入技师", import_admin_mechanics_path %></small>
+</h3>
+
+<%
+  def mechanic_state_link_to state, text
+    link = link_to text, admin_mechanics_path(state: state)
+    class_name = (@state == state) ? "active" : ""
+    %{<li class="#{class_name}">#{link}</li>}.html_safe
+  end
+%>
+
+<div class="row">
+  <div class="col-md-2 col-xs-4">
+    <ul class="nav nav-pills nav-stacked">
+      <%= mechanic_state_link_to :all, "全部技师" %>
+      <%= mechanic_state_link_to :hidden, "隐藏技师" %>
+    </ul>
+  </div>
+
+  <% @mechanics = @mechanics.includes(:mechanic).joins(:mechanic) %>
+
+  <div class="col-md-10 col-xs-8">
+    <%= wice_index_for [ :admin, @mechanics ], class: "table table-hover" do |i| %>
+      <%= i.attribute :nickname, searchable: true %>
+      <%= i.attribute :mobile, searchable: true %>
+      <%= i.fields_for :mechanic, model: Mechanic do |ii| %>
+        <%= ii.attribute :unique_id, searchable: true %>
+        <%= ii.attribute :province, sortable: "mechanics.province_cd", filterable: { "mechanics.province_cd" => Mechanic.provinces[params[:search]] } %>
+        <%= ii.attribute :city, sortable: "mechanics.city_cd", filterable: { "mechanics.city_cd" => Mechanic.cities[params[:search]] } %>
+        <%= ii.attribute :district, sortable: "mechanics.district_cd", filterable: { "mechanics.district_cd" => Mechanic.districts[params[:search]] } %>
+      <% end %>
+      <%= i.attribute :address, searchable: true %>
+      <%= i.fields_for :mechanic, model: Mechanic do |ii| %>
+        <%= ii.attribute :available_orders_count %>
+        <%= ii.attribute :total_income %>
+      <% end %>
+
+      <%= i.actions do |a| %>
+        <%= a.action_link :show, url: admin_mechanic_path(i.object) %>
+        <%= a.action_link :edit, url: edit_admin_mechanic_path(i.object) %>
+        <% if i.object.hidden? %>
+          <%= a.action_link :unhide, url: unhide_admin_mechanic_path(i.object), method: :post, confirm: "你确定要显示这个用户？" %>
+        <% else %>
+          <%= a.action_link :hide, url: hide_admin_mechanic_path(i.object), method: :post, confirm: "你确定要隐藏这个用户？" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
