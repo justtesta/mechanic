@@ -5,7 +5,7 @@ default: &default
     confirmation: 5926
     contact_pay_merchant_order: 5927
     contact_pay_mobile_order: 5930
-    mechanic_pay_order: 5937
+    mechanic_pay_order: 29918
     mechanic_refund_order: 5933
 
 development:
