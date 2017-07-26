@@ -36,7 +36,7 @@ class Mechanic < ApplicationRecord
         @mobile = row[5].value
         @unique_id = row[6].value
         @description = row[7].value
-        sleep 3
+        sleep 0.3
         success?
       end
 
