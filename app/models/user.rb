@@ -47,7 +47,7 @@ class User < ApplicationRecord
     where(%{"mechanics_skills"."skill_id" = ?}, Mechanic.skills.value(skill))
   }
 
-  validates_presence_of :nickname, :gender, :address, if: :confirmed
+  validates_presence_of :nickname, :address, if: :confirmed
 
   validate :validate_location
   def validate_location

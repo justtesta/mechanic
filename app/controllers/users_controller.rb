@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:mobile, :nickname, :gender, :address, :avatar,
-        mechanic_attributes: [:_create, :id, :province_cd, :city_cd, :district_cd, :description,
+        mechanic_attributes: [:_create, :id, :province_cd, :city_cd, :district_cd, :description, :unique_id,
         skill_cds: [] ])
     end
 
