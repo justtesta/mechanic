@@ -34,6 +34,12 @@ class Mechanic < ApplicationRecord
           @error_messages << "未知区县2：“#{@district}”"
           end
         end
+        if @district==""
+           @error_messages << "未知区县5：“#{row[2].value}”"
+         else
+            @error_messages << "未知区县2：“#{row[2].value}”"
+          end
+           
         
         if @district==""
           @address = row[2].value
