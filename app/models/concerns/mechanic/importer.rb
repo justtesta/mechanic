@@ -28,7 +28,7 @@ class Mechanic < ApplicationRecord
         @district = row[2].value
         @district_cd = Mechanic.districts[@district]
         unless district_cd
-           unless @district==""
+           if @district!=""
           @error_messages << "未知区县：“#{@district}”"
           end
         end
