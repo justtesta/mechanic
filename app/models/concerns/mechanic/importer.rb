@@ -28,32 +28,18 @@ class Mechanic < ApplicationRecord
         @district = row[2].value
         @district_cd = Mechanic.districts[@district]
         unless district_cd
-          if @district==""
-          @error_messages << "未知区县3：“#{@district}”"
-        else
-          @error_messages << "未知区县2：“#{@district}”"
+          unless @district== nil
+          @error_messages << "未知区县：“#{@district}”"
           end
         end
-        if @district== nil
-           @error_messages << "未知区县5：“#{row[2].value}”"
-         else
-            @error_messages << "未知区县4：“#{row[2].value}”"
-          end
-           
-        
-        if @district==""
-          @address = row[2].value
-          @nickname = row[3].value
-          @mobile = row[4].value
-          @unique_id = row[5].value
-          @description = row[6].value
-        else
+        @error_messages << "未知区县2：“#{row[2].value}”"
+          @error_messages << "未知区县3：“#{row[3].value}”"
           @address = row[3].value
           @nickname = row[4].value
           @mobile = row[5].value
           @unique_id = row[6].value
           @description = row[7].value
-        end
+     
 
       
         
