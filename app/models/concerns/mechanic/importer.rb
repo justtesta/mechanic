@@ -34,7 +34,7 @@ class Mechanic < ApplicationRecord
           @error_messages << "未知区县2：“#{@district}”"
           end
         end
-        if @district.empty?
+        if @district== nil
            @error_messages << "未知区县5：“#{row[2].value}”"
          else
             @error_messages << "未知区县4：“#{row[2].value}”"
