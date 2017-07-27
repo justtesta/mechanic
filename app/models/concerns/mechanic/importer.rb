@@ -30,12 +30,23 @@ class Mechanic < ApplicationRecord
         unless district_cd
           @error_messages << "未知区县：“#{@district}”"
         end
-
-        @address = row[3].value
+        
+        if @district==""
+          @address = row[2].value
+         @nickname = row[3].value
+        @mobile = row[4].value
+        @unique_id = row[5].value
+        @description = row[6].value
+        else
+          @address = row[3].value
         @nickname = row[4].value
         @mobile = row[5].value
         @unique_id = row[6].value
         @description = row[7].value
+        end
+
+      
+        
         sleep 0.3
         success?
       end
