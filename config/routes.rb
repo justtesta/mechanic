@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  options = Rails.env.production? ? { path: "", constraints: { subdomain: 'es' }} : {}
+  options = Rails.env.production? ? { path: "", constraints: { subdomain: '123' }} : {}
 
   concern :pick do
     member do
