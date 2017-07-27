@@ -29,7 +29,7 @@ class Mechanic < ApplicationRecord
         @district_cd = Mechanic.districts[@district]
         unless district_cd
            if @district!=""
-          @error_messages << "未知区县：“#{@district}”"
+          @error_messages << "未知区县3：“#{@district}”"
         else
           @error_messages << "未知区县2：“#{@district}”"
           end
