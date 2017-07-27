@@ -32,8 +32,7 @@ class Mechanic < ApplicationRecord
           @error_messages << "未知区县：“#{@district}”"
           end
         end
-        @error_messages << "未知区县2：“#{row[2].value}”"
-          @error_messages << "未知区县3：“#{row[3].value}”"
+        
           @address = row[3].value
           @nickname = row[4].value
           @mobile = row[5].value
