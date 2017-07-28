@@ -8,6 +8,7 @@ class Order < ApplicationRecord
 
   belongs_to :user
   belongs_to :mechanic
+  belongs_to :selectmechanic, class_name: "Mechanic", foreign_key: "selectmechanic_id"                         
   belongs_to :merchant
   has_one :mechanic_user, through: :mechanic, source: :user
   has_one :store, through: :merchant
