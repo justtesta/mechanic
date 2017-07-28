@@ -1,6 +1,6 @@
 <% skill_cd = params[:skill].to_i %>
 <% @skilled_orders = @mechanic.skilled_orders(skill_cd).order(created_at: :asc).all %>
-<% if @skilled_orders.count > 0 %>
+<% if @skilled_orders.count > 2 %>
   <% @data = @skilled_orders.map do |o| { x: o.created_at.to_i * 1000, y: o.price } end %>
   <div class="chart text-center">
     <canvas id="chart"></canvas>
