@@ -2,7 +2,7 @@
 lock '3.5.0'
 
 set :application, 'mechanic'
-set :repo_url, 'https://github.com/bbtfr/mechanic.git'
+set :repo_url, 'https://github.com/justtesta/mechanic.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
