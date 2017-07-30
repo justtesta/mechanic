@@ -85,6 +85,20 @@
   </div>
 </div>
 
+<%= bootstrap_simple_form_for([ :merchants, :hosting, @order ], url: pick_merchants_hosting_order_path(@order)) do |f| %>
+  <div class="row">
+   
+
+    <div class="col-md-7">
+      <%= f.input :remark, hint: "备注对所有人可见", input_html: { rows: 4 } %>
+    </div>
+
+    <div class="col-md-12">
+      <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
+    </div>
+  </div>
+<% end %>
+
 <% end %>
 
 <% if @order.assigned? %>
