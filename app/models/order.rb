@@ -36,7 +36,7 @@ class Order < ApplicationRecord
     !!mechanic_id
   end
   def selected?
-    !selectmechanic_id.zero? &&!!selectmechanic_id
+    !selectmechanic_id==0? &&!!selectmechanic_id
   end
 
   def unassigned?
