@@ -2,7 +2,7 @@ class Admin::MechanicsController < Admin::ApplicationController
   before_action :find_mechanic, except: [ :index, :new, :create, :import, :create_import ]
 
   def index
-    @state = if %w(all hidden shown).include? params[:state]
+    @state = if %w(all hidden shown reg).include? params[:state]
         params[:state].to_sym
       else
         :all
