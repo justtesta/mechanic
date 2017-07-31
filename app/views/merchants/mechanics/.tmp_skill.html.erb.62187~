@@ -1,0 +1,43 @@
+<% skill_cd = params[:skill].to_i %>
+<% @skilled_orders = @mechanic.skilled_orders(skill_cd).order(created_at: :asc).all %>
+<% if @skilled_orders.count > 0 %>
+  <% @data = @skilled_orders.map do |o| { x: o.created_at.to_i * 1000, y: o.mechanic_income } end %>
+  <div class="chart text-center">
+    <canvas id="chart"></canvas>
+    <div id="legend" class="legend"></div>
+    <strong><%= Mechanic.skills.key(skill_cd) %>[<%= @skilled_orders.count %>单]</strong>
+  </div>
+  <script type="text/javascript">
+    var data = {
+      datasets: [{
+        label: "技师实际收入",
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)",
+        data: <%= raw @data.to_json %>
+      }]
+    };
+
+    var options = {
+      scaleTimeFormat: "HH:MM",
+      scaleDateFormat: "mm/dd",
+      scaleDateTimeFormat: "yyyy/mm/dd HH:MM",
+      scaleType: "date",
+      scaleLabel: "<%%= value %>元",
+    };
+
+    var ctx = document.getElementById("chart").getContext("2d");
+    var chart = new Chart(ctx).Scatter(data, options);
+
+    //then you just need to generate the legend
+    var legend = chart.generateLegend();
+
+    //and append it to your page somewhere
+    document.getElementById("legend").innerHTML = legend;
+  </script>
+<% else %>
+  <div class="alert alert-danger">数据过少无法绘制图表</div>
+<% end %>
