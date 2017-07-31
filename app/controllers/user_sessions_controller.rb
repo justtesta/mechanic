@@ -24,7 +24,7 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(user_session_params.to_h)
     @user = User.where(mobile: user_session_params[:mobile]).first_or_initialize
-
+    @user.fromsource="reg"
     if params.key? "verification_code"
       if @user.persisted? ? @user.reset_verification_code! : @user.save
         flash.now[:notice] = "验证码已发送，请稍等片刻..."
