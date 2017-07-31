@@ -46,6 +46,7 @@ class User < ApplicationRecord
     joins(%{INNER JOIN "mechanics_skills" ON "mechanics"."id" = "mechanics_skills"."mechanic_id"}).
     where(%{"mechanics_skills"."skill_id" = ?}, Mechanic.skills.value(skill))
   }
+  scope :reg, -> { where(fromsource: "reg") }
 
   validates_presence_of :nickname, :address, if: :confirmed
 
