@@ -31,7 +31,11 @@
       <%= i.attribute :offline? %>
       <%= i.attribute :mechanic_nickname %>
 
-      <%= i.actions :show  %>
+      <%= i.actions :show ,"data-toggle" => "modal", "data-target" => "#myModal"  %>
     <% end %>
   </div>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">  
+  <div class="modal-dialog">  
+  </div>
+  </div>
