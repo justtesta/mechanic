@@ -58,7 +58,7 @@
             </li>
           <% end %>
 
-          <li class="<%= "active" if controller_name == "mechanics" %>"><%= link_to "技师", admin_mechanics_path, {:state => "shown"} %></li>
+          <li class="<%= "active" if controller_name == "mechanics" %>"><%= link_to "技师", admin_mechanics_path %></li>
           <li class="<%= "active" if controller_name == "orders" %>"><%= link_to "订单", admin_orders_path %></li>
 
           <% if current_admin.admin? %>
