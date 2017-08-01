@@ -35,7 +35,7 @@
 	  <%= i.actions :show do |a| %>
 	   	<%= a.action_link :show ,target: :_blank %>
 		 <%= a.action_link :show do |admin| %>
-      <%= link_to "Show", merchants_hosting_order_path(admin),target: :_blank, data: { method: :show } %>
+      <%= link_to "详情", merchants_hosting_order_path(admin),target: :_blank %>
     	<% end %>
 	  <% end %>
     <% end %>
