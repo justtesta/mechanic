@@ -32,7 +32,7 @@
       <%= i.attribute :mechanic_nickname %>
 
       
-	  <%= i.actions :show do |a| %>
+	  <%= i.actions do |a| %>
 		 <%= a.action_link :show do |admin| %>
       		<%= link_to "详情", merchants_hosting_order_path(admin),target: :_blank %>
     	<% end %>
