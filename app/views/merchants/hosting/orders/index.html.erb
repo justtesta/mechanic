@@ -14,7 +14,7 @@
       <%= order_state_link_to :unassigneds, "未分配" %>
       <%= order_state_link_to :assigneds, "待服务" %>
       <%= order_state_link_to :workings, "服务中" %>
-      <%= order_state_link_to :finisheds, "待评价1" %>
+      <%= order_state_link_to :finisheds, "待评价" %>
     </ul>
   </div>
 
@@ -32,6 +32,9 @@
       <%= i.attribute :mechanic_nickname %>
 
       <%= i.actions :show ,target: :_blank %>
+	  <%= i.actions :show do |a| %>
+	   	<%= a.action_link show ,target: :_blank %>
+	  <% end %>
     <% end %>
   </div>
 </div>
