@@ -21,6 +21,7 @@
       <%= mechanic_state_link_to :all, "全部技师" %>
       
     </ul>
+  </div>
 
   <% @mechanics = @mechanics.includes(:mechanic).joins(:mechanic) %>
 
