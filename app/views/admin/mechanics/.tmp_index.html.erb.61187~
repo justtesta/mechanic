@@ -15,9 +15,11 @@
 <div class="row">
   <div class="col-md-2 col-xs-4">
     <ul class="nav nav-pills nav-stacked">
-      <%= mechanic_state_link_to nil, "合作技师" %>
+      <%= mechanic_state_link_to :shown, "合作技师" %>
+	  <%= mechanic_state_link_to :hidden, "隐藏技师" %>
+	  <%= mechanic_state_link_to :reg, "注册技师" %>
       <%= mechanic_state_link_to :all, "全部技师" %>
-      <%= mechanic_state_link_to :hidden, "隐藏技师" %>
+      
     </ul>
   </div>
 
