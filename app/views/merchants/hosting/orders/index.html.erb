@@ -31,11 +31,10 @@
       <%= i.attribute :offline? %>
       <%= i.attribute :mechanic_nickname %>
 
-      <%= i.actions :show ,target: :_blank %>
+      
 	  <%= i.actions :show do |a| %>
-	   	<%= a.action_link :show ,target: :_blank %>
 		 <%= a.action_link :show do |admin| %>
-      <%= link_to "详情", merchants_hosting_order_path(admin),target: :_blank %>
+      		<%= link_to "详情", merchants_hosting_order_path(admin),target: :_blank %>
     	<% end %>
 	  <% end %>
     <% end %>
