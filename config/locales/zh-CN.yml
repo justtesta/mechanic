@@ -71,7 +71,7 @@ zh-CN:
     attributes:
       user:
         avatar: 头像
-        nickname: 姓名
+        nickname: 名称
         weixin_openid: 微信号
         available_orders_count: 预约次数
         total_cost: 总支出
@@ -84,7 +84,7 @@ zh-CN:
         balance_update_description: 余额变动说明
       mechanic:
         unique_id: 店铺编号
-        user_nickname: 姓名
+        user_nickname: 名称
         user_mobile: 手机号码
         user_address: 地址
         description: 简介
