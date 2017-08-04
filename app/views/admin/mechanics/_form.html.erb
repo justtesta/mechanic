@@ -19,8 +19,8 @@
         <%= ff.input :skill_cds,as: :check_boxes, collection: Skill.all %>
 		
     <%  Skill.all.each do |skill|  %>
-<%= skill.input  :skill_cds, as: check_boxe %>
-<%= skill.input  :price %>
+<%= ff.input  :skill_cds, as: check_boxe %>
+<%= ff.input  :price %>
 <% end %>
 
         <%= ff.input :province_cd, collection: Province.all, input_html: { class: "select2" } %>
