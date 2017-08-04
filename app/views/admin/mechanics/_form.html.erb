@@ -20,7 +20,7 @@
 		
 		
 		<%= ff.simple_fields_for :skills do |p| %>
-		<%= ff.input  :skill_cds, as: :check_box %>
+		<%= p.input  :skill_cds, as: :check_box %>
         <%= p.check_box :name %> <%= p.input :price %>
       	<% end %>
 	 
