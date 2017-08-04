@@ -19,7 +19,7 @@
         <%= ff.input :skill_cds,as: :check_boxes, collection: Skill.all %>
 		
     <%  Skill.all.each do |skill|  %>
-<%= skill.input  :skill_cds, as: check_boxes %>
+<%= skill.input  :skill_cds, as: check_boxe %>
 <%= skill.input  :price %>
 <% end %>
 
