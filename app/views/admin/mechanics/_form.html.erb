@@ -24,7 +24,6 @@
 		    <%  Skill.all.each do |skill|  %>
 			
 				<%= ff.simple_fields_for :skills do |fff| %>
-		        <%= fff.check_box :name %> 
 				<%= fff.input  :skill_cds, as: :check_boxes %>
 				<%= fff.input :price %>
 		     	<% end %>
