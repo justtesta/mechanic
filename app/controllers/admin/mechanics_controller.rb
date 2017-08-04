@@ -23,7 +23,7 @@ class Admin::MechanicsController < Admin::ApplicationController
   def new
     @mechanic = User.new
     @mechanic.build_mechanic
-    @mechanic.skills = Skill.all
+    @mechanic.mechanic.skills = Skill.all
   end
 
   def create
