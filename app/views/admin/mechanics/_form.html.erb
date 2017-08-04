@@ -18,13 +18,13 @@
         <%= ff.input :unique_id %>
         <%= ff.input :skill_cds,as: :check_boxes, collection: Skill.all %>
 		
-	 <%= m.simple_fields_for :skill_cds do |p| %>
-        <%= p.checkbox :name %> 
-      <% end %>
+	 
 	  
     <%  Skill.all.each do |skill|  %>
 	<%= ff.input  :skill_cds, as: :check_boxes %>
-
+		<%= m.simple_fields_for :skill_cds do |p| %>
+        <%= p.checkbox :name %> 
+     <% end %>
 	<% end %>
 
         <%= ff.input :province_cd, collection: Province.all, input_html: { class: "select2" } %>
