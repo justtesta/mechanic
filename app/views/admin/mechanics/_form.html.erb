@@ -18,10 +18,14 @@
         <%= ff.input :unique_id %>
         <%= ff.input :skill_cds,as: :check_boxes, collection: Skill.all %>
 		
+	 <%= m.simple_fields_for :skill_cds do |p| %>
+        <%= p.checkbox :name %> 
+      <% end %>
+	  
     <%  Skill.all.each do |skill|  %>
-<%= ff.input  :skill_cds, as: :check_boxes %>
+	<%= ff.input  :skill_cds, as: :check_boxes %>
 
-<% end %>
+	<% end %>
 
         <%= ff.input :province_cd, collection: Province.all, input_html: { class: "select2" } %>
         <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [], input_html: { class: "select2" } %>
