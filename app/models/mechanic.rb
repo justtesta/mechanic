@@ -12,7 +12,10 @@ class Mechanic < ApplicationRecord
   as_enum :city, City, persistence: true
   as_enum :district, District, persistence: true
 
-  has_and_belongs_to_many :skills
+  has_many :works
+  has_many :skills, through: works
+  
+  #has_and_belongs_to_many :skills
   alias_attribute :skill_cds, :skill_ids
   as_enum :skills, Skill, persistence: true, accessor: :multiple
 
