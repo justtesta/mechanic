@@ -20,7 +20,8 @@
 		
 		
 		<%= ff.simple_fields_for :skills do |p| %>
-		<%= p.inspect%>
+		<%= p.check_box :is_checked%>
+      <%= p.object[:name] %>
         <%= p.check_box :name %> <%= p.input :price %>
       	<% end %>
 	 
