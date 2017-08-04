@@ -24,13 +24,7 @@
       	<% end %>
 	 
 	  
-		    <%  Skill.all.each do |skill|  %>
-			
-				<%= ff.simple_fields_for :skills do |fff| %>
-				<%= fff.input  :skill_cds, as: :check_boxes %>
-				<%= fff.input :price %>
-		     	<% end %>
-			<% end %>
+		 
 
         <%= ff.input :province_cd, collection: Province.all, input_html: { class: "select2" } %>
         <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [], input_html: { class: "select2" } %>
