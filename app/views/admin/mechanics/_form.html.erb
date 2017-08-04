@@ -21,7 +21,10 @@
 		 <%  Skill.all.each do |skill|  %>
 		<%= ff.input  :skill_cds, as: :check_box %>
 		<% end %>
-	
+		
+	      <%= ff.simple_fields_for :skills do |p| %>
+        <%= p.checkbox :name %> <%= p.input :price %>
+      <% end %>
 	 
 	  
 		    <%  Skill.all.each do |skill|  %>
