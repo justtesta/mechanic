@@ -18,7 +18,7 @@
         <%= ff.input :unique_id %>
         <%= ff.input :skill_cds,as: :check_boxes, collection: Skill.all %>
 		
-		  <%= field_set_tag 'Part' do %>
+		 <% console %>
     <%= ff.simple_fields_for :skills do |skill| %>
       <p>
       <%= skill.check_box :is_checked%>
@@ -26,7 +26,7 @@
       <%= skill.object[:name] %>
       </p>
     <% end %>
-  <% end %>
+
 		
 		<%= ff.simple_fields_for :skills do |p| %>
 			<%  Skill.all.each do |skill|  %>
