@@ -12,7 +12,7 @@ class Admin::MechanicsController < Admin::ApplicationController
   
   def edit
   #@article=Article.find(params[:id])
-  @mechanic.mechanic.skills=Skill.all
+  @mechanic.skills=Skill.all
 end
 
 
