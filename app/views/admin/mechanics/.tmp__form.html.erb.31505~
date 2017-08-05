@@ -20,9 +20,12 @@
 		
 		
 		<%= ff.simple_fields_for :skills do |p| %>
-		<%= p.check_box :is_checked%>
-        <%= p.object[:name] %>
-        <%= p.check_box :name %> <%= p.input :price %>
+			<%  Skill.all.each do |skill|  %>
+		
+			<%= p.check_box :is_checked%>
+	        <%= skill[:name] %>
+	        <%= p.input :price %>
+			<% end %>
       	<% end %>
 	 
 	  

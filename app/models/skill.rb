@@ -5,8 +5,6 @@ class Skill < ApplicationRecord
   
   has_many :works
   has_many :mechanics, through: :works
-  def price
-    100
-    end
+ 
 
 end
