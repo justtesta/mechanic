@@ -12,7 +12,6 @@ class Admin::MechanicsController < Admin::ApplicationController
   
   def edit
   #@article=Article.find(params[:id])
-  @mechanic.mechanic.skills=Skill.all
 end
 
 
@@ -29,7 +28,6 @@ end
   def new
     @mechanic = User.new
     @mechanic.build_mechanic
-    @mechanic.mechanic.skills=Skill.all
   end
 
   def create
@@ -43,6 +41,7 @@ end
   end
 
   def update
+    mechanic_params.inspect
     if @mechanic.update_attributes(mechanic_params)
       redirect_to admin_mechanics_path
     else
@@ -73,7 +72,7 @@ end
 
     def mechanic_params
       params.require(:user).permit(:mobile, :nickname, :gender, :address, :weixin_openid,
-        mechanic_attributes: [ :unique_id, :province_cd, :city_cd, :district_cd, :description, skill_cds: [] ])
+        mechanic_attributes: [ :unique_id, :province_cd, :city_cd, :district_cd, :description, skills: [] ])
     end
 
 end
