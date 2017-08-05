@@ -9,6 +9,12 @@ class Admin::MechanicsController < Admin::ApplicationController
       end
     @mechanics = User.mechanics.send(@state)
   end
+  
+  def edit
+  #@article=Article.find(params[:id])
+  @mechanic.mechanic.skills=Skill.all
+end
+
 
   def clientize
     @mechanic.client!
@@ -23,6 +29,7 @@ class Admin::MechanicsController < Admin::ApplicationController
   def new
     @mechanic = User.new
     @mechanic.build_mechanic
+    @mechanic.mechanic.skills=Skill.all
   end
 
   def create
