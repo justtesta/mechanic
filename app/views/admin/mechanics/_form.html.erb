@@ -18,11 +18,12 @@
         <%= ff.input :unique_id %>
         <%= ff.input :skill_cds,as: :check_boxes, collection: Skill.all %>
 		
+		
     <%= ff.simple_fields_for :skills do |skill| %>
       <p>
       <%= skill.check_box :is_checked%>
 	  
-      <%= skill[:name] %>
+      <%= skill.object[:name] %>
       </p>
     <% end %>
 
