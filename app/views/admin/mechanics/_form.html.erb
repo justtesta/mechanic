@@ -19,7 +19,7 @@
         <%= ff.input :skill_cds,as: :check_boxes, collection: Skill.all %>
 		
 		  <%= field_set_tag 'Part' do %>
-    <%= f.simple_fields_for Skill.all do |skill| %>
+    <%= f.simple_fields_for :skills do |skill| %>
       <p>
       <%= skill.check_box :is_checked%>
 	  
