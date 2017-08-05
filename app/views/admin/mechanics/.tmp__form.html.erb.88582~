@@ -18,11 +18,12 @@
         <%= ff.input :unique_id %>
         <%= ff.input :skill_cds,as: :check_boxes, collection: Skill.all %>
 		
+	
 		
 		<%= ff.simple_fields_for :skills do |p| %>
 			<%  Skill.all.each do |skill|  %>
-		
-			<%= p.check_box :is_checked%>
+		    <%= p.hidden_field :skill_id, value: skill[:id],id: :test  %> 
+			<%= p.check_box :is_checked  %>
 	        <%= skill[:name] %>
 	        <%= p.input :price %>
 			<% end %>
