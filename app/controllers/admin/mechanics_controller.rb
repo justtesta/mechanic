@@ -12,7 +12,6 @@ class Admin::MechanicsController < Admin::ApplicationController
   
   def edit
   #@article=Article.find(params[:id])
-  
 end
 
 
@@ -29,7 +28,6 @@ end
   def new
     @mechanic = User.new
     @mechanic.build_mechanic
-    @mechanic.mechanic.skills=Skill.all
   end
 
   def create
