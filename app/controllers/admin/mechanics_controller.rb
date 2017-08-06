@@ -42,7 +42,7 @@ end
 
   def update
     byebug
-    mechanic_params1=mechanic_params.mechanic_attributes.skills
+    mechanic_params1=mechanic_params[:mechanic_attributes][:skills]
     works = Array.new
     
     mechanic_params1.each{ |work|
