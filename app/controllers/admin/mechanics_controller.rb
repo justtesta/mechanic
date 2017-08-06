@@ -21,10 +21,10 @@ class Admin::MechanicsController < Admin::ApplicationController
       else
     skill={:is_checked=>"1",:price=>"",:id=>"1",:name=>"1"}
       end
-   
+   works << skill
     end
 byebug
-    @mechanic.mechanic.works = @skillall
+    @mechanic.mechanic.works = works
   end
 
 
