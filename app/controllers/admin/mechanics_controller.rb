@@ -43,22 +43,17 @@ end
   def update
   
     works = Array.new
-    
     mechanic_params[:mechanic_attributes][:skills].each{ |work|
-    
       if work[:is_checked]=="1"
-        
         work.delete :is_checked
-      works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
+        works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
       end
     }
     @mechanic_params=mechanic_params
-    byebug
+    
     @mechanic_params[:mechanic_attributes].delete :skills
-    #@mechanic_params[:mechanic_attributes][:skills]=works
     if @mechanic.update_attributes(@mechanic_params)
-      
-      @mechanic.mechanic.works.replace(works)
+      @mechanic.mechanic.works.push(works)
       redirect_to admin_mechanics_path
     else
       render :new
@@ -82,8 +77,6 @@ end
 
   private
 
-    def find_mechanic
-      @mechanic = User.find(params[:id])
     end
 
     def mechanic_params
