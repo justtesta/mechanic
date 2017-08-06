@@ -65,8 +65,12 @@
       $district.removeOptions();
       $district.appendOptions(districtMap[$city.val()]);
     });
+	
+	checkWorks();
   })();
   
-  function(){
+  function checkWorks(){
+  	var worksJson = <%= raw @@mechanic.mechanic.works.to_json %>;
+	alert (worksJson);
   	 }
 </script>
