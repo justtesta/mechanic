@@ -41,8 +41,17 @@ end
   end
 
   def update
+    mechanic_params1=mechanic_params.mechanic.skills
+    works = Array.new
+    byebug
+    mechanic_params1.each{ |work|
+      if work[:is_checked]==1
+      works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
+      end
+    }
     
     if @mechanic.update_attributes(mechanic_params)
+      @mechanic.mechanic.works.replace(works)
       redirect_to admin_mechanics_path
     else
       render :new

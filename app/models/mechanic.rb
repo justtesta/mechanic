@@ -12,7 +12,7 @@ class Mechanic < ApplicationRecord
   as_enum :city, City, persistence: true
   as_enum :district, District, persistence: true
 
-  has_many :works
+  has_many :works ,:dependent => :destroy
   has_many :skills, through: :works
   
   #has_and_belongs_to_many :skills
