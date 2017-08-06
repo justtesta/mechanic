@@ -11,7 +11,7 @@ class Admin::MechanicsController < Admin::ApplicationController
   end
   
   def edit
-  @mechanic.mechanic.skills=Skill.all
+  
   end
 
 

@@ -25,7 +25,7 @@
 	<%  Skill.all.each do |skill|  %>
 			<%= ff.simple_fields_for :skills, index: nil  do |p| %>
 		    <%= p.hidden_field :skill_id, value: skill[:id]  %> 
-			<%= p.check_box :is_checked  %>
+			<%= p.check_box :is_checked, value: skill[:id]  %>
 	        <%= skill[:name] %>
 	        <%= p.input :price %>
 			<% end %>
