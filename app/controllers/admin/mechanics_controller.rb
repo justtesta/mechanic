@@ -41,7 +41,7 @@ end
   end
 
   def update
-    byebug
+    
     mechanic_params1=mechanic_params[:mechanic_attributes][:skills]
     works = Array.new
     
@@ -52,6 +52,7 @@ end
     }
     
     if @mechanic.update_attributes(mechanic_params)
+      byebug
       @mechanic.mechanic.works.replace(works)
       redirect_to admin_mechanics_path
     else
