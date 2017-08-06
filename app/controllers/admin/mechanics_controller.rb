@@ -41,7 +41,7 @@ end
   end
 
   def update
-    byebug
+    
     if @mechanic.update_attributes(mechanic_params)
       redirect_to admin_mechanics_path
     else
