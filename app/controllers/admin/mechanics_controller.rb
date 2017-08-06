@@ -41,18 +41,17 @@ end
   end
 
   def update
-    
-    mechanic_params1=mechanic_params[:mechanic_attributes][:skills]
+  
     works = Array.new
     byebug
-    mechanic_params1.each{ |work|
+    mechanic_params[:mechanic_attributes][:skills].each{ |work|
       if work[:is_checked]==1
         work.delete :is_checked
         byebug
       works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
       end
     }
-    
+    mechanic_params[:mechanic_attributes].delete :skills
     if @mechanic.update_attributes(mechanic_params)
       byebug
       @mechanic.mechanic.works.replace(works)
