@@ -11,10 +11,11 @@ class Admin::MechanicsController < Admin::ApplicationController
   end
   
   def edit
-    byebug
+    
     works = Array.new
     @skillall=Skill.all
     @skillall.each do |skill|
+      byebug
       if @mechanic.mechanic.get_work_by_skill_id(skill[:id]).is_checked=="1"
         
       skill.merge @mechanic.mechanic.get_work_by_skill_id(skill[:id])       
