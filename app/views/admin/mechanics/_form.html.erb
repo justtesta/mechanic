@@ -20,9 +20,9 @@
 		
 	
 		
-		<%= ff.simple_fields_for :skills do |p| %>
-			<%  Skill.all.each do |skill|  %>
-			<%  b = "user_mechanic_attributes_skills_price" + skill[:id] %>
+		
+		<%  Skill.all.each do |skill|  %>
+			<%= ff.simple_fields_for :skills do |p| %>
 		    <%= p.hidden_field :skill_id, value: skill[:id],id: b  %> 
 			<%= p.check_box :is_checked  %>
 	        <%= skill[:name] %>
