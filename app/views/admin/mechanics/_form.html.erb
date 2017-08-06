@@ -76,6 +76,7 @@
 	
 	$.each( worksJson, function(index, content)
   { 
+  $("#user_mechanic_attributes_skills__price1").val(content.price);
    $("#user_mechanic_attributes_skills__price"+content.skill_id).val(content.price);
    $("#user_mechanic_attributes_skills__is_checked"+content.skill_id).attr("checked", true);
    alert( "the man's no. is: " + index + ",skill_id= " + content.skill_id + " and price= " + content.price ); 
