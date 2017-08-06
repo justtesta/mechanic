@@ -15,14 +15,14 @@ class Admin::MechanicsController < Admin::ApplicationController
     works = Array.new
     @skillall=Skill.all
     @skillall.each do |skill|
-      byebug
+      
       if @mechanic.mechanic.get_work_by_skill_id(skill[:id]).is_checked=="1"
         
       skill.merge @mechanic.mechanic.get_work_by_skill_id(skill[:id])       
       end
    
     end
-
+byebug
     @mechanic.mechanic.works = @skillall
   end
 
