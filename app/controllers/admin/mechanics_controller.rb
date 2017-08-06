@@ -11,8 +11,19 @@ class Admin::MechanicsController < Admin::ApplicationController
   end
   
   def edit
-  #@article=Article.find(params[:id])
-end
+    byebug
+    works = Array.new
+    @skillall=Skill.all
+    @skillall.each do |skill|
+      if @mechanic.mechanic.get_work_by_skill_id(skill[:id]).is_checked=="1"
+        
+      skill.merge @mechanic.mechanic.get_work_by_skill_id(skill[:id])       
+      end
+   
+    end
+
+    @mechanic.mechanic.works = @skillall
+  end
 
 
   def clientize
@@ -43,21 +54,15 @@ end
   def update
   
     works = Array.new
-    
     mechanic_params[:mechanic_attributes][:skills].each{ |work|
-    
       if work[:is_checked]=="1"
-        
         work.delete :is_checked
-      works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
+        works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
       end
     }
     @mechanic_params=mechanic_params
-    
     @mechanic_params[:mechanic_attributes].delete :skills
-    #@mechanic_params[:mechanic_attributes][:skills]=works
     if @mechanic.update_attributes(@mechanic_params)
-      
       @mechanic.mechanic.works.push(works)
       redirect_to admin_mechanics_path
     else

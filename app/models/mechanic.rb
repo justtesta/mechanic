@@ -65,5 +65,10 @@ class Mechanic < ApplicationRecord
     name << district if district
     name.join(" ")
   end
+  
+  def get_work_by_skill_id(did)
+    work = works.find_by_skill_id(did)
+    work.nil?? nil : work
+  end
 
 end

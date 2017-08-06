@@ -3,7 +3,7 @@ class Skill < ApplicationRecord
 
   validates_presence_of :name
   
-  has_many :works
+  has_many :works,:dependent => :destroy
   has_many :mechanics, through: :works
  
 
