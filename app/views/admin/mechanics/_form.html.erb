@@ -72,15 +72,13 @@
   
   function checkWorks(){
   	var worksJson = <%= raw works_json.to_json %>;
-<<<<<<< HEAD
+
 	
 	$.each( worksJson, function(index, content)
   { 
    alert( "the man's no. is: " + index + ",skill_id= " + content.skill_id + " and price= " + content.price ); 
   });
 	
-=======
-	alert (worksJson[0]);
->>>>>>> 93c89a1eaa1adc60e44862092ac1045c0a79e79d
+
   	 }
 </script>
