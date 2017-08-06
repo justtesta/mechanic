@@ -16,9 +16,10 @@ class Admin::MechanicsController < Admin::ApplicationController
     @skillall=Skill.all
     @skillall.each do |skill|
       
-      if @mechanic.mechanic.get_work_by_skill_id(skill[:id]).is_checked=="1"
-        
-      skill.merge @mechanic.mechanic.get_work_by_skill_id(skill[:id])       
+      if @mechanic.mechanic.get_work_by_skill_id(skill[:id]).nil??
+        skill={:is_checked=>"0",:price=>"",:id=>skill[:id],:name=skill[:name]}
+      else
+       skill={:is_checked=>"1",:price=>@mechanic.mechanic.get_work_by_skill_id(skill[:id]).price,:id=>skill[:id],:name=skill[:name]}    
       end
    
     end
