@@ -22,7 +22,7 @@
 		
 		
 		
-			<%= ff.simple_fields_for :skills  do |pp| %>
+			<%= ff.bootstrap_simple_fields_for :skills  do |pp| %>
 			<% byebug %>
 		    <%= pp.hidden_field :skill_id, value: pp[:id]  %> 
 			<%= pp.check_box :is_checked  %>
