@@ -41,7 +41,7 @@ end
   end
 
   def update
-    byebug
+    
     if @mechanic.update_attributes(mechanic_params)
       redirect_to admin_mechanics_path
     else
@@ -72,7 +72,7 @@ end
 
     def mechanic_params
       params.require(:user).permit(:mobile, :nickname, :gender, :address, :weixin_openid,
-        mechanic_attributes: [ :unique_id, :province_cd, :city_cd, :district_cd, :description, skills: [][:is_checked,:price,:skill_id] ])
+        mechanic_attributes: [ :unique_id, :province_cd, :city_cd, :district_cd, :description, skills: [[:is_checked, :price, :skill_id]] ])
     end
 
 end
