@@ -47,6 +47,7 @@ end
     
     mechanic_params1.each{ |work|
       if work[:is_checked]==1
+        work.delete :is_checked
       works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
       end
     }
