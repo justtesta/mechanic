@@ -45,8 +45,9 @@ end
     works = Array.new
     
     mechanic_params[:mechanic_attributes][:skills].each{ |work|
+    byebug
       if work[:is_checked]==1
-        byebug
+        
         work.delete :is_checked
       works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
       end
