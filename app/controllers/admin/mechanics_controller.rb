@@ -11,20 +11,7 @@ class Admin::MechanicsController < Admin::ApplicationController
   end
   
   def edit
-    
-    works = Array.new
-    @skillall=Skill.all
-    @skillall.each do |skill|
-      
-      if @mechanic.mechanic.get_work_by_skill_id(skill[:id]).nil? then
-        skill={:is_checked=>"0",:price=>"",:id=>"1",:name=>"1"}
-      else
-    skill={:is_checked=>"1",:price=>"",:id=>"1",:name=>"1"}
-      end
-   works << skill
-    end
-byebug
-    @mechanic.mechanic.works = works
+  @mechanic.mechanic.skills=Skill.all
   end
 
 
