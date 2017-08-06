@@ -1,6 +1,7 @@
 <%
   city_map = types_option_pairs City, :province_id
   district_map = types_option_pairs District, :city_id
+  works_json=@mechanic.mechanic.works
 %>
 
 <%= bootstrap_simple_form_for(@mechanic, url: url, method: method) do |f| %>
@@ -70,7 +71,7 @@
   })();
   
   function checkWorks(){
-  	var worksJson = <%= raw @@mechanic.mechanic.works.to_json %>;
+  	var worksJson = <%= raw works_json.to_json %>;
 	alert (worksJson);
   	 }
 </script>
