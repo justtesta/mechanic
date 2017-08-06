@@ -44,7 +44,7 @@ end
     
     mechanic_params1=mechanic_params[:mechanic_attributes][:skills]
     works = Array.new
-    
+    byebug
     mechanic_params1.each{ |work|
       if work[:is_checked]==1
         work.delete :is_checked
