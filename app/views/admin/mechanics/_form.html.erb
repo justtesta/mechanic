@@ -23,6 +23,7 @@
 		
 		
 			<%= ff.simple_fields_for :skills  do |p| %>
+			<% byebug %>
 		    <%= p.hidden_field :skill_id, value: p[:id]  %> 
 			<%= p.check_box :is_checked  %>
 	        <%= p[:name] %>
