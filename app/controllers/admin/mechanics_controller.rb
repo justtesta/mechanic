@@ -17,9 +17,9 @@ class Admin::MechanicsController < Admin::ApplicationController
     @skillall.each do |skill|
       
       if @mechanic.mechanic.get_work_by_skill_id(skill[:id]).nil??
-        skill={:is_checked=>"0",:price=>"",:id=>"1",:name="1"}
+        skill={:is_checked=>"0",:price=>"",:id=>"1",:name=>"1"}
       else
-    skill={:is_checked=>"1",:price=>"",:id=>"1",:name="1"}
+    skill={:is_checked=>"1",:price=>"",:id=>"1",:name=>"1"}
       end
    
     end
