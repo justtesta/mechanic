@@ -22,12 +22,12 @@
 		
 		
 		
-			<%= ff.simple_fields_for :skills  do |p| %>
+			<%= ff.simple_fields_for :skills  do |pp| %>
 			<% byebug %>
-		    <%= p.hidden_field :skill_id, value: p[:id]  %> 
-			<%= p.check_box :is_checked  %>
-	        <%= p[:name] %>
-	        <%= p.input :price %>
+		    <%= pp.hidden_field :skill_id, value: pp[:id]  %> 
+			<%= pp.check_box :is_checked  %>
+	        <%= pp[:name] %>
+	        <%= pp.input :price %>
 			<% end %>
     
 	 
