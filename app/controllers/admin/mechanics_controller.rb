@@ -53,7 +53,7 @@ end
     }
     @mechanic_params=mechanic_params
     @mechanic_params[:mechanic_attributes].delete :skills
-    @mechanic_params[:mechanic_attributes].[:skills]=works
+    @mechanic_params[:mechanic_attributes][:skills]=works
     if @mechanic.update_attributes(@mechanic_params)
       
       @mechanic.mechanic.works.replace(works)
