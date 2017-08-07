@@ -19,9 +19,10 @@
       <%= i.fields_for :mechanic do |ii| %>
         <%= ii.attribute :unique_id %>
         <%= ii.attribute :skills do |mechanic| %>
-		<%  mechanic.works.each do |work|  %>
+		  <%  mechanic.works.each do |work|  %>
 		  <%= work.skill_name_price %>
           <%= "、" %>
+		  <% end %>
         <% end %>
         <%= ii.attribute :province %>
         <%= ii.attribute :city %>
