@@ -31,7 +31,16 @@ class Admin::MechanicsController < Admin::ApplicationController
   end
 
   def create
-    @mechanic = User.new(mechanic_params)
+    works = Array.new
+    mechanic_params[:mechanic_attributes][:skills].each{ |work|
+      if work[:is_checked]=="1"
+        work.delete :is_checked
+        works << @mechanic.mechanic.works.new(work) unless work[:skill_id].empty?
+      end
+    }
+    @mechanic_params=mechanic_params
+    @mechanic_params[:mechanic_attributes].delete :skills
+    @mechanic = User.new(@mechanic_params)
     @mechanic.mechanic!
     if @mechanic.save
       redirect_to admin_mechanics_path
