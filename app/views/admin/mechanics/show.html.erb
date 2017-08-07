@@ -19,7 +19,9 @@
       <%= i.fields_for :mechanic do |ii| %>
         <%= ii.attribute :unique_id %>
         <%= ii.attribute :skills do |mechanic| %>
-          <%= mechanic.skills.join("、") %>
+		<%  mechanic.works.each do |work|  %>
+		  <%= work.skill_name_price %>
+          <%= "、" %>
         <% end %>
         <%= ii.attribute :province %>
         <%= ii.attribute :city %>
