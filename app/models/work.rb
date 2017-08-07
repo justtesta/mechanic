@@ -4,4 +4,10 @@ class Work < ApplicationRecord
   def skill_name
     skill.name 
   end
+ def skill_name_price
+    name = []
+    name << skill.name  if skill.name 
+    name << price if price
+    name.join(" ")
+  end
 end
