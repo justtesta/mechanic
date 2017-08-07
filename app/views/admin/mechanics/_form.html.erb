@@ -26,14 +26,14 @@
 	<label class="check_boxes optional control-label">擅长技能</label>
 	<%  Skill.all.each do |skill|  %>
 			<span class="checkbox">
-			<%= ff.simple_fields_for :skills, index: nil  do |p| %>
+			
 			<label for=<%= "user_mechanic_attributes_skills__is_checked#{skill[:id]}" %>>
-		    <%= p.hidden_field :skill_id, value: skill[:id],id: "user_mechanic_attributes_skills__skill_id#{skill[:id]}",name: "user[mechanic_attributes][skills][][skill_id]"  %> 
-			<%= p.check_box :is_checked,id: "user_mechanic_attributes_skills__is_checked#{skill[:id]}",name: "user[mechanic_attributes][skills][][is_checked]"  %>
+		    <%= ff.hidden_field :skill_id, value: skill[:id],id: "user_mechanic_attributes_skills__skill_id#{skill[:id]}",name: "user[mechanic_attributes][skills][][skill_id]"  %> 
+			<%= ff.check_box :is_checked,id: "user_mechanic_attributes_skills__is_checked#{skill[:id]}",name: "user[mechanic_attributes][skills][][is_checked]"  %>
 	        <%= skill[:name] %>
 			</label>
-	        <%= p.text_field :price,id: "user_mechanic_attributes_skills__price#{skill[:id]}",name: "user[mechanic_attributes][skills][][price]"  %>
-			<% end %>
+	        <%= ff.text_field :price,id: "user_mechanic_attributes_skills__price#{skill[:id]}",name: "user[mechanic_attributes][skills][][price]"  %>
+			
 			</span>
     <% end %>
 	</div>
