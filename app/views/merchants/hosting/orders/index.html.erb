@@ -18,7 +18,7 @@
     </ul>
   </div>
 
-  <% @orders = @orders.includes(:store, :mechanic_user).order("appointment desc") %>
+  <% @orders = @orders.includes(:store, :mechanic_user).order(:appointment) %>
 
   <div class="col-md-10 col-xs-8">
     <%= index_for [ :merchants, :hosting, @orders ], class: "table table-hover data-tables" do |i| %>
