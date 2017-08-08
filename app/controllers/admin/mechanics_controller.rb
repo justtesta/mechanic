@@ -62,6 +62,7 @@ class Admin::MechanicsController < Admin::ApplicationController
     }
     @mechanic_params=mechanic_params
     @mechanic_params[:mechanic_attributes].delete :skills
+    byebug
     @mechanic_params[:mechanic_attributes][:works]=
     if @mechanic.update_attributes(@mechanic_params)
       @mechanic.mechanic.works.clear
