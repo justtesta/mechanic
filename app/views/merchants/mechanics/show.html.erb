@@ -21,7 +21,7 @@
 
       <%= i.attribute :unique_id %>
       <%= i.attribute :skills do |mechanic, skills| %>
-        <%= mechanic.skills.join("、") %>
+        <%= mechanic.works.map {|w| w.skill_name_price }.join("、") %>
       <% end %>
       <%= i.attribute :province %>
       <%= i.attribute :city %>
