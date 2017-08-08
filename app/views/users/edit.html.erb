@@ -32,7 +32,7 @@ end %>
         <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [] %>
         <%= ff.input :district_cd, collection: district_map[ff.object.city_cd] || [] %>
 
-        <%= ff.input :description, as: :text, input_html: { rows: 4 } %>
+        <div  style="display: none;" >  <%= ff.input :description, as: :text, input_html: { rows: 4 } %> </div>
       <% end %>
     <% end %>
 
