@@ -62,8 +62,7 @@ class Admin::MechanicsController < Admin::ApplicationController
     }
     @mechanic_params=mechanic_params
     @mechanic_params[:mechanic_attributes].delete :skills
-    byebug
-    @mechanic_params[:mechanic_attributes][:works]=
+    
     if @mechanic.update_attributes(@mechanic_params)
       @mechanic.mechanic.works.clear
       @mechanic.mechanic.works.push(works)
@@ -96,7 +95,7 @@ class Admin::MechanicsController < Admin::ApplicationController
 
     def mechanic_params
       params.require(:user).permit(:mobile, :nickname, :gender, :address, :weixin_openid,
-        mechanic_attributes: [ :unique_id, :province_cd, :city_cd, :district_cd, :description, skills: [[:is_checked, :price, :skill_id]] ])
+        mechanic_attributes: [ :unique_id, :province_cd, :description, :city_cd, :district_cd, skills: [[:is_checked, :price, :skill_id]] ])
     end
 
 end
