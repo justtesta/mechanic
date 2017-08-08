@@ -62,11 +62,11 @@ class Admin::MechanicsController < Admin::ApplicationController
     }
     @mechanic_params=mechanic_params
     @mechanic_params[:mechanic_attributes].delete :skills
-    
+    @mechanic_params[:mechanic_attributes][:works]=[]
     if @mechanic.update_attributes(@mechanic_params)
-      @mechanic.mechanic.works.clear
+      #@mechanic.mechanic.works.clear
       @mechanic.mechanic.works.push(works)
-      #redirect_to admin_mechanics_path
+      redirect_to admin_mechanics_path
     else
       render :new
     end
