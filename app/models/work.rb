@@ -10,8 +10,8 @@ class Work < ApplicationRecord
     name << price if price
     name.join(" ")
   end
-  def set_workprice
-   @order = Order.where("mechanic_id = ? AND skill_cd = ?", mechanic_id, skill_cd).last
+  def set_price
+   @order = Order.where("mechanic_id = ? AND skill_cd = ?", mechanic_id, skill_id).last
    if(price.empty?)
    price = @order.price  unless  @order.price.empty?
    end
