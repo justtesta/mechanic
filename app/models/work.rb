@@ -13,7 +13,7 @@ class Work < ApplicationRecord
   def set_price
    @order = Order.where("mechanic_id = ? AND skill_cd = ?", mechanic_id, skill_id).last
    if(price.blank?)
-   price = @order.price  unless  @order.price.blank?
+     send("price=",  @order.price) unless  @order.price.blank?
    end
   end 
   
