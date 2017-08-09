@@ -11,10 +11,14 @@ class Work < ApplicationRecord
     name.join(" ")
   end
   def set_price
-   @order = Order.where("mechanic_id = ? AND skill_cd = ?", mechanic_id, skill_id).last
-   if(price.blank?)
-     send("price=",  @order.price) unless  @order.price.blank?
-   end
+    Work.all.each do |work|
+    @work=work
+    @order = Order.where("mechanic_id = ? AND skill_cd = ?", @work.mechanic_id, @work.skill_id).last
+      if(@work.price.blank?)
+      @work.price = @order.price  unless  @order.nil?
+      @work.save
+      end
+    end 
   end 
   
 end
