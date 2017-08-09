@@ -12,8 +12,8 @@ class Work < ApplicationRecord
   end
   def set_price
    @order = Order.where("mechanic_id = ? AND skill_cd = ?", mechanic_id, skill_id).last
-   if(price.empty?)
-   price = @order.price  unless  @order.price.empty?
+   if(price.blank?)
+   price = @order.price  unless  @order.price.blank?
    end
   end 
   
