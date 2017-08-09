@@ -14,10 +14,10 @@ class Work < ApplicationRecord
     Work.all.each do |work|
     @work=work
     @order = Order.where("mechanic_id = ? AND skill_cd = ?", @work.mechanic_id, @work.skill_id).last
-      if(@work.price.blank?)
-      @work.price = @order.price  unless  @order.nil?
+     # if(@work.price.blank?)
+      @work.price = @order.mechanic_income  unless  @order.nil?
       @work.save
-      end
+     # end
     end 
   end 
   
