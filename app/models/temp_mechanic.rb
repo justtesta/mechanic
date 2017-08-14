@@ -20,6 +20,8 @@ class TempMechanic < ApplicationRecord
     hash = Hash[*array]
     else
     print "id:", mechanic_id, "\n"
+    Rails.logger.info "error mechanic_id:##{mechanic_id} "
+    
     end
   end
 end
