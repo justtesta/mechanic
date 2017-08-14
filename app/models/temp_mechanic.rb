@@ -16,6 +16,10 @@ class TempMechanic < ApplicationRecord
     
     array = Array.new
     array = s.split(/\:|\|/)
+    if (array.size%2==0)
     hash = Hash[*array]
+    else
+    print "id:", mechanic_id, "\n"
+    end
   end
 end
