@@ -34,9 +34,9 @@ class Work < ApplicationRecord
         37
     when "TN"
         34
-    when "JLD"
+    when "JZD"
         42
-    when "JLS"
+    when "JZS"
         41
     else
         0
@@ -48,7 +48,7 @@ class Work < ApplicationRecord
       
       temp_mechanic.description_hash.each do |key,value|
       _skill_id=get_skill_id key
-      byebug
+      
       @work = Work.where("mechanic_id = ? AND skill_id = ?", temp_mechanic.mechanic_id, _skill_id).last
         if(@work.nil?)
           @work=Work.new
