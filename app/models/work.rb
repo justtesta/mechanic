@@ -45,9 +45,10 @@ class Work < ApplicationRecord
   
   def set_price_by_description
     TempMechanic.all.each do |temp_mechanic|
-      byebug
+      
       temp_mechanic.description_hash.each do |key,value|
       _skill_id=get_skill_id key
+      byebug
       @work = Work.where("mechanic_id = ? AND skill_id = ?", temp_mechanic.mechanic_id, _skill_id).last
         if(@work.nil)
           @work=Work.new
