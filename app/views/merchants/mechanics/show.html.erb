@@ -21,7 +21,11 @@
 
       <%= i.attribute :unique_id %>
       <%= i.attribute :skills do |mechanic, skills| %>
+	    <% if current_store.host? %>
         <%= mechanic.works.map {|w| w.skill_name_price }.join("、") %>
+		<% else %>
+		<%= mechanic.works.map {|w| w.skill_name }.join("、") %>
+		<% end %>
       <% end %>
       <%= i.attribute :province %>
       <%= i.attribute :city %>
@@ -50,6 +54,7 @@
     <dl class="dl-horizontal">
       <dt>备注</dt>
       <dd><%= @fellowship.remark if @fellowship %></dd>
+	  <% if current_store.host? %>
       <dt>接单记录</dt>
       <dd>
         <% @mechanic.skills.each do |skill| %>
@@ -60,6 +65,7 @@
           &nbsp;
         <% end %>
       </dd>
+	  <% end %>
       <dt>累计评论</dt>
       <dd>
         <div class="reviews">
