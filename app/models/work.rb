@@ -50,7 +50,7 @@ class Work < ApplicationRecord
       _skill_id=get_skill_id key
       byebug
       @work = Work.where("mechanic_id = ? AND skill_id = ?", temp_mechanic.mechanic_id, _skill_id).last
-        if(@work.nil)
+        if(@work.nil?)
           @work=Work.new
           @work.mechanic_id=temp_mechanic.mechanic_id
           @work.skill_id=_skill_id
