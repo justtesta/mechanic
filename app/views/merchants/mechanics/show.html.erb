@@ -34,7 +34,9 @@
       <%= i.attribute :revoke_orders_count %>
       <%= i.attribute :professionality_average %>
       <%= i.attribute :timeliness_average %>
+	  <% if current_store.host? %>
       <%= i.attribute :description %>
+	  <% end %>
     <% end %>
   </div>
 </div>

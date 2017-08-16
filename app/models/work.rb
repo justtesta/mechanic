@@ -31,7 +31,7 @@ class Work < ApplicationRecord
     when "DJ"
         15
     when "TW"
-        37
+        44 #dev 37
     when "TN"
         34
     when "JZD"
