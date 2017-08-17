@@ -1,7 +1,7 @@
 class TempMechanic < ApplicationRecord
   def description_hash
     s = "M30L30Y10TW20TN90"
-    s = description
+    s = description.strip
     s=s.sub('NM',"")
     s=s.sub('NL',"")
     s=s.sub('JLD',"|JZD:")
