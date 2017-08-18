@@ -222,7 +222,11 @@ class Order < ApplicationRecord
     if (selectmechanic.works.find_by(skill_id:skill_cd).nil?)
       0
     else
+      if(selectmechanic.works.find_by(skill_id:skill_cd).price.nil?)
+      0
+      else
       price - selectmechanic.works.find_by(skill_id:skill_cd).price * _quantity 
+      end 
     end
   end
 
