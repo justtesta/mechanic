@@ -200,6 +200,7 @@ class Order < ApplicationRecord
   # commission 堂主分成
   # procedure_price 汽车堂分成
   # mechanic_income 技师实际收入
+  # pre_procedure_price 预设手续费
   def price
     quoted_price + markup_price
   end
@@ -211,6 +212,10 @@ class Order < ApplicationRecord
 
   def mechanic_income
     price - commission - procedure_price
+  end
+  
+  def pre_procedure_price
+    price - mechanic.works.find_by(skill_id:skill_cd).price 
   end
 
   def client_commission
