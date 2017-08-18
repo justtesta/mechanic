@@ -94,6 +94,8 @@
 
     <div class="col-md-7">
       <%= f.hidden_field :mechanic_id, :value =>@order.selectmechanic.id %>
+	  <%= f.error_messages %>
+      <%= f.input :procedure_price %>
       <%= f.input :remark, hint: "备注对所有人可见", input_html: { rows: 3 } %>
     </div>
 
