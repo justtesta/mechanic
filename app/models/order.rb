@@ -215,7 +215,7 @@ class Order < ApplicationRecord
   end
   
   def pre_procedure_price
-    price - mechanic.works.find_by(skill_id:skill_cd).price 
+    price - selectmechanic.works.find_by(skill_id:skill_cd).price 
   end
 
   def client_commission
