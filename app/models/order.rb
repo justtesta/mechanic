@@ -215,7 +215,15 @@ class Order < ApplicationRecord
   end
   
   def pre_procedure_price
-    price - selectmechanic.works.find_by(skill_id:skill_cd).price 
+    _quantity=1
+    if(skill_cd==28)
+    _quantity=quoted_price/40
+    end
+    if (selectmechanic.works.find_by(skill_id:skill_cd).nil?)
+      0
+    else
+      price - selectmechanic.works.find_by(skill_id:skill_cd).price * _quantity 
+    end
   end
 
   def client_commission

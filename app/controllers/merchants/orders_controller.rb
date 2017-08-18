@@ -18,6 +18,13 @@ class Merchants::OrdersController < Merchants::ApplicationController
   def new
     @order = order_klass.new
   end
+  
+  def show
+    if @order.selected?&&!@order.assigned?
+    @order.procedure_price = @order.pre_procedure_price
+    @order.remark = "完工微信联系【18037504462】或【17319724003】结算工时费； 要京东消费码"
+    end 
+  end
 
   def create
     @order = order_klass.new(order_params)
