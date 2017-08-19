@@ -20,8 +20,11 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
       remark = pre_remark if pre_remark
       @order.update_attribute(:remark, remark) if remark
       procedure_price = params[:order][:pre_procedure_price]
-      if procedure_price.to_i > @order.quoted_price
-      @order.errors.add(:pre_procedure_price, "应低于订单标价")
+      if(procedure_price.present?)
+        if procedure_price.to_i > @order.quoted_price
+        @order.errors.add(:pre_procedure_price, "应低于订单标价")
+        redirect_to current_order_path
+        end
       end
       @order.update_attribute(:procedure_price, procedure_price) if procedure_price
       mechanic = Mechanic.find(mechanic_id)
