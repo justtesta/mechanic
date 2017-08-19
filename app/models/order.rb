@@ -126,13 +126,7 @@ class Order < ApplicationRecord
       errors.add(:procedure_price, "应低于订单标价")
     end
   end
-  
-  validate :validate_pre_procedure_price, on: :update
-  def validate_pre_procedure_price
-    if pre_procedure_price > quoted_price
-      errors.add(:pre_procedure_price, "应低于订单标价")
-    end
-  end
+
 
   cache_method :user, :available_orders_count
   cache_method :mechanic, :available_orders_count
