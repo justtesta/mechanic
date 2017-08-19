@@ -22,7 +22,6 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
       procedure_price = params[:order][:pre_procedure_price]
       if(procedure_price.present?)
         if procedure_price.to_i > @order.quoted_price
-          byebug
         @order.errors.add(:pre_procedure_price, "应低于订单标价")
         render :show
         return 
