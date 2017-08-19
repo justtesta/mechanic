@@ -21,7 +21,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
       @order.update_attribute(:remark, remark) if remark
       procedure_price = params[:order][:pre_procedure_price]
       if procedure_price.to_i > @order.quoted_price
-      errors.add(:pre_procedure_price, "应低于订单标价")
+      @order.errors.add(:pre_procedure_price, "应低于订单标价")
       end
       @order.update_attribute(:procedure_price, procedure_price) if procedure_price
       mechanic = Mechanic.find(mechanic_id)
