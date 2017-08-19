@@ -216,8 +216,10 @@ class Order < ApplicationRecord
   end
   
   def pre_procedure_price
-    if(procedure_price.present?)
-    return procedure_price
+    if(!procedure_price.nil?)
+      if(procedure_price!=0)
+      return procedure_price
+      end
     end
     _quantity=1
     if(skill_cd==28)
