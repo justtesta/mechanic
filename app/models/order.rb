@@ -222,8 +222,8 @@ class Order < ApplicationRecord
       end
     end
     _quantity=1
-    if(skill_cd==28)
-    _quantity=quoted_price/40
+    if(!quantity.nil?)
+    _quantity=quantity
     end
     if (selectmechanic.works.find_by(skill_id:skill_cd).nil?)
       0
