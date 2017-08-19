@@ -49,6 +49,8 @@ class Merchants::OrdersController < Merchants::ApplicationController
     if mechanic_id = params[:order][:mechanic_id]
       remark = params[:order][:remark]
       @order.update_attribute(:remark, remark) if remark
+      procedure_price = params[:order][:procedure_price]
+      @order.update_attribute(:procedure_price, procedure_price) if procedure_price
       mechanic = Mechanic.find(mechanic_id)
       if @order.assigned?
         @order.repick! mechanic
