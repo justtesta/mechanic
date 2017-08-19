@@ -9,12 +9,19 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
       end
     @orders = order_klass.send(@state)
   end
+  
+
 
   def update_pick
     mechanic_id = params[:order][:mechanic_id]
     if mechanic_id.present?
+      byebug
       remark = params[:order][:remark]
+      pre_remark = params[:order][:pre_remark]
+      remark = pre_remark if pre_remark
       @order.update_attribute(:remark, remark) if remark
+      procedure_price = params[:order][:pre_procedure_price]
+      @order.update_attribute(:procedure_price, procedure_price) if procedure_price
       mechanic = Mechanic.find(mechanic_id)
       @order.repick! mechanic
       redirect_to current_order_path

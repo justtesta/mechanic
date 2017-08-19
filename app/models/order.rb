@@ -237,6 +237,10 @@ class Order < ApplicationRecord
   def mechanic_commission
     (commission * settings.mechanic_commission_percent.to_f / 100).round(2)
   end
+  
+  def pre_remark
+    "完工微信联系【18037504462】或【17319724003】结算工时费； 要京东消费码。"
+  end 
 
   def title
     "汽车堂#{skill}订单"

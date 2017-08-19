@@ -19,12 +19,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
     @order = order_klass.new
   end
   
-  def show
-    if @order.selected?&&!@order.assigned?
-    @order.procedure_price = @order.pre_procedure_price
-    @order.remark = "完工微信联系【18037504462】或【17319724003】结算工时费； 要京东消费码"
-    end 
-  end
+
 
   def create
     @order = order_klass.new(order_params)
@@ -49,9 +44,6 @@ class Merchants::OrdersController < Merchants::ApplicationController
     if mechanic_id = params[:order][:mechanic_id]
       remark = params[:order][:remark]
       @order.update_attribute(:remark, remark) if remark
-      procedure_price = params[:order][:procedure_price]
-      
-      @order.update_attribute(:procedure_price, procedure_price) if procedure_price
       mechanic = Mechanic.find(mechanic_id)
       if @order.assigned?
         @order.repick! mechanic
