@@ -24,7 +24,8 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
         if procedure_price.to_i > @order.quoted_price
           byebug
         @order.errors.add(:pre_procedure_price, "应低于订单标价")
-        redirect_to current_order_path
+        render current_order_path
+        return 
         end
       end
       @order.update_attribute(:procedure_price, procedure_price) if procedure_price
