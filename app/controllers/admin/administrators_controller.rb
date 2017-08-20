@@ -1,7 +1,7 @@
 class Admin::AdministratorsController < Admin::ApplicationController
   skip_before_action :authenticate!, only: [ :forget_password, :verification_code, :confirm ]
   before_action :redirect_user, except: [ :password, :update_password, :forget_password, :verification_code, :confirm ]
-  before_action :find_admin, only: [ :show, :edit, :update, :password, :update_password ]
+  before_action :find_admin, only: [ :show, :edit, :update, :password, :update_password, :inactive, :active ]
 
   def index
     @admins = Administrator.all
