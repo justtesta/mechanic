@@ -23,7 +23,7 @@
     });
 
     var skillColumn = dataTable.column(1);
-    //$("#mechanics_skills").prependTo($("#mechanics_filter"));
+    $("#mechanics_skills").prependTo($("#mechanics_filter"));
 
     // Initialize Event Callbacks
     var mechanics = <%= raw @mechanics.reduce({}) { |ret, mechanic|
