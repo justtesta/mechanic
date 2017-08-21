@@ -4,13 +4,16 @@
       <%= f.error_messages %>
 
       <%= f.hidden_field :mechanic_id %>
-
+	 <% @province_cd = (params[:province] || @order.province_cd).to_i %>
       <% @skills = Skill.all %>
+	  <form class="form-inline" id="mechanics_form">
+      <label>省份： <%= select_tag "province", options_from_collection_for_select(Province.all, :id, :name, @province_cd), class: "form-control select2", id: "mechanics_provinces_select" %></label>
       <label class="mr20" id="mechanics_skills">类型： <%= select_tag "skills", "<option value=\"\">全部</option>".html_safe + options_from_collection_for_select(@skills, :id, :name), class: "form-control mechanics_skills_select select2" %></label>
-
+	  </form>
+	  
       <% @followed_mechanic_ids = current_store.followed_mechanic_ids %>
       <% @mechanics = Mechanic.all %>
-      <% @mechanics = @mechanics.where(province_cd: @order.province_cd) %>
+      <% @mechanics = @mechanics.where(province_cd: @province_cd) %>
       <% @mechanics = @mechanics.includes(:user, :skills) %>
       <% @mechanics = @mechanics.shown %>
 
