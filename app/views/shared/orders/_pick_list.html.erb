@@ -74,10 +74,8 @@ window.onload = function(){
 	      $form.prependTo($("#mechanics_filter"));
 	      var $province = $("#mechanics_provinces_select");
 	      $province.change(function() {
-		  	alert ("dd");
-			alert($province.val());
-			alert($form);
-	        if ($province.val()) $form.submit();
+			 if ($province.val()) location.href = "?province="+$province.val();
+	       
 	      });
 　
 } 
