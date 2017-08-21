@@ -56,7 +56,7 @@
       <div class="map" id="map"></div>
     </div>
     <div class="col-md-3 map-list" id="map_list">
-      <div class="filter">类型2： <%= select_tag "skills", "<option value=\"\">全部</option>".html_safe + options_from_collection_for_select(@skills, :id, :name), class: "form-control mechanics_skills_select" %></div>
+      <div class="filter">类型： <%= select_tag "skills", "<option value=\"\">全部</option>".html_safe + options_from_collection_for_select(@skills, :id, :name), class: "form-control mechanics_skills_select" %></div>
       <% @mechanics.each do |mechanic| %>
         <div class="item">
           <span class="glyphicon glyphicon-select" data-mechanic-id="<%= mechanic.id %>"></span>
@@ -69,8 +69,8 @@
 
 </div>
 <script type="text/javascript">
-	
-		  var $form = $("#mechanics_form");
+$(function(){
+	 var $form = $("#mechanics_form");
 	      $form.prependTo($("#mechanics_filter"));
 	      var $province = $("#mechanics_provinces_select");
 	      $province.change(function() {
@@ -79,6 +79,9 @@
 			alert($form);
 	        if ($province.val()) $form.submit();
 	      });
+　
+}); 
+		 
 	
 	  
 </script>
