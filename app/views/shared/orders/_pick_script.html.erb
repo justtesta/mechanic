@@ -23,8 +23,8 @@
     });
 
     var skillColumn = dataTable.column(1);
-    $("#mechanics_skills").prependTo($("#mechanics_filter"));
-$("#mechanics_form").prependTo($("#mechanics_filter"));
+    //$("#mechanics_skills").prependTo($("#mechanics_filter"));
+
     // Initialize Event Callbacks
     var mechanics = <%= raw @mechanics.reduce({}) { |ret, mechanic|
         json = mechanic.user.as_json(only: %w(lat lng address))
