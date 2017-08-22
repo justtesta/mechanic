@@ -5,5 +5,6 @@ class CreateServices < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    create_join_table :mechanics, :services
   end
 end
