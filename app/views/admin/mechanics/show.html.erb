@@ -21,6 +21,9 @@
         <%= ii.attribute :skills do |mechanic| %>
 		<%= mechanic.works.map {|w| w.skill_name_price }.join("、") %>
         <% end %>
+		<%= ii.attribute :services do |mechanic| %>
+        <%= mechanic.services.join("、") %>
+		<% end %>
         <%= ii.attribute :province %>
         <%= ii.attribute :city %>
         <%= ii.attribute :district %>
