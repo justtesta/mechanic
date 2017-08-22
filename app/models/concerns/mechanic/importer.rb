@@ -4,7 +4,7 @@ class Mechanic < ApplicationRecord
     class ImportRow
       attr_accessor :row, :index, :error_messages
       attr_accessor :province, :province_cd, :city, :city_cd, :district, :district_cd, :address, :nickname, :mobile
-      attr_accessor :unique_id, :description
+      attr_accessor :unique_id, :description, :service_ids
 
       def initialize row, index
         @error_messages = []
@@ -37,7 +37,9 @@ class Mechanic < ApplicationRecord
           @mobile = row[5].value
           @unique_id = row[6].value
           @description = row[7].value
-     
+          if(!row[8].nil?)
+          @service_ids = row[8].value.split()
+          end
 
       
         
@@ -57,7 +59,8 @@ class Mechanic < ApplicationRecord
             city_cd: city_cd,
             district_cd: district_cd,
             unique_id:unique_id,
-            description:description
+            description:description,
+            service_ids:service_ids
           }
         })
         mechanic.skip_send_verification_code
