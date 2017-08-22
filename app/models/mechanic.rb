@@ -16,7 +16,7 @@ class Mechanic < ApplicationRecord
   has_many :skills, through: :works
   
   has_and_belongs_to_many :services
-  #as_enum :services, Service, persistence: true, accessor: :multiple
+  as_enum :services, Service, persistence: true, accessor: :multiple
   #has_and_belongs_to_many :skills
   alias_attribute :skill_cds, :skill_ids
   as_enum :skills, Skill, persistence: true, accessor: :multiple
