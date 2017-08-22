@@ -41,7 +41,7 @@
 	 
 	  
 		 
-
+		<%= ff.input :service_ids, as: :check_boxes, collection: Service.all %>
         <%= ff.input :province_cd, collection: Province.all, input_html: { class: "select2" } %>
         <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [], input_html: { class: "select2" } %>
         <%= ff.input :district_cd, collection: district_map[ff.object.city_cd] || [], input_html: { class: "select2" } %>
