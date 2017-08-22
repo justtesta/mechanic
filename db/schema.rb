@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814074555) do
+ActiveRecord::Schema.define(version: 20170819085053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(version: 20170814074555) do
     t.datetime "refund_at",                      precision: 6
     t.text     "hosting_remark"
     t.integer  "selectmechanic_id"
+    t.integer  "quantity"
     t.index ["bid_id"], name: "index_orders_on_bid_id", using: :btree
     t.index ["cancel_cd"], name: "index_orders_on_cancel_cd", using: :btree
     t.index ["hosting"], name: "index_orders_on_hosting", using: :btree
@@ -328,8 +329,8 @@ ActiveRecord::Schema.define(version: 20170814074555) do
     t.string   "tel"
     t.integer  "lbs_id"
     t.string   "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",   default: -> { "now()" }, null: false
+    t.datetime "updated_at",   default: -> { "now()" }, null: false
   end
 
   create_table "user_groups", force: :cascade do |t|
