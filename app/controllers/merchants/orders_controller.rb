@@ -158,6 +158,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def refund
+    byebug
     if @order.paid? || @order.working? || @order.confirming?
       if @order.paid?
         reason = :user_cancel
