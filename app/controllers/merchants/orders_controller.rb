@@ -247,6 +247,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
     end
 
     def find_order
+      byebug
       @order = if current_merchant.admin?
           admin_order_klass.find(params[:id])
         else
