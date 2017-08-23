@@ -38,7 +38,9 @@ class Mechanic < ApplicationRecord
           @unique_id = row[6].value
           @description = row[7].value
           if(!row[8].nil?)
-          @service_ids = row[8].value.to_s.split()
+            unless row[8].value==0
+              @service_ids = row[8].value.to_s.split()
+            end
           end
 
       
