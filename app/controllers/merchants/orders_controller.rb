@@ -263,7 +263,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
 
     def admin_order_klass
       if current_store.host?
-        Order.where(user_id: current_store).or(hosting: false)
+        Order.where(user_id: current_store).or(Order.hostings)
       else
       Order.where(user_id: current_store)
       end
