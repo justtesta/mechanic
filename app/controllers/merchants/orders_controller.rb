@@ -248,11 +248,13 @@ class Merchants::OrdersController < Merchants::ApplicationController
     end
 
     def find_order
-      @order = if current_merchant.admin?
-          admin_order_klass.find(params[:id])
-        else
-          order_klass.find(params[:id])
+      
+        @order = if current_merchant.admin?
+            admin_order_klass.find(params[:id])
+          else
+            order_klass.find(params[:id])
         end
+      
     end
 
     def find_store_order
@@ -260,8 +262,11 @@ class Merchants::OrdersController < Merchants::ApplicationController
     end
 
     def admin_order_klass
-      
+      if current_store.host?
+        Order.hostings
+      else
       Order.where(user_id: current_store)
+      end
     end
 
     def order_klass
