@@ -158,7 +158,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def refund
-    byebug
+    
     if @order.paid? || @order.working? || @order.confirming?
       if @order.paid?
         reason = :user_cancel
@@ -247,7 +247,6 @@ class Merchants::OrdersController < Merchants::ApplicationController
     end
 
     def find_order
-      byebug
       @order = if current_merchant.admin?
           admin_order_klass.find(params[:id])
         else
