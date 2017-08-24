@@ -65,7 +65,7 @@ module SMS
     end
 
     def send_request phone, template, params
-      return
+      
       endpoint = "#{Endpoint}?sdkappid=#{SDK_APP_ID}&random=#{"%04d" % rand(10000)}"
       payload = {
         tel: {
