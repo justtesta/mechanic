@@ -259,6 +259,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
     end
 
     def admin_order_klass
+      byebug
       Order.where(user_id: current_store)
     end
 
