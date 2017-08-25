@@ -245,7 +245,7 @@ class Order < ApplicationRecord
   end
   
   def pre_remark
-    "完工微信联系【18037504462】或【17319724003】结算工时费； 要京东消费码。"
+    "完工微信联系【18037504462】或【17319724003】结算工时费； 要京东核销码。"
   end 
 
   def title
