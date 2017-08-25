@@ -19,6 +19,15 @@ class Admin::WithdrawalsController < Admin::ApplicationController
     end
     redirect_to_referer!
   end
+  
+  def confirm_nopay
+     if @withdrawal.pending?
+       @withdrawal.pay!
+    else
+      flash[:error] = "订单状态错误！"
+    end
+    redirect_to_referer!
+  end
 
   def cancel
     if @withdrawal.pending?
