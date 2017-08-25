@@ -150,9 +150,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :withdrawals do
-    post :confirm_nopay
-  end
+  resources :withdrawals
 
   namespace :admin do
     concern :confirm do
@@ -239,7 +237,7 @@ Rails.application.routes.draw do
     end
     resources :orders
     resources :refunds, concerns: [:confirm, :freeze]
-    resources :withdrawals, concerns: [:confirm, :cancel] do
+    resources :withdrawals, concerns: [:confirm, :cancel, :confirm_nopay] do
       collection do
         get :settings
         post :settings, action: :update_settings
