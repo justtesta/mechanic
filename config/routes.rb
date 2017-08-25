@@ -161,6 +161,14 @@ Rails.application.routes.draw do
         post :confirm
       end
     end
+    concern :confirm_nopay do
+      collection do
+        get :confirm_nopayed
+      end
+      member do
+        post :confirm_nopay
+      end
+    end
     concern :cancel do
       collection do
         get :canceled
