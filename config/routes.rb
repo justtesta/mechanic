@@ -150,7 +150,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :withdrawals
+  resources :withdrawals do
+    post :confirm_nopay
+  end
 
   namespace :admin do
     concern :confirm do
