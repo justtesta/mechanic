@@ -63,6 +63,37 @@ module SMS
 
       send_request order.contact_mobile, template, params
     end
+    
+    def send_pay_order_message_test order
+      mechanic = order.mechanic
+
+      
+      return unless order.contact_mobile
+      common_params = [
+        order.contact_nickname || @order.user_nickname,
+        order.skill,
+        mechanic.user_nickname,
+        mechanic.user_mobile,
+        mechanic.user_address,
+        mechanic.professionality_average,
+        mechanic.timeliness_average
+      ]
+
+      if order.mobile?
+        template = "contact_pay_mobile_order"
+        params = common_params
+      else
+        template = "contact_pay_merchant_order"
+        params = [
+          "（#{order.store_nickname}）",
+          *common_params,
+          order.store_hotline
+        ]
+        send_request order.contact_mobile, template, params
+      end
+
+      
+    end
 
     def send_request phone, template, params
       
