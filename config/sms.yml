@@ -3,7 +3,7 @@ default: &default
   app_key: <%= ENV["QCLOUD_SMS_APP_KEY"] %>
   templates:
     confirmation: 30759
-    contact_pay_merchant_order: 35193
+    contact_pay_merchant_order: 5927
     contact_pay_mobile_order: 5930
     mechanic_pay_order: 35188
     mechanic_refund_order: 5933
