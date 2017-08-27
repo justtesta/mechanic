@@ -6,7 +6,7 @@ class CreateNumbers < ActiveRecord::Migration[5.0]
       t.string :pwd_umber_default
       t.string :shop_id
       t.string :shop_name
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
     end
