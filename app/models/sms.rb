@@ -54,8 +54,7 @@ module SMS
         template = "contact_pay_merchant_order"
         params = [
           "（#{order.store_nickname}）",
-          *common_params,
-          order.store_hotline
+          *common_params
         ]
       end
 
