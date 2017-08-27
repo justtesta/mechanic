@@ -44,7 +44,9 @@ module SMS
         order.skill,
         mechanic.user_nickname,
         mechanic.user_mobile,
-        mechanic.user_address
+        mechanic.user_address,
+        mechanic.professionality_average,
+        mechanic.timeliness_average
       ]
 
       if order.mobile?

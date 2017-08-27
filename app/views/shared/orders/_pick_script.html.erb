@@ -108,6 +108,12 @@
     });
 
     selectMechanic(<%= raw @order.mechanic_id.to_json %>);
+	
+	//Province  Select
+	$("#mechanics_form").prependTo($("#mechanics_filter"));
+	$("#mechanics_provinces_select").change(function() {
+	       location.href = "?province="+$("#mechanics_provinces_select").val();
+	 });
 
     // Initialize Map
     window.initMap = function() {
