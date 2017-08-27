@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170819085053) do
+ActiveRecord::Schema.define(version: 20170822043420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,11 @@ ActiveRecord::Schema.define(version: 20170819085053) do
     t.index ["district_cd"], name: "index_mechanics_on_district_cd", using: :btree
     t.index ["province_cd"], name: "index_mechanics_on_province_cd", using: :btree
     t.index ["user_id"], name: "index_mechanics_on_user_id", using: :btree
+  end
+
+  create_table "mechanics_services", id: false, force: :cascade do |t|
+    t.integer "mechanic_id", null: false
+    t.integer "service_id",  null: false
   end
 
   create_table "mechanics_skills", id: false, force: :cascade do |t|
@@ -306,6 +311,12 @@ ActiveRecord::Schema.define(version: 20170819085053) do
     t.string  "name"
     t.integer "brand_id"
     t.index ["brand_id"], name: "index_series_on_brand_id", using: :btree
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "settings", force: :cascade do |t|
