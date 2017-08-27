@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822043420) do
+ActiveRecord::Schema.define(version: 20170827133155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,6 +194,17 @@ ActiveRecord::Schema.define(version: 20170822043420) do
     t.index ["store_id"], name: "index_notes_on_store_id", using: :btree
   end
 
+  create_table "numbers", force: :cascade do |t|
+    t.string   "jdorder_id"
+    t.string   "pwd_umber"
+    t.string   "pwd_umber_default"
+    t.string   "shop_id"
+    t.string   "shop_name"
+    t.integer  "status",            default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "mechanic_id"
@@ -342,6 +353,28 @@ ActiveRecord::Schema.define(version: 20170822043420) do
     t.string   "description"
     t.datetime "created_at",   default: -> { "now()" }, null: false
     t.datetime "updated_at",   default: -> { "now()" }, null: false
+  end
+
+  create_table "temp_mechanics_copy", id: :integer, default: -> { "nextval('temp_mechanics_id_seq'::regclass)" }, force: :cascade do |t|
+    t.integer  "mechanic_id"
+    t.string   "mechanicname"
+    t.string   "addr"
+    t.string   "tel"
+    t.integer  "lbs_id"
+    t.string   "description"
+    t.datetime "created_at",   precision: 6, default: -> { "now()" }, null: false
+    t.datetime "updated_at",   precision: 6, default: -> { "now()" }, null: false
+  end
+
+  create_table "temp_mechanics_copy1", id: :integer, default: -> { "nextval('temp_mechanics_id_seq'::regclass)" }, force: :cascade do |t|
+    t.integer  "mechanic_id"
+    t.string   "mechanicname"
+    t.string   "addr"
+    t.string   "tel"
+    t.integer  "lbs_id"
+    t.string   "description"
+    t.datetime "created_at",   precision: 6, default: -> { "now()" }, null: false
+    t.datetime "updated_at",   precision: 6, default: -> { "now()" }, null: false
   end
 
   create_table "user_groups", force: :cascade do |t|
