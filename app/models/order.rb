@@ -15,6 +15,7 @@ class Order < ApplicationRecord
 
   belongs_to :bid
   has_many :bids
+  has_many :numbers
 
   as_enum :skill, Skill, persistence: true
   as_enum :brand, Brand, persistence: true

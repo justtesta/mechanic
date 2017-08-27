@@ -1,2 +1,3 @@
 class Number < ApplicationRecord
+  belongs_to :order
 end
