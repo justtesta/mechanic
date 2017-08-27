@@ -57,7 +57,7 @@ module SMS
           *common_params
         ]
       end
-
+      byebug
       send_request order.contact_mobile, template, params
     end
     
