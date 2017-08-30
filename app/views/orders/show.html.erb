@@ -69,7 +69,7 @@
 	  	 <%= f.simple_fields_for :numbers do |ff| %>
 	  	 <%  @order.numbers.each do |number|  %>
 		 
-		    <div class="input string required order_numbers_pwd_number_default">
+		    <div class="content-padded order_numbers_pwd_number_default">
 		    	<label class="string required" for="order_numbers_pwd_number_default">京东消费码</label>
 				<label><%= number.left_number %></label>
 				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",placeholder: '请输入消费码后三位。',class: 'form-control input'   %>
