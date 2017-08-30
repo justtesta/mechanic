@@ -75,6 +75,7 @@
 				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",hint: '请输入消费码后三位。'   %>
 		 	</div>
 	 	 <% end %>
+		 <% end %>
         <%= f.input :mechanic_attach_1 do %>
           <input class="btn btn-block btn-positive" value="点击上传图片" id="order_mechanic_attach_1_button" readonly></input>
           <%= f.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
