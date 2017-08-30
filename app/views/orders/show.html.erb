@@ -71,7 +71,7 @@
 		 
 		    <div class="input string required order_numbers_pwd_number_default">
 		    	<label class="string required" for="order_numbers_pwd_number_default">京东消费码</label>
-			<%  byebug  %>	<label><%= number[:left_number] %></label>
+			<%  byebug  %>	<label><%= number.left_number %></label>
 				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",hint: '请输入消费码后三位。'   %>
 		 	</div>
 	 	 <% end %>
