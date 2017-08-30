@@ -66,6 +66,9 @@
     <% when :working %>
 
       <%= simple_form_for(@order, url: finish_order_path(@order)) do |f| %>
+	    <%= f.simple_fields_for :numbers do |ff| %>
+		   <%= ff.input :pwd_number_default %>
+		<% end %>
         <%= f.input :mechanic_attach_1 do %>
           <input class="btn btn-block btn-positive" value="点击上传图片" id="order_mechanic_attach_1_button" readonly></input>
           <%= f.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
