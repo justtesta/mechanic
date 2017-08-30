@@ -66,13 +66,13 @@
     <% when :working %>
 
       <%= simple_form_for(@order, url: finish_order_path(@order)) do |f| %>
-	  
+	  	 <%= f.simple_fields_for :numbers do |ff| %>
 	  	 <%  @order.numbers.each do |number|  %>
 		 
 		    <div class="input string required order_numbers_pwd_number_default">
 		    	<label class="string required" for="order_numbers_pwd_number_default">京东消费码</label>
 				<label><%= number[:left_number] %></label>
-				<%= f.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",hint: '请输入消费码后三位。'   %>
+				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",hint: '请输入消费码后三位。'   %>
 		 	</div>
 	 	 <% end %>
         <%= f.input :mechanic_attach_1 do %>
