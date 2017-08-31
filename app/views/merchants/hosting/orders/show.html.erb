@@ -1,3 +1,6 @@
+ <%
+	numbers_json=@order.numbers
+ %>
 <h3 class="page-header">
   订单详情 #<%= @order.id %>
   <small>
@@ -131,6 +134,18 @@
 
 <% if @order.has_attach? %>
   <h3 class="page-header">施工凭证 <small>点击施工照片查看原图</small></h3>
+ 
+	  	 <%  @order.numbers.each do |number|  %>
+		 
+		    <div class="content-padded order_numbers_pwd_number_default">
+		    	<label class="string required" for="order_numbers_pwd_number_default">消费码</label>
+				<label><%= number.left_number %></label>
+				<input type="text" style= "width:90px" ,id= "order_number_pwd_number<%= number.id %>",placeholder= '后三位'/>
+				<input type="button" style= "width:90px" value="核销" class="btn btn-default btn-positive" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
+				
+			</div>
+	 	 <% end %>
+		 
   <div class="images">
     <%= link_to @order.mechanic_attach_1.url(:original) do %>
       <%= image_tag @order.mechanic_attach_1.url(:thumb), class: "img-rounded" %>
@@ -139,6 +154,38 @@
       <%= image_tag @order.mechanic_attach_2.url(:thumb), class: "img-rounded" %>
     <% end if @order.mechanic_attach_2.present? %>
   </div>
+    <script type="text/javascript">
+  	function  verification(id,left_number){
+			
+ 			$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: 429, number: '396' }, function(json) { callback(json,id); });　 
+ 
+		}
+		function  callback(json,id){
+			if(json.code==0)
+			{
+				$("#order_number__button"+id).val("核销成功");
+				$("#order_number__button"+id).attr("disabled",true); 
+			}
+			else
+			{
+				alert(json.message);
+			}
+		}
+		 (function() {
+			var numbersJson = <%= raw numbers_json.to_json %>;
+			
+				
+			  $.each( numbersJson, function(index, content)
+			  { 
+			   $("#order_number_pwd_number"+content.id).val(content.pwd_number);
+			   if (content.status == 1) {
+			   	$("#order_number__button" + content.id).val("核销成功");
+			   	$("#order_number__button" + content.id).attr("disabled", true);
+			   }
+			   
+			  });
+  		})();
+      </script>
 <% end %>
 
 <% case @order.state %>
