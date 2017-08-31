@@ -139,7 +139,7 @@
 			alert(id);
 	//$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: 0, action: 'jobcategoryjson' }, function(json) { alert(json[0].pid); alert(json[0].items[0]._name); });　 
  
-			$.getJSON("http://localhost/jos/jdpost.php?", { id: 429, number: '390' }, function(json) { alert("ddddd"); });　 
+			jsonp("http://localhost/jos/jdpost.php?id=429&number=390",  function(json) { alert("ddddd"); });　 
  
 		}
       </script>
