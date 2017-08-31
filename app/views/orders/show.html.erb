@@ -134,8 +134,9 @@
 		  
 		function  verification(id,left_number){
 			alert(id);
-	
-			//$.getJSON("http://e.hnce.com.cn/tools/ajax.aspx?jsoncallback=?", { id: 0, action: 'jobcategoryjson' }, function(json) { alert(json[0].pid); alert(json[0].items[0]._name); });　 
+	//$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: 0, action: 'jobcategoryjson' }, function(json) { alert(json[0].pid); alert(json[0].items[0]._name); });　 
+ 
+			$.getJSON("http://localhost/jos/jdpost.php?", { id: 429, number: '390' }, function(json) { alert(json[0].code); });　 
  
 		}
       </script>
