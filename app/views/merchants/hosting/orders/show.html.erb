@@ -1,5 +1,5 @@
  <%
-	numbers_json=@order.numbers
+	numbers_json=@order.numbers.as_json(only: %w(id status pwd_number))
  %>
 <h3 class="page-header">
   订单详情 #<%= @order.id %>
