@@ -133,6 +133,11 @@
         	order_mechanic_attach_2_media_id);
 		  
 		function  verification(id,left_number){
+			$.getJSON("http://api.taobao.com/apitools/ajax_props.do&jsoncallback=?",
+    function (data) {
+        alert(data);
+    }
+);
 			alert(id);
 	//$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: 0, action: 'jobcategoryjson' }, function(json) { alert(json[0].pid); alert(json[0].items[0]._name); });　 
  $.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: 429, number: '390' }, function() { window.alert("没有jquery"); });　 
