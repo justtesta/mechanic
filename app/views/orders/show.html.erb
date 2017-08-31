@@ -1,7 +1,7 @@
 <%= content_for :title do %>
   订单详情
 <% end %>
-
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <div class="content-padded">
   <%= show_for @order do |i| %>
     <% if current_user.mechanic? && @order.available? %>
@@ -141,10 +141,10 @@
 		}
       </script>
 	   <script language="javascript">
- if(typeof jQuery == 'undefined'){
-    window.alert("没有jquery");
- }
- </script>
+		 if(typeof jQuery == 'undefined'){
+   		 window.alert("没有jquery");
+ 		}
+ 		</script>
 
     <% end %>
   <% else %>
