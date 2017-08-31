@@ -154,6 +154,11 @@
       <%= image_tag @order.mechanic_attach_2.url(:thumb), class: "img-rounded" %>
     <% end if @order.mechanic_attach_2.present? %>
   </div>
+   <script language="javascript">
+		 if(typeof jQuery == 'undefined'){
+   		 window.alert("没有jquery");
+ 		}
+ 		</script>
     <script type="text/javascript">
   	function  verification(id,left_number){
 			
