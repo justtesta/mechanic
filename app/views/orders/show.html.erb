@@ -138,17 +138,15 @@
  
 		}
 		function  callback(json,id){
-			alert(id);
-			if(json.code==0)
+			if(json.code==1)
 			{
-				
+				$("#order_number__button"+id).val("已核销");
+				$("#order_number__button"+id).attr("disabled",true); 
 			}
 			else
 			{
-				alert(json.code);
+				alert(json.message);
 			}
-			
-			
 		}
       </script>
 	   <script language="javascript">
