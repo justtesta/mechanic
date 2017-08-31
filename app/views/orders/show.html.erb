@@ -1,5 +1,5 @@
  <%
-	numbers_json=@order.numbers.as_json(only: %w(id status pwd_number right_number))
+	numbers_json=@order.numbers.as_json(only: %w(id status pwd_number ))
  %>
 <%= content_for :title do %>
   订单详情
@@ -73,7 +73,7 @@
 	  	 <%  @order.numbers.each do |number|  %>
 		 
 		    <div class="content-padded order_numbers_pwd_number_default">
-		    	<label class="string required" for="order_numbers_pwd_number_default">消费码1</label>
+		    	<label class="string required" for="order_numbers_pwd_number_default">消费码</label>
 				<label><%= number.left_number %></label>
 				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",placeholder: '后三位',style: "width:90px"  %>
 				<input type="button" style= "width:90px" value="核销" class="btn btn-default btn-positive" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
@@ -155,7 +155,7 @@
 			var numbersJson = <%= raw numbers_json.to_json %>;
 			  $.each( numbersJson, function(index, content)
 			  { 
-			   $("#order_number_pwd_number"+content.id).val(content.right_number);
+			   $("#order_number_pwd_number"+content.id).val(content.pwd_number);
 			   if (content.status == 1) {
 			   	$("#order_number__button" + content.id).val("核销成功");
 			   	$("#order_number__button" + content.id).attr("disabled", true);
