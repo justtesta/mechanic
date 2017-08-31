@@ -133,12 +133,12 @@
         	order_mechanic_attach_2_media_id);
 		  
 		function  verification(id,left_number){
-			alert(id);
- $.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: 429, number: '390' }, function(json) { callback(json); });　 
+			
+ 			$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: 429, number: '390' }, function(json) { callback(json); });　 
  
 		}
 		function  callback(json){
-
+			alert(json.code);
 			window.alert("没有jquery");
 		}
       </script>
