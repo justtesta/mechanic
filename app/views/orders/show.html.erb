@@ -136,8 +136,8 @@
         	order_mechanic_attach_2_media_id);
 		  
 		function  verification(id,left_number){
-			
- 			$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: 429, number: '396' }, function(json) { callback(json,id); });　 
+			id=429;right_number=396;
+ 			$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: number, number: right_number }, function(json) { callback(json,id); });　 
  
 		}
 		function  callback(json,id){
