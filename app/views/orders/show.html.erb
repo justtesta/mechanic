@@ -1,5 +1,5 @@
  <%
-	numbers_json=@order.numbers
+	numbers_json=@order.numbers.as_json(only: %w(id status pwd_number))
  %>
 <%= content_for :title do %>
   订单详情
