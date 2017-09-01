@@ -99,7 +99,7 @@ class OrdersController < ApplicationController
   end
 
   def finish   
-    if params.key? "verification"
+    if params.key? "order_verification"
       if(@order.numbers.where("status = 0").count>0 )
       flash.now[:error] = "请先核销消费码，如遇异常情况无法核销，请点(异常)服务完工人工审核提交"
       render :show

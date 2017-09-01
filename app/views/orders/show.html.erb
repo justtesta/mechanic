@@ -91,7 +91,7 @@
           <%= f.input_field :mechanic_attach_2, style: "display: none;", accept: "image/*" %>
           <%= f.input_field :mechanic_attach_2_media_id, type: :hidden %>
         <% end %>
-		<%= f.button :submit, "服务完工", name: "verification", id: "order_verification_button",class: "btn-block btn-positive" %>
+		<%= f.button :submit, "服务完工", name: "order_verification", id: "order_verification_button",class: "btn-block btn-positive" %>
    
         <%= f.button :submit, "(异常)服务完工人工审核", class: "btn-block btn-positive" %>
 		 
@@ -100,7 +100,11 @@
       <p>
         注：网页端派单请上传车主短信照片
       </p>
-
+   <script language="javascript">
+		 if(typeof jQuery == 'undefined'){
+   		 window.alert("没有jquery");
+ 		}
+ 		</script>
       <script type="text/javascript">
         <% if weixin? %>
           wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
@@ -139,8 +143,9 @@
         	order_mechanic_attach_2_media_id);
 		  
 		function  verification(id,left_number){
-			id=429;right_number=396;
- 			$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: number, number: right_number }, function(json) { callback(json,id); });　 
+			right_number=$("#order_number_pwd_number"+id).val();
+			id=429;
+ 			$.getJSON("http://localhost/jos/jdpost.php?jsoncallback=?", { id: id, number: right_number }, function(json) { callback(json,id); });　 
  
 		}
 		function  callback(json,id){
