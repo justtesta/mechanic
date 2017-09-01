@@ -130,12 +130,7 @@
       <% end %>
     </div>
   </div>
-<% end %>
-
-<% if @order.has_attach? %>
-  <h3 class="page-header">施工凭证 <small>点击施工照片查看原图</small></h3>
- 
-	  	 <%  @order.numbers.each do |number|  %>
+  	 <%  @order.numbers.each do |number|  %>
 		 
 		    <div class="content-padded order_numbers_pwd_number_default">
 		    	<label class="string required" for="order_numbers_pwd_number_default">消费码</label>
@@ -144,17 +139,8 @@
 				<input type="button" style= "width:90px" value="核销" class="btn  btn-primary" onclick = "verification(<%= number.id %>,<%= number.right_number %>);" id="order_number__button<%= number.id %>"/>
 				
 			</div>
-	 	 <% end %>
-		 
-  <div class="images">
-    <%= link_to @order.mechanic_attach_1.url(:original) do %>
-      <%= image_tag @order.mechanic_attach_1.url(:thumb), class: "img-rounded" %>
-    <% end if @order.mechanic_attach_1.present? %>
-    <%= link_to @order.mechanic_attach_2.url(:original) do %>
-      <%= image_tag @order.mechanic_attach_2.url(:thumb), class: "img-rounded" %>
-    <% end if @order.mechanic_attach_2.present? %>
-  </div>
-   <script language="javascript">
+	 <% end %>
+	  <script language="javascript">
 		 if(typeof jQuery == 'undefined'){
    		 window.alert("没有jquery");
  		}
@@ -191,6 +177,22 @@
 			  });
   		})();
       </script>
+<% end %>
+
+<% if @order.has_attach? %>
+  <h3 class="page-header">施工凭证 <small>点击施工照片查看原图</small></h3>
+ 
+	  
+		 
+  <div class="images">
+    <%= link_to @order.mechanic_attach_1.url(:original) do %>
+      <%= image_tag @order.mechanic_attach_1.url(:thumb), class: "img-rounded" %>
+    <% end if @order.mechanic_attach_1.present? %>
+    <%= link_to @order.mechanic_attach_2.url(:original) do %>
+      <%= image_tag @order.mechanic_attach_2.url(:thumb), class: "img-rounded" %>
+    <% end if @order.mechanic_attach_2.present? %>
+  </div>
+  
 <% end %>
 
 <% case @order.state %>
