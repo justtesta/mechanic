@@ -140,7 +140,7 @@
 		  
 		function  verification(id,left_number){
 			alert(id);
-			right_number=$("#order_number_pwd_number"+id).val();
+			
 			alert(right_number);
 			id=429;
  			$.getJSON("http://wx.wkt99.com/jos/jdpost.php?jsoncallback=?", { id: id, number: right_number }, function(json) { callback(json,id); });　 
