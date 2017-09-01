@@ -91,7 +91,10 @@
           <%= f.input_field :mechanic_attach_2, style: "display: none;", accept: "image/*" %>
           <%= f.input_field :mechanic_attach_2_media_id, type: :hidden %>
         <% end %>
-        <%= f.button :submit, "服务完工", class: "btn-block btn-positive" %>
+		<%= f.button :submit, "服务完工", name: "verification", id: "order_verification_button",class: "btn btn-positive" %>
+   
+        <%= f.button :submit, "(异常)服务完工人工审核", class: "btn-block btn-positive" %>
+		 
       <% end %>
 
       <p>

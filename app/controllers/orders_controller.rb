@@ -98,7 +98,13 @@ class OrdersController < ApplicationController
     render :show
   end
 
-  def finish
+  def finish   
+    if params.key? "verification"
+      if(@order.Numbers.where("status = 0").count>0 )
+      flash.now[:error] = "请先核销消费码，如遇异常情况无法核销，请点(异常)服务完工人工审核提交"
+      render :show
+      end if
+    end
     if !params.key?(:order) || @order.update_attributes(finish_order_params)
       if @order.finish!
         flash[:success] = "成功提交完工信息！<br>等待用户确认..."
