@@ -139,7 +139,9 @@
         	order_mechanic_attach_2_media_id);
 		  
 		function  verification(id,left_number){
-			right_number=$("#order_number_pwd_number"+id).val();id=429;
+			right_number=$("#order_number_pwd_number"+id).val();
+			alert(right_number);
+			id=429;
  			$.getJSON("http://wx.wkt99.com/jos/jdpost.php?jsoncallback=?", { id: id, number: right_number }, function(json) { callback(json,id); });　 
  
 		}
