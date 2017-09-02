@@ -27,7 +27,7 @@ class TempMechanic < ApplicationRecord
     
     end
     update_attribute(:addr,"1")
-    save(validate: false)
+    
     
   end
 end
