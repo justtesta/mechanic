@@ -38,6 +38,12 @@ class Work < ApplicationRecord
         42
     when "JZS"
         41
+    when "H" 
+        52
+    when "QSCP"
+        48
+    when "ZSCP"
+        49
     else
         0
     end

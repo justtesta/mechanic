@@ -12,6 +12,9 @@ class TempMechanic < ApplicationRecord
     s=s.sub('DJ',"|DJ:")
     s=s.sub('TW',"|TW:")
     s=s.sub('TN',"|TN:")
+    s=s.sub('QSCP',"|QSCP:")
+    s=s.sub('ZSCP',"|ZSCP:")
+    s=s.sub('H',"|H:")
     s[0]=""
     
     array = Array.new
