@@ -26,7 +26,7 @@ class TempMechanic < ApplicationRecord
     Rails.logger.info "error mechanic_id:##{mechanic_id} "
     
     end
-    update_attribute(:addr,":"1")
+    update_attribute(:addr,"1")
     save(validate: false)
     
   end
