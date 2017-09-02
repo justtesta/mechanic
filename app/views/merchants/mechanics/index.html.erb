@@ -44,7 +44,15 @@
 
     <% @followed_mechanic_ids = current_store.followed_mechanic_ids %>
     <% @mechanics = Mechanic.all %>
-    <% @mechanics = @mechanics.where(province_cd: @province_cd) %>
+    <% 
+	@mechanics = @mechanics.where(province_cd: @province_cd)
+	if(@city_cd>0)
+		@mechanics = @mechanics.where(city_cd: @city_cd)
+	end
+	if(@district_cd>0)
+		@mechanics = @mechanics.where(district_cd: @district_cd)
+	end
+ 	%>
 
   <% end %>
 
@@ -136,6 +144,14 @@
       var $province = $("#mechanics_provinces_select");
       $province.change(function() {
         if ($province.val()) $form.submit();
+      });
+	  var $city = $("#mechanics_citys_select");
+      $city.change(function() {
+        if ($city.val()) $form.submit();
+      });
+	  var $district = $("#mechanics_districts_select");
+      $district.change(function() {
+        if ($district.val()) $form.submit();
       });
 
     <% end %>
