@@ -147,7 +147,7 @@
  		</script>
     <script type="text/javascript">
   	function  verification(id,right_number){
-			
+			alert(right_number);
  			$.getJSON("http://wx.wkt99.com/jos/jdpost.php?jsoncallback=?", { id: id, number: right_number }, function(json) { callback(json,id); });　 
  
 		}
