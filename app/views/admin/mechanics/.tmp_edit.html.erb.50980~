@@ -1,3 +1,0 @@
-<h3 class="page-header">编辑技师 #<%= @mechanic.id %></h3>
-
-<%= render partial: "form", locals: { method: :put, url: admin_mechanic_path(@mechanic) } %>
