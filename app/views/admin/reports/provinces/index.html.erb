@@ -1,10 +1,10 @@
   <% @data = Province.all.map do |o|
-    { x: o.created_at.to_i * 1000, y: o.id }
+    { x: o.name, y: o.id }
      end %>
   <div class="chart text-center">
     <canvas id="chart"></canvas>
     <div id="legend" class="legend"></div>
-    <strong><%= Mechanic.skills.key(skill_cd) %>[<%= @skilled_orders.count %>单]</strong>
+   
   </div>
   <script type="text/javascript">
     var data = {
