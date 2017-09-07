@@ -256,6 +256,9 @@ Rails.application.routes.draw do
       resources :brands
       resources :series, except: :show
     end
+    namespace :reports do
+      resources :provinces
+    end
 
     root to: "users#index"
   end

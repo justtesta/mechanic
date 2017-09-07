@@ -76,6 +76,7 @@
           <% end %>
 
           <li class="<%= "active" if controller_path.start_with? "admin/settings/" %>"><%= link_to "设置", admin_settings_skills_path %></li>
+          <li class="<%= "active" if controller_path.start_with? "admin/reports/" %>"><%= link_to "报表", admin_reports_provinces_path %></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
