@@ -20,13 +20,7 @@
       }]
     };
 
-    var options = {
-      scaleTimeFormat: "HH:MM",
-      scaleDateFormat: "mm/dd",
-      scaleDateTimeFormat: "yyyy/mm/dd HH:MM",
-      scaleType: "date",
-      scaleLabel: "<%%= value %>元",
-    };
+
 
     var ctx = document.getElementById("chart").getContext("2d");
     var chart = new Chart(ctx).Scatter(data, options);
