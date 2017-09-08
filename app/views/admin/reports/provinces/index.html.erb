@@ -1,10 +1,16 @@
-  <% @data = Province.all.map do |o|
+  <% @provinces_data = Province.all.map do |o|
       o.name
      end %>
+      <% 
+       Mechanic.where("unique_id like '%汽车堂联盟2%' ")
+  
+      @data = Province.all.map do |o|
+        Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟2%' ")).where(province_cd:o.id).count      
+     end %> 
  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.1/echarts.common.min.js"></script>
 
  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 800px;height:900px;"></div>
+    <div id="main" style="width: 800px;height:980px;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
@@ -19,13 +25,13 @@
                 data:['订单数']
             },
             yAxis: {
-                data: <%= raw @data %>
+                data: <%= raw @provinces_data %>
             },
             xAxis: {},
             series: [{
                 name: '订单数',
                 type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
+                data: <%= raw @data %>
             }]
         };
 
