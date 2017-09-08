@@ -2,8 +2,6 @@
       o.name
      end %>
       <% 
-       
-  
       @data = Province.all.map do |o|
         Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟2%' ")).where(province_cd:o.id).count      
      end %> 
