@@ -1,3 +1,7 @@
+  <% @start_date = params[:start_date]||Date.today-10.year %>
+  <% @end_date = params[:end_date]||Date.today  %>
+<% byebug  %>
+
   <% @provinces_data = Province.all.map do |o|
       o.name
      end %>
@@ -6,8 +10,7 @@
         Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟2%' ")).where(province_cd:o.id).count      
      end %> 
  <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.common.min.js"></script>
-  <% @start_date = params[:start_date]||Date.today-10.year %>
-  <% @end_date = params[:end_date]||Date.today %>
+
 <form class="form-inline" id="reports_form">
       <%= select_date @start_date, prefix: :start_date %> 到 <%= select_date @end_date, prefix: :end_date %>
       <%= submit_tag("Search") %>
