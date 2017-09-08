@@ -2,7 +2,7 @@
   @start_date = if(params[:start_date]) 
       Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i)
     else
-      Date.today-10.year
+      Date.today-3.year
       end %>
   <% @end_date = if(params[:end_date]) 
       Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i)
