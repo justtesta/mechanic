@@ -8,9 +8,9 @@
  <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.common.min.js"></script>
   <% @start_date = params[:start_date]||Date.today-10.year %>
   <% @end_date = params[:end_date]||Date.today %>
-<form class="form-inline" id="mechanics_form">
+<form class="form-inline" id="reports_form">
       <%= select_date @start_date, prefix: :start_date %> 到 <%= select_date @end_date, prefix: :end_date %>
-    
+      <%= submit_tag("Search") %>
  </form>
  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 800px;height:980px;"></div>
