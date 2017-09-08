@@ -1,5 +1,5 @@
-  <% @start_date = params[:start_date]||Date.today-10.year %>
-  <% @end_date = params[:end_date]||Date.today  %>
+  <% @start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i)||Date.today-10.year %>
+  <% @end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i)||Date.today  %>
 <% byebug  %>
 
   <% @provinces_data = Province.all.map do |o|
