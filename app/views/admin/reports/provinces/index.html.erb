@@ -5,8 +5,11 @@
       @data = Province.all.map do |o|
         Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟2%' ")).where(province_cd:o.id).count      
      end %> 
- <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.1/echarts.common.min.js"></script>
-
+ <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.common.min.js"></script>
+<form class="form-inline" id="mechanics_form">
+      <%= select_date Date.today, prefix: :start_date %>
+    
+    </form>
  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 800px;height:980px;"></div>
     <script type="text/javascript">
