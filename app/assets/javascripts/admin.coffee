@@ -6,8 +6,7 @@
 #= require dataTables/jquery.dataTables
 #= require dataTables/extras/dataTables.select
 #= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-#= require Chart
-#= require Chart.Scatter
+
 
 
 $.fn.extend
