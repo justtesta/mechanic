@@ -17,7 +17,7 @@
       <% 
       @data = Province.all.map do |o|
         
-        Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟%' ")).where(province_cd:o.id).where(created_at: (@start_date)..(@end_date+1.day)).count      
+        Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟2%' ")).where(province_cd:o.id).where(created_at: (@start_date)..(@end_date+1.day)).count      
      end %> 
  <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.common.min.js"></script>
 
