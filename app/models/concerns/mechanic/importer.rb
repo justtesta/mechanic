@@ -93,6 +93,9 @@ class Mechanic < ApplicationRecord
       xlsx = Roo::Spreadsheet.open(file)
 
       xlsx.each_row_streaming.each_with_index do |row, index|
+        if row[0].value.nil?
+          break
+        end
         import_row = ImportRow.new row, index
         unless import_row.parse
           @failed_rows << import_row
