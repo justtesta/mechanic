@@ -65,11 +65,6 @@
   <li class="table-view-cell">
     <%= link_to "联系地址：#{current_user.address}", edit_user_path, class: "navigate-right" %>
   </li>
-  <% if current_user.mechanic? %>
-    <li class="table-view-cell">
-      <%= link_to "个人简介：#{current_user.mechanic.description}", edit_user_path, class: "navigate-right" %>
-    </li>
-  <% end %>
   <% unless current_user.mechanic? %>
     <li class="table-view-cell">
       <%= link_to "收藏技师", mechanics_path, class: "navigate-right" %>
