@@ -53,7 +53,8 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
     end
 
     def redirect_pending
-      if ordercount = order_klass.confirmings.count
+      ordercount = order_klass.confirmings.count
+      if ordercount>0
         flash[:notice] = "您有#{ordercount}条需要确认完工的订单..."
         #redirect_to merchants_hosting_order_path(order)
       end
