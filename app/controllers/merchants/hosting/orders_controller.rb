@@ -55,7 +55,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
     def redirect_pending
       if order = order_klass.confirmings.first
         flash[:notice] = "您有一条需要确认完工的订单..."
-        redirect_to merchants_hosting_order_path(order)
+        #redirect_to merchants_hosting_order_path(order)
       end
     end
 
