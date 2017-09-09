@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827133155) do
+ActiveRecord::Schema.define(version: 20170909080833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170827133155) do
     t.integer  "revoke_orders_count",                              default: 0
     t.string   "user_weixin_openid"
     t.string   "unique_id"
+    t.string   "linkman"
     t.index ["city_cd"], name: "index_mechanics_on_city_cd", using: :btree
     t.index ["district_cd"], name: "index_mechanics_on_district_cd", using: :btree
     t.index ["province_cd"], name: "index_mechanics_on_province_cd", using: :btree
@@ -195,14 +196,15 @@ ActiveRecord::Schema.define(version: 20170827133155) do
   end
 
   create_table "numbers", force: :cascade do |t|
+    t.integer  "order_id"
     t.string   "jdorder_id"
-    t.string   "pwd_umber"
-    t.string   "pwd_umber_default"
+    t.string   "pwd_number"
+    t.string   "pwd_number_default"
     t.string   "shop_id"
     t.string   "shop_name"
-    t.integer  "status",            default: 0
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "status",             default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "orders", force: :cascade do |t|
