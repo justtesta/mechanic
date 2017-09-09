@@ -20,6 +20,7 @@
       <% end %>
 
       <%= i.attribute :unique_id %>
+      <%= i.attribute :linkman %>
       <%= i.attribute :skills do |mechanic, skills| %>
 	    <% if current_store.host? %>
         <%= mechanic.works.map {|w| w.skill_name_price }.join("、") %>
