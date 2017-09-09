@@ -38,12 +38,12 @@ class Mechanic < ApplicationRecord
           @unique_id = row[6].value
           @description = row[7].value
           byebug
-          if(!row[8].nil?)
+          if(!row[8].blank?)
             unless row[8].value==0
               @service_ids = row[8].value.to_s.split()
             end
           end
-           if(!row[9].nil?)
+           if(!row[9].blank?)
               @linkman = row[9].value
           end
 
