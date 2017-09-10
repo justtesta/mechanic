@@ -37,7 +37,8 @@ class Mechanic < ApplicationRecord
           @mobile = row[5].value
           @unique_id = row[6].value
           @description = row[7].value
-          
+          byebug
+          @unique_id="" if @unique_id=="0"
           if(!row[8].blank?)
             unless row[8].value==0
               @service_ids = row[8].value.to_s.split()
