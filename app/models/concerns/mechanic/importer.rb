@@ -37,7 +37,7 @@ class Mechanic < ApplicationRecord
           @mobile = row[5].value
           @unique_id = row[6].value
           @description = row[7].value
-          byebug
+          
           if(!row[8].blank?)
             unless row[8].value==0
               @service_ids = row[8].value.to_s.split()
@@ -91,7 +91,7 @@ class Mechanic < ApplicationRecord
       @success_count = 0
 
       xlsx = Roo::Spreadsheet.open(file)
-      byebug
+
       xlsx.each_row_streaming(pad_cells: true).each_with_index do |row, index|
         if row[0].value.nil?
           break
