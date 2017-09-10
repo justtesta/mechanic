@@ -38,13 +38,12 @@ class Mechanic < ApplicationRecord
           @unique_id = row[6].value
           @description = row[7].value
           byebug
-          @unique_id="" if @unique_id=="0"
           if(!row[8].blank?)
             unless row[8].value==0
               @service_ids = row[8].value.to_s.split()
             end
           end
-           if(!row[9].blank?)
+          if(!row[9].blank?)
               @linkman = row[9].value
           end
 
@@ -92,8 +91,8 @@ class Mechanic < ApplicationRecord
       @success_count = 0
 
       xlsx = Roo::Spreadsheet.open(file)
-
-      xlsx.each_row_streaming.each_with_index do |row, index|
+      byebug
+      xlsx.each_row_streaming(pad_cells: true).each_with_index do |row, index|
         if row[0].value.nil?
           break
         end
