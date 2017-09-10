@@ -55,6 +55,7 @@ class Mechanic < ApplicationRecord
       end
 
       def create_record
+        byebug
         mechanic = User.new({
           role: :mechanic,
           gender: :male,
