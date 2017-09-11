@@ -185,6 +185,7 @@ class Order < ApplicationRecord
       end
 
       def confirm!
+        byebug
         return false unless confirming?
 
         unless offline?
