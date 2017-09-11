@@ -94,7 +94,7 @@ class Mechanic < ApplicationRecord
 
       xlsx.each_row_streaming(pad_cells: true).each_with_index do |row, index|
         if row[0].value.nil?
-          break
+          next
         end
         import_row = ImportRow.new row, index
         unless import_row.parse
