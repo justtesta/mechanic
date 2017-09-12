@@ -186,8 +186,8 @@ class Order < ApplicationRecord
 
       def confirm!
         byebug
-        return false unless confirming?
-
+        return false unless confirming?||working?||paid?
+        return false unless assigned?
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)

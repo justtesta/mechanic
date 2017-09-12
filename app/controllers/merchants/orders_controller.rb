@@ -201,7 +201,6 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def confirm
-    byebug
     @order.confirm!
     flash[:notice] = "订单确认完工！"
     redirect_to_referer!
