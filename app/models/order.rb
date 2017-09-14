@@ -28,7 +28,7 @@ class Order < ApplicationRecord
   scope :unassigneds, -> { paids.where(mechanic_id: nil) }
 
   scope :hostings, -> { where(hosting: true) }
-  scope :unfinisheds, -> { where("state=6 or state=7 or state=8") }
+  scope :unfinisheds, -> { where("state_cd=6 or state_cd=7 or state_cd=8") }
   
 
   def offline?
