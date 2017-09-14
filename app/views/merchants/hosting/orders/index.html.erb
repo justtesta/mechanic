@@ -27,14 +27,14 @@
   <div class="col-md-10 col-xs-8">
   <% if  @state == :unfinisheds %>
     <%= wice_index_for [ :merchants, :hosting, @orders ], class: "table table-hover " do |i| %>
-      <%= i.attribute :store_nickname %>
-      <%= i.attribute :contact_nickname %>
-      <%= i.attribute :contact_mobile %>
+      <%= i.attribute :store_nickname, searchable: true  %>
+      <%= i.attribute :contact_nickname,searchable: "orders.contact_nickname" %>
+      <%= i.attribute :contact_mobile,searchable: "orders.contact_nickname" %>
       <%= i.attribute :appointment, format: :short %>
-      <%= i.attribute :skill  %>
-      <%= i.attribute :price %>
+      <%= i.attribute :skill ,filterable: { "orders.skill_cd" => Order.skills[params[:search]] } %>
+      <%= i.attribute :price, searchable: true  %>
       <%= i.attribute :offline? %>
-      <%= i.attribute :mechanic_nickname %>
+      <%= i.attribute :mechanic_nickname, searchable: true  %>
       <%= i.actions :show %>
     <% end %>
   <% else %>
