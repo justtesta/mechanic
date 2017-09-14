@@ -13,9 +13,13 @@
     <ul class="nav nav-pills nav-stacked">
       <%= order_state_link_to :unassigneds, "未分配" %>
       <%= order_state_link_to :assigneds, "待服务" %>
+      <%= order_state_link_to :longassigneds, "长期待服务" %>
       <%= order_state_link_to :workings, "服务中" %>
       <%= order_state_link_to :confirmings, "待确认完工" %>
       <%= order_state_link_to :finisheds, "待评价" %>
+       <li class="divider"></li>
+      <%= order_state_link_to :alls, "未完成" %>
+      <%= order_state_link_to :urgents, "紧急订单" %>
     </ul>
   </div>
 
