@@ -13,20 +13,20 @@
     <ul class="nav nav-pills nav-stacked">
       <%= order_state_link_to :unassigneds, "未分配" %>
       <%= order_state_link_to :assigneds, "待服务" %>
-      <%= order_state_link_to :longassigneds, "长期待服务" %>
       <%= order_state_link_to :workings, "服务中" %>
       <%= order_state_link_to :confirmings, "待确认完工" %>
       <%= order_state_link_to :finisheds, "待评价" %>
-       <li class="divider"></li>
-      <%= order_state_link_to :alls, "所有订单" %>
-      <%= order_state_link_to :urgents, "紧急订单" %>
+      <li class="divider"></li>
+      <%= order_state_link_to :unfinisheds, "所有订单" %>
+      <%= order_state_link_to :emergencys, "紧急订单" %>
     </ul>
   </div>
 
   <% @orders = @orders.includes(:store, :mechanic_user).order(:appointment) %>
 
   <div class="col-md-10 col-xs-8">
-    <%= wice_index_for [ :merchants, :hosting, @orders ], class: "table table-hover" do |i| %>
+  <% if @state == "alls" %>
+    <%= wice_index_for [ :merchants, :hosting, @orders ], class: "table table-hover " do |i| %>
       <%= i.attribute :store_nickname %>
       <%= i.attribute :contact_nickname %>
       <%= i.attribute :contact_mobile %>
@@ -37,5 +37,18 @@
       <%= i.attribute :mechanic_nickname %>
       <%= i.actions :show %>
     <% end %>
+  <% else %>
+   <%= index_for [ :merchants, :hosting, @orders ], class: "table table-hover data-tables" do |i| %>
+      <%= i.attribute :store_nickname %>
+      <%= i.attribute :contact_nickname %>
+      <%= i.attribute :contact_mobile %>
+      <%= i.attribute :appointment, format: :short %>
+      <%= i.attribute :skill  %>
+      <%= i.attribute :price %>
+      <%= i.attribute :offline? %>
+      <%= i.attribute :mechanic_nickname %>
+      <%= i.actions :show %>
+    <% end %>
+  <% end %>
   </div>
 </div>
