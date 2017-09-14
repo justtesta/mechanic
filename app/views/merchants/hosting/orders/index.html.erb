@@ -32,7 +32,7 @@
       <%= i.attribute :contact_mobile,searchable: "orders.contact_nickname" %>
       <%= i.attribute :appointment, format: :short %>
       <%= i.attribute :skill ,filterable: { "orders.skill_cd" => Order.skills[params[:search]] } %>
-      <%= i.attribute :price, searchable: true  %>
+      <%= i.attribute :price, searchable: "(orders.quoted_price + orders.markup_price)" %>
       <%= i.attribute :offline? %>
       <%= i.attribute :mechanic_nickname, searchable: true  %>
       <%= i.actions :show %>
