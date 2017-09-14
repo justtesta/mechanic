@@ -29,7 +29,7 @@
     <%= wice_index_for [ :merchants, :hosting, @orders ], class: "table table-hover " do |i| %>
       <%= i.attribute :store_nickname, searchable: true  %>
       <%= i.attribute :contact_nickname,searchable: "orders.contact_nickname" %>
-      <%= i.attribute :contact_mobile,searchable: "orders.contact_nickname" %>
+      <%= i.attribute :contact_mobile,searchable: "orders.contact_mobile" %>
       <%= i.attribute :appointment, format: :short %>
       <%= i.attribute :skill ,filterable: { "orders.skill_cd" => Order.skills[params[:search]] } %>
       <%= i.attribute :price %>
