@@ -25,7 +25,7 @@
   <% @orders = @orders.includes(:store, :mechanic_user).order(:appointment) %>
 
   <div class="col-md-10 col-xs-8">
-  <% if @state == "alls" %>
+  <% if @state == "unfinisheds" %>
     <%= wice_index_for [ :merchants, :hosting, @orders ], class: "table table-hover " do |i| %>
       <%= i.attribute :store_nickname %>
       <%= i.attribute :contact_nickname %>
