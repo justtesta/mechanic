@@ -124,15 +124,7 @@ class OrdersController < ApplicationController
     render :show
   end
 
-  def emergency
-    @order.update_attribute(:emergency, true)
-    render :show
-  end
 
-  def unemergency
-    @order.update_attribute(:emergency,false)
-    render :show
-  end
 
   private
 

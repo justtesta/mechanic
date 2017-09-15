@@ -223,6 +223,18 @@ class Merchants::OrdersController < Merchants::ApplicationController
     end
   end
 
+  def emergency
+    @order.update_attribute(:emergency, true)
+    flash[:notice] = "订单设置为紧急！"
+    redirect_to_referer!
+  end
+
+  def unemergency
+    @order.update_attribute(:emergency,false)
+    flash[:notice] = "订单取消紧急！"
+    redirect_to_referer!
+  end
+
   private
 
     def current_order_path
