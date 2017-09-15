@@ -125,12 +125,12 @@ class OrdersController < ApplicationController
   end
 
   def emergency
-    @order.update_attribute(:emergency, true)!
+    @order.update_attribute(:emergency, true)
     render :show
   end
 
   def unemergency
-    @order.update_attribute(:emergency,false)!
+    @order.update_attribute(:emergency,false)
     render :show
   end
 

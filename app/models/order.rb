@@ -63,7 +63,7 @@ class Order < ApplicationRecord
     appointing && ["1", 1, true].include?(appointing)
   end
 
-  def hosting?
+  def emergency?
     emergency && ["1", 1, true].include?(emergency)
   end
 
