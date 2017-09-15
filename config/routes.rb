@@ -65,6 +65,8 @@ Rails.application.routes.draw do
           patch :remark, action: :update_remark
           get :procedure_price
           patch :procedure_price, action: :update_procedure_price
+          get :emergency
+          get :unemergency
         end
       end
     end

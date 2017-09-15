@@ -62,6 +62,10 @@ class Order < ApplicationRecord
     appointing && ["1", 1, true].include?(appointing)
   end
 
+  def hosting?
+    emergency && ["1", 1, true].include?(emergency)
+  end
+
   has_attached_file :mechanic_attach_1, styles: { medium: "300x300>", thumb: "100x100#" }
   validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
   has_attached_file :mechanic_attach_2, styles: { medium: "300x300>", thumb: "100x100#" }
