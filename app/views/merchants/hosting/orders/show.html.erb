@@ -208,9 +208,9 @@
      <% end %>
     <%= link_to "申请退款", refund_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "您确定要申请退款？" } %>
     <% if @order.emergency? %>
-      <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
     <% else %>
-      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+      <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
   </div>
 <% when :working %>
@@ -220,9 +220,9 @@
     <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
     <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger" %>
     <% if @order.emergency? %>
-      <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
     <% else %>
-      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+      <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
   </div>
 <% when :confirming %>
@@ -233,9 +233,9 @@
     <%= link_to "申请返工", rework_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
     <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger" %>
     <% if @order.emergency? %>
-      <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
     <% else %>
-      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+      <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
   </div>
 <% when :finished %>
