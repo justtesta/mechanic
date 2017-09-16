@@ -75,4 +75,17 @@ class Mechanic < ApplicationRecord
     work.nil?? nil : work
   end
 
+  has_attached_file :mechanic_attach_1, styles: { medium: "300x300>", thumb: "100x100#" }
+  validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
+  has_attached_file :mechanic_attach_2, styles: { medium: "300x300>", thumb: "100x100#" }
+  validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
+  has_attached_file :mechanic_attach_3, styles: { medium: "300x300>", thumb: "100x100#" }
+  validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
+  has_attached_file :mechanic_attach_4, styles: { medium: "300x300>", thumb: "100x100#" }
+  validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
+  has_attached_file :mechanic_attach_5, styles: { medium: "300x300>", thumb: "100x100#" }
+  validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
+
+  weixin_media_loaders :mechanic_attach_1, :mechanic_attach_2, :mechanic_attach_3, :mechanic_attach_4, :mechanic_attach_5
+
 end
