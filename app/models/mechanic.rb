@@ -1,4 +1,5 @@
 class Mechanic < ApplicationRecord
+  include WeixinMediaLoader
   belongs_to :user
 
   has_many :orders
