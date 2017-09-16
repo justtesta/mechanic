@@ -22,11 +22,11 @@ class UsersController < ApplicationController
     end
   end
 
-    def update_photo
-    if @user.update_attributes(user_params)
-      redirect_to user_path
+  def update_photo
+    if @user.update_attributes(update_photo_user_params)
+      redirect_to photo_user_path
     else
-      render :edit
+      render :photo
     end
   end
 
@@ -40,6 +40,10 @@ class UsersController < ApplicationController
       params.require(:user).permit(:mobile, :nickname, :gender, :address, :avatar,
         mechanic_attributes: [:_create, :id, :province_cd, :city_cd, :district_cd, :description,
         skill_cds: [] ])
+    end
+
+    def update_photo_user_params
+      params.require(:user).permit(mechanic_attributes: [:mechanic_attach_1, :mechanic_attach_2, :mechanic_attach_1_media_id, :mechanic_attach_2_media_id])
     end
 
     def authenticate!
