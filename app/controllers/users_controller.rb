@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :validate!, except: [ :new, :create ]
-  before_action :find_user, only: [ :new, :create, :edit, :update ]
+  before_action :find_user, only: [ :new, :create, :edit, :update, :photo ]
 
   def new
     @user.build_mechanic unless @user.mechanic
@@ -15,6 +15,14 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update_attributes(user_params)
+      redirect_to user_path
+    else
+      render :edit
+    end
+  end
+
+    def update_photo
     if @user.update_attributes(user_params)
       redirect_to user_path
     else
