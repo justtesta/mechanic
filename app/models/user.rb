@@ -47,6 +47,7 @@ class User < ApplicationRecord
     where(%{"mechanics_skills"."skill_id" = ?}, Mechanic.skills.value(skill))
   }
   scope :reg, -> { where(fromsource: "reg") }
+  scope :userupdate, -> { where(userupdate: true) }
 
   validates_presence_of :nickname, :address, if: :confirmed
 

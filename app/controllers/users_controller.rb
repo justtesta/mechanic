@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     end
 
     def update_photo_user_params
-      params.require(:user).permit(mechanic_attributes: [:mechanic_attach_1, :mechanic_attach_2, :mechanic_attach_1_media_id, :mechanic_attach_2_media_id])
+      params.require(:user).permit(mechanic_attributes: [:mechanic_attach_1, :mechanic_attach_2, :mechanic_attach_3,:mechanic_attach_4,:mechanic_attach_5,:mechanic_attach_1_media_id, :mechanic_attach_2_media_id, :mechanic_attach_3_media_id, :mechanic_attach_4_media_id, :mechanic_attach_5_media_id])
     end
 
     def authenticate!
