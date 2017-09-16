@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170915030533) do
+ActiveRecord::Schema.define(version: 20170916033637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,19 +112,39 @@ ActiveRecord::Schema.define(version: 20170915030533) do
     t.integer  "city_cd"
     t.integer  "district_cd"
     t.text     "description"
-    t.datetime "created_at",              precision: 6,                            null: false
-    t.datetime "updated_at",              precision: 6,                            null: false
-    t.float    "professionality_average",                          default: 4.0
-    t.float    "timeliness_average",                               default: 4.0
-    t.decimal  "total_income",            precision: 10, scale: 2, default: "0.0"
-    t.integer  "available_orders_count",                           default: 0
+    t.datetime "created_at",                     precision: 6,                            null: false
+    t.datetime "updated_at",                     precision: 6,                            null: false
+    t.float    "professionality_average",                                 default: 4.0
+    t.float    "timeliness_average",                                      default: 4.0
+    t.decimal  "total_income",                   precision: 10, scale: 2, default: "0.0"
+    t.integer  "available_orders_count",                                  default: 0
     t.string   "user_nickname"
     t.string   "user_mobile"
     t.string   "user_address"
-    t.integer  "revoke_orders_count",                              default: 0
+    t.integer  "revoke_orders_count",                                     default: 0
     t.string   "user_weixin_openid"
     t.string   "unique_id"
     t.string   "linkman"
+    t.string   "mechanic_attach_1_file_name"
+    t.string   "mechanic_attach_1_content_type"
+    t.integer  "mechanic_attach_1_file_size"
+    t.datetime "mechanic_attach_1_updated_at"
+    t.string   "mechanic_attach_2_file_name"
+    t.string   "mechanic_attach_2_content_type"
+    t.integer  "mechanic_attach_2_file_size"
+    t.datetime "mechanic_attach_2_updated_at"
+    t.string   "mechanic_attach_3_file_name"
+    t.string   "mechanic_attach_3_content_type"
+    t.integer  "mechanic_attach_3_file_size"
+    t.datetime "mechanic_attach_3_updated_at"
+    t.string   "mechanic_attach_4_file_name"
+    t.string   "mechanic_attach_4_content_type"
+    t.integer  "mechanic_attach_4_file_size"
+    t.datetime "mechanic_attach_4_updated_at"
+    t.string   "mechanic_attach_5_file_name"
+    t.string   "mechanic_attach_5_content_type"
+    t.integer  "mechanic_attach_5_file_size"
+    t.datetime "mechanic_attach_5_updated_at"
     t.index ["city_cd"], name: "index_mechanics_on_city_cd", using: :btree
     t.index ["district_cd"], name: "index_mechanics_on_district_cd", using: :btree
     t.index ["province_cd"], name: "index_mechanics_on_province_cd", using: :btree
