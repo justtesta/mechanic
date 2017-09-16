@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :validate!, except: [ :new, :create ]
-  before_action :find_user, only: [ :new, :create, :edit, :update, :photo ]
+  before_action :find_user, only: [ :new, :create, :edit, :update, :photo, :update_photo ]
 
   def new
     @user.build_mechanic unless @user.mechanic
