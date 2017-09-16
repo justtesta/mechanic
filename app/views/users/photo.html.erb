@@ -21,14 +21,84 @@
           <%= ff.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
           <%= ff.input_field :mechanic_attach_1_media_id, type: :hidden %>
         <% end %>
+         <%= link_to @user.mechanic.mechanic_attach_1.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_1.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_1.present? %>
         <%= ff.input :mechanic_attach_2 do %>
           <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_2_button" readonly></input>
           <%= ff.input_field :mechanic_attach_2, style: "display: none;", accept: "image/*" %>
           <%= ff.input_field :mechanic_attach_2_media_id, type: :hidden %>
         <% end %>
+         <%= link_to @user.mechanic.mechanic_attach_2.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_2.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_2.present? %>
+        <%= ff.input :mechanic_attach_3 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_3_button" readonly></input>
+          <%= ff.input_field :mechanic_attach_3, style: "display: none;", accept: "image/*" %>
+          <%= ff.input_field :mechanic_attach_3_media_id, type: :hidden %>
+        <% end %>
+        <%= link_to @user.mechanic.mechanic_attach_3.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_3.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_3.present? %>
+        <%= ff.input :mechanic_attach_4 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_4_button" readonly></input>
+          <%= ff.input_field :mechanic_attach_4, style: "display: none;", accept: "image/*" %>
+          <%= ff.input_field :mechanic_attach_4_media_id, type: :hidden %>
+        <% end %>
+        <%= link_to @user.mechanic.mechanic_attach_4.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_4.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_4.present? %>
+        <%= ff.input :mechanic_attach_5 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_5_button" readonly></input>
+          <%= ff.input_field :mechanic_attach_5, style: "display: none;", accept: "image/*" %>
+          <%= ff.input_field :mechanic_attach_5_media_id, type: :hidden %>
+        <% end %>
+        <%= link_to @user.mechanic.mechanic_attach_5.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_5.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_5.present? %>
        <% end %>
     <% end %>
 
     <%= f.button :submit, "确定", class: "btn-block btn-positive" %>
+
+     <script type="text/javascript">
+        <% if weixin? %>
+          wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
+          wx.error(function(res) { alert(JSON.stringify(res)) });
+          function fakeFileInput(fileInput, fakeInput, mediaIdInput) {
+            fakeInput.addEventListener("click", function() {
+              wx.chooseImage({
+                count: 1,
+                success: function (res) {
+                  setTimeout(function() {
+                    wx.uploadImage({
+                      localId: res.localIds[0],
+                      isShowProgressTips: true,
+                      success: function (res) {
+                        mediaIdInput.value = res.serverId;
+                        fakeInput.value = "点击更换图片";
+                      }
+                    });
+                  }, 0);
+                }
+              });
+            });
+          }
+        <% else %>
+          function fakeFileInput(fileInput, fakeInput) {
+            fakeInput.addEventListener("click", function() {
+              fileInput.click();
+            });
+            fileInput.addEventListener("change", function() {
+              fakeInput.value = "点击更换图片";
+            });
+          }
+        <% end %>
+        fakeFileInput(order_mechanic_attach_1, order_mechanic_attach_1_button, order_mechanic_attach_1_media_id);
+        fakeFileInput(order_mechanic_attach_2, order_mechanic_attach_2_button,
+        	order_mechanic_attach_2_media_id);
+		  
+	
+      </script>
 
 <% end %>	
