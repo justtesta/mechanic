@@ -1,0 +1,18 @@
+<%= content_for :title do %>
+  我的信息
+<% end %>
+
+<%= simple_form_for(@user, url: user_path, method: :put) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="jumbotron vertical-parent">
+    <div class="text-center vertical-middle">
+      <div class="input image">
+        <%= f.input_field :avatar, accept: "image/*" %>
+        <%= image_tag current_user.avatar.url(:thumb), class: "img-circle", id: "user_avatar_preview" %>
+      </div>
+      <div> <%= f.input :nickname %></div>
+    </div>
+  </div>
+
+<% end %>	

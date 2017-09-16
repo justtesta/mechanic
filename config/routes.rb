@@ -113,7 +113,11 @@ Rails.application.routes.draw do
   end
 
   mount WeixinRailsMiddleware::Engine, at: "/"
-  resource :user
+  resource :user do
+      member do
+        get :photo
+      end
+    end
   resource :user_session, path: "session" do
     post :verification_code
   end
@@ -220,6 +224,7 @@ Rails.application.routes.draw do
 
         get :balance
         patch :balance, action: :update_balance
+        get :photo
       end
     end
     resources :user_groups, concerns: [:confirm]
