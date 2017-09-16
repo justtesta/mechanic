@@ -201,6 +201,22 @@ Rails.application.routes.draw do
         post :freeze
       end
     end
+    concern :hidereg do
+      collection do
+        get :reg
+      end
+      member do
+        post :hidereg
+      end
+    end
+    concern :hideupdate do
+      collection do
+        get :userupdate
+      end
+      member do
+        post :hideupdate
+      end
+    end
 
     resource :administrator_session, path: "session"
     resource :administrator, only: [] do

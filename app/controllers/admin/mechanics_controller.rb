@@ -82,6 +82,17 @@ class Admin::MechanicsController < Admin::ApplicationController
     redirect_to_referer!
   end
 
+  def hidereg
+    @user.update_attribute(:reg, "")
+    redirect_to_referer!
+  end
+
+  def hideupdate
+    @user.update_attribute(:userupdate, false)
+    redirect_to_referer!
+  end
+
+
   def create_import
     file = params[:import][:mechanics]
     @importer = Mechanic::Importer.new(file)
