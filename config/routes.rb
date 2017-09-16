@@ -244,7 +244,7 @@ Rails.application.routes.draw do
       end
     end
     resources :user_groups, concerns: [:confirm]
-    resources :mechanics, concerns: [:hide] do
+    resources :mechanics, concerns: [:hide,:hidereg,:hideupdate] do
       resources :orders
 
       collection do
