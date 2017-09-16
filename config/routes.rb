@@ -224,7 +224,6 @@ Rails.application.routes.draw do
 
         get :balance
         patch :balance, action: :update_balance
-        get :photo
       end
     end
     resources :user_groups, concerns: [:confirm]

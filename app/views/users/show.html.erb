@@ -55,6 +55,9 @@
     <% end %>
   </li>
   <% if current_user.mechanic? %>
+   <li class="table-view-cell">
+    <%= link_to "店面照片", edit_user_path, class: "navigate-right" %>
+  </li>
     <li class="table-view-cell">
       <%= link_to "擅长技能：#{current_user.mechanic.works.map {|w| w.skill_name_price }.join("、")}", edit_user_path, class: "navigate-right" %>
     </li>
