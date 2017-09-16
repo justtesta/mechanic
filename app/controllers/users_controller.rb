@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
+      @user.update_attributes({:userupdate: true})
       redirect_to user_path
     else
       render :edit
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
 
   def update_photo
     if @user.update_attributes(update_photo_user_params)
+      @user.update_attributes({:userupdate: true})
       redirect_to photo_user_path
     else
       render :photo
