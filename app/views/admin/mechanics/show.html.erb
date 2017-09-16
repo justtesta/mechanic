@@ -34,6 +34,28 @@
         <%= ii.attribute :professionality_average %>
         <%= ii.attribute :timeliness_average %>
         <%= ii.attribute :description %>
+        <% if  @mechanic.mechanic.has_attach? %>
+          <h3 class="page-header">店面照片<small>点击照片查看原图</small></h3>
+             
+          <div class="images">
+            <%= link_to @mechanic.mechanic.mechanic_attach_1.url(:original) do %>
+              <%= image_tag @mechanic.mechanic.mechanic_attach_1.url(:thumb), class: "img-rounded" %>门店门头
+            <% end if @mechanic.mechanic.mechanic_attach_1.present? %>
+            <%= link_to @mechanic.mechanic.mechanic_attach_2.url(:original) do %>
+              <%= image_tag @mechanic.mechanic.mechanic_attach_2.url(:thumb), class: "img-rounded" %>客户休息区
+            <% end if @mechanic.mechanic.mechanic_attach_2.present? %>
+            <%= link_to @mechanic.mechanic.mechanic_attach_3.url(:original) do %>
+              <%= image_tag @mechanic.mechanic.mechanic_attach_3.url(:thumb), class: "img-rounded" %>施工车间全景
+            <% end if @mechanic.mechanic.mechanic_attach_3.present? %>
+            <%= link_to @mechanic.mechanic.mechanic_attach_4.url(:original) do %>
+              <%= image_tag @mechanic.mechanic.mechanic_attach_4.url(:thumb), class: "img-rounded" %>技师施工图
+            <% end if @mechanic.mechanic.mechanic_attach_4.present? %>
+            <%= link_to @mechanic.mechanic.mechanic_attach_5.url(:original) do %>
+              <%= image_tag @mechanic.mechanic.mechanic_attach_5.url(:thumb), class: "img-rounded" %>前台照片
+            <% end if @mechanic.mechanic.mechanic_attach_5.present? %>
+          </div>
+          
+        <% end %>
       <% end %>
     <% end %>
   </div>
