@@ -11,6 +11,19 @@
 <% @orders = @orders.includes(:user, :mechanic_user).joins(:user).order(created_at: :desc) %>
 
 <% if @mechanic %>
+  <%= index_for [ :admin, @orders ], class: "table table-hover data-tables" do |i| %>
+    <%= i.attribute :user_nickname %>
+    <%= i.attribute :contact %>
+    <%= i.attribute :contact_mobile %>
+    <%= i.attribute :skill %>
+    <%= i.attribute :price %>
+    <%= i.attribute :mechanic_nickname %>
+    <%= i.attribute :mechanic_mobile %>
+    <%= i.attribute :state %>
+    <%= i.actions :show %>
+  <% end %>
+
+<% else %>
   <%= wice_index_for [ :admin, @orders ], class: "table table-hover" do |i| %>
     <%= i.attribute :user_nickname, searchable: "users.nickname" %>
     <%= i.attribute :contact, sortable: "orders.contact_nickname", searchable: "orders.contact_nickname" %>
@@ -31,16 +44,5 @@
 
     <%= i.actions :show %>
   <% end %>
-<% else %>
-  <%= index_for [ :admin, @orders ], class: "table table-hover data-tables" do |i| %>
-    <%= i.attribute :user_nickname %>
-    <%= i.attribute :contact %>
-    <%= i.attribute :contact_mobile %>
-    <%= i.attribute :skill %>
-    <%= i.attribute :price %>
-    <%= i.attribute :mechanic_nickname %>
-    <%= i.attribute :mechanic_mobile %>
-    <%= i.attribute :state %>
-    <%= i.actions :show %>
-  <% end %>
+  
 <% end %>
