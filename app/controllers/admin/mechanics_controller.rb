@@ -83,12 +83,12 @@ class Admin::MechanicsController < Admin::ApplicationController
   end
 
   def hidereg
-    @user.update_attribute(:reg, "")
+    @mechanic.update_attribute(:reg, "")
     redirect_to_referer!
   end
 
   def hideupdate
-    @user.update_attribute(:userupdate, false)
+    @mechanic.update_attribute(:userupdate, false)
     redirect_to_referer!
   end
 
