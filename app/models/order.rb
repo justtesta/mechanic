@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   PendingTimeout = 10.minutes
   PayingTimeout = 60.minutes
   ConfirmingTimeout = 1.days
+  FinishedTimeout = 7.days
 
   belongs_to :user
   belongs_to :mechanic
@@ -173,6 +174,8 @@ class Order < ApplicationRecord
         cancel! :paying_timeout
       elsif confirming? && Time.now - updated_at > ConfirmingTimeout
         confirm!
+      elsif finished? && Time.now - updated_at > FinishedTimeout
+        review!
       end
     else
       self.appointing = true if self.assigned?
