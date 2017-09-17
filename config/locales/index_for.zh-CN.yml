@@ -21,6 +21,9 @@ zh-CN:
       hide: 隐藏
       unhide: 显示
       confirmation: "你确定要删除这条记录？"
+      hidereg: 忽略
+      hideupdate: 忽略
+
   views:
     pagination:
       first: "&laquo; 首页"
