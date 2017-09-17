@@ -40,7 +40,7 @@
     <%= i.attribute :price %>
     <%= i.attribute :mechanic_nickname %>
     <%= i.attribute :mechanic_mobile %>
-    <%= i.attribute :state do |order| %>
+    <%= i.attribute :state, do |order| %>
       <% if order.canceled? %>
         <%= te order, :cancel %>
       <% elsif order.refunded? %>
