@@ -8,7 +8,7 @@
   <% end %>
 </h3>
 
-<% @orders = @orders.includes(:user, :mechanic_user).joins(:user) %>
+<% @orders = @orders.includes(:user, :mechanic_user).joins(:user).order(created_at: :desc) %>
 
 <%= wice_index_for [ :admin, @orders ], class: "table table-hover" do |i| %>
   <%= i.attribute :user_nickname, searchable: "users.nickname" %>
