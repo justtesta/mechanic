@@ -20,7 +20,14 @@
     <%= i.attribute :mechanic_nickname %>
     <%= i.attribute :mechanic_mobile %>
     <%= i.attribute :state %>
-    <%= i.actions :show %>
+    <%= i.actions :show  do |order|%>
+    <% if order.canceled? %>
+        <%= te order, :cancel %>
+      <% elsif order.refunded? %>
+        <%= te order, :refund %>
+      <% else %>
+        <%= te order, :state %>
+      <% end %>
   <% end %>
 
 <% else %>
