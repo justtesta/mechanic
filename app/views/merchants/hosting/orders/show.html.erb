@@ -241,5 +241,10 @@
 <% when :finished %>
   <div class="pull-right">
     <%= link_to "点评技师", review_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+    <% if @order.emergency? %>
+      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
+    <% else %>
+      <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+    <% end %>
   </div>
 <% end %>
