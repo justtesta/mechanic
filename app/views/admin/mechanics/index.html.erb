@@ -50,10 +50,10 @@
         <% else %>
           <%= a.action_link :hide, url: hide_admin_mechanic_path(i.object), method: :post, confirm: "你确定要隐藏这个用户？" %>
         <% end %>
-        <% if @state ="reg" %>
+        <% if @state =="reg" %>
          <%= a.action_link :hidereg, url: hidereg_admin_mechanic_path(i.object), method: :post, confirm: "你确定要忽略注册？" %>
         <% end %>
-        <% if @state ="userupdate" %>
+        <% if @state =="userupdate" %>
          <%= a.action_link :hideupdate, url: hideupdate_admin_mechanic_path(i.object), method: :post, confirm: "你确定要忽略这个更新？" %>
         <% end %>
       <% end %>
