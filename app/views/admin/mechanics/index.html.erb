@@ -41,7 +41,7 @@
         <%= ii.attribute :available_orders_count %>
         <%= ii.attribute :total_income %>
       <% end %>
-
+      <%= i.attribute :balance %>
       <%= i.actions do |a| %>
         <%= a.action_link :show, url: admin_mechanic_path(i.object) %>
         <%= a.action_link :edit, url: edit_admin_mechanic_path(i.object) %>
