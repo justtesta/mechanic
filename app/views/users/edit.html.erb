@@ -27,7 +27,7 @@ end %>
     <% if @user.mechanic? %>
       <%= f.fields_for :mechanic do |ff| %>
         <%= ff.input :skill_cds, as: :check_boxes, collection: Skill.all %>
-
+        <%= ff.input :service_ids, as: :check_boxes, collection: Service.all %>
         <%= ff.input :province_cd, collection: Province.all %>
         <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [] %>
         <%= ff.input :district_cd, collection: district_map[ff.object.city_cd] || [] %>
