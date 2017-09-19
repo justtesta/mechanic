@@ -25,7 +25,7 @@ class Mechanic < ApplicationRecord
           @error_messages << "未知城市：“#{@city}”"
         end
 
-        if(!row[2].blank?)
+        
           @district = row[2].value
           @district_cd = Mechanic.districts[@district]
           unless district_cd
@@ -33,7 +33,7 @@ class Mechanic < ApplicationRecord
             @error_messages << "未知区县：“#{@district}”"
             end
           end
-        end
+        
           @address = row[3].value
           @nickname = row[4].value
           @mobile = row[5].value
