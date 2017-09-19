@@ -25,18 +25,22 @@ class Mechanic < ApplicationRecord
           @error_messages << "未知城市：“#{@city}”"
         end
 
-        @district = row[2].value
-        @district_cd = Mechanic.districts[@district]
-        unless district_cd
-          unless @district== nil
-          @error_messages << "未知区县：“#{@district}”"
+        if(!row[2].blank?)
+          @district = row[2].value
+          @district_cd = Mechanic.districts[@district]
+          unless district_cd
+            unless @district== nil
+            @error_messages << "未知区县：“#{@district}”"
+            end
           end
         end
           @address = row[3].value
           @nickname = row[4].value
           @mobile = row[5].value
           @unique_id = row[6].value
+          if(!row[7].blank?)
           @description = row[7].value
+          end
           
           if(!row[8].blank?)
             unless row[8].value==0
