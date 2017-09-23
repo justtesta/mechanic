@@ -8,4 +8,10 @@ class Metric < ApplicationRecord
     create(user_id: user.id, source: source, method: method, data: data)
   end
 
+  def data_reason
+  end 
+
+  def data_amount
+  end 
+
 end
