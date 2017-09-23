@@ -232,3 +232,8 @@ zh-CN:
         remark: 备注
       note:
         content: 内容
+      metric:
+        source_type: 类型
+        data_reason: 变动原因
+        data_amount: 变动金额
+        created_at: 变动时间
