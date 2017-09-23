@@ -267,6 +267,7 @@ Rails.application.routes.draw do
       end
     end
     resources :orders
+    resources :metrics
     resources :refunds, concerns: [:confirm, :freeze]
     resources :withdrawals, concerns: [:confirm, :cancel, :confirm_nopay] do
       collection do
