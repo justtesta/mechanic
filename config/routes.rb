@@ -246,7 +246,7 @@ Rails.application.routes.draw do
     resources :user_groups, concerns: [:confirm]
     resources :mechanics, concerns: [:hide,:hidereg,:hideupdate] do
       resources :orders
-
+      resources :metrics
       collection do
         get :import
         post :import, action: :create_import
