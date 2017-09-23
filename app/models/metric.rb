@@ -9,9 +9,11 @@ class Metric < ApplicationRecord
   end
 
   def data_reason
+  	data[:reason]
   end 
 
   def data_amount
+  	data[:amount]
   end 
 
 end
