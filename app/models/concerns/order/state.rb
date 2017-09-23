@@ -30,6 +30,9 @@ class Order < ApplicationRecord
         state_cd > DONE_GREATER_THAN
       end
 
+      scope :last_availables, -> { where('"orders"."state_cd" > ? And created_at> ?', AVAILABLE_GREATER_THAN,-3.months.from_now ) }
+      scope :last_dones, -> { where('"orders"."state_cd" > ? And created_at> ?', DONE_GREATER_THAN,-3.months.from_now) }
+
       scope :state_scope, -> (state) { where(state_cd: states.value(state)) }
 
       def update_state to

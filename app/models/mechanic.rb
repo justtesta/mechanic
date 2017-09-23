@@ -58,6 +58,15 @@ class Mechanic < ApplicationRecord
     orders.merchant_revokes.count || 0
   end
 
+  def raw_last_available_orders_count
+    orders.last_availables.count || 0
+  end
+
+  def raw_last_done_orders_count
+    orders.last_dones.count || 0
+  end
+
+
   def regular_client? user
     user = user.id if user.is_a? User
     orders.where(user_id: user).exists?
