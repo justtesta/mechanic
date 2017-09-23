@@ -10,7 +10,7 @@
  <%= index_for [ :admin, @metrics ], class: "table table-hover data-tables" do |i| %>
     <%= i.attribute :source_type %>
     <%= i.fields_for :data do |data| %>
-    	<%= data.reason %>
+    	<%= data[:reason] %>
     <% end %>
     
     <%= i.actions :show  %>
