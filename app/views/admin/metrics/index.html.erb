@@ -9,10 +9,8 @@
 </h3>
  <%= index_for [ :admin, @metrics ], class: "table table-hover data-tables" do |i| %>
     <%= i.attribute :source_type %>
-    <%= i.attribute :data do |data| %>
-    	<%= data.attribute :reason %>
-    	<%= data.attribute :amount %>
-    <% end %>
+    <%= i.attribute :data[:reason] %>
+
     
     <%= i.actions :show  %>
   <% end %>
