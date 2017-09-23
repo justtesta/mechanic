@@ -11,9 +11,9 @@
     <%= i.attribute :source_type %>
     <%= i.attribute :data_reason %>
  	<%= i.attribute :data_amount %>
-    <%= i.actions :show  %>
+    
     <%= i.actions do |a| %>
-    	<% if @source_type ==:Order %>
+    	<% if @source_type ==:order %>
     	<%= a.action_link :show, url: admin_mechanic_path(i.object.source_id) %>
         <% end %>
      <% end %>
