@@ -1,4 +1,9 @@
-  <% 
+
+<div class="row">
+  <%= render "admin/reports/side_menu" %>
+
+  <div class="col-md-10 col-xs-8">
+      <% 
   @start_date = if(params[:start_date]) 
       Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i)
     else
@@ -54,3 +59,7 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     </script>
+
+  </div>
+</div>
+
