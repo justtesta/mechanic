@@ -13,6 +13,7 @@
  	<%= i.attribute :data_amount %>
     
     <%= i.actions do |a| %>
+    <% byebug %>
     	<% if i.object.source_type ==:Order %>
     	<%= a.action_link :show, url: admin_mechanic_path(i.object.source_id) %>
         <% end %>
