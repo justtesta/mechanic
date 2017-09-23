@@ -63,11 +63,13 @@
         <%= i.attribute :user_nickname %>
         <%= i.attribute :user_mobile %>
         <%= i.attribute :user_address %>
-		<%= i.attribute :skills do |selectmechanic, skills| %>
+		    <%= i.attribute :skills do |selectmechanic, skills| %>
         <%= selectmechanic.works.map {|w| w.skill_name_price }.join("、") %>
         <% end %>
         <%= i.attribute :description %>
         <%= i.attribute :available_orders_count %>
+        <%= i.attribute :raw_last_done_orders_count %>
+        <%= i.attribute :raw_last_available_orders_count %>
         <%= i.attribute :professionality_average %>
         <%= i.attribute :timeliness_average %>
       <% end %>
