@@ -12,4 +12,9 @@
     <%= i.attribute :data_reason %>
  	<%= i.attribute :data_amount %>
     <%= i.actions :show  %>
+    <%= i.actions do |a| %>
+    	<% if @source_type ==:Order %>
+    	<%= a.action_link :show, url: admin_mechanic_path(i.object.source_id) %>
+        <% end %>
+     <% end %>
   <% end %>
