@@ -142,8 +142,8 @@ class Order < ApplicationRecord
   cache_method :mechanic, :revoke_orders_count
   cache_method :mechanic, :professionality_average
   cache_method :mechanic, :timeliness_average
-  cache_method :mechanic, :raw_last_available_orders_count
-  cache_method :mechanic, :raw_last_done_orders_count
+  cache_method :mechanic, :last_available_orders_count
+  cache_method :mechanic, :last_done_orders_count
 
   # cache_column :user, :nickname
   # cache_column :user, :mobile
