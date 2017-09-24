@@ -31,7 +31,7 @@ class Order < ApplicationRecord
   scope :hostings, -> { where(hosting: true) }
   scope :unfinisheds, -> { where("state_cd=6 or state_cd=7 or state_cd=8") }
   scope :emergencys, -> { where(emergency: true) }
-  scope :finished_nochecks, -> { joins(:numbers).where("status=0 and state_cd>8 and orders.created_at>'2017-09-01'") }
+  scope :finished_nochecks, -> { joins(:numbers).where("status=0 and state_cd>8 and orders.created_at>'2017-08-31'") }
   
 
   def offline?
