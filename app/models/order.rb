@@ -31,6 +31,7 @@ class Order < ApplicationRecord
   scope :hostings, -> { where(hosting: true) }
   scope :unfinisheds, -> { where("state_cd=6 or state_cd=7 or state_cd=8") }
   scope :emergencys, -> { where(emergency: true) }
+  scope :finished_nochecks, -> { where(numbers.status=1) }
   
 
   def offline?
