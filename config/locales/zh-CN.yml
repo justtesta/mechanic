@@ -239,3 +239,10 @@ zh-CN:
         data_reason: 变动原因
         data_amount: 变动金额
         created_at: 变动时间
+      number:
+        order_id: 订单ID
+        jdorder_id: 京东订单号
+        pwd_number_default: 消费码
+        shop_name: 预约技师
+        created_at: 生成时间
+        updated_at: 核消时间
