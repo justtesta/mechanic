@@ -33,7 +33,7 @@
 
   <div class="col-md-10 col-xs-8">
    <%= wice_index_for [ :merchants, :hosting, @numbers ], class: "table table-hover " do |i| %>
-      <%= i.attribute :order_id  %>
+      <%= i.attribute :order_id, searchable: true  %>
       <%= i.attribute :jdorder_id,searchable: true %>
       <%= i.attribute :pwd_number_default,searchable: true %>
       <%= i.attribute :shop_name,searchable: true %>
