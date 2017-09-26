@@ -66,7 +66,7 @@
     <% when :paid %>
       <%= link_to "开始服务", work_order_path(@order), class: "btn btn-block btn-positive" %>
     <% when :working %>
-      <h5>核销成功、上传图片后别忘了点击 “服务完工” 提交哦。</h5><br>
+      <h4>核销成功、上传图片后别忘了点击 “服务完工” 提交哦。</h4><br>
       <%= simple_form_for(@order, url: finish_order_path(@order)) do |f| %>
 	  	 <%= f.simple_fields_for :numbers do |ff| %>
 	  	 <%  @order.numbers.each do |number|  %>
@@ -92,7 +92,7 @@
         <% end %>
 		<%= f.button :submit, "服务完工", name: "order_verification", id: "order_verification_button",class: "btn-block btn-positive" %>
     <p>
-        注：网页端派单请上传车主短信照片。如仅核销部分消费码，或无法正常核销，请点击 (异常)服务完工人工审核 提交。
+        注：请上传车主短信照片。如仅核销部分消费码，或无法正常核销，请点击 (异常)服务完工人工审核 提交。
       </p>
         <%= f.button :submit, "(异常)服务完工人工审核", class: "btn-block btn-positive btn-default" %>
 		 
