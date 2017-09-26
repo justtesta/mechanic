@@ -41,7 +41,7 @@
       <%= i.attribute :updated_at, format: :short %>
       <%= i.attribute :status %>
       <%= i.actions do |a| %>
-      <%= a.action_link :show, url: admin_order_path(i.object.order_id) %>
+      <%= a.action_link :show, url: merchants_hosting_orders_path(i.object.order_id) %>
      <% end %>
     <% end %>
   </div>
