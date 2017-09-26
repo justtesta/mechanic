@@ -6,7 +6,7 @@ class Merchants::Hosting::NumbersController < Merchants::ApplicationController
       else
         :unchecked_numbers
       end
-    @numbers = Number.send(@state)
+    @numbers = Number.all.send(@state)
   end
   def checked?
     status && ["1", 1, true].include?(status)
