@@ -40,7 +40,9 @@
       <%= i.attribute :created_at, format: :short %>
       <%= i.attribute :updated_at, format: :short %>
       <%= i.attribute :status %>
-      <%= i.actions :show %>
+      <%= i.actions do |a| %>
+      <%= a.action_link :show, url: admin_order_path(i.object.order_id) %>
+     <% end %>
     <% end %>
   </div>
 </div>
