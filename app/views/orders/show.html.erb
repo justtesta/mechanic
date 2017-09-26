@@ -66,7 +66,7 @@
     <% when :paid %>
       <%= link_to "开始服务", work_order_path(@order), class: "btn btn-block btn-positive" %>
     <% when :working %>
-      <p class="bg-info">核销成功、上传图片后别忘了点击 <kbd>服务完工</kbd></p>
+      <h3><p class="bg-primary">核销成功、上传图片后别忘了点击 “服务完工” 提交哦。</p></h3>
       <%= simple_form_for(@order, url: finish_order_path(@order)) do |f| %>
 	  	 <%= f.simple_fields_for :numbers do |ff| %>
 	  	 <%  @order.numbers.each do |number|  %>
