@@ -69,6 +69,7 @@ Rails.application.routes.draw do
           get :unemergency
         end
       end
+      resources :numbers
     end
 
     resources :merchants

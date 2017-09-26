@@ -1,0 +1,48 @@
+<h3 class="page-header">京东核销码</h3>
+
+<%
+  def order_state_link_to state, text
+    link = link_to text, merchants_hosting_orders_path(state: state)
+    class_name = (@state == state) ? "active" : ""
+    %{<li class="#{class_name}">#{link}</li>}.html_safe
+  end
+  def number_state_link_to state, text
+    link = link_to text, merchants_hosting_numbers_path(state: state)
+    class_name = (@state == state) ? "active" : ""
+    %{<li class="#{class_name}">#{link}</li>}.html_safe
+  end
+%>
+
+<div class="row">
+  <div class="col-md-2 col-xs-4">
+    <ul class="nav nav-pills nav-stacked">
+      <%= order_state_link_to :unassigneds, "未分配" %>
+      <%= order_state_link_to :assigneds, "待服务" %>
+      <%= order_state_link_to :workings, "服务中" %>
+      <%= order_state_link_to :confirmings, "待确认完工" %>
+      <%= order_state_link_to :finisheds, "待评价" %>
+      <li class="divider"></li>
+      <%= order_state_link_to :unfinisheds, "所有订单" %>
+      <%= order_state_link_to :emergencys, "紧急订单" %>
+      <%= order_state_link_to :finished_nochecks, "完工未核销" %>
+      <li class="divider"></li>
+      <%= number_state_link_to :unchecked_numbers, "未核销消费码" %>
+      <%= number_state_link_to :checked_numbers, "已核销消费码" %>
+    </ul>
+  </div>
+
+  <% @numbers = @numbers.includes(:order) %>
+
+  <div class="col-md-10 col-xs-8">
+   <%= wice_index_for @numbers, class: "table table-hover " do |i| %>
+      <%= i.attribute :order_id, searchable: true  %>
+      <%= i.attribute :jdorder_id,searchable: true %>
+      <%= i.attribute :pwd_number_default,searchable: true %>
+      <%= i.attribute :shop_name,searchable: true %>
+      <%= i.attribute :created_at, format: :short %>
+      <%= i.attribute :updated_at, format: :short %>
+      <%= i.attribute :status %>
+      <%= i.actions :show %>
+    <% end %>
+  </div>
+</div>
