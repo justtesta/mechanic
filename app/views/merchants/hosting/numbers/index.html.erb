@@ -1,4 +1,4 @@
-<h3 class="page-header">京东核销码</h3>
+<h3 class="page-header">京东消费码</h3>
 
 <%
   def order_state_link_to state, text
@@ -37,6 +37,7 @@
       <%= i.attribute :jdorder_id,searchable: true %>
       <%= i.attribute :pwd_number_default,searchable: true %>
       <%= i.attribute :shop_name,searchable: true %>
+      <%-byebug-%>
       <%= i.attribute :created_at, format: :short %>
       <%= i.attribute :updated_at, format: :short %>      
       <%= i.actions do |a| %>
