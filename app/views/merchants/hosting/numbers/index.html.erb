@@ -38,7 +38,7 @@
       <%= i.attribute :pwd_number_default,searchable: true %>
       <%= i.attribute :shop_name,searchable: true %>
       <%= i.attribute :created_at, format: :short %>
-      <%= i.attribute :updated_at %>      
+      <%= i.attribute :updated_at, format: :short %>      
       <%= i.actions do |a| %>
       <%= a.action_link :show, url: merchants_hosting_order_path(i.object.order_id) %>
      <% end %>
