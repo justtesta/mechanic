@@ -39,7 +39,7 @@
       <%= i.attribute :shop_name,searchable: true %>
       <%-byebug-%>
       <%= i.attribute :created_at, format: :short %>
-      <%= i.attribute :updated_at, format: :short %>      
+      <%= i.attribute :updated_at %>      
       <%= i.actions do |a| %>
       <%= a.action_link :show, url: merchants_hosting_order_path(i.object.order_id) %>
      <% end %>
