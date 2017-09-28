@@ -20,14 +20,13 @@
 
       <% if action_name == "confirmed" %>
         <%= i.actions do |a| %>
-        <%= a.action_link :list, url:  admin_mechanics_path(state: :all, user_group: i.object), method: :post%>
+        <%= a.action_link :list, url:  admin_mechanics_path(user_group: i.object), method: :post%>
           <%= a.action_link :show %>
           <%= a.action_link :destroy %>
         <% end %>
       <% else %>
         <%= i.attribute :description %>
         <%= i.actions do |a| %>
-          <%= a.action_link :list, url:  admin_mechanics_path(state: :all, user_group: i.object), method: :post%>
           <%= a.action_link :show %>
           <%= a.action_link :confirm, method: :post, confirm: "你确定要通过这条申请？" %>
           <%= a.action_link :destroy %>

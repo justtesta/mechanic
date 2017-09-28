@@ -7,7 +7,12 @@ class Admin::MechanicsController < Admin::ApplicationController
       else
         :all
       end
-    @mechanics = User.mechanics.send(@state)
+    if params[:state]
+      @user_group = user_group.find params[:state]
+      @mechanics = user_group.users
+    else
+      @mechanics = User.mechanics.send(@state)
+    end
   end
   
   def edit
