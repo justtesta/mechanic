@@ -23,6 +23,7 @@ zh-CN:
       confirmation: "你确定要删除这条记录？"
       hidereg: 忽略
       hideupdate: 忽略
+      list: 分堂成员
 
   views:
     pagination:
