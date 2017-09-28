@@ -20,7 +20,7 @@
 
       <% if action_name == "confirmed" %>
         <%= i.actions do |a| %>
-        <%= a.action_link :list, url:  admin_mechanics_path(user_group: i.object), method: :post%>
+        <%= a.action_link :list, url:  admin_mechanics_path(user_group: i.object), method: :get%>
           <%= a.action_link :show %>
           <%= a.action_link :destroy %>
         <% end %>
