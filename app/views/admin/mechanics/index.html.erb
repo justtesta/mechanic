@@ -25,7 +25,7 @@
   </div>
 
   <% @mechanics = @mechanics.includes(:mechanic).joins(:mechanic) %>
-
+ <% byebug %>
   <div class="col-md-10 col-xs-8">
     <%= wice_index_for [ :admin, @mechanics ], class: "table table-hover" do |i| %>
       <%= i.attribute :nickname, searchable: true %>
