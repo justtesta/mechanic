@@ -8,7 +8,7 @@ class Admin::MechanicsController < Admin::ApplicationController
         :all
       end
     if params[:user_group]
-      @user_group = User_group.find params[:user_group]
+      @user_group = UserGroup.find params[:user_group]
       @mechanics = @user_group.users
     else
       @mechanics = User.mechanics.send(@state)
