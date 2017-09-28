@@ -19,7 +19,11 @@
       <%= i.attribute :user_nickname %>
 
       <% if action_name == "confirmed" %>
-        <%= i.actions :show, :destroy %>
+        <%= i.actions do |a| %>
+        <%= a.action_link :list, url:  admin_mechanics_path(state: :all, user_group: i.object), method: :post%>
+          <%= a.action_link :show %>
+          <%= a.action_link :destroy %>
+        <% end %>
       <% else %>
         <%= i.attribute :description %>
         <%= i.actions do |a| %>
