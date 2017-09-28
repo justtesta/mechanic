@@ -5,7 +5,7 @@ default: &default
     confirmation: 30759
     contact_pay_merchant_order: 40501
     contact_pay_mobile_order: 40508
-    mechanic_pay_order: 35188
+    mechanic_pay_order: 46756
     mechanic_refund_order: 5933
 
 development:
