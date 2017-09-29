@@ -24,7 +24,7 @@
     </ul>
   </div>
   <% @skills = Skill.all %>
-  <% @skill_cd = (params[:skills]||0).to_i  %>
+  <% @skill_cd = (params[:skills]||"").to_i  %>
  
   <%
     if(@skill_cd>0)
