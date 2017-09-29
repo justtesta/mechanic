@@ -34,7 +34,9 @@
     end
   %>
   <form class="form-inline" id="mechanics_form">
+    <div class="form-group">
       <label class="mr20" id="mechanics_skills">类型： <%= select_tag "skills", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@skills, :id, :name, @skill_cd), class: "form-control select2", id: "mechanics_skills_select" %></label>
+    </div>
   </form>
   <div class="col-md-10 col-xs-8">
     <%= wice_index_for [ :admin, @mechanics ], class: "table table-hover" do |i| %>
