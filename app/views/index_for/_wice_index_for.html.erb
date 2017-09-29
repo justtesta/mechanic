@@ -13,8 +13,10 @@
    </div>
    <div class="col-sm-9">
     <div class="dataTables_filter">
-      搜索：
-      <input type="search" class="form-control input" placeholder="<%= params[:search] %>" data-href="<%= url_for(params.merge(search: nil, page: 1)) %>">
+      <label>
+        搜索：
+        <input type="search" class="form-control input" placeholder="<%= params[:search] %>" data-href="<%= url_for(params.merge(search: nil, page: 1)) %>">
+      </label>
     </div>
    </div>
   </div>
