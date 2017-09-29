@@ -33,7 +33,7 @@
       @mechanics = @mechanics.includes(:mechanic).joins(:mechanic)
     end
   %>
-  <form class="form-inline" id="mechanics_form">
+  <form class="form-inline" id="mechanics_form" action="<%= url_for(params.merge(search: nil, page: 1)) %>">
     <div class="form-group">
       <label class="mr20" id="mechanics_skills">类型： <%= select_tag "skills", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@skills, :id, :name, @skill_cd), class: "form-control select2", id: "mechanics_skills_select" %></label>
     </div>
