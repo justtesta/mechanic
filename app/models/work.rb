@@ -6,7 +6,7 @@ class Work < ApplicationRecord
   end
  def skill_name_price
     name = []
-    name << skill.name  if skill.name 
+    name << skill.name  if skill 
     name << price if price
     name.join(" ")
   end
