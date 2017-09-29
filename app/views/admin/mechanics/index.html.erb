@@ -15,17 +15,24 @@
 <div class="row">
   <div class="col-md-2 col-xs-4">
     <ul class="nav nav-pills nav-stacked">
-      <%= mechanic_state_link_to :shown, "合作技师" %>
+    <%= mechanic_state_link_to :shown, "合作技师" %>
 	  <%= mechanic_state_link_to :hidden, "隐藏技师" %>
 	  <%= mechanic_state_link_to :reg, "注册技师" %>
     <%= mechanic_state_link_to :userupdate, "更新技师" %>
-      <%= mechanic_state_link_to :all, "全部技师" %>
+    <%= mechanic_state_link_to :all, "全部技师" %>
       
     </ul>
   </div>
   <% @skills = Skill.all %>
   <% @skill_cd = (params[:skills]||0).to_i  %>
-  <% @mechanics = @mechanics.includes(:mechanic).joins(:mechanic) %>
+ 
+  <%
+    if(@skill_cd>0)
+      @mechanics = @mechanics.includes(:mechanic).joins(mechanic: :works).where("skill_id=?",@skill_cd)
+    else
+      @mechanics = @mechanics.includes(:mechanic).joins(:mechanic)
+    end
+  %>
   <form class="form-inline" id="mechanics_form">
       <label class="mr20" id="mechanics_skills">类型： <%= select_tag "skills", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@skills, :id, :name, @skill_cd), class: "form-control select2", id: "mechanics_skills_select" %></label>
   </form>
