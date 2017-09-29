@@ -24,7 +24,7 @@
     </ul>
   </div>
   <% @skills = Skill.all %>
-  <% @skill_cd = (params[:skill]||0).to_i  %>
+  <% @skill_cd = (params[:skills]||0).to_i  %>
   <% @mechanics = @mechanics.includes(:mechanic).joins(:mechanic) %>
   <form class="form-inline" id="mechanics_form">
       <label class="mr20" id="mechanics_skills">类型： <%= select_tag "skills", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@skills, :id, :name), class: "form-control select2", id: "mechanics_skills_select" %></label>
@@ -68,6 +68,9 @@
     $form.prependTo($("#mechanics_filter"));
       var $skill = $("#mechanics_skills_select");
       $skill.change(function() {
+         var value = $(this).val();
+        $(".mechanics_skills_select").val(value);
         if ($skill.val()) $form.submit();
+       
       });
 </script>
