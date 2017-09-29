@@ -23,8 +23,12 @@
       
     </ul>
   </div>
-
+  <% @skills = Skill.all %>
+  <% @skill_cd = (params[:skill]||0).to_i  %>
   <% @mechanics = @mechanics.includes(:mechanic).joins(:mechanic) %>
+  <form class="form-inline" id="mechanics_form">
+      <label class="mr20" id="mechanics_skills">类型： <%= select_tag "skills", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@skills, :id, :name), class: "form-control select2", id: "mechanics_skills_select" %></label>
+  </form>
   <div class="col-md-10 col-xs-8">
     <%= wice_index_for [ :admin, @mechanics ], class: "table table-hover" do |i| %>
       <%= i.attribute :nickname, searchable: true %>
@@ -59,3 +63,11 @@
     <% end %>
   </div>
 </div>
+<script type="text/javascript">
+  var $form = $("#mechanics_form");
+    $form.prependTo($("#mechanics_filter"));
+      var $skill = $("#mechanics_skills_select");
+      $skill.change(function() {
+        if ($skill.val()) $form.submit();
+      });
+</script>

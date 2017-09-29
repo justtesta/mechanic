@@ -5,7 +5,7 @@ class CreateServices < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    Service.create(name: "轮胎到店")
+    Service.create(name: "代客签收")
     create_join_table :mechanics, :services
   end
 end
