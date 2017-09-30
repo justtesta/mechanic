@@ -65,17 +65,19 @@
 
 $(document).ready(function() {
     $('#orders').DataTable( {
-        "pagingType": "simple",
+        "pagingType": "full_numbers",
           'fnDrawCallback': function(table) {    
-              $("#orders_paginate").append("  到第 <input type='text' id='changePage' class='input-text' style='width:50px;height:27px'> 页   <a class='btn btn-default shiny' href='javascript:void(0);' id='dataTable-btn' style='text-align:center'>确认</a>");    
+              $("#orders_paginate").append("   <input type='text' id='changePage' class='input-text' style='margin-top:0px;wwidth:50px;height:27px'> ");    
               var oTable = $("#orders").dataTable();    
-              $('#dataTable-btn').click(function(e) {    
-                  if($("#changePage").val() && $("#changePage").val() > 0) {    
-                      var redirectpage = $("#changePage").val() - 1;    
-                  } else {    
-                      var redirectpage = 0;    
-                  }    
-                  oTable.fnPageChange(redirectpage);    
+              $('#changePage').keypress(function(e) {  
+                  if (event.which === 13 || event.keyCode === 13) {  
+                    if($("#changePage").val() && $("#changePage").val() > 0) {    
+                        var redirectpage = $("#changePage").val() - 1;    
+                    } else {    
+                        var redirectpage = 0;    
+                    }    
+                    oTable.fnPageChange(redirectpage);  
+                  }  
               });    
           }
     } );
