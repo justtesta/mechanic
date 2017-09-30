@@ -29,10 +29,10 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-5 index_for_info"><%= page_entries_info objects %></div>
-    <div class="col-sm-7 text-right index_for_pagination">
+    <div class="col-sm-4 index_for_info"><%= page_entries_info objects %></div>
+    <div class="col-sm-8 text-right index_for_pagination">
       <%= paginate objects, window: 2 %>
-       <input type="search" class="form-control input" style: "width:85px"  placeholder="<%= params[:page] %>" data-href="<%= url_for(params.merge(page: nil)) %>">
+       <input type="search" class="form-control input" style: "width:30px"  placeholder="<%= params[:page] %>" data-href="<%= url_for(params.merge(page: nil)) %>">
     </div>
   </div>
 </div>
