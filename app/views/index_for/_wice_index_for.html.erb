@@ -32,7 +32,7 @@
     <div class="col-sm-4 index_for_info"><%= page_entries_info objects %></div>
     <div class="col-sm-8 text-right index_for_pagination">
       <%= paginate objects, window: 2 %>
-       <input type="search" class="form-control input" style="width:25px"  placeholder="<%= params[:page] %>" data-href="<%= url_for(params.merge(page: nil)) %>">
+       <input type="search" class="form-control input pagination" style="width:70px"  placeholder="<%= params[:page] %>" data-href="<%= url_for(params.merge(page: nil)) %>">
     </div>
   </div>
 </div>
