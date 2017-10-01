@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918111503) do
+ActiveRecord::Schema.define(version: 20170924074803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,8 @@ ActiveRecord::Schema.define(version: 20170918111503) do
     t.string   "mechanic_attach_5_content_type"
     t.integer  "mechanic_attach_5_file_size"
     t.datetime "mechanic_attach_5_updated_at"
+    t.integer  "last_available_orders_count"
+    t.integer  "last_done_orders_count"
     t.index ["city_cd"], name: "index_mechanics_on_city_cd", using: :btree
     t.index ["district_cd"], name: "index_mechanics_on_district_cd", using: :btree
     t.index ["province_cd"], name: "index_mechanics_on_province_cd", using: :btree
