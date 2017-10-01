@@ -58,7 +58,7 @@
     var $orders_obj;
     $(function(){  
        $orders_obj=$("#orders");
-       $("#hide_orders").html($orders_obj.clone(true));
+       $("#hide_orders").html($orders_obj);
       $("#search").keyup(function () {  
         alert($orders_obj.html())
         var searchText = $(this).val();//获取输入的搜索内容  
