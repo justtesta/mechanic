@@ -54,10 +54,11 @@
   <% end %>
 </ul>
 <script type="text/javascript">  
+    var orders_obj;
     $(function(){  
-      var orders_obj=$("#orders");
-      $("#search").change(function () {  
-        
+       orders_obj=$("#orders");
+      $("#search").keyup(function () {  
+        alert(orders_obj.html())
         var searchText = $(this).val();//获取输入的搜索内容  
         var $searchLi = "";//预备对象，用于存储匹配出的li  
         
