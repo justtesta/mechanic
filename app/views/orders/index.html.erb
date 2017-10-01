@@ -32,8 +32,7 @@
 
 
 <% @orders = @orders.includes(mechanic: :user).order(id: :desc) %>
-<ul class="table-view" id="orders_show">
-</ul>
+
 
 <ul class="table-view" id="orders">
   <% @orders.each do |order| %>
@@ -56,26 +55,25 @@
 </ul>
 <script type="text/javascript">  
     $(function(){  
+      var orders_obj=$("#orders");
       $("#search").change(function () {  
         
         var searchText = $(this).val();//获取输入的搜索内容  
         var $searchLi = "";//预备对象，用于存储匹配出的li  
         
         if (searchText != "") {  
-          alert($("#orders").find('li:contains('+ searchText +')'));
-          alert("ddd");
           //获取所有匹配的li  
-          $searchLi = $("#orders").find('li:contains('+ searchText +')');  
+          $searchLi = orders_obj.find('li:contains('+ searchText +')');  
           //将内容清空  
-          $("#orders_show").html("");  
+          $("#orders").html("");  
         }  
           
         //将获取的元素追加到列表中  
-        $("#orders_show").html($searchLi).clone();  
+        $("#orders").html($searchLi).clone();  
   
         //判断搜索内容是否有效，若无效，输出not find  
         if ($searchLi.length <= 0) {  
-          $("#orders_show").html("<li>没有找到结果！</li>")  
+          $("#orders").html("<li>没有找到结果！</li>")  
         }  
       })  
 
