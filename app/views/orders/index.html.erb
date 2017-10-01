@@ -46,7 +46,7 @@
 
           <% if current_user.mechanic? %>
             <p>成交价格：<%= order.mechanic_income %> 元 <%= "【线下交易】" if order.offline? %></p>
-            <% unless @order.mobile? %>
+            <% unless order.mobile? %>
             <p>联系方式：<%= order.contact_nickname %> <%= tel_link_to order.contact_mobile %></p>
             <% end %>
           <% else %>
