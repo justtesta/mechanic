@@ -32,6 +32,8 @@
 
 
 <% @orders = @orders.includes(mechanic: :user).order(id: :desc) %>
+<ul class="table-view" id="orders_show">
+</ul>
 
 <ul class="table-view" id="orders">
   <% @orders.each do |order| %>
@@ -65,15 +67,15 @@
           //获取所有匹配的li  
           $searchLi = $("#orders").find('li:contains('+ searchText +')');  
           //将内容清空  
-          $("#orders").html("");  
+          $("#orders_show").html("");  
         }  
           
         //将获取的元素追加到列表中  
-        $("#orders").html($searchLi).clone();  
+        $("#orders_show").html($searchLi).clone();  
   
         //判断搜索内容是否有效，若无效，输出not find  
         if ($searchLi.length <= 0) {  
-          $("#orders").html("<li>没有找到结果！</li>")  
+          $("#orders_show").html("<li>没有找到结果！</li>")  
         }  
       })  
 
