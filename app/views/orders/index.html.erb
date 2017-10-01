@@ -60,10 +60,10 @@
         var $searchLi = "";//预备对象，用于存储匹配出的li  
         
         if (searchText != "") {  
-          alert($("#orders").find('div:contains('+ searchText +')').innerhtml);
+          alert($("#orders").find('li:contains('+ searchText +')'));
           alert("ddd");
           //获取所有匹配的li  
-          $searchLi = $("#orders").find('div:contains('+ searchText +')').parent().parent();  
+          $searchLi = $("#orders").find('li:contains('+ searchText +')');  
           //将内容清空  
           $("#orders").html("");  
         }  
