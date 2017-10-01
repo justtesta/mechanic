@@ -58,9 +58,10 @@
         
         var searchText = $(this).val();//获取输入的搜索内容  
         var $searchLi = "";//预备对象，用于存储匹配出的li  
-        alert("ddd");
+        
         if (searchText != "") {  
-  
+          alert($("#orders").find('div:contains('+ searchText +')'));
+          alert("ddd");
           //获取所有匹配的li  
           $searchLi = $("#orders").find('div:contains('+ searchText +')').parent().parent();  
           //将内容清空  
