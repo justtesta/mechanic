@@ -55,10 +55,10 @@
   <% end %>
 </ul>
 <script type="text/javascript">  
-    var $orders_obj;
+    var $orders_obj = "";
     $(function(){  
-       $orders_obj=$("#orders");
-       $("#hide_orders").html($orders_obj.clone(true));
+      $orders_obj=$("#orders");
+      $("#hide_orders").html($orders_obj.clone(true));
       $("#search").keyup(function () {  
         alert($orders_obj.html())
         var searchText = $(this).val();//获取输入的搜索内容  
