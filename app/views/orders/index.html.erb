@@ -32,7 +32,8 @@
 
 
 <% @orders = @orders.includes(mechanic: :user).order(id: :desc) %>
-
+<ul class="table-view" id="hide_orders">
+</ul>
 
 <ul class="table-view" id="orders">
   <% @orders.each do |order| %>
@@ -54,17 +55,18 @@
   <% end %>
 </ul>
 <script type="text/javascript">  
-    var orders_obj;
+    var $orders_obj;
     $(function(){  
-       orders_obj=$("#orders");
+       $orders_obj=$("#orders");
+       $("#hide_orders").html($orders_obj.clone(true));
       $("#search").keyup(function () {  
-        alert(orders_obj.html())
+        alert($orders_obj.html())
         var searchText = $(this).val();//获取输入的搜索内容  
         var $searchLi = "";//预备对象，用于存储匹配出的li  
         
         if (searchText != "") {  
           //获取所有匹配的li  
-          $searchLi = orders_obj.find('li:contains('+ searchText +')');  
+          $searchLi = $orders_obj.find('li:contains('+ searchText +')');  
           //将内容清空  
           $("#orders").html("");  
         }  
