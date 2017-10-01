@@ -59,6 +59,7 @@
     $(function(){  
       $orders_obj=$("#orders");
       $("#hide_orders").html($orders_obj.clone(true));
+      $("#orders").show();  
       $("#search").keyup(function () {  
         alert($orders_obj.html())
         var searchText = $(this).val();//获取输入的搜索内容  
@@ -69,11 +70,14 @@
           $searchLi = $orders_obj.find('li:contains('+ searchText +')');  
           //将内容清空  
           $("#orders").html("");  
-        }  
+        } else{
+          $searchLi = $orders_obj.find('li');  
+          $("#orders").html("");  
+        } 
           
         //将获取的元素追加到列表中  
         $("#orders").html($searchLi.clone(true));  
-  
+        $("#orders").show();  
         //判断搜索内容是否有效，若无效，输出not find  
         if ($searchLi.length <= 0) {  
           $("#orders").html("<li>没有找到结果！</li>")  
