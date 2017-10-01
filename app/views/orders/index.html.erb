@@ -69,7 +69,7 @@
         }  
           
         //将获取的元素追加到列表中  
-        $("#orders").html($searchLi.clone());  
+        $("#orders").html($searchLi.clone(true));  
   
         //判断搜索内容是否有效，若无效，输出not find  
         if ($searchLi.length <= 0) {  
