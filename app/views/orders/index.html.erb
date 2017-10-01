@@ -35,7 +35,7 @@
 <ul class="table-view" id="hide_orders">
 </ul>
 
-<ul class="table-view" id="orders">
+<ul class="table-view" style="display:none" id="orders">
   <% @orders.each do |order| %>
     <li class="table-view-cell media">
       <%= link_to order_path(order), class: "navigate-right" do %>
@@ -58,7 +58,7 @@
     var $orders_obj;
     $(function(){  
        $orders_obj=$("#orders");
-       $("#hide_orders").html($orders_obj);
+       $("#hide_orders").html($orders_obj.clone(true));
       $("#search").keyup(function () {  
         alert($orders_obj.html())
         var searchText = $(this).val();//获取输入的搜索内容  
