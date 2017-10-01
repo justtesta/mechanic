@@ -61,7 +61,7 @@
       $("#hide_orders").html($orders_obj.clone(true));
       $("#orders").show();  
       $("#search").keyup(function () {  
-        alert($orders_obj.html())
+        alert($orders_obj.id)
         var searchText = $(this).val();//获取输入的搜索内容  
         var $searchLi = "";//预备对象，用于存储匹配出的li  
         
