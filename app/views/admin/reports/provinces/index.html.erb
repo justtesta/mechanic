@@ -5,12 +5,12 @@
   <div class="col-md-10 col-xs-8">
       <% 
   @start_date = if(params[:start_date]) 
-      Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i)
+      Date.civil(params[:start_date].to_i)
     else
       Date.today-3.year
       end %>
   <% @end_date = if(params[:end_date]) 
-      Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i)
+      Date.civil(params[:end_date].to_i)
     else
       Date.today 
     end  %>
@@ -29,17 +29,27 @@
   <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
 <form class="form-inline" id="reports_form">
-<p>日期：<input type="text" id="datepicker"></p>
-      <%= select_date @start_date, prefix: :start_date %> 到 <%= select_date @end_date, prefix: :end_date %>
+<p><input type="text" id="start_date"> 到 <input type="text" id="end_date"> </p>
       <%= submit_tag("Search") %>
  </form>
  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 800px;height:980px;"></div>
     <script type="text/javascript">
           $(function() {
-            $( "#datepicker" ).datepicker({
+            $( "#start_date" ).datepicker({
               numberOfMonths: 3,
               showButtonPanel: true,
+              defaultDate:'<%=  @start_date %>',//默认日期  
+              dateFormat: 'yy-mm-dd',
+              monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'], 
+              dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+              dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+              dayNamesMin: ['日','一','二','三','四','五','六'] 
+            });
+            $( "#end_date" ).datepicker({
+              numberOfMonths: 3,
+              showButtonPanel: true,
+              defaultDate:'<%=  @end_date %>',//默认日期  
               dateFormat: 'yy-mm-dd',
               monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'], 
               dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
