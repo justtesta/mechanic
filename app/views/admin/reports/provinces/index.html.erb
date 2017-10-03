@@ -25,16 +25,23 @@
         Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟2%' ")).where(province_cd:o.id).where(created_at: (@start_date)..(@end_date+1.day)).count      
      end %> 
  <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.common.min.js"></script>
-<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
-<script src="jquery.datetimepicker.js"></script>
-<input id="datetimepicker" type="text" >
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<form class="form-inline" id="reports_form">
+<p>日期：<input type="text" id="datepicker"></p>
       <%= select_date @start_date, prefix: :start_date %> 到 <%= select_date @end_date, prefix: :end_date %>
       <%= submit_tag("Search") %>
  </form>
  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 800px;height:980px;"></div>
     <script type="text/javascript">
-       $('#datetimepicker').datetimepicker();
+          $(function() {
+            $( "#datepicker" ).datepicker({
+              numberOfMonths: 3,
+              showButtonPanel: true
+            });
+          });
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
 
