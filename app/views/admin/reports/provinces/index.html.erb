@@ -27,16 +27,14 @@
  <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.common.min.js"></script>
 <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
 <script src="jquery.datetimepicker.js"></script>
-<input type="text" value="2012-05-15 21:05" id="datetimepicker">
+<input id="datetimepicker" type="text" >
       <%= select_date @start_date, prefix: :start_date %> 到 <%= select_date @end_date, prefix: :end_date %>
       <%= submit_tag("Search") %>
  </form>
  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 800px;height:980px;"></div>
     <script type="text/javascript">
-        $('#datetimepicker').datetimepicker({
-        format: 'yyyy-mm-dd hh:ii'
-        });
+       $('#datetimepicker').datetimepicker();
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
 
