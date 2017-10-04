@@ -19,9 +19,8 @@
   <% @provinces_data = Province.all.map do |o|
       o.name
      end %>
-      <% 
-      @data = Province.all.map do |o|
-        
+     
+   <%    @data = Province.all.map do |o|
         Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟2%' ")).where(province_cd:o.id).where(created_at: (@start_date)..(@end_date+1.day)).count      
      end %> 
 <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.common.min.js"></script>
@@ -59,32 +58,35 @@
               dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
               dayNamesMin: ['日','一','二','三','四','五','六'] 
             });
+
+                  // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+              // 指定图表的配置项和数据
+            var option = {
+                  title: {
+                      text: '2系列技师订单数'
+                  },
+                  tooltip: {},
+                  legend: {
+                      data:['订单数']
+                  },
+                  yAxis: {
+                      data: <%= raw @provinces_data %>
+                  },
+                  xAxis: {},
+                  series: [{
+                      name: '订单数',
+                      type: 'bar',
+                      data: <%= raw @data %>
+                  }]
+              };
+
+              // 使用刚指定的配置项和数据显示图表。
+              myChart.setOption(option);
+
           });
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
-
-        // 指定图表的配置项和数据
-        var option = {
-            title: {
-                text: '2系列技师订单数'
-            },
-            tooltip: {},
-            legend: {
-                data:['订单数']
-            },
-            yAxis: {
-                data: <%= raw @provinces_data %>
-            },
-            xAxis: {},
-            series: [{
-                name: '订单数',
-                type: 'bar',
-                data: <%= raw @data %>
-            }]
-        };
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        
     </script>
 
   </div>
