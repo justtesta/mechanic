@@ -289,7 +289,7 @@ module Weixin
     end
 
     def audit_subscribe_event keyword, weixin_openid
-      keyword.delete "qrscene_"  
+      keyword=keyword.delete "qrscene_"  
       if keyword =~ /(\w+?)_(\d+)/
         type, id = $1.to_sym, $2.to_i
         Rails.logger.info "  Audit: Scan QRCode #{type}, #{weixin_openid}, #{id}"
