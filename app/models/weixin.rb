@@ -296,6 +296,7 @@ module Weixin
           Rails.logger.warn "  Audit: User already exists."
         else
           WeixinAuthorize.weixin_redis.hset type, weixin_openid, id
+          Rails.logger.info "  Audit: Scan hset #{type}, #{weixin_openid}, #{id}"
         end
       end
     end
