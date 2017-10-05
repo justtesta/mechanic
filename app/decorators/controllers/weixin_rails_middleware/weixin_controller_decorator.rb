@@ -86,6 +86,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     end
 
     def handle_scan_keyword
+      info("Subscribe keyword")
       if @keyword.present?
         # # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
         # info("Subscribe event: 1. User unsubscribed, keyword: #{@keyword}")
