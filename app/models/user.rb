@@ -75,6 +75,6 @@ class User < ApplicationRecord
   end
 
   def safe_change_group user_group_id
-    self.update_attribute(:user_group_id, id) if self.user_group.blank?
+    self.update_attribute(:user_group_id, user_group_id) if self.user_group.blank?
   end
 end
