@@ -289,14 +289,16 @@ module Weixin
     end
 
     def audit_subscribe_event keyword, weixin_openid
-      keyword=keyword.delete "qrscene_"  
       if keyword =~ /(\w+?)_(\d+)/
         type, id = $1.to_sym, $2.to_i
         Rails.logger.info "  Audit: Scan QRCode #{type}, #{weixin_openid}, #{id}"
         if User.where(weixin_openid: weixin_openid).exists?
           Rails.logger.warn "  Audit: User already exists."
         else
-          result=WeixinAuthorize.weixin_redis.hset type, weixin_openid.to_sym, id
+          if(type==:qrscene_user_group)
+            type=:user_group
+          end
+          result=WeixinAuthorize.weixin_redis.hset type, weixin_openid, id
           Rails.logger.info "  Audit: Scan hset #{type}, #{weixin_openid}, #{id}, #{result}"
         end
       end
