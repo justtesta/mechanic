@@ -295,8 +295,8 @@ module Weixin
         if User.where(weixin_openid: weixin_openid).exists?
           Rails.logger.warn "  Audit: User already exists."
         else
-          WeixinAuthorize.weixin_redis.hset type, weixin_openid, id
-          Rails.logger.info "  Audit: Scan hset #{type}, #{weixin_openid}, #{id}"
+          result=WeixinAuthorize.weixin_redis.hset type, weixin_openid, id
+          Rails.logger.info "  Audit: Scan hset #{type}, #{weixin_openid}, #{id}, #{result}"
         end
       end
     end
@@ -304,7 +304,7 @@ module Weixin
     def callback_signup_event user, weixin_openid
       group_id = WeixinAuthorize.weixin_redis.hget "user_group", weixin_openid
       return unless group_id
-      WeixinAuthorize.weixin_redis.hdel "user_group", weixin_openid
+      #WeixinAuthorize.weixin_redis.hdel "user_group", weixin_openid
       Rails.logger.info "  Audit: Apply UserGroup #{weixin_openid}, #{group_id}"
       user.safe_change_group(group_id)
     end
