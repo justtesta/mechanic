@@ -74,7 +74,7 @@ class User < ApplicationRecord
     orders.availables.count || 0
   end
 
-  def safe_change_group user_group_id
-    self.update_attribute(:user_group_id, user_group_id) if self.user_group.blank?
+  def safe_change_group group_id
+    self.update_attribute(:user_group_id, group_id) if self.user_group.blank?
   end
 end
