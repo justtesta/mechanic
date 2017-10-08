@@ -9,6 +9,8 @@ class Admin::UsersController < Admin::ApplicationController
   def mechanicize
     @user.mechanic!
     @user.build_mechanic unless @user.mechanic
+    @user.nickname="未知" unless @user.nickname
+    @user.address="河南郑州惠济区" unless @user.address
     if @user.save
       redirect_to admin_mechanic_path(@user)
     else
