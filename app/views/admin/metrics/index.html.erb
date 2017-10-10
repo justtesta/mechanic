@@ -7,10 +7,10 @@
     余额变动记录
   <% end %>
 </h3>
- <%= index_for [ :admin, @metrics ], class: "table table-hover data-tables" do |i| %>
+ <%= wice_index_for [ :admin, @metrics ], class: "table table-hover data-tables" do |i| %>
     <%= i.attribute :source_type %>
     <%= i.attribute :data_reason %>
- 	<%= i.attribute :data_amount %>
+ 	  <%= i.attribute :data_amount %>
     <%= i.attribute :created_at, format: :long%>
     <%= i.actions do |a| %>
     	<% if i.object.source_type =="Order" %>
