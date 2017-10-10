@@ -68,7 +68,7 @@ class Mechanic < ApplicationRecord
 
   def raw_done_orders_count_rate
     if raw_available_orders_count>0
-      (orders.dones.count/raw_available_orders_count*100).round(2)
+      (orders.dones.count*100.quo(raw_available_orders_count)).to_f.round(2)
     else
       100.round(2)
     end
