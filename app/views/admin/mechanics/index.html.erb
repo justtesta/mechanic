@@ -52,7 +52,7 @@
       <%= i.attribute :address, searchable: true %>
       <%= i.fields_for :mechanic, model: Mechanic do |ii| %>
         <%= ii.attribute :available_orders_count %>
-        <%= ii.attribute :raw_done_orders_count_rate %>
+        <%= ii.attribute :done_orders_count_rate %>
         <%= ii.attribute :total_income %>
       <% end %>
       <%= i.attribute :balance %>
