@@ -145,6 +145,7 @@ class Order < ApplicationRecord
   cache_method :mechanic, :timeliness_average
   cache_method :mechanic, :last_available_orders_count
   cache_method :mechanic, :last_done_orders_count
+  cache_method :mechanic, :done_orders_count_rate
 
   # cache_column :user, :nickname
   # cache_column :user, :mobile

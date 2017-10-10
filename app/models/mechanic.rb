@@ -66,6 +66,14 @@ class Mechanic < ApplicationRecord
     orders.last_dones.count || 0
   end
 
+  def raw_done_orders_count_rate
+    if raw_available_orders_count>0
+      (orders.dones.count/raw_available_orders_count*100).round(2)
+    else
+      100.round(2)
+    end
+  end
+
 
   def regular_client? user
     user = user.id if user.is_a? User
