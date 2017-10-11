@@ -82,12 +82,12 @@ module Weixin
       after_income_txt=""
       if(order.quantity&&order.quantity>0)
         mechanic_income_price=order.mechanic_income/order.quantity
-        after_income_txt= "（"<<mechanic_income_price<< "元×" << order.quantity<<"）"
+        after_income_txt= "（"<<mechanic_income_price.round.to_s<< "元×" << order.quantity<<"）"
       end
       if(order.offline?)
         after_income_txt<<"（线下交易）"
       end
-      
+
       weixin_authorize_client_send :send_template_msg,
         order.mechanic.user_weixin_openid,
         OrderTemplate,
