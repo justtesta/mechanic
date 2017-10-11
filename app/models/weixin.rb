@@ -79,6 +79,15 @@ module Weixin
     end
 
     def send_pay_order_message order
+      after_income_txt=""
+      if(order.quantity&&order.quantity>0)
+        mechanic_income_price=order.mechanic_income/order.quantity
+        after_income_txt= "（"<<mechanic_income_price<< "元×" << order.quantity<<"）"
+      end
+      if(order.offline?)
+        after_income_txt<<"（线下交易）"
+      end
+      
       weixin_authorize_client_send :send_template_msg,
         order.mechanic.user_weixin_openid,
         OrderTemplate,
@@ -89,7 +98,7 @@ module Weixin
           keyword1: format_template_data(I18n.l(order.appointment, format: :long)),
           keyword2: format_template_data(order.skill),
           keyword3: format_template_data("#{order.brand} #{order.series}"),
-          keyword4: format_template_data("#{order.mechanic_income} 元"),
+          keyword4: format_template_data("#{order.mechanic_income} 元 #{after_income_txt}"),
           keyword5: format_template_data(order.remark.presence || "无"),
           remark: format_template_data("\r\n点击查看订单详情！")
         }

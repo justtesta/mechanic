@@ -25,6 +25,15 @@ module SMS
     def send_pay_order_message order
       mechanic = order.mechanic
 
+      after_income_txt=""
+      if(order.quantity&&order.quantity>0)
+        mechanic_income_price=order.mechanic_income/order.quantity
+        after_income_txt= "（"<<mechanic_income_price<< "元×" << order.quantity<<"）"
+      end
+      if(order.offline?)
+        after_income_txt<<"（线下交易）"
+      end
+
       send_request mechanic.user_mobile, "mechanic_pay_order", [
         order.user_nickname,
         order.contact_display_name,
@@ -34,7 +43,7 @@ module SMS
         order.brand,
         order.series,
         order.mechanic_income,
-        order.offline? && "（线下交易）",
+        after_income_txt,
         order.remark.presence || "无",
       ]
 
