@@ -81,8 +81,8 @@ module Weixin
     def send_pay_order_message order
       after_income_txt=""
       if(order.quantity&&order.quantity>0)
-        mechanic_income_price=order.mechanic_income/order.quantity
-        after_income_txt= "（"<<mechanic_income_price.round.to_s<< "元×" <<order.quantity.to_s<<"）"
+        mechanic_income_price=(order.mechanic_income/order.quantity).round.to_s
+        after_income_txt= "（#{mechanic_income_price}元×#{order.quantity}）"
       end
       if(order.offline?)
         after_income_txt<<"（线下交易）"
