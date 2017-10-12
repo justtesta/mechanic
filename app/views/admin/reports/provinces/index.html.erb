@@ -33,62 +33,60 @@
  </form>
  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 800px;height:980px;"></div>
-    <script type="text/javascript">
-    
-          $(function() {
-            $( "#start_date" ).datepicker({
-              changeMonth: true,
-              changeYear: true,
-              defaultDate:'<%=  @start_date %>',//默认日期  
-              dateFormat: 'yy-mm-dd',
-              monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'], 
-              monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'], 
-              dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
-              dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
-              dayNamesMin: ['日','一','二','三','四','五','六'] 
-            });
-            $( "#end_date" ).datepicker({
-              changeMonth: true,
-              changeYear: true,
-              defaultDate:'<%=  @end_date %>',//默认日期  
-              dateFormat: 'yy-mm-dd',
-              monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-              monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'],  
-              dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
-              dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
-              dayNamesMin: ['日','一','二','三','四','五','六'] 
-            });
-
-                  // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById('main'));
-
-              // 指定图表的配置项和数据
-            var option = {
-                  title: {
-                      text: '2系列技师订单数'
-                  },
-                  tooltip: {},
-                  legend: {
-                      data:['订单数']
-                  },
-                  yAxis: {
-                      data: <%= raw @provinces_data %>
-                  },
-                  xAxis: {},
-                  series: [{
-                      name: '订单数',
-                      type: 'bar',
-                      data: <%= raw @data %>
-                  }]
-              };
-
-              // 使用刚指定的配置项和数据显示图表。
-              myChart.setOption(option);
-
-          });
-        
-    </script>
-
   </div>
 </div>
+<script type="text/javascript">
+    $(function() {
+      $( "#start_date" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        defaultDate:'<%=  @start_date %>',//默认日期  
+        dateFormat: 'yy-mm-dd',
+        monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'], 
+        monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'], 
+        dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+        dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+        dayNamesMin: ['日','一','二','三','四','五','六'] 
+      });
+      $( "#end_date" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        defaultDate:'<%=  @end_date %>',//默认日期  
+        dateFormat: 'yy-mm-dd',
+        monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+        monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'],  
+        dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+        dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+        dayNamesMin: ['日','一','二','三','四','五','六'] 
+      });
+
+            // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+      var option = {
+            title: {
+                text: '2系列技师订单数'
+            },
+            tooltip: {},
+            legend: {
+                data:['订单数']
+            },
+            yAxis: {
+                data: <%= raw @provinces_data %>
+            },
+            xAxis: {},
+            series: [{
+                name: '订单数',
+                type: 'bar',
+                data: <%= raw @data %>
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+    });
+  
+</script>
 
