@@ -53,15 +53,16 @@
         <%= i.attribute :state do |withdrawal| %>
           <%= te withdrawal, :state %>
         <% end %>
-        <% if i.object.pending? %>
-          <%= i.actions :show do |a| %>
+        
+        <%= i.actions :show do |a| %>
+          <% if i.object.pending? %>
             <%= a.action_link :confirm, method: :post, confirm: "你确定要通过这条申请，并自动微信转帐？" %>
-  		  <%= a.action_link :confirm_nopay, method: :post, confirm: "你确定要通过这条申请，并手动支付？" %>
+  		      <%= a.action_link :confirm_nopay, method: :post, confirm: "你确定要通过这条申请，并手动支付？" %>
             <%= a.action_link :cancel, method: :post, confirm: "你确定要拒绝这条申请？" %>
           <% end %>
-        <% else %>
-          <%= i.actions :show %>
         <% end %>
+        
+        
       <% end %>
     <% end %>
   </div>
