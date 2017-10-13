@@ -23,8 +23,14 @@
       
     </ul>
   </div>
-  <% @skills = Skill.all %>
-  <% @skill_cd = (params[:skills]||"").to_i  %>
+  <% 
+   @skills = Skill.all 
+   @skill_cd = (params[:skills]||"").to_i 
+
+   @services = Service.all 
+   @service_cd = (params[:services]||"").to_i
+
+  %>
  
   <%
     if(@skill_cd>0)
@@ -32,10 +38,17 @@
     else
       @mechanics = @mechanics.includes(:mechanic).joins(:mechanic)
     end
+
+    if(@service_cd>0)
+      @mechanics = @mechanics.joins(mechanic: :mechanics_services).where("service_id=?",@service_cd)
+    end
   %>
   <form class="form-inline" id="mechanics_form" ">
     <div class="form-group">
       <label class="mr20" id="mechanics_skills">类型： <%= select_tag "skills", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@skills, :id, :name, @skill_cd), class: "form-control select2", id: "mechanics_skills_select" %></label>
+    </div>
+    <div class="form-group">
+      <label class="mr20" id="mechanics_services">服务： <%= select_tag "services", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@services, :id, :name, @service_cd), class: "form-control select2", id: "mechanics_services_select" %></label>
     </div>
     <%= hidden_field_tag(:state, @state) %>
   </form>
