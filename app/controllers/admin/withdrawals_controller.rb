@@ -8,11 +8,9 @@ class Admin::WithdrawalsController < Admin::ApplicationController
       else
         :pendings
       end
-    if @state == :all
-      @withdrawals = Withdrawal.all
-    else
-      @withdrawals = Withdrawal.send(@state)
-    end
+    
+    @withdrawals = Withdrawal.send(@state)
+   
   end
 
   def confirm
