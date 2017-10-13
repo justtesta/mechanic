@@ -44,13 +44,13 @@
     <% else %>
       <%= wice_index_for [ :admin, @withdrawals ], class: "table table-hover " do |i| %>
        <%= i.fields_for :user, model: User do |ii| %>
-          <%= ii.attribute :nickname %>
-          <%= ii.attribute :mobile %>
+          <%= ii.attribute :nickname,searchable: true %>
+          <%= ii.attribute :mobile,searchable: true %>
         <% end %>
 
-        <%= i.attribute :amount %>
-        <%= i.attribute :created_at, format: :long %>
-        <%= i.attribute :state, sortable: "withdrawals.state_cd"  do |withdrawal| %>
+        <%= i.attribute :amount,searchable: true %>
+        <%= i.attribute :created_at, format: :long,searchable: true %>
+        <%= i.attribute :state, sortable: "withdrawals.state_cd",searchable: true  do |withdrawal| %>
           <%= te withdrawal, :state %>
         <% end %>
         
