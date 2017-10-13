@@ -12,6 +12,8 @@ class Withdrawal < ApplicationRecord
   validate :validate_amount
 
   scope :pendings, -> { where(state_cd: states.value(:pending)) }
+  
+  delegate :nickname, :mobile, :address, :weixin_openid, to: :user, prefix: true, allow_nil: true
 
   def validate_amount
     errors.add(:base, "账户余额不足") if amount && amount > user.balance
