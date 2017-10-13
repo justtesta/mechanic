@@ -6,7 +6,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
     @state = if %w(all pendings).include? params[:state]
         params[:state].to_sym
       else
-        :pending
+        :pendings
       end
      @withdrawals = Withdrawal.send(@state)
   end
