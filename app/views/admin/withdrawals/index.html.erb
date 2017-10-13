@@ -50,7 +50,7 @@
 
         <%= i.attribute :amount %>
         <%= i.attribute :created_at, format: :long %>
-        <%= i.attribute :state, sortable: "withdrawals.state_cd", filterable: { "withdrawals.state_cd" => Withdrawal.states[params[:search]] }  do |withdrawal| %>
+        <%= i.attribute :state, sortable: "withdrawals.state_cd"  do |withdrawal| %>
           <%= te withdrawal, :state %>
         <% end %>
         
