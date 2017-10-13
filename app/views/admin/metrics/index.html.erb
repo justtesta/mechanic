@@ -8,10 +8,10 @@
   <% end %>
 </h3>
 
-<% if @metrics.count>2000 %>
+<% if @metrics.count>3000 %>
  <%= wice_index_for [ :admin, @metrics ], class: "table table-hover " do |i| %>
-    <%= i.attribute :source_type, searchable: true %>
-    <%= i.attribute :data_reason, searchable: true %>
+    <%= i.attribute :source_type %>
+    <%= i.attribute :data_reason %>
  	  <%= i.attribute :data_amount %>
     <%= i.attribute :created_at, format: :long%>
     <%= i.actions do |a| %>

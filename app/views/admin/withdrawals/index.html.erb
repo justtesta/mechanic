@@ -42,6 +42,19 @@
         <% end %>
       <% end %>
     <% else %>
+        <%
+          @states = Withdrawal.states
+          @state_cd = (params[:skills]||"").to_i 
+          if(@state_cd>0)
+            @withdrawals = @withdrawals.where("state=?",@state_cd)
+          end
+        %>
+        <form class="form-inline" id="withdrawals_form">
+          <div class="form-group">
+            <label class="mr20" id="withdrawals_services">状态： <%= select_tag "states", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@states, :keys, :values, @state_cd), class: "form-control select2", id: "withdrawals_states_select" %></label>
+          </div>
+          <%= hidden_field_tag(:state, @state) %>
+        </form>
       <%= wice_index_for [ :admin, @withdrawals ], class: "table table-hover " do |i| %>
        <%= i.fields_for :user, model: User do |ii| %>
           <%= ii.attribute :nickname,searchable: true %>
