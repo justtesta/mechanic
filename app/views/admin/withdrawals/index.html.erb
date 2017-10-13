@@ -44,7 +44,7 @@
     <% else %>
         <%
           @states =[["等待应答","0"],["已取消","1"],["已支付","2"]]
-          @state_cd = (params[:skills]||"").to_i 
+          @state_cd = (params[:states]||"").to_i 
           if(@state_cd>0)
             @withdrawals = @withdrawals.where("state=?",@state_cd)
           end
