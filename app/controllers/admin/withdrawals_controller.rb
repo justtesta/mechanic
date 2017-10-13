@@ -3,7 +3,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
   before_action :find_withdrawal, except: [ :index, :settings, :update_settings ]
 
   def index
-    @state = if %w(all pending canceled paid).include? params[:state]
+    @state = if %w(all pendings).include? params[:state]
         params[:state].to_sym
       else
         :pending

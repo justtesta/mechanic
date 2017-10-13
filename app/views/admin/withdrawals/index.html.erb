@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-md-2 col-xs-4">
     <ul class="nav nav-pills nav-stacked">
-      <%= withdrawal_state_link_to :pending, "申请列表" %>
+      <%= withdrawal_state_link_to :pendings, "申请列表" %>
       <%= withdrawal_state_link_to :all, "提现列表" %>
       <li><%= link_to "佣金设置", settings_admin_withdrawals_path %></li>
     </ul>
@@ -19,7 +19,7 @@
   <% @withdrawals = @withdrawals.includes(:user) %>
 
   <div class="col-md-10 col-xs-8">
-    <% if @state==:pending %>
+    <% if @state==:pendings %>
       <%= index_for [ :admin, @withdrawals ], class: "table table-hover data-tables" do |i| %> <%= i.fields_for :user, model: User do |ii| %>
           <%= ii.attribute :nickname %>
           <%= ii.attribute :mobile %>
