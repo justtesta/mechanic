@@ -7,9 +7,11 @@
     余额变动记录
   <% end %>
 </h3>
+
+<% if @metrics.count>2000 %>
  <%= wice_index_for [ :admin, @metrics ], class: "table table-hover " do |i| %>
-    <%= i.attribute :source_type %>
-    <%= i.attribute :data_reason %>
+    <%= i.attribute :source_type, searchable: true %>
+    <%= i.attribute :data_reason, searchable: true %>
  	  <%= i.attribute :data_amount %>
     <%= i.attribute :created_at, format: :long%>
     <%= i.actions do |a| %>
@@ -18,3 +20,17 @@
         <% end %>
      <% end %>
   <% end %>
+<% else %>
+  <%= index_for [ :admin, @metrics ], class: "table table-hover data-tables" do |i| %>
+    <%= i.attribute :source_type %>
+    <%= i.attribute :data_reason %>
+    <%= i.attribute :data_amount %>
+    <%= i.attribute :created_at, format: :long%>
+    <%= i.actions do |a| %>
+      <% if i.object.source_type =="Order" %>
+      <%= a.action_link :show, url: admin_order_path(i.object.source_id) %>
+        <% end %>
+     <% end %>
+  <% end %>
+<% end %>
+  
