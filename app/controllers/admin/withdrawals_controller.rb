@@ -5,6 +5,14 @@ class Admin::WithdrawalsController < Admin::ApplicationController
   def index
     @withdrawals = Withdrawal.all
   end
+  def index
+    @state = if %w(all pending canceled paid).include? params[:state]
+        params[:state].to_sym
+      else
+        :pending
+      end
+     @withdrawals = User.mechanics.send(@state)
+  end
 
   def confirm
     if @withdrawal.pending?

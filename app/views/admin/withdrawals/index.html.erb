@@ -1,9 +1,17 @@
 <h3 class="page-header">提现管理</h3>
+<%
+  def withdrawal_state_link_to state, text
+    link = link_to text, admin_withdrawals_path(state: state)
+    class_name = (@state == state) ? "active" : ""
+    %{<li class="#{class_name}">#{link}</li>}.html_safe
+  end
+%>
 
 <div class="row">
   <div class="col-md-2 col-xs-4">
     <ul class="nav nav-pills nav-stacked">
-      <li class="active"><%= link_to "申请列表", admin_withdrawals_path %></li>
+      <%= withdrawal_state_link_to :pending, "申请列表" %>
+      <%= withdrawal_state_link_to :all, "提现列表" %>
       <li><%= link_to "佣金设置", settings_admin_withdrawals_path %></li>
     </ul>
   </div>
@@ -11,26 +19,49 @@
   <% @withdrawals = @withdrawals.includes(:user) %>
 
   <div class="col-md-10 col-xs-8">
-    <%= index_for [ :admin, @withdrawals ], class: "table table-hover data-tables" do |i| %>
-      <%= i.fields_for :user, model: User do |ii| %>
-        <%= ii.attribute :nickname %>
-        <%= ii.attribute :mobile %>
-      <% end %>
-
-      <%= i.attribute :amount %>
-      <%= i.attribute :created_at, format: :long %>
-      <%= i.attribute :state do |withdrawal| %>
-        <%= te withdrawal, :state %>
-      <% end %>
-
-      <% if i.object.pending? %>
-        <%= i.actions :show do |a| %>
-          <%= a.action_link :confirm, method: :post, confirm: "你确定要通过这条申请，并自动微信转帐？" %>
-		  <%= a.action_link :confirm_nopay, method: :post, confirm: "你确定要通过这条申请，并手动支付？" %>
-          <%= a.action_link :cancel, method: :post, confirm: "你确定要拒绝这条申请？" %>
+    <% if @state==:pending %>
+      <%= index_for [ :admin, @withdrawals ], class: "table table-hover data-tables" do |i| %> <%= i.fields_for :user, model: User do |ii| %>
+          <%= ii.attribute :nickname %>
+          <%= ii.attribute :mobile %>
         <% end %>
-      <% else %>
-        <%= i.actions :show %>
+
+        <%= i.attribute :amount %>
+        <%= i.attribute :created_at, format: :long %>
+        <%= i.attribute :state do |withdrawal| %>
+          <%= te withdrawal, :state %>
+        <% end %>
+
+        <% if i.object.pending? %>
+          <%= i.actions :show do |a| %>
+            <%= a.action_link :confirm, method: :post, confirm: "你确定要通过这条申请，并自动微信转帐？" %>
+        <%= a.action_link :confirm_nopay, method: :post, confirm: "你确定要通过这条申请，并手动支付？" %>
+            <%= a.action_link :cancel, method: :post, confirm: "你确定要拒绝这条申请？" %>
+          <% end %>
+        <% else %>
+          <%= i.actions :show %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= wice_index_for [ :admin, @withdrawals ], class: "table table-hover data-tables" do |i| %> <%= i.fields_for :user, model: User do |ii| %>
+          <%= ii.attribute :nickname %>
+          <%= ii.attribute :mobile %>
+        <% end %>
+
+        <%= i.attribute :amount %>
+        <%= i.attribute :created_at, format: :long %>
+        <%= i.attribute :state do |withdrawal| %>
+          <%= te withdrawal, :state %>
+        <% end %>
+
+        <% if i.object.pending? %>
+          <%= i.actions :show do |a| %>
+            <%= a.action_link :confirm, method: :post, confirm: "你确定要通过这条申请，并自动微信转帐？" %>
+  		  <%= a.action_link :confirm_nopay, method: :post, confirm: "你确定要通过这条申请，并手动支付？" %>
+            <%= a.action_link :cancel, method: :post, confirm: "你确定要拒绝这条申请？" %>
+          <% end %>
+        <% else %>
+          <%= i.actions :show %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
