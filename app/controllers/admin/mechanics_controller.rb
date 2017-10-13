@@ -88,7 +88,7 @@ class Admin::MechanicsController < Admin::ApplicationController
   end
 
   def hidereg
-    @mechanic.update_attribute(:reg, "")
+    @mechanic.update_attribute(:fromsource, "")
     redirect_to_referer!
   end
 
