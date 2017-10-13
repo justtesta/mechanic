@@ -44,6 +44,7 @@
     <% else %>
         <%
           @states =[{id:"0",name:"等待应答"},{id:"1",name:"已取消"},{id:"2",name:"已支付"}]
+          @states = @states.collect {|p| [ p['name'], p['id'] ] }
           @state_cd = (params[:skills]||"").to_i 
           if(@state_cd>0)
             @withdrawals = @withdrawals.where("state=?",@state_cd)
@@ -51,7 +52,7 @@
         %>
         <form class="form-inline" id="withdrawals_form">
           <div class="form-group">
-            <label class="mr20" id="withdrawals_services">状态： <%= select_tag "states", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@states, :id, :name, @state_cd), class: "form-control select2", id: "withdrawals_states_select" %></label>
+            <label class="mr20" id="withdrawals_services">状态： <%= select_tag "states", "<option value=\"\">全部    </option>".html_safe + options_from_collection_for_select(@states, @state_cd), class: "form-control select2", id: "withdrawals_states_select" %></label>
           </div>
           <%= hidden_field_tag(:state, @state) %>
         </form>
