@@ -3,15 +3,12 @@ class Admin::WithdrawalsController < Admin::ApplicationController
   before_action :find_withdrawal, except: [ :index, :settings, :update_settings ]
 
   def index
-    @withdrawals = Withdrawal.all
-  end
-  def index
     @state = if %w(all pending canceled paid).include? params[:state]
         params[:state].to_sym
       else
         :pending
       end
-     @withdrawals = User.mechanics.send(@state)
+     @withdrawals = Withdrawal.send(@state)
   end
 
   def confirm
