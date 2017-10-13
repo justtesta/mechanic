@@ -16,7 +16,7 @@
     </ul>
   </div>
 
-  <% @withdrawals = @withdrawals.includes(:user) %>
+  <% @withdrawals = @withdrawals.includes(:user).joins(:user) %>
 
   <div class="col-md-10 col-xs-8">
     <% if @state==:pendings %>
