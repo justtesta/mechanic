@@ -42,7 +42,7 @@
         <% end %>
       <% end %>
     <% else %>
-      <%= wice_index_for [ :admin, @withdrawals ], class: "table table-hover data-tables" do |i| %> <%= i.fields_for :user, model: User do |ii| %>
+      <%= index_for [ :admin, @withdrawals ], class: "table table-hover data-tables" do |i| %> <%= i.fields_for :user, model: User do |ii| %>
           <%= ii.attribute :nickname %>
           <%= ii.attribute :mobile %>
         <% end %>
