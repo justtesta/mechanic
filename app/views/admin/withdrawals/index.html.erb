@@ -54,7 +54,7 @@
           <div class="form-group">
             <label class="mr20" id="withdrawals_services">状态： <%= select_tag "states", "<option value=\"\">全部    </option>".html_safe + options_for_select(@states, @state_cd), class: "form-control select2", id: "withdrawals_states_select" %></label>
           </div>
-          <%= hidden_field_tag(:state, @state) %>
+          <%= hidden_field_tag(:state) %>
         </form>
       <%= wice_index_for [ :admin, @withdrawals ], class: "table table-hover " do |i| %>
        <%= i.fields_for :user, model: User do |ii| %>
