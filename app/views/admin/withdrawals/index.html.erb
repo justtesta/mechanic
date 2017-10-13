@@ -52,7 +52,7 @@
         <%= i.attribute :state do |withdrawal| %>
           <%= te withdrawal, :state %>
         <% end %>
-
+        <% byebug %>
         <% if i.object.pending? %>
           <%= i.actions :show do |a| %>
             <%= a.action_link :confirm, method: :post, confirm: "你确定要通过这条申请，并自动微信转帐？" %>
