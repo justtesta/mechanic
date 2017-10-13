@@ -48,9 +48,9 @@
           <%= ii.attribute :mobile,searchable: true %>
         <% end %>
 
-        <%= i.attribute :amount,searchable: true %>
-        <%= i.attribute :created_at, format: :long,searchable: true %>
-        <%= i.attribute :state, sortable: "withdrawals.state_cd",searchable: true  do |withdrawal| %>
+        <%= i.attribute :amount %>
+        <%= i.attribute :created_at, format: :long %>
+        <%= i.attribute :state, sortable: "withdrawals.state_cd"  do |withdrawal| %>
           <%= te withdrawal, :state %>
         <% end %>
         
