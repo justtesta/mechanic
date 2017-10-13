@@ -43,8 +43,8 @@
       <% end %>
     <% else %>
         <%
-          @states =[{id:"0",name:"等待应答"},{id:"1",name:"已取消"},{id:"2",name:"已支付"}]
-          @states = @states.collect {|p| [ p['name'], p['id'] ] }
+          #@states =[{id:"0",name:"等待应答"},{id:"1",name:"已取消"},{id:"2",name:"已支付"}]
+          @states =[["等待应答","0"],["已取消","1"],["已支付","2"]]
           @state_cd = (params[:skills]||"").to_i 
           if(@state_cd>0)
             @withdrawals = @withdrawals.where("state=?",@state_cd)
