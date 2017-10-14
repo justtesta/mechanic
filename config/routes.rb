@@ -67,6 +67,7 @@ Rails.application.routes.draw do
           patch :procedure_price, action: :update_procedure_price
           get :emergency
           get :unemergency
+          post :confirmwithdrawal
         end
       end
       resources :numbers

@@ -206,6 +206,12 @@ class Merchants::OrdersController < Merchants::ApplicationController
     redirect_to_referer!
   end
 
+  def confirmwithdrawal
+    @order.confirm!
+    flash[:notice] = "订单确认完工！"
+    redirect_to_referer!
+  end
+
   def revoke
     set_redirect_referer :revoke_order
   end
