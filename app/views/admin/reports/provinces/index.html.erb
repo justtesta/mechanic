@@ -23,9 +23,7 @@
    <% @data = Province.all.map do |o|
         Order.where(mechanic:Mechanic.where("unique_id like '%汽车堂联盟2%' ")).where(province_cd:o.id).where(created_at: (@start_date)..(@end_date+1.day)).count      
      end %> 
-<script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.common.min.js"></script>
-<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
 
 <form class="form-inline" id="reports_form">
 <input type="text" id="start_date" name="start_date" value="<%=  @start_date %>"> 到 <input type="text" id="end_date" name="end_date" value="<%=  @end_date %>"> 
