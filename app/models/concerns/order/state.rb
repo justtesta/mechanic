@@ -223,6 +223,7 @@ class Order < ApplicationRecord
         @withdrawal=Withdrawal.create(user_id: mechanic.user_id, amount: mechanic_income,state_cd: Withdrawal.states[:pending])
         if @withdrawal.pending?
           @withdrawal.pay!
+        end
         true
       end
 
