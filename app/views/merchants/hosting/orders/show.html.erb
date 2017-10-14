@@ -216,6 +216,9 @@
     <% else %>
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
+    <% if @order.assigned? %>
+     <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+     <% end %>
   </div>
 <% when :working %>
   <div class="pull-right">
@@ -228,6 +231,7 @@
     <% else %>
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
+    <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
   </div>
 <% when :confirming %>
   <div class="pull-right">
@@ -241,10 +245,20 @@
     <% else %>
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
+    <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
   </div>
 <% when :finished %>
   <div class="pull-right">
     <%= link_to "点评技师", review_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+    <% if @order.emergency? %>
+      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
+    <% else %>
+      <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>
+<% when :reviewed %>
+  <div class="pull-right">
     <% if @order.emergency? %>
       <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
     <% else %>
