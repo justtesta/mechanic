@@ -256,7 +256,6 @@
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
   </div>
-<% end %>
 <% when :reviewed %>
   <div class="pull-right">
     <% if @order.emergency? %>
