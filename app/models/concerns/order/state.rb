@@ -219,6 +219,13 @@ class Order < ApplicationRecord
         true
       end
 
+      def withdrawal!
+        @withdrawal=Withdrawal.create(user_id: mechanic.user_id, amount: mechanic_income,state_cd: Withdrawal.states[:pending])
+        if @withdrawal.pending?
+          @withdrawal.pay!
+        true
+      end
+
       def rework!
         return false unless confirming?
         update_state(:working)
