@@ -35,7 +35,7 @@
 
   <div class="col-md-10 col-xs-8">
   <% if  @state == :unfinisheds %>
-    <%= wice_index_for [ :merchants, :hosting, @orders ], class: "table table-hover " do |i| %>
+    <%= wice_index_for [ :merchants, :hosting, @orders ], class: "table table-hover" do |i| %>
       <%= i.attribute :store_nickname, searchable: true  %>
       <%= i.attribute :contact_nickname,searchable: "orders.contact_nickname" %>
       <%= i.attribute :contact_mobile,searchable: "orders.contact_mobile" %>
@@ -58,29 +58,29 @@
       <%= i.attribute :mechanic_nickname %>
       <%= i.actions :show %>
     <% end %>
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+          $('#orders').DataTable( {
+              "pagingType": "full_numbers",
+                'fnDrawCallback': function(table) {    
+                    $("#orders_paginate").append("   <input type='text' id='changePage' class='form-control input pagination' style='margin-top:0px;width:50px;height:27px'> ");    
+                    var oTable = $("#orders").dataTable();    
+                    $('#changePage').keypress(function(e) {  
+                        if (e.which === 13 || e.keyCode === 13) {  
+                          if($("#changePage").val() && $("#changePage").val() > 0) {    
+                              var redirectpage = $("#changePage").val() - 1;    
+                          } else {    
+                              var redirectpage = 0;    
+                          }    
+                          oTable.fnPageChange(redirectpage);  
+                        }  
+                    });    
+                }
+          } );
+      } );
+
+    </script>
   <% end %>
   </div>
 </div>
-<script type="text/javascript">
-
-$(document).ready(function() {
-    $('#orders').DataTable( {
-        "pagingType": "full_numbers",
-          'fnDrawCallback': function(table) {    
-              $("#orders_paginate").append("   <input type='text' id='changePage' class='form-control input pagination' style='margin-top:0px;width:50px;height:27px'> ");    
-              var oTable = $("#orders").dataTable();    
-              $('#changePage').keypress(function(e) {  
-                  if (e.which === 13 || e.keyCode === 13) {  
-                    if($("#changePage").val() && $("#changePage").val() > 0) {    
-                        var redirectpage = $("#changePage").val() - 1;    
-                    } else {    
-                        var redirectpage = 0;    
-                    }    
-                    oTable.fnPageChange(redirectpage);  
-                  }  
-              });    
-          }
-    } );
-} );
-
-</script>
