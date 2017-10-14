@@ -2,7 +2,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
   before_action :redirect_user
 
   def index
-    @state = if %w(unassigneds assigneds workings confirmings finisheds unfinisheds emergencys finished_nochecks).include? params[:state]
+    @state = if %w(unassigneds assigneds workings confirmings finisheds unfinisheds emergencys finished_nochecks unfinished_checks).include? params[:state]
         params[:state].to_sym
       else
         :unassigneds
