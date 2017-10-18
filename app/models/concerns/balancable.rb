@@ -39,7 +39,7 @@ module Balancable
   def clear_balance
     if(balance>0)
       amount=0-balance
-      @user.update_balance! amount, "管理清零"
+      update_balance! amount, "管理清零"
     end
   end
 
