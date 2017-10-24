@@ -207,7 +207,6 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def confirmwithdrawal
-    byebug
     if @order.confirm!
       @order.withdrawal!
     end
