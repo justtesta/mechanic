@@ -3,7 +3,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   before_action :find_order, except: [ :index, :new, :create, :notify, :remark, :update_remark ]
   before_action :find_store_order, only: [ :remark, :update_remark ]
   before_action :redirect_pending, only: [ :new, :index ]
-
+  before_action :redirect_user, only: [ :confirm, :confirmwithdrawal ]
   helper_method :fetch_redirect, :current_order_path
 
   def index
@@ -201,15 +201,16 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def confirm
-    redirect_user
-    @order.confirm!
-    flash[:notice] = "订单确认完工！"
-    @order.update_attribute(:confirm_type, Order.confirm_types[:confirm_no_withdrawal])
+    if @order.confirm!
+      @order.update_attribute(:confirm_type, Order.confirm_types[:confirm_no_withdrawal])
+      flash[:notice] = "订单确认完工！"
+    else
+      flash[:error] = "订单状态错误,请检查是否其它管理员已经支付！"
+    end
     redirect_to_referer!
   end
 
   def confirmwithdrawal
-    redirect_user
     if @order.confirm!
       @order.withdrawal!
       flash[:notice] = "订单确认完工！"
