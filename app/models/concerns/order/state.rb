@@ -12,7 +12,7 @@ class Order < ApplicationRecord
         paid: 6, working: 7, confirming: 8, finished: 9, reviewed: 10, closed: 11
       as_enum :cancel, pending_timeout: 0, paying_timeout: 1, user_abstain: 2, user_cancel: 3
       as_enum :refund, user_cancel: 0, merchant_revoke: 1, admin_freeze: 2
-
+      as_enum :confirm_type,none: 0, confirm: 1, confirm_withdrawal: 2, withdrawal: 3
       as_enum :pay_type, { weixin: 0, alipay: 1, skip: 2, balance: 3 }, prefix: true
 
       scope :availables, -> { where('"orders"."state_cd" > ?', AVAILABLE_GREATER_THAN) }
