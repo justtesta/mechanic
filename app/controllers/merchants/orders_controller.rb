@@ -201,6 +201,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def confirm
+    redirect_user
     @order.confirm!
     flash[:notice] = "订单确认完工！"
     @order.update_attribute(:confirm_type, Order.confirm_types[:confirm_no_withdrawal])
@@ -208,6 +209,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def confirmwithdrawal
+    redirect_user
     if @order.confirm!
       @order.withdrawal!
       flash[:notice] = "订单确认完工！"

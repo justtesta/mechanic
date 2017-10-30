@@ -35,4 +35,11 @@ class Merchants::ApplicationController < ActionController::Base
         clear_redirect :authenticate
       end
     end
+    
+    def redirect_user
+      if current_merchant && current_merchant.dispatcher?
+        flash[:error] = "派单员无法访问此页面！"
+        redirect_to merchants_root_path
+      end
+    end
 end
