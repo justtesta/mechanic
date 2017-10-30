@@ -203,7 +203,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   def confirm
     @order.confirm!
     flash[:notice] = "订单确认完工！"
-    @order.update_attribute(:remark, "确认完工误点")
+    @order.update_attribute(:confirm_type, Order.confirm_types[:confirm_no_withdrawal])
     redirect_to_referer!
   end
 
