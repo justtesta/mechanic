@@ -134,6 +134,7 @@
       <% end %>
     </div>
   </div>
+    <% if current_merchant.admin? %>
   	 <%  @order.numbers.each do |number|  %>
 		 
 		    <div class="content-padded order_numbers_pwd_number_default">
@@ -143,7 +144,8 @@
 				<input type="button" style= "width:90px" value="核销" class="btn  btn-primary" onclick = "verification(<%= number.id %>,'<%= number.right_number %>');" id="order_number__button<%= number.id %>"/>
 				
 			</div>
-	 <% end %>
+     <% end %>
+	  <% end %>
 	  <script language="javascript">
 		 if(typeof jQuery == 'undefined'){
    		 window.alert("没有jquery");
@@ -207,7 +209,7 @@
       <%= link_to "指派技师", pick_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
     <%= link_to "设置手续费", procedure_price_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
-     <% if @order.assigned? then %>
+     <% if @order.assigned? && current_merchant.admin? then %>
       <% if @order.offline? then%>
         <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
       <% else %>
@@ -220,7 +222,7 @@
     <% else %>
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
-    <% if @order.assigned? %>
+    <% if @order.assigned? && current_merchant.admin? %>
      <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
      <% end %>
   </div>
@@ -228,10 +230,12 @@
   <div class="pull-right">
     <%= link_to "改派技师", pick_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <%= link_to "设置手续费", procedure_price_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
-    <% if @order.offline? %>
-      <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
-    <% else %>
-      <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary",data: {confirm: "线下交易为否订单，确认完工将增加技师余额，请考虑是否使用完工并提现？" } %>
+    <% if current_merchant.admin? %>
+      <% if @order.offline? %>
+        <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary",data: {confirm: "线下交易为否订单，确认完工将增加技师余额，请考虑是否使用完工并提现？" } %>
+      <% end %>
     <% end %>
     <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "您确定要申请撤单？" }%>
     <% if @order.emergency? %>
@@ -239,16 +243,20 @@
     <% else %>
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
-    <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+    <% if current_merchant.admin? %>
+      <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+    <% end %>
   </div>
 <% when :confirming %>
   <div class="pull-right">
     <%= link_to "改派技师", pick_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <%= link_to "设置手续费", procedure_price_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
+    <% if current_merchant.admin? %>
     <% if @order.offline? %>
       <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary"  %>
     <% else %>
       <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary",data: {confirm: "线下交易为否订单，确认完工将增加技师余额，请考虑是否使用完工并提现？" } %>
+    <% end %>
     <% end %>
     <%= link_to "申请返工", rework_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
     <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger" ,data: {confirm: "您确定要申请撤单？" }%>
@@ -257,7 +265,9 @@
     <% else %>
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
+    <% if current_merchant.admin? %>
     <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+    <% end %>
   </div>
 <% when :finished %>
   <div class="pull-right">

@@ -26,9 +26,11 @@
       <%= order_state_link_to :emergencys, "紧急订单" %>
       <%= order_state_link_to :finished_nochecks, "完工未核销" %>
       <%= order_state_link_to :unfinished_checks, "未完工已核销" %>
+      <% if current_merchant.admin? %>
       <li class="divider"></li>
       <%= number_state_link_to :unchecked_numbers, "未核销消费码" %>
       <%= number_state_link_to :checked_numbers, "已核销消费码" %>
+      <% end %>
     </ul>
   </div>
 
