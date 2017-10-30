@@ -243,7 +243,7 @@
     <% else %>
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
-    <% unless current_merchant.admin? %>
+    <% if current_merchant.admin? %>
       <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
     <% end %>
   </div>
