@@ -2,6 +2,10 @@ class TempMechanic < ApplicationRecord
   def description_hash
     s = "M30L30Y10TW20TN90"
     s = description.strip
+    s=s.sub('DSCP',"|DSCP:")
+    s=s.sub('JLY',"|JZZ:0")
+    s=s.sub('DH',"|DZ:0")
+    s=s.sub('TYM',"|TZZ:0")
     s=s.sub('NM',"")
     s=s.sub('NL',"")
     s=s.sub('JLD',"|JZD:")
@@ -13,7 +17,7 @@ class TempMechanic < ApplicationRecord
     s=s.sub('TW',"|TW:")
     s=s.sub('TN',"|TN:")
     s=s.sub('QSCP',"|QSCP:")
-    s=s.sub('ZSCP',"|ZSCP:")
+    s=s.sub('HSCP',"|ZSCP:")
     s=s.sub('H',"|H:")
     s[0]=""
     

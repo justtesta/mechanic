@@ -31,7 +31,7 @@ class Work < ApplicationRecord
     when "DJ"
         15
     when "TW"
-        44 #dev 37
+        44 #dev 37,production 44
     when "TN"
         34
     when "JZD"
@@ -44,6 +44,14 @@ class Work < ApplicationRecord
         48
     when "ZSCP"
         49
+    when "TZZ"
+        1
+    when "DZ"
+        2
+    when "JZZ"
+        9  
+    when "DSCP"
+        55      
     else
         0
     end
