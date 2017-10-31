@@ -190,6 +190,9 @@ class Order < ApplicationRecord
       def confirm!
         return false unless confirming?||working?||paid?
         return false unless assigned?
+        update_attribute(:finish_working_at, Time.now)
+        update_state(:finished)
+        update_attribute(:confirm_type, Order.confirm_types[:confirm])
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)
@@ -213,10 +216,6 @@ class Order < ApplicationRecord
         if mechanic_user_group = mechanic.user_group
           mechanic_user_group.increase_total_commission!(mechanic_commission)
         end
-
-        update_attribute(:finish_working_at, Time.now)
-        update_state(:finished)
-        update_attribute(:confirm_type, Order.confirm_types[:confirm])
         true
       end
 
