@@ -211,7 +211,7 @@
     <%= link_to "设置手续费", procedure_price_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
      <% if @order.assigned? && current_merchant.admin? then %>
       <% if @order.offline? then%>
-        <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+        <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary", data: {disable_with: "提交中..."} %>
       <% else %>
         <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary",data: {confirm: "线下交易为否订单，确认完工将增加技师余额，请考虑是否使用完工并提现？" } %>
       <% end %>
@@ -223,7 +223,7 @@
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
     <% if @order.assigned? && current_merchant.admin? %>
-     <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+     <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" , data: {disable_with: "提交中..."}%>
      <% end %>
   </div>
 <% when :working %>
@@ -232,7 +232,7 @@
     <%= link_to "设置手续费", procedure_price_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% if current_merchant.admin? %>
       <% if @order.offline? %>
-        <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+        <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary", data: {disable_with: "提交中..."} %>
       <% else %>
         <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary",data: {confirm: "线下交易为否订单，确认完工将增加技师余额，请考虑是否使用完工并提现？" } %>
       <% end %>
@@ -253,7 +253,7 @@
     <%= link_to "设置手续费", procedure_price_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% if current_merchant.admin? %>
     <% if @order.offline? %>
-      <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary"  %>
+      <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary", data: {disable_with: "提交中..."}  %>
     <% else %>
       <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary",data: {confirm: "线下交易为否订单，确认完工将增加技师余额，请考虑是否使用完工并提现？" } %>
     <% end %>
@@ -266,7 +266,7 @@
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>
     <% if current_merchant.admin? %>
-    <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
+    <%= link_to "完工并提现", confirmwithdrawal_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary", data: {disable_with: "提交中..."} %>
     <% end %>
   </div>
 <% when :finished %>
