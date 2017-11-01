@@ -1,5 +1,6 @@
 class Merchants::Hosting::OrdersController < Merchants::OrdersController
   before_action :redirect_user
+  before_action :redirect_user_dispatcher, only: [ :confirm, :confirmwithdrawal ]
 
   def index
     @state = if %w(unassigneds assigneds workings confirmings finisheds unfinisheds emergencys finished_nochecks unfinished_checks).include? params[:state]

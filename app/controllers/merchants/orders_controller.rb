@@ -3,7 +3,6 @@ class Merchants::OrdersController < Merchants::ApplicationController
   before_action :find_order, except: [ :index, :new, :create, :notify, :remark, :update_remark ]
   before_action :find_store_order, only: [ :remark, :update_remark ]
   before_action :redirect_pending, only: [ :new, :index ]
-  before_action :redirect_user_dispatcher, only: [ :confirm, :confirmwithdrawal ]
   helper_method :fetch_redirect, :current_order_path
 
   def index
