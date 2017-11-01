@@ -281,7 +281,7 @@
 <% when :reviewed %>
   <div class="pull-right">
     <% if @order.emergency? %>
-      <%= link_to "取消紧急333", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
+      <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
     <% else %>
       <%= link_to "紧急订单", emergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>
     <% end %>

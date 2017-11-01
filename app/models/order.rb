@@ -260,7 +260,7 @@ class Order < ApplicationRecord
   end
   
   def pre_remark
-    "完工微信联系【17319724003】结算工时费； 要京东核销码。"
+    "完工微信联系【17319724003】或【17734794849】结算工时费；施工完让车主给门店好评；要京东核销码。"
   end 
 
   def title
