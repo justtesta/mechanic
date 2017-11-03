@@ -91,11 +91,11 @@ class Order < ApplicationRecord
 
       def automatic_repick!
         byebug
-        return false unless self.state_cd==34
+        return false unless self.skill_cd==34
         return false if  self.pre_procedure_price.to_i > self.quoted_price
         return false unless  self.pre_procedure_price.to_i > 0
         mechanic = Mechanic.find(self.selectmechanic_id)
-        return false unless mechanic.skilled_dones_orders(state_cd).count>0
+        return false unless mechanic.skilled_dones_orders(self.skill_cd).count>0
         update_attribute(:remark, self.pre_remark) if self.pre_remarkstate_cd
         update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price       
         repick! mechanic
