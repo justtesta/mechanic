@@ -69,6 +69,10 @@ class Order < ApplicationRecord
     emergency && ["1", 1, true].include?(emergency)
   end
 
+  def automatic?
+    automatic && ["1", 1, true].include?(automatic)
+  end
+
   has_attached_file :mechanic_attach_1, styles: { medium: "300x300>", thumb: "100x100#" }
   validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
   has_attached_file :mechanic_attach_2, styles: { medium: "300x300>", thumb: "100x100#" }

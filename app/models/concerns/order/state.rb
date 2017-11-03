@@ -73,6 +73,7 @@ class Order < ApplicationRecord
       end
 
       def automatic_repick!
+        return false
         return false if  self.pre_procedure_price.to_i > self.quoted_price
         update_attribute(:remark, self.pre_remark) if self.pre_remark
         update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price

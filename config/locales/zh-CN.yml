@@ -209,6 +209,7 @@ zh-CN:
         refund_at: 退款申请时间
         pre_procedure_price: 手续费
         pre_remark: 备注
+        automatic?: 自动派单
       bid:
         markup_price: 加价
       skill:
