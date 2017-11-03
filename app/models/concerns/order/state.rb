@@ -95,6 +95,7 @@ class Order < ApplicationRecord
         return false unless  self.pre_procedure_price.to_i > 0
         mechanic = Mechanic.find(self.selectmechanic_id)
         return false unless mechanic.skilled_dones_orders(self.skill_cd).count>0
+        return false if mechanic.user.hidden?
         update_attribute(:remark, self.pre_remark) if self.pre_remark
         update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price       
         repick! mechanic
