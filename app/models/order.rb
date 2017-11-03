@@ -176,6 +176,8 @@ class Order < ApplicationRecord
         end
       elsif paying? && Time.now - updated_at >= PayingTimeout
         cancel! :paying_timeout
+      elsif paid && unassigned? && selected?
+        automatic_repick!
       elsif confirming? && Time.now - updated_at > ConfirmingTimeout
         confirm!
       elsif finished? && Time.now - updated_at > FinishedTimeout

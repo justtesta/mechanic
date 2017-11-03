@@ -72,6 +72,14 @@ class Order < ApplicationRecord
         true
       end
 
+      def automatic_repick!
+        return false if  self.pre_procedure_price.to_i > self.quoted_price
+        update_attribute(:remark, self.pre_remark) if self.pre_remark
+        update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price
+        mechanic = Mechanic.find(self.selectmechanic_id)
+        repick! mechanic
+      end
+
       def repick! mechanic
         # Only available and non-setted orders can repick mechanic
         return false unless state_cd > AVAILABLE_GREATER_THAN && state_cd <= SETTLED_GREATER_THAN
