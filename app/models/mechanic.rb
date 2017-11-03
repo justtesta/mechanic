@@ -41,6 +41,9 @@ class Mechanic < ApplicationRecord
     orders.availables.where(skill_cd: skill_cd)
   end
 
+  def skilled_dones_orders skill_cd
+    orders.dones.where(skill_cd: skill_cd)
+  end
   
   def raw_professionality_average
     (orders.average(:professionality) || 4).round(2)

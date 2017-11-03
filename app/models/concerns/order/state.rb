@@ -72,15 +72,6 @@ class Order < ApplicationRecord
         true
       end
 
-      def automatic_repick!
-        return false
-        return false if  self.pre_procedure_price.to_i > self.quoted_price
-        update_attribute(:remark, self.pre_remark) if self.pre_remark
-        update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price
-        mechanic = Mechanic.find(self.selectmechanic_id)
-        repick! mechanic
-      end
-
       def repick! mechanic
         # Only available and non-setted orders can repick mechanic
         return false unless state_cd > AVAILABLE_GREATER_THAN && state_cd <= SETTLED_GREATER_THAN
@@ -97,6 +88,19 @@ class Order < ApplicationRecord
 
         true
       end
+
+      def automatic_repick!
+        return false
+        return false if  self.pre_procedure_price.to_i > self.quoted_price
+        return false unless  self.pre_procedure_price.to_i > 0
+        mechanic = Mechanic.find(self.selectmechanic_id)
+        return false unless mechanic.skilled_dones_orders(state_cd).count>0
+        update_attribute(:remark, self.pre_remark) if self.pre_remarkstate_cd
+        update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price       
+        repick! mechanic
+        update_attribute(:automatic, true)
+      end
+
 
       def cancel! reason = :user_cancel
         return false unless pending? || paying? || pended?
