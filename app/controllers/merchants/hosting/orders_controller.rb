@@ -8,7 +8,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
       else
         :unassigneds
       end
-    @orders = order_klass.send(@state) if @state == :unassigneds 
+    @orders = order_klass.send(@state) 
     #trigger automatic_repick
     @orders = order_klass.send(@state)
   end
