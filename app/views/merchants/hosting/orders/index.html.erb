@@ -53,7 +53,7 @@
       <%= i.attribute :skill ,filterable: { "orders.skill_cd" => Order.skills[params[:search]] } %>
       <%= i.attribute :price %>
       <%= i.attribute :offline?,searchable: "orders.offline" %>
-      <%= i.attribute :automatic?,sortable: "orders.automatics"%>
+      <%= i.attribute :automatic?,searchable: "orders.contact_nickname" %>
       <%= i.attribute :mechanic_nickname, searchable: true  %>
       <%= i.actions :show %>
     <% end %>
