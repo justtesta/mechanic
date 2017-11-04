@@ -34,7 +34,14 @@
     </ul>
   </div>
 
-  <% @orders = @orders.includes(:store, :mechanic_user).order(:appointment) %>
+  <%
+   @order_field = (params[:order]||"")
+    if(@order_field!="")
+      @orders = @orders.includes(:store, :mechanic_user)
+    else
+      @orders = @orders.includes(:store, :mechanic_user).order(:appointment) 
+    end
+   %>
 
   <div class="col-md-10 col-xs-8">
   <% if  @state == :unfinisheds %>
@@ -46,7 +53,7 @@
       <%= i.attribute :skill ,filterable: { "orders.skill_cd" => Order.skills[params[:search]] } %>
       <%= i.attribute :price %>
       <%= i.attribute :offline? %>
-      <%= i.attribute :automatic? , sortable: "orders.automatic"%>
+      <%= i.attribute :automatic? , sortable: "orders.automatics"%>
       <%= i.attribute :mechanic_nickname, searchable: true  %>
       <%= i.actions :show %>
     <% end %>
