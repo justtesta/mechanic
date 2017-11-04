@@ -160,7 +160,7 @@ class Order < ApplicationRecord
   delegate :nickname, :mobile, to: :mechanic_user, prefix: :mechanic, allow_nil: true
   # cache_column :merchant, :nickname
   # cache_column :merchant, :mobile
-  delegate :nickname, :mobile, to: :merchant, prefix: true, allow_nil: tru e
+  delegate :nickname, :mobile, to: :merchant, prefix: true, allow_nil: true
   # cache_column :store, :nickname
   # cache_column :store, :hotline
   delegate :nickname, :hotline, to: :store, prefix: true, allow_nil: true
