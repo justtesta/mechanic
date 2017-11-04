@@ -160,7 +160,7 @@ class Order < ApplicationRecord
   delegate :nickname, :mobile, to: :mechanic_user, prefix: :mechanic, allow_nil: true
   # cache_column :merchant, :nickname
   # cache_column :merchant, :mobile
-  delegate :nickname, :mobile, to: :merchant, prefix: true, allow_nil: true
+  delegate :nickname, :mobile, to: :merchant, prefix: true, allow_nil: tru e
   # cache_column :store, :nickname
   # cache_column :store, :hotline
   delegate :nickname, :hotline, to: :store, prefix: true, allow_nil: true
@@ -180,8 +180,6 @@ class Order < ApplicationRecord
         end
       elsif paying? && Time.now - updated_at >= PayingTimeout
         cancel! :paying_timeout
-      elsif paid? && unassigned? && selected?
-        automatic_repick!
       elsif confirming? && Time.now - updated_at > ConfirmingTimeout
         confirm!
       elsif finished? && Time.now - updated_at > FinishedTimeout
