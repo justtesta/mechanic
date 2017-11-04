@@ -9,7 +9,8 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
         :unassigneds
       end
     if(@state==:unassigneds)
-      order_klass.unassigneds.each do |unassigned_order_klass|
+       byebug
+       Order.hostings.unassigneds.each do |unassigned_order_klass|
         unassigned_order_klass.automatic_repick!
       end
     end 
