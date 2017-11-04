@@ -34,7 +34,7 @@
 
 <% else %>
   <%= wice_index_for [ :admin, @orders ], class: "table table-hover" do |i| %>
-    <%= i.attribute :user_nickname, searchable: "users.nickname2" %>
+    <%= i.attribute :user_nickname, searchable: "users.nickname" %>
     <%= i.attribute :contact, sortable: "orders.contact_nickname", searchable: "orders.contact_nickname" %>
     <%= i.attribute :contact_mobile, searchable: "orders.contact_mobile" %>
     <%= i.attribute :skill, sortable: "orders.skill_cd", filterable: { "orders.skill_cd" => Order.skills[params[:search]] } %>
