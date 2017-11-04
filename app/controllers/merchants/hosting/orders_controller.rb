@@ -11,7 +11,8 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
     if(@state==:unassigneds)
        byebug
        Order.hostings.unassigneds.each do |unassigned_order_klass|
-        unassigned_order_klass.automatic_repick!
+        unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
+        unassigned_order_klass_order.automatic_repick!
       end
     end 
     #trigger automatic_repick
