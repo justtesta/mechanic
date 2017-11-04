@@ -210,6 +210,8 @@ zh-CN:
         pre_procedure_price: 手续费
         pre_remark: 备注
         automatic?: 自动派单
+        automatic: 自动派单
+      bid:
       bid:
         markup_price: 加价
       skill:

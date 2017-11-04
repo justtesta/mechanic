@@ -52,8 +52,8 @@
       <%= i.attribute :appointment, format: :short %>
       <%= i.attribute :skill ,filterable: { "orders.skill_cd" => Order.skills[params[:search]] } %>
       <%= i.attribute :price %>
-      <%= i.attribute :offline?,sortable: "orders.offline" %>
-      <%= i.attribute :automatic?,sortable: "orders.automatic" %>
+      <%= i.attribute :offline? %>
+      <%= i.attribute :automatic %>
       <%= i.attribute :mechanic_nickname, searchable: true  %>
       <%= i.actions :show %>
     <% end %>
