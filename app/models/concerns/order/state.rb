@@ -90,7 +90,6 @@ class Order < ApplicationRecord
       end
 
       def automatic_repick!
-        byebug
         return false unless paid?
         return false unless unassigned?
         return false unless selected?
