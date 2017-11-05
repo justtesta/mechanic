@@ -94,7 +94,7 @@ class Order < ApplicationRecord
         return false unless unassigned?
         return false unless selected?
         return false if automatic?
-        return false unless self.skill_cd==28
+        return false unless self.skill_cd==28||self.skill_cd==29
         return false if  self.pre_procedure_price.to_i > self.quoted_price
         return false unless  self.pre_procedure_price.to_i > 0
         mechanic = Mechanic.find(self.selectmechanic_id)
