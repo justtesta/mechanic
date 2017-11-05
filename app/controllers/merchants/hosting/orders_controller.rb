@@ -1,9 +1,9 @@
 class Merchants::Hosting::OrdersController < Merchants::OrdersController
+  before_action :redirect_user
+  before_action :redirect_user_dispatcher, only: [ :confirm, :confirmwithdrawal ]
   skip_before_action :redirect_user, only: [:automatic]
   skip_before_action :redirect_user_dispatcher, only: [:automatic]
   skip_before_action :authenticate!, only: [:automatic]
-  before_action :redirect_user
-  before_action :redirect_user_dispatcher, only: [ :confirm, :confirmwithdrawal ]
 
 
   def index
