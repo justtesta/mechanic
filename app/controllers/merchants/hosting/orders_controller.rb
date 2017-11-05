@@ -1,6 +1,10 @@
 class Merchants::Hosting::OrdersController < Merchants::OrdersController
+  skip_before_action :redirect_user, only: [:automatic]
+  skip_before_action :redirect_user_dispatcher, only: [:automatic]
+  skip_before_action :authenticate!, only: [:automatic]
   before_action :redirect_user
   before_action :redirect_user_dispatcher, only: [ :confirm, :confirmwithdrawal ]
+
 
   def index
     @state = if %w(unassigneds assigneds workings confirmings finisheds unfinisheds emergencys finished_nochecks unfinished_checks).include? params[:state]
@@ -8,14 +12,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
       else
         :unassigneds
       end
-    if(@state==:unassigneds)
-       byebug
-       Order.hostings.unassigneds.each do |unassigned_order_klass|
-        unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
-        unassigned_order_klass_order.automatic_repick!
-      end
-    end 
-    #trigger automatic_repick
+    
     @orders = order_klass.send(@state)
   end
   
@@ -54,6 +51,15 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
       render :procedure_price
     end
   end
+
+  def automaticnd
+       byebug
+    Order.hostings.unassigneds.where("skill_cd=28").each do |unassigned_order_klass|
+       unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
+       unassigned_order_klass_order.automatic_repick!
+    end 
+    #trigger automatic_repick
+  end 
 
   private
 
