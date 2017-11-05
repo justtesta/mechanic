@@ -4,6 +4,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
   skip_before_action :redirect_user, only: [:automatic]
   skip_before_action :redirect_user_dispatcher, only: [:automatic]
   skip_before_action :authenticate!, only: [:automatic]
+  before_action :find_order, except: [ :index, :new, :create, :notify, :not_found , :automatic]
 
 
   def index
