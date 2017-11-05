@@ -68,7 +68,9 @@ Rails.application.routes.draw do
           get :emergency
           get :unemergency
           post :confirmwithdrawal
-          get :automatic
+        end
+        collection do
+          get 'automatic'
         end
       end
       resources :numbers
