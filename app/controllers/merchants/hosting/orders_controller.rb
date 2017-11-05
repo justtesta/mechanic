@@ -53,7 +53,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
     end
   end
 
-  def automaticnd
+  def automatic
        byebug
     Order.hostings.unassigneds.where("skill_cd=28").each do |unassigned_order_klass|
        unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
