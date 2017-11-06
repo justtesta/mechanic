@@ -83,6 +83,10 @@ class Mechanic < ApplicationRecord
     orders.where(user_id: user).exists?
   end
 
+  def selt_withdrawal?
+    orders.where(confirm_type_cd: Order.confirm_types[:confirm_no_withdrawal]).exists?
+  end
+
   def location_name
     name = []
     name << province if province

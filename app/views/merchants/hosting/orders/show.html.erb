@@ -36,12 +36,12 @@
       <%= i.attribute :skill %>
       <%= i.attribute :brand %>
       <%= i.attribute :series %>
-      <%= i.attribute :price %>
-      <%= i.attribute :offline? %>
       <%= i.attribute :automatic? %>
       <%= i.attribute :confirm_type do |order|%>
         <%= te order, :confirm_type %>
       <% end %>
+      <%= i.attribute :price %>
+      <%= i.attribute :offline? %>
       <%= i.attribute :procedure_price %>
       <%= i.attribute :remark %>
       <%= i.attribute :merchant_remark %>
@@ -135,6 +135,7 @@
         <%= i.attribute :raw_last_available_orders_count %>
         <%= i.attribute :professionality_average %>
         <%= i.attribute :timeliness_average %>
+        <%= i.attribute :selt_withdrawal? %>
       <% end %>
     </div>
   </div>
