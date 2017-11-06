@@ -57,6 +57,9 @@
       <%= i.attribute :markup_price %>
       <%= i.attribute :procedure_price %>
       <%= i.attribute :offline? %>
+      <%= i.attribute :confirm_type do |order|%>
+        <%= te order, :confirm_type %>
+      <% end %>
     <% end %>
   </div>
 
