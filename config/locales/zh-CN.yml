@@ -59,6 +59,13 @@ zh-CN:
       user_cancel: 用户退款
       merchant_revoke: 商户撤单
       admin_freeze: 管理员冻结
+    confirm_type:
+      none: 未知
+      confirm_no_withdrawal: 确认完工
+      confirm: 完工并提现异常1
+      withdrawal: 完工并提现
+      before_withdrawal: 完工并提现异常2
+ 
   simple_form:
     labels:
       defaults:
@@ -211,6 +218,7 @@ zh-CN:
         pre_remark: 备注
         automatic?: 自动派单
         automatic: 自动派单
+        confirm_type: 完工方式
       bid:
       bid:
         markup_price: 加价
