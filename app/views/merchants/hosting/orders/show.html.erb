@@ -39,7 +39,9 @@
       <%= i.attribute :price %>
       <%= i.attribute :offline? %>
       <%= i.attribute :automatic? %>
-      <%= i.attribute :confirm_type %>
+      <%= i.attribute :confirm_type do |order|%>
+        <%= te order, :confirm_type %>
+      <% end %>
       <%= i.attribute :procedure_price %>
       <%= i.attribute :remark %>
       <%= i.attribute :merchant_remark %>
