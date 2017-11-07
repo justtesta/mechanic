@@ -74,7 +74,7 @@ class Order < ApplicationRecord
   end
 
   def sendpay?
-    sendpay[111] && ["1","3", 1,3].include?(sendpay[111])
+    ordersign[111] && ["1","3", 1,3].include?(ordersign[111])
   end 
 
   has_attached_file :mechanic_attach_1, styles: { medium: "300x300>", thumb: "100x100#" }
