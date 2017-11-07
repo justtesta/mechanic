@@ -218,8 +218,9 @@ zh-CN:
         pre_procedure_price: 手续费
         pre_remark: 备注
         automatic?: 自动派单
-        automatic: 自动派单
-        confirm_type: 完工方式
+        automatic: 自动派单 
+        confirm_type: 完工方式        
+        sendpay?: 套装内订单
       bid:
       bid:
         markup_price: 加价
