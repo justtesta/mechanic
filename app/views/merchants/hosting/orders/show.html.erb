@@ -40,6 +40,7 @@
       <%= i.attribute :confirm_type do |order|%>
         <%= te order, :confirm_type %>
       <% end %>
+      <%= i.attribute :sendpay? %>
       <%= i.attribute :price %>
       <%= i.attribute :offline? %>
       <%= i.attribute :procedure_price %>
@@ -221,7 +222,11 @@
         <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary",data: {confirm: "线下交易为否订单，确认完工将增加技师余额，请考虑是否使用完工并提现？" } %>
       <% end %>
      <% end %>
-    <%= link_to "申请退款", refund_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "您确定要申请退款？" } %>
+     <% if  @order.sendpay? %>
+       <%= link_to "申请退款", refund_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "套装内loc订单，京东不允许退款，您确定要申请退款？" } %>
+     <% else %>
+       <%= link_to "申请退款", refund_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "您确定要申请退款？" } %>
+     <% end %>
     <% if @order.emergency? %>
       <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
     <% else %>
@@ -242,7 +247,11 @@
         <%= link_to "确认完工", confirm_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary",data: {confirm: "线下交易为否订单，确认完工将增加技师余额，请考虑是否使用完工并提现？" } %>
       <% end %>
     <% end %>
-    <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "您确定要申请撤单？" }%>
+    <% if  @order.sendpay? %>
+      <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "套装内loc订单，京东不允许退款，您确定要申请撤单？" }%>
+    <% else %>
+      <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "您确定要申请撤单？" }%>
+    <% end %>
     <% if @order.emergency? %>
       <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
     <% else %>
@@ -264,7 +273,11 @@
     <% end %>
     <% end %>
     <%= link_to "申请返工", rework_merchants_hosting_order_path(@order), method: :post, class: "btn btn-primary" %>
-    <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger" ,data: {confirm: "您确定要申请撤单？" }%>
+    <% if  @order.sendpay? %>
+      <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger", data: {confirm: "套装内loc订单，京东不允许退款，您确定要申请撤单？" }%>
+    <% else %>
+       <%= link_to "申请撤单", revoke_merchants_hosting_order_path(@order), class: "btn btn-danger" ,data: {confirm: "您确定要申请撤单？" }%>
+    <% end %>
     <% if @order.emergency? %>
       <%= link_to "取消紧急", unemergency_merchants_hosting_order_path(@order), class: "btn btn-primary" %>      
     <% else %>

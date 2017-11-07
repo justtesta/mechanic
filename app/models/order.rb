@@ -74,7 +74,7 @@ class Order < ApplicationRecord
   end
 
   def sendpay?
-     ordersign[111]=="1"||ordersign[111]=="3" if ordersign && ordersign.length>120
+     ordersign[110]=="1"||ordersign[110]=="3" if ordersign && ordersign.length>120
   end 
 
   has_attached_file :mechanic_attach_1, styles: { medium: "300x300>", thumb: "100x100#" }
