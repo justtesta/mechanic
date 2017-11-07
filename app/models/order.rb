@@ -73,6 +73,10 @@ class Order < ApplicationRecord
     automatic && ["1", 1, true].include?(automatic)
   end
 
+  def sendpay?
+    sendpay[111] && ["1","3", 1,3].include?(sendpay[111])
+  end 
+
   has_attached_file :mechanic_attach_1, styles: { medium: "300x300>", thumb: "100x100#" }
   validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
   has_attached_file :mechanic_attach_2, styles: { medium: "300x300>", thumb: "100x100#" }
