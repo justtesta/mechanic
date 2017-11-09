@@ -206,14 +206,13 @@ class Order < ApplicationRecord
       end
 
       def confirm!
-        ActiveRecord::Base.transaction do
-          self.lock!
+        
           return false unless confirming?||working?||paid?
           return false unless assigned?
           update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
           update_attribute(:confirm_type, Order.confirm_types[:confirm])
-        end  
+        
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)
@@ -241,14 +240,13 @@ class Order < ApplicationRecord
       end
 
       def withdrawal!
-        ActiveRecord::Base.transaction do
-          self.lock!
+        
           return false unless confirming?||working?||paid?
           return false unless assigned?
           update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
           update_attribute(:confirm_type, Order.confirm_types[:confirm])
-        end  
+         
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)
