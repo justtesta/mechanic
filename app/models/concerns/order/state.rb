@@ -208,7 +208,7 @@ class Order < ApplicationRecord
       def confirm!
           return false unless confirming?||working?||paid?
           return false unless assigned?
-          return false unless ConfirmOrder.create(order_id: self.id)
+          return false unless ConfirmOrder.create(order_id: self.id).valid?
           update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
           update_attribute(:confirm_type, Order.confirm_types[:confirm])
@@ -243,7 +243,7 @@ class Order < ApplicationRecord
           return false unless confirming?||working?||paid?
           return false unless assigned?
           byebug
-          return false unless ConfirmOrder.create(order_id: self.id)
+          return false unless ConfirmOrder.create(order_id: self.id).valid?
           update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
           update_attribute(:confirm_type, Order.confirm_types[:confirm])
