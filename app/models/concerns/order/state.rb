@@ -242,7 +242,6 @@ class Order < ApplicationRecord
       def withdrawal!
           return false unless confirming?||working?||paid?
           return false unless assigned?
-          byebug
           return false unless ConfirmOrder.create(order_id: self.id).valid?
           update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
