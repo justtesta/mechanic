@@ -238,14 +238,42 @@ class Order < ApplicationRecord
       end
 
       def withdrawal!
-        update_attribute(:confirm_type, Order.confirm_types[:before_withdrawal])
-        return false if offline?
-        @withdrawal=Withdrawal.create(user_id: mechanic.user_id, amount: mechanic_income,state_cd: Withdrawal.states[:pending])
-        update_attribute(:confirm_type, Order.confirm_types[:withdrawal])
-        if @withdrawal.pending?
-          @withdrawal.pay!
+        return false unless confirming?||working?||paid?
+        return false unless assigned?
+        update_attribute(:finish_working_at, Time.now)
+        update_state(:finished)
+        update_attribute(:confirm_type, Order.confirm_types[:confirm])
+        unless offline?
+          # Increase balance
+          mechanic.user.increase_balance!(mechanic_income, "订单结算", self)
+          @withdrawal=Withdrawal.create(user_id: mechanic.user_id, amount: mechanic_income,state_cd: Withdrawal.states[:pending])
+          update_attribute(:confirm_type, Order.confirm_types[:withdrawal])
+          if @withdrawal.pending?
+            @withdrawal.pay!
+          end
+
+          if client_user_group = user.user_group
+            client_user_group.user.increase_balance!(client_commission, "订单分红", self)
+          end
+
+          if mechanic_user_group = mechanic.user_group
+            mechanic_user_group.user.increase_balance!(mechanic_commission, "订单分红", self)
+          end
+        end
+
+        # Increase total income / commission
+        mechanic.increase_total_income!(mechanic_income)
+
+        if client_user_group = user.user_group
+          client_user_group.increase_total_commission!(client_commission)
+        end
+
+        if mechanic_user_group = mechanic.user_group
+          mechanic_user_group.increase_total_commission!(mechanic_commission)
         end
         true
+
+      
       end
 
       def rework!
