@@ -1,0 +1,2 @@
+class ConfirmOrder < ApplicationRecord
+end

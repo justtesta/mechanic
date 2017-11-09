@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103095020) do
+ActiveRecord::Schema.define(version: 20171107015657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,6 +303,7 @@ ActiveRecord::Schema.define(version: 20171103095020) do
     t.boolean  "emergency",                                    default: false
     t.integer  "confirm_type_cd",                              default: 0
     t.boolean  "automatic",                                    default: false
+    t.string   "ordersign"
     t.index ["bid_id"], name: "index_orders_on_bid_id", using: :btree
     t.index ["cancel_cd"], name: "index_orders_on_cancel_cd", using: :btree
     t.index ["hosting"], name: "index_orders_on_hosting", using: :btree
