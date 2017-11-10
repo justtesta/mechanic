@@ -2,7 +2,7 @@ class Withdrawal < ApplicationRecord
   belongs_to :user
 
   as_enum :state, pending: 0, canceled: 1, paid: 2
-  as_enum :pay_type,none: 0, system: 1, manual: 2
+  as_enum :pay_type,none: 0, system: 8, manual: 9
      
 
   after_create do
@@ -21,9 +21,11 @@ class Withdrawal < ApplicationRecord
     errors.add(:base, "账户余额不足") if amount && amount > user.balance
   end
 
-  def pay!
+  def pay! withdrawal_pay_type
     return false unless pending?
     update_attribute(:state, Withdrawal.states[:paid])
+    update_attribute(:pay_type, Withdrawal.pay_type[withdrawal_pay_type])
+    self.user.update_attribute(:systempay,true) if(withdrawal_pay_type==:system)
   end
 
   def cancel!

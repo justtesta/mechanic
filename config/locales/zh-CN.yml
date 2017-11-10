@@ -65,6 +65,10 @@ zh-CN:
       confirm: 完工并提现异常1
       withdrawal: 完工并提现
       before_withdrawal: 完工并提现异常2
+    pay_type:
+      none: 未知
+      system: 系统支付
+      manual: 人工支付
  
   simple_form:
     labels:
@@ -89,6 +93,7 @@ zh-CN:
         balance: 余额
         balance_update_amount: 余额变动金额
         balance_update_description: 余额变动说明
+        systempay?: 系统支付
       mechanic:
         unique_id: 店铺编号
         user_nickname: 名称

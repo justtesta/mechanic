@@ -17,7 +17,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
     if @withdrawal.pending?
       response = Weixin.withdrawal @withdrawal
       if response.success?
-        @withdrawal.pay!
+        @withdrawal.pay! :system
       else
         flash[:error] = "微信支付：#{response["err_code_des"]}"
       end
@@ -29,7 +29,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
   
   def confirm_nopay
     if @withdrawal.pending?
-       @withdrawal.pay!
+       @withdrawal.pay! :manual
     else
       flash[:error] = "订单状态错误！"
     end

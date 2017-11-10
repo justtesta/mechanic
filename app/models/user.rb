@@ -77,4 +77,9 @@ class User < ApplicationRecord
   def safe_change_group group_id
     self.update_attribute(:user_group_id, group_id) if self.user_group.blank?
   end
+
+   def systempay?
+    systempay && ["1", 1, true].include?(systempay)
+  end
+
 end
