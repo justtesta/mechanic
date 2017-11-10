@@ -62,7 +62,7 @@
        <%= i.fields_for :user, model: User do |ii| %>
           <%= ii.attribute :nickname,searchable: true %>
           <%= ii.attribute :mobile,searchable: true %>
-          <%= ii.attribute :systempay?,searchable: true %>
+          <%= ii.attribute :systempay? %>
         <% end %>
 
         <%= i.attribute :amount %>
