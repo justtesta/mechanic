@@ -32,7 +32,7 @@ class Withdrawal < ApplicationRecord
 
   def message
     return false unless pending?
-    Weixin.send_confirm_order_message(self)
+    Weixin.send_confirm_withdrawal_message(self)
   end
 
   def title
