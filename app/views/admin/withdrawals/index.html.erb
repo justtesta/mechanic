@@ -23,6 +23,7 @@
       <%= index_for [ :admin, @withdrawals ], class: "table table-hover data-tables" do |i| %> <%= i.fields_for :user, model: User do |ii| %>
           <%= ii.attribute :nickname %>
           <%= ii.attribute :mobile %>
+          <%= ii.attribute :systempay?,searchable: true %>
         <% end %>
 
         <%= i.attribute :amount %>

@@ -24,8 +24,8 @@ class Withdrawal < ApplicationRecord
   def pay! withdrawal_pay_type
     return false unless pending?
     update_attribute(:state, Withdrawal.states[:paid])
-    update_attribute(:pay_type, Withdrawal.pay_type[withdrawal_pay_type])
-    self.user.update_attribute(:systempay,true) if(withdrawal_pay_type==:system)
+    update_attribute(:pay_type_cd, Withdrawal.pay_type[withdrawal_pay_type])
+    self.user.update_attribute(:systempay,true) if(withdrawal_pay_type!=:system)
   end
 
   def cancel!
