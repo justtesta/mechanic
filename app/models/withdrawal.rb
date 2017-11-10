@@ -30,6 +30,11 @@ class Withdrawal < ApplicationRecord
     update_attribute(:state, Withdrawal.states[:canceled])
   end
 
+  def message
+    return false unless pending?
+    Weixin.send_refund_order_message(self)
+  end
+
   def title
     "#{user.nickname} 申请提现 #{amount} 元"
   end

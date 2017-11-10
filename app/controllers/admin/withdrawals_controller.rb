@@ -45,6 +45,15 @@ class Admin::WithdrawalsController < Admin::ApplicationController
     redirect_to_referer!
   end
 
+  def message
+    if @withdrawal.pending?
+      @withdrawal.message
+    else
+      flash[:error] = "提现状态错误！"
+    end
+    redirect_to_referer!
+  end
+
   def update_settings
     ActiveRecord::Base.transaction do
       setting_params.each do |key, value|

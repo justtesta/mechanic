@@ -90,7 +90,7 @@ module Weixin
       end
 
       weixin_authorize_client_send :send_template_msg,
-        order.mechanic.user_weixin_openid,
+        order.mechanic.user.weixin_openid,
         OrderTemplate,
         "#{BaseURL}/orders/#{order.id}",
         TemplateTopColor,
@@ -123,7 +123,7 @@ module Weixin
 
     def send_rework_order_message order
       weixin_authorize_client_send :send_template_msg,
-        order.mechanic.user_weixin_openid,
+        order.mechanic.user.weixin_openid,
         OrderTemplate,
         "#{BaseURL}/orders/#{order.id}",
         TemplateTopColor,
@@ -158,7 +158,7 @@ module Weixin
 
     def send_refund_order_message order, mechanic
       weixin_authorize_client_send :send_template_msg,
-        mechanic.user_weixin_openid,
+        mechanic.user.weixin_openid,
         OrderTemplate,
         "#{BaseURL}/orders/#{order.id}",
         TemplateTopColor,
