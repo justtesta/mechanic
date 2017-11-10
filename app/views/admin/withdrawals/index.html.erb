@@ -70,6 +70,9 @@
         <%= i.attribute :state, sortable: "withdrawals.state_cd"  do |withdrawal| %>
           <%= te withdrawal, :state %>
         <% end %>
+        <%= i.attribute :pay_type, sortable: "withdrawals.pay_type_cd"  do |withdrawal| %>
+          <%= te withdrawal, :pay_type %>
+        <% end %>
         
         <%= i.actions :show do |a| %>
           <% if i.object.pending? %>
