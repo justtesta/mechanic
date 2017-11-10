@@ -12,6 +12,7 @@ module Weixin
   Client = WeixinAuthorize::Client.new(Config["app_id"], Config["app_secret"])
 
   OrderTemplate = Config["templates"]["order"]
+  WithdrawalTemplate = Config["templates"]["withdrawal"]
   TemplateTopColor = "#FF0000"
   TemplateDataColor = "#173177"
 
@@ -171,6 +172,22 @@ module Weixin
           remark: format_template_data("")
         }
     end
+    def send_confirm_withdrawal_message withdrawal
+      weixin_authorize_client_send :send_template_msg,
+        withdrawal.user.weixin_openid,
+        WithdrawalTemplate,
+        "#{BaseURL}/withdrawals/new",
+        TemplateTopColor,
+        {
+          first: format_template_data("即将向该微信提现，请将验证码发送给汽车堂结算客服"),
+          keyword1: format_template_data(withdrawal.user.nickname),
+          keyword2: format_template_data(I18n.l(withdrawal.created_at, format: :long)),
+          keyword3: format_template_data("#{withdrawal.amount} 元"),
+          keyword4: format_template_data("微信"),
+          remark: format_template_data("验证码：#{withdrawal.user.mobile.last(4)}")
+        }
+    end
+    
 
     def weixin_authorize_client_send method, *args
       Rails.logger.info "  Requested WeixinAuthorize API #{method} with params #{args.join(", ")}"

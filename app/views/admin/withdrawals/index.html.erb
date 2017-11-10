@@ -36,6 +36,7 @@
             <%= a.action_link :confirm, method: :post, confirm: "你确定要通过这条申请，并自动微信转帐？" %>
         <%= a.action_link :confirm_nopay, method: :post, confirm: "你确定要通过这条申请，并手动支付？" %>
             <%= a.action_link :cancel, method: :post, confirm: "你确定要拒绝这条申请？" %>
+            <%= a.action_link :message, method: :post %>
           <% end %>
         <% else %>
           <%= i.actions :show %>
@@ -73,6 +74,7 @@
             <%= a.action_link :confirm, method: :post, confirm: "你确定要通过这条申请，并自动微信转帐？" %>
   		      <%= a.action_link :confirm_nopay, method: :post, confirm: "你确定要通过这条申请，并手动支付？" %>
             <%= a.action_link :cancel, method: :post, confirm: "你确定要拒绝这条申请？" %>
+            <%= a.action_link :message, method: :post %>
           <% end %>
         <% end %>
       <% end %>

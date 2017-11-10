@@ -8,6 +8,7 @@ default: &default
   p12_path: <%= ENV["WEIXIN_P12_PATH"] %>
   templates:
     order: QfYVgjqFRqy3iQx_UDDvgic0pUkGIkF2punq_XAI5zM
+    withdrawal: 1_sBRXKa8fzUaLYczpiJg_plgAFYEVon0rHjFPTkcgU
 
 development:
   <<: *default
@@ -25,3 +26,4 @@ production:
   p12_path: <%= ENV["WEIXIN_P12_PATH"] %>
   templates:
     order: <%= ENV["ORDER_TEMPLATE_ID"] %>
+    withdrawal: <%= ENV["WITHDRAWAL_TEMPLATE_ID"] %>

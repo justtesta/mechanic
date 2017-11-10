@@ -24,6 +24,7 @@ zh-CN:
       hidereg: 忽略
       hideupdate: 忽略
       list: 分堂成员
+      message: 发送消息
 
   views:
     pagination:
