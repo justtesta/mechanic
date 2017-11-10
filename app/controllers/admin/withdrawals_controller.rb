@@ -48,6 +48,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
   def message
     if @withdrawal.pending?
       @withdrawal.message
+      flash[:success] = "已发送微信模板消息！"
     else
       flash[:error] = "提现状态错误！"
     end
