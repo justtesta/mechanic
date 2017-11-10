@@ -5,12 +5,15 @@
     <%= ii.attribute :nickname %>
     <%= ii.attribute :mobile %>
     <%= ii.attribute :weixin_openid %>
-    <%= ii.attribute :pay_type %>
+    <%= ii.attribute :systempay? %>
   <% end %>
 
   <%= i.attribute :amount %>
   <%= i.attribute :created_at, format: :long %>
   <%= i.attribute :paid_at, format: :long %>
+  <%= i.attribute :pay_type do |withdrawal| %>
+    <%= te withdrawal, :pay_type %>
+  <% end %>
 <% end %>
 
 <% if @withdrawal.pending? %>
