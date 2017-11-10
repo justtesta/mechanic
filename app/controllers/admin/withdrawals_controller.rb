@@ -28,7 +28,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
   end
   
   def confirm_nopay
-     if @withdrawal.pending?
+    if @withdrawal.pending?
        @withdrawal.pay!
     else
       flash[:error] = "订单状态错误！"

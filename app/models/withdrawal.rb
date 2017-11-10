@@ -2,6 +2,8 @@ class Withdrawal < ApplicationRecord
   belongs_to :user
 
   as_enum :state, pending: 0, canceled: 1, paid: 2
+  as_enum :pay_type,none: 0, system: 1, manual: 2
+     
 
   after_create do
     user.decrease_balance!(amount, "申请提现", self)
