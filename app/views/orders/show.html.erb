@@ -82,7 +82,7 @@
 		 <% end %>
         <%= f.input :mechanic_attach_1 do %>
           <input class="btn btn-block btn-positive" value="点击上传图片" id="order_mechanic_attach_1_button" readonly></input>
-          <%= f.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
+          <%= f.input_field :mechanic_attach_1, accept: "image/*" %>
           <%= f.input_field :mechanic_attach_1_media_id, type: :hidden %>
         <% end %>
         <%= f.input :mechanic_attach_2 do %>
@@ -105,6 +105,7 @@
  		}
  		</script>
       <script type="text/javascript">
+
         <% if weixin? %>
           wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
           wx.error(function(res) { alert(JSON.stringify(res)) });
@@ -137,9 +138,9 @@
             });
           }
         <% end %>
+
         fakeFileInput(order_mechanic_attach_1, order_mechanic_attach_1_button, order_mechanic_attach_1_media_id);
-        fakeFileInput(order_mechanic_attach_2, order_mechanic_attach_2_button,
-        	order_mechanic_attach_2_media_id);
+        fakeFileInput(order_mechanic_attach_2, order_mechanic_attach_2_button, order_mechanic_attach_2_media_id);
 		  
 		function  verification(id,left_number){
 			right_number=$("#order_number_pwd_number"+id).val();
