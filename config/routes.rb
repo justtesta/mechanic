@@ -181,6 +181,11 @@ Rails.application.routes.draw do
         post :confirm_nopay
       end
     end
+    concern :message do
+      member do
+        post :message
+      end
+    end
     concern :cancel do
       collection do
         get :canceled
@@ -274,7 +279,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :metrics
     resources :refunds, concerns: [:confirm, :freeze]
-    resources :withdrawals, concerns: [:confirm, :cancel, :confirm_nopay] do
+    resources :withdrawals, concerns: [:confirm, :cancel, :confirm_nopay, :message] do
       collection do
         get :settings
         post :settings, action: :update_settings
