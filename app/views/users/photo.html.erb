@@ -21,6 +21,7 @@
           <%= ff.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
           <%= ff.input_field :mechanic_attach_1_media_id, type: :hidden %>
         <% end %>
+        <img id="test" src="">
          <%= link_to @user.mechanic.mechanic_attach_1.url(:original) do %>
           <%= image_tag @user.mechanic.mechanic_attach_1.url(:thumb) %>
         <% end if @user.mechanic.mechanic_attach_1.present? %>
@@ -77,6 +78,7 @@
                       success: function (res) {
                         mediaIdInput.value = res.serverId;
                         fakeInput.value = "点击更换图片";
+                        test.src=localId;
                       }
                     });
                   }, 0);
@@ -91,6 +93,7 @@
             });
             fileInput.addEventListener("change", function() {
               fakeInput.value = "点击更换图片";
+              test.src="http://ubmcmm.baidustatic.com/media/v1/0f000DTw8bQI6EYHwQ8C26.jpg";
             });
           }
         <% end %>

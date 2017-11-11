@@ -90,7 +90,7 @@
           <%= f.input_field :mechanic_attach_2, style: "display: none;", accept: "image/*" %>
           <%= f.input_field :mechanic_attach_2_media_id, type: :hidden %>
         <% end %>
-		<%= f.button :submit, "服务完工", name: "order_verification", id: "order_verification_button",class: "btn-block btn-positive" %>
+		<%= f.button :submit, "服务完工", name: "order_verification", id: "order_verification_button",class: "btn-block btn-warning btn-positive" %>
     <p>
         注：请上传车主短信照片。如仅核销部分消费码，或无法正常核销，请点击 (异常)服务完工人工审核 提交。
       </p>
@@ -105,7 +105,7 @@
  		}
  		</script>
       <script type="text/javascript">
-        
+
         <% if weixin? %>
           wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
           wx.error(function(res) { alert(JSON.stringify(res)) });
