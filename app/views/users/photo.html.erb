@@ -66,13 +66,12 @@
         <% if weixin? %>
           wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
           wx.error(function(res) { alert(JSON.stringify(res)) });
-          function fakeFileInput(fileInput, fakeInput, mediaIdInput) {
+          function fakeFileInput(fileInput, fakeInput, mediaIdInput, mediaIdImg) {
             fakeInput.addEventListener("click", function() {
               wx.chooseImage({
                 count: 1,
                 success: function (res) {
-                  test.src="http://ubmcmm.baidustatic.com/media/v1/0f000DTw8bQI6EYHwQ8C26.jpg";
-                        test.src=res.localIds[0];
+                  mediaIdImg.src=res.localIds[0];
                   setTimeout(function() {
                     wx.uploadImage({
                       localId: res.localIds[0],
@@ -88,21 +87,21 @@
             });
           }
         <% else %>
-          function fakeFileInput(fileInput, fakeInput) {
+          function fakeFileInput(fileInput, fakeInput, mediaIdInput, mediaIdImg) {
             fakeInput.addEventListener("click", function() {
               fileInput.click();
             });
             fileInput.addEventListener("change", function() {
               fakeInput.value = "点击更换图片";
-              test.src="http://ubmcmm.baidustatic.com/media/v1/0f000DTw8bQI6EYHwQ8C26.jpg";
+              test.src=fileInput.files[0];
             });
           }
         <% end %>
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_1, mechanic_mechanic_attach_1_button, user_mechanic_attributes_mechanic_attach_1_media_id);
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_2, mechanic_mechanic_attach_2_button, user_mechanic_attributes_mechanic_attach_2_media_id);
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_3, mechanic_mechanic_attach_3_button, user_mechanic_attributes_mechanic_attach_3_media_id);
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_4, mechanic_mechanic_attach_4_button, user_mechanic_attributes_mechanic_attach_4_media_id);
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_5, mechanic_mechanic_attach_5_button, user_mechanic_attributes_mechanic_attach_5_media_id);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_1, mechanic_mechanic_attach_1_button, user_mechanic_attributes_mechanic_attach_1_media_id, mechanic_mechanic_attach_1_img);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_2, mechanic_mechanic_attach_2_button, user_mechanic_attributes_mechanic_attach_2_media_id, mechanic_mechanic_attach_2_img);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_3, mechanic_mechanic_attach_3_button, user_mechanic_attributes_mechanic_attach_3_media_id, mechanic_mechanic_attach_3_img);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_4, mechanic_mechanic_attach_4_button, user_mechanic_attributes_mechanic_attach_4_media_id, mechanic_mechanic_attach_4_img);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_5, mechanic_mechanic_attach_5_button, user_mechanic_attributes_mechanic_attach_5_media_id, mechanic_mechanic_attach_5_img);
         	
 		  
 	
