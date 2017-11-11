@@ -92,11 +92,11 @@
           <%= f.input_field :mechanic_attach_2_media_id, type: :hidden %>
         <% end %>
         <img id="mechanic_mechanic_attach_2_img" src="" class="img-rounded" style="max-width:140px; ">
-		<%= f.button :submit, "服务完工", name: "order_verification", id: "order_verification_button",class: "btn-block btn-positive  btn-primary" %>
+		<%= f.button :submit, "服务完工", name: "order_verification", id: "order_verification_button",class: "btn-block  btn-primary" %>
     <p>
         注：请上传车主短信照片。如仅核销部分消费码，或无法正常核销，请点击 (异常)服务完工人工审核 提交。
       </p>
-        <%= f.button :submit, "(异常)服务完工人工审核", class: "btn-block btn-positive btn-default" %>
+        <%= f.button :submit, "(异常)服务完工人工审核", class: "btn-block btn-positive  btn-sm" %>
 		 
       <% end %>
 
