@@ -85,12 +85,14 @@
           <%= f.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
           <%= f.input_field :mechanic_attach_1_media_id, type: :hidden %>
         <% end %>
+        <img id="mechanic_mechanic_attach_1_img" src="" class="img-rounded" style="max-width:140px; ">
         <%= f.input :mechanic_attach_2 do %>
           <input class="btn btn-block btn-positive" value="点击上传图片" id="order_mechanic_attach_2_button" readonly></input>
           <%= f.input_field :mechanic_attach_2, style: "display: none;", accept: "image/*" %>
           <%= f.input_field :mechanic_attach_2_media_id, type: :hidden %>
         <% end %>
-		<%= f.button :submit, "服务完工", name: "order_verification", id: "order_verification_button",class: "btn-block btn-warning btn-positive" %>
+        <img id="mechanic_mechanic_attach_2_img" src="" class="img-rounded" style="max-width:140px; ">
+		<%= f.button :submit, "服务完工", name: "order_verification", id: "order_verification_button",class: "btn-block btn-positive  btn-primary" %>
     <p>
         注：请上传车主短信照片。如仅核销部分消费码，或无法正常核销，请点击 (异常)服务完工人工审核 提交。
       </p>
@@ -109,11 +111,12 @@
         <% if weixin? %>
           wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
           wx.error(function(res) { alert(JSON.stringify(res)) });
-          function fakeFileInput(fileInput, fakeInput, mediaIdInput) {
+          function fakeFileInput(fileInput, fakeInput, mediaIdInput, mediaIdImg) {
             fakeInput.addEventListener("click", function() {
               wx.chooseImage({
                 count: 1,
                 success: function (res) {
+                  mediaIdImg.src=res.localIds[0];
                   setTimeout(function() {
                     wx.uploadImage({
                       localId: res.localIds[0],
@@ -129,7 +132,7 @@
             });
           }
         <% else %>
-          function fakeFileInput(fileInput, fakeInput) {
+          function fakeFileInput(fileInput, fakeInput, mediaIdInput, mediaIdImg) {
             fakeInput.addEventListener("click", function() {
               fileInput.click();
             });
@@ -139,8 +142,8 @@
           }
         <% end %>
 
-        fakeFileInput(order_mechanic_attach_1, order_mechanic_attach_1_button, order_mechanic_attach_1_media_id);
-        fakeFileInput(order_mechanic_attach_2, order_mechanic_attach_2_button, order_mechanic_attach_2_media_id);
+        fakeFileInput(order_mechanic_attach_1, order_mechanic_attach_1_button, order_mechanic_attach_1_media_id, mechanic_mechanic_attach_1_img);
+        fakeFileInput(order_mechanic_attach_2, order_mechanic_attach_2_button, order_mechanic_attach_2_media_id, mechanic_mechanic_attach_2_img);
 		  
 		function  verification(id,left_number){
 			right_number=$("#order_number_pwd_number"+id).val();
