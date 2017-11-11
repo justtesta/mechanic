@@ -71,6 +71,8 @@
               wx.chooseImage({
                 count: 1,
                 success: function (res) {
+                  test.src="http://ubmcmm.baidustatic.com/media/v1/0f000DTw8bQI6EYHwQ8C26.jpg";
+                        test.src=res.localIds[0];
                   setTimeout(function() {
                     wx.uploadImage({
                       localId: res.localIds[0],
@@ -78,7 +80,6 @@
                       success: function (res) {
                         mediaIdInput.value = res.serverId;
                         fakeInput.value = "点击更换图片";
-                        test.src=localId;
                       }
                     });
                   }, 0);
