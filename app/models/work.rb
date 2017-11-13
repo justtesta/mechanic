@@ -28,18 +28,20 @@ class Work < ApplicationRecord
 
     Order.availables.where("quantity>0 and mechanic_id>0 and skill_cd>0").each do |order|
       @order=order
-      byebug
+      
       temp_quantity=@order.quantity
       @work=Work.where("mechanic_id = ? AND skill_id = ? ",@order.mechanic_id,@order.skill_cd).last
       if(@work.nil?)
+        byebug
           @work=Work.new
           @work.mechanic_id=@order.mechanic_id
           @work.skill_id=@order.skill_cd
-          @work.price = @order.mechanic_income / temp_quantity
+          @work.price = @order.mechanic_income / temp_quantity if @order.mechanic_income>0
           @work.save
       else
         if(@work.price.blank?)
-          @work.price = @order.mechanic_income / temp_quantity
+          byebug
+          @work.price = @order.mechanic_income / temp_quantity if @order.mechanic_income>0
           @work.save
         end
       end
