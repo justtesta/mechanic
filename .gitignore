@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 *.tmp_*
-
+ok.bat
 .env
 
 # Ignore upload files
