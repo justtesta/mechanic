@@ -35,7 +35,8 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def clear_weixin
-    
+    flash[:error] = "帐号信息不完整，无法转换"
+      redirect_to_referer!
   end 
 
   private
