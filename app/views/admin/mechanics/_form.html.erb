@@ -10,7 +10,9 @@
       <%= f.error_messages %>
 
       <%= f.input :mobile %>
-      <%= link_to "清除微信关联", clear_weixin_admin_user_path(@mechanic), class: "btn btn-default btn-xs", data: {confirm: "您确定要清除微信关联？" } %>
+      <% if @mechanic.id&&@mechanic.id>0 %>
+        <%= link_to "清除微信关联", clear_weixin_admin_user_path(@mechanic), class: "btn btn-default btn-xs", data: {confirm: "您确定要清除微信关联？" } %>
+      <% end %>
       <%= f.input :weixin_openid , input_html: { disabled: "disabled" } %>
      <%= f.input :nickname %>
       <%= f.input :gender, collection: enum_option_pairs(User, :gender) %>
