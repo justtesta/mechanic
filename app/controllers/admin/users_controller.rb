@@ -35,8 +35,9 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def clear_weixin
-    flash[:error] = "帐号信息不完整，无法转换"
-      redirect_to_referer!
+    @user.clear_weixin!
+    flash[:success] = "成功清除微信关联"
+    redirect_to_referer!
   end 
 
   private

@@ -78,8 +78,12 @@ class User < ApplicationRecord
     self.update_attribute(:user_group_id, group_id) if self.user_group.blank?
   end
 
-   def systempay?
+  def systempay?
     systempay && ["1", 1, true].include?(systempay)
+  end
+
+  def clear_weixin!
+    self.update_all "persistence_token = null, weixin_openid = null"
   end
 
 end
