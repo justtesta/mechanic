@@ -25,9 +25,10 @@ class Work < ApplicationRecord
   end 
 
   def set_work
-    byebug
+
     Order.availables.where("quantity>0 and mechanic_id>0 and skill_cd>0").each do |order|
       @order=order
+      byebug
       temp_quantity=@order.quantity
       @work=Work.where("mechanic_id = ? AND skill_id = ? ",@order.mechanic_id,@order.skill_cd).last
       if(@work.nil?)
