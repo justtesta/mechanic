@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :redirect_user, only: [ :balance, :update_balance ]
+  before_action :redirect_user, only: [ :balance, :update_balance, :clear_weixin ]
   before_action :find_user, except: [ :index ]
 
   def index
@@ -33,6 +33,10 @@ class Admin::UsersController < Admin::ApplicationController
       render :balance
     end
   end
+
+  def clear_weixin
+    
+  end 
 
   private
 
