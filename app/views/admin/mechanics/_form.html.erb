@@ -10,9 +10,9 @@
       <%= f.error_messages %>
 
       <%= f.input :mobile %>
-      <%= f.input :weixin_openid , input_html: { disabled: "disabled" } %>
       <%= link_to "清除微信关联", refund_merchants_order_path(@mechanic), class: "btn btn-default btn-xs", data: {confirm: "您确定要清除微信关联？" } %>
-      <%= f.input :nickname %>
+      <%= f.input :weixin_openid , input_html: { disabled: "disabled" } %>
+     <%= f.input :nickname %>
       <%= f.input :gender, collection: enum_option_pairs(User, :gender) %>
       <%= f.input :address %>
 
