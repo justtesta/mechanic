@@ -12,14 +12,40 @@ class Work < ApplicationRecord
   end
   def set_price
     Work.all.each do |work|
-    @work=work
-    @order = Order.where("mechanic_id = ? AND skill_cd = ?", @work.mechanic_id, @work.skill_id).last
-     # if(@work.price.blank?)
-      @work.price = @order.mechanic_income  unless  @order.nil?
-      @work.save
-     # end
+      @work=work
+      if(@work.price.blank?)
+        @order = Order.where("mechanic_id = ? AND skill_cd = ? AND quantity>0", @work.mechanic_id, @work.skill_id).last
+        unless( @order.nil?)
+          temp_quantity=@order.quantity
+          @work.price = @order.mechanic_income / temp_quantity
+          @work.save
+        end
+      end
     end 
   end 
+
+  def set_work
+    byebug
+    Order.availables.where("quantity>0 and mechanic_id>0 and skill_cd>0").each do |order|
+      @order=order
+      temp_quantity=@order.quantity
+      @work=Work.where("mechanic_id = ? AND skill_id = ? ",@order.mechanic_id,@order.skill_cd).last
+      if(@work.nil?)
+          @work=Work.new
+          @work.mechanic_id=@order.mechanic_id
+          @work.skill_id=@order.skill_cd
+          @work.price = @order.mechanic_income / temp_quantity
+          @work.save
+      else
+        if(@work.price.blank?)
+          @work.price = @order.mechanic_income / temp_quantity
+          @work.save
+        end
+      end
+    end
+
+  end
+
   def get_skill_id (key)
     case key
     when "M"
