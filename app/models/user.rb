@@ -83,7 +83,7 @@ class User < ApplicationRecord
   end
 
   def clear_weixin!
-    self.update_attributes({:persistence_token=>'',:weixin_openid=>nil})
+    self.update_attributes({:persistence_token=>nil,:weixin_openid=>nil})
   end
 
 end
