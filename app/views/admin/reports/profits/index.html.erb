@@ -12,6 +12,9 @@
       <%= i.attribute :price, sortable: "orders.quoted_price" %>
       <%= i.attribute :mechanic_income %>
       <%= i.attribute :profit, sortable: "orders.procedure_price" %>
+      <%= i.fields_for :confirm_merchant, model: Merchant do |ii| %>
+        <%= ii.attribute :nickname %>
+      <% end %>
       <%= i.attribute :state, sortable: ["orders.state_cd", "orders.cancel_cd", "orders.refund_cd"], filterable: { "orders.state_cd" => Order.states[I18n.t("enums.state").key(params[:search])], "orders.cancel_cd" => Order.cancels[I18n.t("enums.cancel").key(params[:search])], "orders.refund_cd" => Order.refunds[I18n.t("enums.refund").key(params[:search])] } do |order| %>
         <% if order.canceled? %>
           <%= te order, :cancel %>

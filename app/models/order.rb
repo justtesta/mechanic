@@ -13,6 +13,7 @@ class Order < ApplicationRecord
   belongs_to :merchant
   has_one :mechanic_user, through: :mechanic, source: :user
   has_one :store, through: :merchant
+  belongs_to :confirm_merchant, class_name: "Merchant", foreign_key: "confirm_by" 
 
   belongs_to :bid
   has_many :bids
