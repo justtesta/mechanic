@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109130955) do
+ActiveRecord::Schema.define(version: 20171110075807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -462,6 +462,7 @@ ActiveRecord::Schema.define(version: 20171109130955) do
     t.float    "lng"
     t.string   "fromsource"
     t.boolean  "userupdate",                                      default: false
+    t.boolean  "systempay",                                       default: false
     t.index ["host"], name: "index_users_on_host", using: :btree
     t.index ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
     t.index ["role_cd"], name: "index_users_on_role_cd", using: :btree
@@ -471,10 +472,11 @@ ActiveRecord::Schema.define(version: 20171109130955) do
   create_table "withdrawals", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "amount"
-    t.integer  "state_cd",                 default: 0
-    t.datetime "created_at", precision: 6,             null: false
-    t.datetime "updated_at", precision: 6,             null: false
-    t.datetime "paid_at",    precision: 6
+    t.integer  "state_cd",                  default: 0
+    t.datetime "created_at",  precision: 6,             null: false
+    t.datetime "updated_at",  precision: 6,             null: false
+    t.datetime "paid_at",     precision: 6
+    t.integer  "pay_type_cd",               default: 0
     t.index ["state_cd"], name: "index_withdrawals_on_state_cd", using: :btree
     t.index ["user_id"], name: "index_withdrawals_on_user_id", using: :btree
   end
