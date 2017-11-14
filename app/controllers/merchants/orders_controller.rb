@@ -200,7 +200,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def confirm
-    if @order.confirm!
+    if @order.confirm! current_merchant.merchant_id
       @order.update_attribute(:confirm_type, Order.confirm_types[:confirm_no_withdrawal])
       flash[:notice] = "订单确认完工！"
     else
@@ -210,7 +210,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def confirmwithdrawal
-    if @order.withdrawal!
+    if @order.withdrawal! current_merchant.merchant_id
       flash[:notice] = "订单确认完工！"
     else
       flash[:error] = "订单状态错误,请检查是否其它管理员已经支付！"

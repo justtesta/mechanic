@@ -12,7 +12,7 @@ class Order < ApplicationRecord
         paid: 6, working: 7, confirming: 8, finished: 9, reviewed: 10, closed: 11
       as_enum :cancel, pending_timeout: 0, paying_timeout: 1, user_abstain: 2, user_cancel: 3
       as_enum :refund, user_cancel: 0, merchant_revoke: 1, admin_freeze: 2
-      as_enum :confirm_type,none: 0, confirm_no_withdrawal: 1, confirm: 2, withdrawal: 3, before_withdrawal: 4
+      as_enum :confirm_type,none: 0, confirm_no_withdrawal: 1, confirm: 2, withdrawal: 3, before_withdrawal: 4,before_confirm_no_withdrawal:5
       as_enum :pay_type, { weixin: 0, alipay: 1, skip: 2, balance: 3 }, prefix: true
 
       scope :availables, -> { where('"orders"."state_cd" > ?', AVAILABLE_GREATER_THAN) }
@@ -205,13 +205,15 @@ class Order < ApplicationRecord
         Rails.logger.error "#{error.class}: #{error.message} from Order#finish!"
       end
 
-      def confirm!
+      def confirm! confirm_merchant_id=0
           return false unless confirming?||working?||paid?
           return false unless assigned?
           return false unless ConfirmOrder.create(order_id: self.id).valid?
           update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
-          update_attribute(:confirm_type, Order.confirm_types[:confirm])
+          update_attribute(:confirm_type, Order.confirm_types[:before_confirm_no_withdrawal])
+          byebug
+          update_attribute(:confirm_by, confirm_merchant_id)
         
         unless offline?
           # Increase balance
@@ -239,13 +241,14 @@ class Order < ApplicationRecord
         true
       end
 
-      def withdrawal!
+      def withdrawal! confirm_merchant_id=0
           return false unless confirming?||working?||paid?
           return false unless assigned?
           return false unless ConfirmOrder.create(order_id: self.id).valid?
           update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
           update_attribute(:confirm_type, Order.confirm_types[:confirm])
+          update_attribute(:confirm_by, confirm_merchant_id)
          
         unless offline?
           # Increase balance
@@ -253,6 +256,7 @@ class Order < ApplicationRecord
           @withdrawal=Withdrawal.create(user_id: mechanic.user_id, amount: mechanic_income,state_cd: Withdrawal.states[:pending])
           update_attribute(:confirm_type, Order.confirm_types[:withdrawal])
           @withdrawal.pay! :manual
+          
 
           if client_user_group = user.user_group
             client_user_group.user.increase_balance!(client_commission, "订单分红", self)
