@@ -17,7 +17,7 @@ class Work < ApplicationRecord
         @order = Order.where("mechanic_id = ? AND skill_cd = ? AND quantity>0", @work.mechanic_id, @work.skill_id).last
         unless( @order.nil?)
           temp_quantity=@order.quantity
-          @work.price = @order.mechanic_income / temp_quantity
+          @work.price = @order.mechanic_income / temp_quantity if @order.mechanic_income>0
           @work.save
         end
       end
