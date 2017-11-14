@@ -293,7 +293,8 @@ Rails.application.routes.draw do
     namespace :reports do
       resources :provinces
       resources :finishedprovinces
-      resources :dayreport
+      resources :dayreports
+      resources :profits
     end
 
     root to: "users#index"
