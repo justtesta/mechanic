@@ -198,7 +198,7 @@ zh-CN:
         series: 车系
         quoted_price: 出价
         markup_price: 加价
-        mechanic_income: 价格
+        mechanic_income: 技师价格
         procedure_price: 手续费
         remark: 备注
         merchant_remark: 商户备注
@@ -226,6 +226,7 @@ zh-CN:
         automatic: 自动派单 
         confirm_type: 完工方式        
         sendpay?: 套装内订单
+        profit: 利润
       bid:
       bid:
         markup_price: 加价
