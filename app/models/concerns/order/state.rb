@@ -212,7 +212,6 @@ class Order < ApplicationRecord
           update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
           update_attribute(:confirm_type, Order.confirm_types[:before_confirm_no_withdrawal])
-          byebug
           update_attribute(:confirm_by, confirm_merchant_id)
         
         unless offline?
