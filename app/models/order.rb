@@ -225,6 +225,7 @@ class Order < ApplicationRecord
   # procedure_price 汽车堂分成
   # mechanic_income 技师实际收入
   # pre_procedure_price 预设手续费
+  # profit 利润
   def price
     quoted_price + markup_price
   end
@@ -265,6 +266,10 @@ class Order < ApplicationRecord
 
   def mechanic_commission
     (commission * settings.mechanic_commission_percent.to_f / 100).round(2)
+  end
+
+  def profit
+    procedure_price
   end
   
   def pre_remark
