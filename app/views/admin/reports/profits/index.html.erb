@@ -4,7 +4,7 @@
   <div class="col-md-10 col-xs-8">
 
     <%= wice_index_for [ :admin, @orders ], class: "table table-hover" do |i| %>
-      <%= i.attribute :finish_working_at, sortable: "orders.finish_working_at" %>
+      <%= i.attribute :finish_working_at, sortable: "orders.finish_working_at",format: :short %>
       <%= i.attribute :user_nickname, searchable: "users.nickname" %>
       <%= i.attribute :contact, sortable: "orders.contact_nickname", searchable: "orders.contact_nickname" %>
       <%= i.attribute :contact_mobile, searchable: "orders.contact_mobile" %>
