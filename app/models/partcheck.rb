@@ -1,8 +1,7 @@
 class Partcheck < ApplicationRecord
 	belongs_to :order
 
-	def default_new default_order
-		self.new
+	def set_default default_order
 		self.order_id=default_order.id
 		_check_scale=0
 		_check_scale=default_order.numbers.checked_numbers.count/default_order.numbers.count if default_order.numbers.count>0

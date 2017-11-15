@@ -5,7 +5,8 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
     @order = Order.hostings.find(params[:order_id])
     @partchecks = @order.partchecks
 
-    @partcheck = Partcheck.default_new(@order)
+    @partcheck = Partcheck.new
+    @partcheck.set_default(@order) 
   end
 
   def create
