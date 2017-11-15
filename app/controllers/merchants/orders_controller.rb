@@ -203,10 +203,11 @@ class Merchants::OrdersController < Merchants::ApplicationController
     if @order.confirm! current_merchant.id
       @order.update_attribute(:confirm_type, Order.confirm_types[:confirm_no_withdrawal])
       flash[:notice] = "订单确认完工！"
+      merchants_hosting_orders_path(state: :confirmings)
     else
       flash[:error] = "订单状态错误,请检查是否其它管理员已经支付！"
+      redirect_to_referer!
     end
-    redirect_to_referer!
   end
 
   def confirmwithdrawal
