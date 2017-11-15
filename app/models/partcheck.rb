@@ -1,0 +1,2 @@
+class Partcheck < ApplicationRecord
+end
