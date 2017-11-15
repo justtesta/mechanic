@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114122715) do
+ActiveRecord::Schema.define(version: 20171115094915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -311,6 +311,7 @@ ActiveRecord::Schema.define(version: 20171114122715) do
     t.boolean  "automatic",                                    default: false
     t.string   "ordersign"
     t.integer  "confirm_by"
+    t.boolean  "partcheck_order"
     t.index ["bid_id"], name: "index_orders_on_bid_id", using: :btree
     t.index ["cancel_cd"], name: "index_orders_on_cancel_cd", using: :btree
     t.index ["hosting"], name: "index_orders_on_hosting", using: :btree
@@ -320,6 +321,18 @@ ActiveRecord::Schema.define(version: 20171114122715) do
     t.index ["refund_cd"], name: "index_orders_on_refund_cd", using: :btree
     t.index ["state_cd"], name: "index_orders_on_state_cd", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
+  end
+
+  create_table "partchecks", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "quoted_price"
+    t.integer  "quantity"
+    t.integer  "mechanic_income"
+    t.integer  "procedure_price"
+    t.integer  "confirm_by"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "remark"
   end
 
   create_table "provinces", force: :cascade do |t|
