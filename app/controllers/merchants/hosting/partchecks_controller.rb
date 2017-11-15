@@ -11,7 +11,7 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
 
   def create
     byebug
-    @partcheck = Partcheck.new(partcheck_params)
+    @partcheck = @order.partchecks.new(partcheck_params)
     @partcheck.confirm_by=current_merchant.id
     if @partcheck.save
       @order=Order.hostings.find(@partcheck.order_id)
@@ -23,7 +23,7 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
   end
 
   def partcheck_params
-    params.require(:partcheck).permit(:order_id, :quoted_price, :quantity,
+    params.require(:partcheck).permit( :quoted_price, :quantity,
     :mechanic_income, :procedure_price)
   end
 
