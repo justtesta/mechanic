@@ -79,6 +79,10 @@ class Order < ApplicationRecord
      ordersign[110]=="1"||ordersign[110]=="3" if ordersign && ordersign.length>120
   end 
 
+  def partcheck_order?
+    partcheck_order && ["1", 1, true].include?(partcheck_order)
+  end
+
   has_attached_file :mechanic_attach_1, styles: { medium: "300x300>", thumb: "100x100#" }
   validates_attachment_content_type :mechanic_attach_1, :content_type => /\Aimage\/.*\Z/
   has_attached_file :mechanic_attach_2, styles: { medium: "300x300>", thumb: "100x100#" }
