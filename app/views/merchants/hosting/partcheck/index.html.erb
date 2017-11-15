@@ -1,0 +1,15 @@
+<h3 class="page-header">部分核销</h3>
+
+<div class="row">
+  <div class="col-md-7">
+	<%= index_for [ :merchants, :hosting, @partchecks ], class: "table table-hover data-tables" do |i| %>
+      <%= i.attribute :quoted_price %>
+      <%= i.attribute :quantity %>
+      <%= i.attribute :mechanic_income %>
+      <%= i.attribute :procedure_price %>
+      <%= i.attribute :create_at, format: :short %>
+      <%= i.attribute :confirm_by  %>
+    <% end %>
+   
+  </div>
+</div>

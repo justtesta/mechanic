@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
     namespace :hosting do
       resources :orders, concerns: [:pick, :review] do
+        resources :partchecks
         member do
           match :refund, via: [:get, :patch]
           post :confirm
@@ -68,8 +69,6 @@ Rails.application.routes.draw do
           get :emergency
           get :unemergency
           post :confirmwithdrawal
-          get :partcheck
-          patch :partcheck, action: :add_partcheck
         end
         collection do
           get 'automatic'
