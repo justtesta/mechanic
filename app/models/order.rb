@@ -32,6 +32,7 @@ class Order < ApplicationRecord
 
   scope :hostings, -> { where(hosting: true) }
   scope :unfinisheds, -> { where("state_cd=6 or state_cd=7 or state_cd=8 ") }
+  scope :paids_and_workings, -> { where("state_cd=6 or state_cd=7") }
   scope :emergencys, -> { where(emergency: true) }
   scope :finished_nochecks, -> { where("id in(select order_id From numbers where status=0) and state_cd>8 and orders.created_at>'2017-09-01'") }
   scope :unfinished_checks, -> { where("id in(select order_id From numbers where status=1) and state_cd<8 and orders.created_at>'2017-09-01'") }
