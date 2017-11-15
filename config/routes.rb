@@ -51,8 +51,6 @@ Rails.application.routes.draw do
         get :revoke
         get :remark
         patch :remark, action: :update_remark
-        get :partcheck
-        patch :partcheck, action: :add_partcheck
       end
     end
 
@@ -70,6 +68,8 @@ Rails.application.routes.draw do
           get :emergency
           get :unemergency
           post :confirmwithdrawal
+          get :partcheck
+          patch :partcheck, action: :add_partcheck
         end
         collection do
           get 'automatic'
