@@ -1,5 +1,4 @@
 class Merchants::Hosting::NumbersController < Merchants::ApplicationController
-  before_action :redirect_user
   before_action :redirect_user_dispatcher
   def index
     @state = if %w(unchecked_numbers checked_numbers).include? params[:state]
