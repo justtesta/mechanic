@@ -10,7 +10,7 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
   end
 
   def create
-    byebug
+    
     @partcheck = Partcheck.new(partcheck_params)
     @partcheck.confirm_by=current_merchant.id
     if @partcheck.save
