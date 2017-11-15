@@ -7,6 +7,7 @@ class Partcheck < ApplicationRecord
 		self.quantity=default_order.quantity * default_order.numbers.checked_numbers.count/default_order.numbers.count if default_order.numbers.count>0 && default_order.quantity
 		self.mechanic_income=default_order.mechanic_income * default_order.numbers.checked_numbers.count/default_order.numbers.count if default_order.numbers.count>0 &&  default_order.mechanic_income
 		self.procedure_price=default_order.procedure_price * default_order.numbers.checked_numbers.count/default_order.numbers.count if default_order.numbers.count>0 &&  default_order.procedure_price	
+		self.remark="部分核销"
 	end
 	
 	def profit

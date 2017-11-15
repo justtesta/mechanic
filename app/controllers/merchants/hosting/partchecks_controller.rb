@@ -10,7 +10,6 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
   end
 
   def create
-    
     @partcheck = Partcheck.new(partcheck_params)
     @partcheck.confirm_by=current_merchant.id
     if @partcheck.save
@@ -24,7 +23,7 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
 
   def partcheck_params
     params.require(:partcheck).permit(:order_id, :quoted_price, :quantity,
-    :mechanic_income, :procedure_price)
+    :mechanic_income, :procedure_price, :remark)
   end
 
 end

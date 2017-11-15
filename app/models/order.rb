@@ -275,7 +275,7 @@ class Order < ApplicationRecord
   end
 
   def profit
-    procedure_price
+    procedure_price unless partcheck_order?
   end
   
   def pre_remark
