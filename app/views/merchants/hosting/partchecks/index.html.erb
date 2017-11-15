@@ -13,10 +13,10 @@
 
   <%= bootstrap_simple_form_for([ :merchants, :hosting, @partcheck ]) do |f| %>
       <%= f.error_messages %>
-      <%= i.input :quoted_price %>
-      <%= i.input :quantity %>
-      <%= i.input :mechanic_income %>
-      <%= i.input :procedure_price %>
+      <%= f.input :quoted_price %>
+      <%= f.input :quantity %>
+      <%= f.input :mechanic_income %>
+      <%= f.input :procedure_price %>
 
       <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
     <% end %>
