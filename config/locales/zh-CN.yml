@@ -275,3 +275,4 @@ zh-CN:
         procedure_price: 手续费
         profit: 利润
         confirm_by: 确认员工
+        created_at: 核销时间

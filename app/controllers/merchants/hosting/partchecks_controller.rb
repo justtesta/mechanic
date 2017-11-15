@@ -5,14 +5,16 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
     @order = Order.hostings.find(params[:order_id])
     @partchecks = @order.partchecks
 
-    @partcheck = @partchecks.new
+    @partcheck = Partcheck.default_new(@order)
   end
 
   def create
     @partcheck = Partcheck.new(partcheck_params)
     @partcheck.confirm_by=current_merchant.id
-    if @order.save
-      redirect_to merchants_hosting_order_path(@partcheck.order)
+    if @partcheck.save
+      @order=@partcheck.order
+      @order.update_attribute(:partcheck_order, true)
+      redirect_to merchants_hosting_order_path(@order)
     else
       render :index
     end 
