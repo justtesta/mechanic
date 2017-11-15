@@ -13,7 +13,7 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
     @partcheck = Partcheck.new(partcheck_params)
     @partcheck.confirm_by=current_merchant.id
     if @partcheck.save
-      @order=@partcheck.order
+      @order=Order.hostings.find(@partcheck.order_id)
       @order.update_attribute(:partcheck_order, true)
       redirect_to merchants_hosting_order_path(@order)
     else
