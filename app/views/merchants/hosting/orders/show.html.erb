@@ -53,10 +53,12 @@
 
 <div class="pull-right">
   <%= link_to "修改派单备注", remark_merchants_hosting_order_path(@order), class: "btn btn-primary btn-sm" %>
-  <% if @order.partcheck_order? then%>
-    <%= link_to "部分核销(已有)", merchants_hosting_order_partchecks_path(@order), class: "btn btn-danger" %>
-  <% else %>
-    <%= link_to "部分核销", merchants_hosting_order_partchecks_path(@order), class: "btn btn-primary" %>
+  <% if @order.assigned? && current_merchant.admin? %>
+    <% if @order.partcheck_order? then%>
+      <%= link_to "部分核销(已有)", merchants_hosting_order_partchecks_path(@order), class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "部分核销", merchants_hosting_order_partchecks_path(@order), class: "btn btn-primary" %>
+    <% end %>
   <% end %>
 </div>
 
