@@ -56,7 +56,6 @@ Rails.application.routes.draw do
 
     namespace :hosting do
       resources :orders, concerns: [:pick, :review] do
-        resources :partchecks
         member do
           match :refund, via: [:get, :patch]
           post :confirm
@@ -75,6 +74,7 @@ Rails.application.routes.draw do
         end
       end
       resources :numbers
+      resources :partchecks
     end
 
     resources :merchants
