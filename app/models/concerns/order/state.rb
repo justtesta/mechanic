@@ -193,7 +193,7 @@ class Order < ApplicationRecord
 
       def finish!
         errors.add(:base, "订单状态不对，是否已经与客服确认完工")
-        return false unless working?
+        return false unless working?||paid?
         if !mobile? && !mechanic_attach_1.present?
           errors.add(:mechanic_attach_1, "网页端派单请上传车主短信照片")
           return false
