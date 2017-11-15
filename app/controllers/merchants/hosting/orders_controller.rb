@@ -53,6 +53,18 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
     end
   end
 
+  def partcheck
+    set_redirect_referer :partcheck_order
+  end
+
+  def add_partcheck
+    if @order.update_attributes(remark_order_params)
+      redirect! :remark_order, current_order_path
+    else
+      render :remark
+    end
+  end
+
   def automatic
     Order.hostings.unassigneds.where("skill_cd=28 or skill_cd=29 or skill_cd=42 or skill_cd=9 or skill_cd=34 or skill_cd=44 ").each do |unassigned_order_klass|
        unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
