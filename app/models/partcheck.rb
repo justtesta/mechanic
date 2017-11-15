@@ -1,5 +1,5 @@
 class Partcheck < ApplicationRecord
-	belongs_to :orders
+	belongs_to :order
 
 	def default_new default_order
 		self.new
