@@ -268,3 +268,10 @@ zh-CN:
         shop_name: 预约技师
         created_at: 生成时间
         updated_at: 核消时间
+      partcheck:
+        quoted_price: 价格
+        quantity: 数量
+        mechanic_income: 技师价格
+        procedure_price: 手续费
+        profit: 利润
+        confirm_by: 确认员工
