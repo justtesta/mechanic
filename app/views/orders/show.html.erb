@@ -65,7 +65,7 @@
     <% case @order.state %>
     <% when :paid %>
       <%= link_to "开始服务", work_order_path(@order), class: "btn btn-block btn-positive" %>
-    <% when :working %>
+    <% when :paid||:working %>
       <h5>核销成功、上传照片后别忘了点击 “服务完工” 提交哦。</h5><br>
       <%= simple_form_for(@order, url: finish_order_path(@order)) do |f| %>
 	  	 <%= f.simple_fields_for :numbers do |ff| %>
