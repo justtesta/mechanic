@@ -13,7 +13,7 @@
 
   <%= bootstrap_simple_form_for([ :merchants, :hosting, @partcheck ]) do |f| %>
       <%= f.error_messages %>
-      <%= f.hidden_fiel :order_id %>
+      <%= f.hidden_field :order_id %>
       <%= f.input :quoted_price %>
       <%= f.input :quantity %>
       <%= f.input :mechanic_income %>
