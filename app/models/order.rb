@@ -312,7 +312,7 @@ class Order < ApplicationRecord
   end
 
   def out_numbers
-    numbers.out_left_number.join(",")
+    self.numbers.map {|n| n.out_left_number }.join("、")
   end
 
 end
