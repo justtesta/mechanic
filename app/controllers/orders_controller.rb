@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @state = if %w(paids_and_workings  settleds confirmings).include? params[:state]
         params[:state].to_sym
       else
-        :paids
+        :paids_and_workings
       end
     @orders = order_klass.send(@state)
   end
