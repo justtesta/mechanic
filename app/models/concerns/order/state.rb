@@ -72,12 +72,13 @@ class Order < ApplicationRecord
         true
       end
 
-      def repick! mechanic
+      def repick! mechanic,repick_merchant_id=0
         # Only available and non-setted orders can repick mechanic
         return false unless state_cd > AVAILABLE_GREATER_THAN && state_cd <= SETTLED_GREATER_THAN
         original_mechanic = self.mechanic
         update_state(:paid)
         update_attribute(:mechanic, mechanic)
+        update_attribute(:repick_by, repick_merchant_id)
         Weixin.send_pay_order_message(self)
         SMS.send_pay_order_message(self)
 
