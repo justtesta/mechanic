@@ -3,6 +3,9 @@ class Number < ApplicationRecord
   def left_number
     pwd_number_default[0,9]
   end
+  def out_left_number
+    "#{left_number}***"
+  end
   def right_number
     pwd_number_default[9,3]
   end

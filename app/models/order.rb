@@ -311,4 +311,8 @@ class Order < ApplicationRecord
     "#{refunded_at.strftime("%Y%m%d")}#{"%06d" % id}"
   end
 
+  def out_numbers
+    numbers.out_left_number.join(",")
+  end
+
 end

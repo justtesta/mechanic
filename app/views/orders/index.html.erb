@@ -47,6 +47,7 @@
             <p>成交价格：<%= order.mechanic_income %> 元 <%= "【线下交易】" if order.offline? %></p>
             <% unless order.mobile? %>
             <p>联系方式：<%= order.contact_nickname %> <%= order.contact_mobile %></p>
+            <p>消费码：<%= order.contact_nickname %> <%= order.contact_mobile %></p>
             <% end %>
           <% else %>
             <p>成交价格：<%= order.price %> 元</p>
