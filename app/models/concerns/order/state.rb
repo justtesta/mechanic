@@ -193,7 +193,7 @@ class Order < ApplicationRecord
 
       def finish!
         unless(working?||paid?) then
-          errors.add(:base, "订单状态不对，是否已经与客服确认完工")
+          errors.add(:base, "订单状态不对，是否已经由客服确认完工")
           return false
         end
         if !mobile? && !mechanic_attach_1.present?
