@@ -11,7 +11,8 @@
 
       <%= f.input :mobile %>
       <% if @mechanic.id&&@mechanic.id>0 %>
-        <%= link_to "清除微信关联", clear_weixin_admin_user_path(@mechanic), class: "btn btn-default btn-xs", data: {confirm: "您确定要清除微信关联？" } %>
+        <%= link_to "清除微信关联", clear_weixin_admin_user_path(@mechanic), class: "btn btn-default btn-xs", data: {confirm: "您确定要清除微信关联？原关联微信将需要重新登陆，提现微信将清除。" } %>
+        <%= link_to "清除提现微信", clear_withdrawal_weixin_admin_user_path(@mechanic), class: "btn btn-default btn-xs", data: {confirm: "您确定要清除提现微信？第一个进入公众号‘我的’的人，将绑定为提现微信" } %>
       <% end %>
       <%= f.input :weixin_openid , input_html: { disabled: "disabled" } %>
      <%= f.input :nickname %>

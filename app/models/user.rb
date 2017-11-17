@@ -86,4 +86,9 @@ class User < ApplicationRecord
     self.update_attributes({:persistence_token=>nil,:weixin_openid=>nil})
   end
 
+  def clear_withdrawal_weixin!
+    self.update_attribute(:weixin_openid,nil)
+  end
+  
+
 end

@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :redirect_user, only: [ :balance, :update_balance, :clear_weixin ]
+  before_action :redirect_user, only: [ :balance, :update_balance, :clear_weixin, :clear_withdrawal_weixin ]
   before_action :find_user, except: [ :index ]
 
   def index
@@ -39,6 +39,12 @@ class Admin::UsersController < Admin::ApplicationController
     flash[:success] = "成功清除微信关联"
     redirect_to_referer!
   end 
+
+  def clear_withdrawal_weixin
+    @user.clear_withdrawal_weixin!
+    flash[:success] = "成功清除提现微信"
+    redirect_to_referer!    
+  end
 
   private
 

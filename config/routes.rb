@@ -251,7 +251,7 @@ Rails.application.routes.draw do
       member do
         post :mechanicize
 
-        get :balance,:clear_weixin
+        get :balance,:clear_weixin,:clear_withdrawal_weixin
         patch :balance, action: :update_balance
       end
     end
