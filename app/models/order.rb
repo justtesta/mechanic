@@ -321,7 +321,6 @@ class Order < ApplicationRecord
     else
       self.repick_merchant_name
     end
-
   end
 
 end
