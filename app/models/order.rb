@@ -13,7 +13,7 @@ class Order < ApplicationRecord
   belongs_to :merchant
   has_one :mechanic_user, through: :mechanic, source: :user
   has_one :store, through: :merchant
-  #belongs_to :confirm_merchant, class_name: "Merchant", foreign_key: "confirm_by" 
+  #belongs_to :repick_merchant, class_name: "Merchant", foreign_key: "repick_by" 
 
   belongs_to :bid
   has_many :bids
@@ -313,6 +313,15 @@ class Order < ApplicationRecord
 
   def out_numbers
     self.numbers.map {|n| n.out_left_number }.join("、")
+  end
+
+  def out_repick_merchant_name
+    if self.automatic? 
+      "自动派单"
+    else
+      self.repick_merchant_name
+    end
+
   end
 
 end
