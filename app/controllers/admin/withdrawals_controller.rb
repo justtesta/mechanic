@@ -52,7 +52,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
     else
       flash[:error] = "提现状态错误！"
     end
-    redirect_to_referer!
+    render :index
   end
 
   def update_settings
