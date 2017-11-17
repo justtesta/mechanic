@@ -72,13 +72,14 @@ class Order < ApplicationRecord
         true
       end
 
-      def repick! mechanic,repick_merchant_id=0
+      def repick! mechanic,repick_merchant_id=0,_repick_by_merchant_name=nil
         # Only available and non-setted orders can repick mechanic
         return false unless state_cd > AVAILABLE_GREATER_THAN && state_cd <= SETTLED_GREATER_THAN
         original_mechanic = self.mechanic
         update_state(:paid)
         update_attribute(:mechanic, mechanic)
         update_attribute(:repick_by, repick_merchant_id)
+        update_attribute(:repick_by_merchant_name, _repick_by_merchant_name)
         Weixin.send_pay_order_message(self)
         SMS.send_pay_order_message(self)
 
@@ -103,9 +104,8 @@ class Order < ApplicationRecord
         return false if mechanic.user.hidden?
         update_attribute(:remark, self.pre_remark) if self.pre_remark
         update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price       
-        repick! mechanic
+        repick! mechanic,0,"自动派单"
         update_attribute(:automatic, true)
-        update_attribute(:repick_by_merchant_name, "自动派单")
       end
 
 
