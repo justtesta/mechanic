@@ -96,7 +96,7 @@ class User < ApplicationRecord
 
   def weixin_nickname
     
-     Weixin.weixin_authorize_client_user(self.weixin_openid) 
+     Weixin.weixin_authorize_client_user(self.weixin_openid).nickname
 
   end
   

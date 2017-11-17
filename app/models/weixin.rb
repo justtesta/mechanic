@@ -199,7 +199,6 @@ module Weixin
     end
 
     def weixin_authorize_client_user weixin_openid
-      byebug
       response = Client.user weixin_openid      
       raise response.en_msg if response.is_a?(WeixinAuthorize::ResultHandler) && response.code != 0
       response
