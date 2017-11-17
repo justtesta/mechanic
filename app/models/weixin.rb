@@ -199,7 +199,6 @@ module Weixin
     end
 
     def weixin_authorize_client_user weixin_openid
-      Rails.logger.info "  Requested WeixinAuthorize API #{method} with params #{args.join(", ")}"
       byebug
       response = Client.user weixin_openid      
       raise response.en_msg if response.is_a?(WeixinAuthorize::ResultHandler) && response.code != 0
