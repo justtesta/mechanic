@@ -36,7 +36,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
       end
       @order.update_attribute(:procedure_price, procedure_price) if procedure_price
       mechanic = Mechanic.find(mechanic_id)
-      @order.repick! mechanic,current_merchant.id,
+      @order.repick! mechanic,current_merchant.id,current_merchant.nickname
       redirect_to current_order_path
     else
       @order.remark = params[:order][:remark]
