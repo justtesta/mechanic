@@ -93,6 +93,10 @@ class User < ApplicationRecord
   def clear_withdrawal_weixin!
     self.update_attribute(:weixin_openid,nil)
   end
+
+  def weixin_nickname
+     Weixin.weixin_authorize_client_user self.weixin_openid if self.weixin_openid.present
+  end
   
 
 end

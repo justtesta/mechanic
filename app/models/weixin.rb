@@ -198,6 +198,15 @@ module Weixin
       Rails.logger.error "  Error occurred when requesting WeixinAuthorize API: #{e.message}"
     end
 
+    def weixin_authorize_client_user weixin_openid
+      Rails.logger.info "  Requested WeixinAuthorize API #{method} with params #{args.join(", ")}"
+      response = Client.user weixin_openid
+      raise response.en_msg if response.is_a?(WeixinAuthorize::ResultHandler) && response.code != 0
+      response
+    rescue Exception => e
+      Rails.logger.error "  Error occurred when requesting WeixinAuthorize API: #{e.message}"
+    end
+
     def method_missing method, *args
       if Client.respond_to? method
         weixin_authorize_client_send method, *args
