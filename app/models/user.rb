@@ -94,11 +94,4 @@ class User < ApplicationRecord
     self.update_attribute(:weixin_openid,nil)
   end
 
-  def weixin_nickname
-    
-     Weixin.weixin_authorize_client_user(self.weixin_openid).nickname
-
-  end
-  
-
 end
