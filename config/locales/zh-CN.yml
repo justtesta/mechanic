@@ -94,6 +94,7 @@ zh-CN:
         balance_update_amount: 余额变动金额
         balance_update_description: 余额变动说明
         systempay?: 系统支付
+        systempay_count: 大于2元系统支付
       mechanic:
         unique_id: 店铺编号
         user_nickname: 名称

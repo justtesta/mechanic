@@ -82,6 +82,10 @@ class User < ApplicationRecord
     systempay && ["1", 1, true].include?(systempay)
   end
 
+  def systempay_count
+    self.withdrawals.where("amount>2 and state_cd=2 and pay_type_cd=8").count
+  end
+
   def clear_weixin!
     self.update_attributes({:persistence_token=>nil,:weixin_openid=>nil})
   end
