@@ -1,6 +1,9 @@
  <%
 	numbers_json=@order.numbers.as_json(only: %w(id status  pwd_number ))
  %>
+ <style> 
+.attr_hosting_remark{ color:#00F} 
+</style> 
 <h3 class="page-header">
   订单详情 #<%= @order.id %>
   <small>
