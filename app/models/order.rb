@@ -315,11 +315,11 @@ class Order < ApplicationRecord
     self.numbers.map {|n| n.out_left_number }.join("、")
   end
 
-  def out_repick_merchant_name
+  def out_repick_by_merchant_name
     if self.automatic? 
       "自动派单"
     else
-      self.repick_merchant_name
+      self.repick_by_merchant_name
     end
   end
 

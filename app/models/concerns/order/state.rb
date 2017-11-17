@@ -105,6 +105,7 @@ class Order < ApplicationRecord
         update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price       
         repick! mechanic
         update_attribute(:automatic, true)
+        update_attribute(:repick_by_merchant_name, "自动派单")
       end
 
 
