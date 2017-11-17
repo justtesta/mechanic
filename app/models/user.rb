@@ -95,7 +95,7 @@ class User < ApplicationRecord
   end
 
   def weixin_nickname
-    byebug
+    
      Weixin.weixin_authorize_client_send(:user,self.weixin_openid) 
 
   end
