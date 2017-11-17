@@ -95,9 +95,9 @@ class User < ApplicationRecord
   end
 
   def weixin_nickname
-    if self.weixin_openid.present?
-     Weixin.weixin_authorize_client_user self.weixin_openid 
-    end
+    
+     Weixin.weixin_authorize_client_user(self.weixin_openid) if self.weixin_openid.present?
+
   end
   
 
