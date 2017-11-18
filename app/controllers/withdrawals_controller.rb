@@ -16,11 +16,13 @@ class WithdrawalsController < ApplicationController
     _current_weixin_openid = params[:withdrawal][:current_weixin_openid]
     if(_current_weixin_openid!=@withdrawal.user.weixin_openid)
       flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！"
+      render :new
       return false
     end
     _mobile = params[:withdrawal][:mobile]
     if(_mobile!=@withdrawal.user.mobile)
       flash[:error] = "提现失败：与预设的负责人手机号不符！"
+      render :new
       return false
     end
     if @withdrawal.save
