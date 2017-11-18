@@ -19,9 +19,15 @@ class WithdrawalsController < ApplicationController
       render :new
       return false
     end
+     _mobile = params[:withdrawal][:mobile]
+    if(_mobile.blank?)
+      flash[:error] = "提现失败：负责人手机号不能为空！"
+      render :new
+      return false
+    end
     _mobile = params[:withdrawal][:mobile]
     if(_mobile!=@withdrawal.user.mobile)
-      flash[:error] = "提现失败：与预设的负责人手机号不符！"
+      flash[:error] = "提现失败：与预设的负责人手机号不符！预设的手机号为#{@withdrawal.out_left_mobile},您填写的为#{_mobile}"
       render :new
       return false
     end
