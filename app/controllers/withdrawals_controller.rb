@@ -1,10 +1,13 @@
 class WithdrawalsController < ApplicationController
   before_action :find_withdrawals_by_state
+  before_action :current_weixin_openid!, only: [ :new]
 
   helper_method :withdrawal_klass
 
+
   def new
     @withdrawal = withdrawal_klass.new
+    @withdrawal.current_weixin_openid=@openid
   end
 
   def create
@@ -33,6 +36,16 @@ class WithdrawalsController < ApplicationController
     end
 
     def withdrawal_params
-      params.require(:withdrawal).permit(:amount)
+      params.require(:withdrawal).permit(:amount,:current_weixin_openid)
+    end
+
+    def current_weixin_openid!
+      if request.get? && weixin? && current_user 
+        if params.key? "code"
+          @openid = Weixin.get_oauth_access_token(params["code"]).result["openid"]
+        else
+          redirect_to Weixin.authorize_url(request.url)
+        end
+      end
     end
 end

@@ -53,4 +53,18 @@ class Withdrawal < ApplicationRecord
     update_timestamp :paid_at, true, force
     "#{paid_at.strftime("%Y%m%d")}#{"%06d" % id}"
   end
+
+  def current_weixin_openid
+  end
+
+  def mobile    
+  end
+
+  def left_mobile
+    self.user.mobile[0,6]
+  end
+
+  def out_left_mobile
+    "#{left_mobile}*****"
+  end
 end

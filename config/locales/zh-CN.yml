@@ -247,6 +247,7 @@ zh-CN:
         paid_at: 提现日期
         state: 状态
         pay_type: 支付方式
+        mobile: 预留手机号
       recharge:
         user: 用户
         store: 店铺
