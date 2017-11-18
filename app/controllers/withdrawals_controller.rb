@@ -14,25 +14,27 @@ class WithdrawalsController < ApplicationController
     
     @withdrawal = withdrawal_klass.new(withdrawal_params)
     
-     _mobile = params[:withdrawal][:mobile]
-    if(_mobile.blank?)
-      flash[:error] = "提现失败：负责人手机号不能为空！"
-      render :new
-      return false
+    if @withdrawal.user.systempay_count<3
+       _mobile = params[:withdrawal][:mobile]
+      if(_mobile.blank?)
+        flash[:error] = "提现失败：负责人手机号不能为空！"
+        render :new
+        return false
+      end
+      if(_mobile!=@withdrawal.user.mobile)
+        flash[:error] = "提现失败：与预设的负责人手机号不符！预设的手机号为#{@withdrawal.out_left_mobile},您填写的为#{_mobile}"
+        render :new
+        return false
+      end
     end
-    _mobile = params[:withdrawal][:mobile]
-    if(_mobile!=@withdrawal.user.mobile)
-      flash[:error] = "提现失败：与预设的负责人手机号不符！预设的手机号为#{@withdrawal.out_left_mobile},您填写的为#{_mobile}"
-      render :new
-      return false
-    end
+    
     _current_weixin_openid = params[:withdrawal][:current_weixin_openid]
     if(_current_weixin_openid!=@withdrawal.user.weixin_openid)
       flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！"
       render :new
       return false
     end
-    
+
     if @withdrawal.save
       flash[:success] = "提现申请已提交，等待管理员审核..."
       redirect_to user_path
