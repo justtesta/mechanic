@@ -7,7 +7,7 @@ class WithdrawalsController < ApplicationController
 
   def new
     @withdrawal = withdrawal_klass.new
-    @withdrawal.current_weixin_openid=@openid
+    @withdrawal.current_weixin_openid = @openid
   end
 
   def create
