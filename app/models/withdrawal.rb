@@ -55,6 +55,7 @@ class Withdrawal < ApplicationRecord
   end
 
   def current_weixin_openid
+    "11"
   end
 
   def mobile    
