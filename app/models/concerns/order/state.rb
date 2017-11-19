@@ -245,6 +245,15 @@ class Order < ApplicationRecord
         true
       end
 
+      def automatic_confirm!
+        return false if offline?
+        return false unless self.user.selt_withdrawal? 
+        return false if self.numbers.checked_numbers==0
+        return false if self.numbers.unchecked_numbers>0 
+        confirm! 0
+        update_attribute(:automatic_confirm, true)
+      end
+
       def withdrawal! confirm_merchant_id=0
           return false unless confirming?||working?||paid?
           return false unless assigned?

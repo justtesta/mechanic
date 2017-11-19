@@ -17,7 +17,7 @@ class WithdrawalsController < ApplicationController
     if @withdrawal.user.systempay_count<3
        _mobile = params[:withdrawal][:mobile]
       if(_mobile.blank?)
-        flash[:error] = "提现失败：负责人手机号不能为空！"
+        flash[:error] = "提现失败：预留手机不能为空！"
         render :new
         return false
       end
@@ -27,10 +27,10 @@ class WithdrawalsController < ApplicationController
         return false
       end
     end
-    
+
     _current_weixin_openid = params[:withdrawal][:current_weixin_openid]
     if(_current_weixin_openid!=@withdrawal.user.weixin_openid)
-      flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！"
+      flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！如果因为网页打开过长时间或缓存，请重新进入面页。"
       render :new
       return false
     end
@@ -64,10 +64,15 @@ class WithdrawalsController < ApplicationController
 
     def current_weixin_openid!
       if request.get? && weixin? && current_user 
-        if params.key? "code"
-          @openid = Weixin.get_oauth_access_token(params["code"]).result["openid"]
+        if(session[:openid].present)
+          @openid = session[:openid]
         else
-          redirect_to Weixin.authorize_url(request.url)
+          if params.key? "code"
+            @openid = Weixin.get_oauth_access_token(params["code"]).result["openid"]
+            session[:openid] = @openid 
+          else
+            redirect_to Weixin.authorize_url(request.url)
+          end
         end
       end
     end
