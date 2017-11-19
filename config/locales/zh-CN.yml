@@ -65,6 +65,7 @@ zh-CN:
       confirm: 完工并提现异常1
       withdrawal: 完工并提现
       before_withdrawal: 完工并提现异常2
+      before_confirm_no_withdrawal: 确认完工异常1
     pay_type:
       none: 未知
       system: 系统支付
