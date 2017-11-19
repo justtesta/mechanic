@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117013320) do
+ActiveRecord::Schema.define(version: 20171119142939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -314,6 +314,8 @@ ActiveRecord::Schema.define(version: 20171117013320) do
     t.boolean  "partcheck_order"
     t.integer  "repick_by"
     t.string   "repick_by_merchant_name"
+    t.boolean  "automatic_confirm"
+    t.string   "confirm_by_merchant_name"
     t.index ["bid_id"], name: "index_orders_on_bid_id", using: :btree
     t.index ["cancel_cd"], name: "index_orders_on_cancel_cd", using: :btree
     t.index ["hosting"], name: "index_orders_on_hosting", using: :btree
@@ -479,6 +481,7 @@ ActiveRecord::Schema.define(version: 20171117013320) do
     t.string   "fromsource"
     t.boolean  "userupdate",                                      default: false
     t.boolean  "systempay",                                       default: false
+    t.string   "withdrawal_remark"
     t.index ["host"], name: "index_users_on_host", using: :btree
     t.index ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
     t.index ["role_cd"], name: "index_users_on_role_cd", using: :btree
