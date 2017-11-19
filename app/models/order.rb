@@ -76,6 +76,10 @@ class Order < ApplicationRecord
     automatic && ["1", 1, true].include?(automatic)
   end
 
+  def automatic_confirm?
+    automatic_confirm && ["1", 1, true].include?(automatic_confirm)
+  end
+
   def sendpay?
      ordersign[110]=="1"||ordersign[110]=="3" if ordersign && ordersign.length>120
   end 
@@ -320,6 +324,14 @@ class Order < ApplicationRecord
       "自动派单"
     else
       self.repick_by_merchant_name
+    end
+  end
+
+  def out_confirm_by_merchant_name
+    if self.automatic_confirm?
+      "自动确认"
+    else
+      self.confirm_by_merchant_name
     end
   end
 

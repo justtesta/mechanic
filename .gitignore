@@ -17,6 +17,7 @@
 /tmp
 *.tmp_*
 ok.bat
+gitpull.bat
 .env
 
 # Ignore upload files

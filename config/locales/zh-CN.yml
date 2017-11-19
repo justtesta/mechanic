@@ -230,7 +230,8 @@ zh-CN:
         profit: 利润
         confirm_by: 确认员
         out_repick_by_merchant_name: 派单员
-      bid:
+        out_confirm_by_merchant_name: 完工确认员
+        automatic_confirm?: 自动完工
       bid:
         markup_price: 加价
       skill:

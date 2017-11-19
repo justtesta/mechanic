@@ -67,6 +67,9 @@
       <%= i.attribute :price %>
       <%= i.attribute :offline? %>
       <%= i.attribute :mechanic_nickname %>
+      <% if  @state == :finisheds %>
+      <%= i.attribute :automatic_confirm? %>
+      <% end %>
       <%= i.actions :show %>
     <% end %>
     <script type="text/javascript">
