@@ -6,7 +6,12 @@ class Admin::MetricsController < Admin::ApplicationController
         @mechanic = Mechanic.where(user_id: params[:mechanic_id]).first!
         Metric.where(user_id: params[:mechanic_id])
       else
-        Metric.all
+      	if params[:merchant_id]
+	        @merchant = Merchant.where(user_id: params[:merchant_id]).first!
+	        Metric.where(user_id: params[:merchant_id])
+	    else
+	      	Metric.all
+	    end
       end
   end
 
