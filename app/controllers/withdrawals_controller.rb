@@ -63,13 +63,13 @@ class WithdrawalsController < ApplicationController
     end
 
     def current_weixin_openid!
-      if(session[:openid].present)
+      if(session[:openid].present?)
           @openid = session[:openid]
       else
           session[:openid] ="ddd"
       end
       if request.get? && weixin? && current_user 
-        if(session[:openid].present)
+        if(session[:openid].present?)
           @openid = session[:openid]
         else
           if params.key? "code"
