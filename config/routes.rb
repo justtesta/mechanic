@@ -270,7 +270,7 @@ Rails.application.routes.draw do
     end
     resources :merchants, concerns: [:confirm] do
       resources :orders
-
+      resources :metrics
       member do
         post :active
         post :inactive
