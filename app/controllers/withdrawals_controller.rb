@@ -69,11 +69,23 @@ class WithdrawalsController < ApplicationController
         else
           if params.key? "code"
             @openid = Weixin.get_oauth_access_token(params["code"]).result["openid"]
+            if @openid.blank?
+              if(session[:re_authorize].present?)
+                Log.create(data:"opendid is blank2")
+                flash[:error] = "获取openid失败，请关闭面页，重新从公众号-我的-进入。"
+              else
+                session[:re_authorize]=true
+                Log.create(data:"opendid is blank")
+                redirect_to Weixin.authorize_url(new_withdrawal_path)
+              end
+            end
             session[:openid] = @openid 
           else
             redirect_to Weixin.authorize_url(request.url)
           end
         end
+      else
+         flash[:error] = "获取openid失败，请截图发给客服，让客服转发技术人员解决！"
       end
     end
 end
