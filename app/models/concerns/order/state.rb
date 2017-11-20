@@ -210,15 +210,12 @@ class Order < ApplicationRecord
         Rails.logger.error "#{error.class}: #{error.message} from Order#finish!"
       end
 
-      def confirm! confirm_merchant_id=0
+      def confirm! confirm_merchant_id=0,_confirm_by_merchant_name
           return false unless confirming?||working?||paid?
           return false unless assigned?
           return false unless ConfirmOrder.create(order_id: self.id).valid?
-          update_attribute(:finish_working_at, Time.now)
           update_state(:finished)
-          update_attribute(:confirm_type, Order.confirm_types[:before_confirm_no_withdrawal])
-          update_attribute(:confirm_by, confirm_merchant_id)
-        
+          update_attributes({:finish_working_at=>Time.now,:confirm_type=>Order.confirm_types[:before_confirm_no_withdrawal],:confirm_by=>confirm_merchant_id,:confirm_by_merchant_name=>_confirm_by_merchant_name})
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)
@@ -250,7 +247,7 @@ class Order < ApplicationRecord
         return false unless self.user.selt_withdrawal? 
         return false if self.numbers.checked_numbers==0
         return false if self.numbers.unchecked_numbers>0 
-        confirm! 0
+        confirm! 0,"自动确认"
         update_attribute(:automatic_confirm, true)
       end
 
