@@ -210,7 +210,7 @@ class Merchants::OrdersController < Merchants::ApplicationController
   end
 
   def confirmwithdrawal
-    if @order.withdrawal! current_merchant.id
+    if @order.withdrawal! current_merchant.id,current_merchant.nickname
       flash[:notice] = "订单确认完工！"
     else
       flash[:error] = "订单状态错误,请检查是否其它管理员已经支付！"
