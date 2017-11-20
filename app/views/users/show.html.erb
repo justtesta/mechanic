@@ -1,7 +1,7 @@
 <%= content_for :title do %>
   我的
 <% end %>
-
+<% session[:openid] = nil %>
 <div class="jumbotron vertical-parent">
   <div class="text-center vertical-middle">
     <%= link_to edit_user_path do %>
