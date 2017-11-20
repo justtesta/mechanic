@@ -314,7 +314,7 @@ ActiveRecord::Schema.define(version: 20171119142939) do
     t.boolean  "partcheck_order"
     t.integer  "repick_by"
     t.string   "repick_by_merchant_name"
-    t.boolean  "automatic_confirm"
+    t.boolean  "automatic_confirm",                            default: false
     t.string   "confirm_by_merchant_name"
     t.index ["bid_id"], name: "index_orders_on_bid_id", using: :btree
     t.index ["cancel_cd"], name: "index_orders_on_cancel_cd", using: :btree
