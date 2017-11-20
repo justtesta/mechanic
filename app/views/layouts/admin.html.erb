@@ -74,7 +74,16 @@
                 <% end %>
               <% end %>
             </li>
-            <li class="<%= "active" if controller_name == "withdrawals" %>"><%= link_to "账目提现", admin_withdrawals_path %></li>
+            <li class="<%= "active" if controller_name == "withdrawals" %>">
+              <%= link_to  admin_withdrawals_path do%>
+              账目提现
+                <% pending_withdrawals_count = Withdrawal.pendings.count %>
+                <% if pending_withdrawals_count > 0 %>
+                  <span class="badge"><%= pending_withdrawals_count %></span>
+                <% end %>
+              <% end %>
+            
+            </li>
             <li class="<%= "active" if controller_path == "admin/administrators" and action_name != "password" %>"><%= link_to "管理员", admin_administrators_path %></li>
           <% end %>
 
