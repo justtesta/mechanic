@@ -13,13 +13,20 @@ class WithdrawalsController < ApplicationController
   def create
     
     @withdrawal = withdrawal_klass.new(withdrawal_params)
-    _current_weixin_openid = params[:withdrawal][:current_weixin_openid]    
-    if(_current_weixin_openid!=@withdrawal.user.weixin_openid)
-      flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！如果因为网页打开过长时间或缓存，请重新进入面页。当前微信#{_current_weixin_openid}，提现微信#{@withdrawal.user.weixin_openid[0,10]}"
+    _current_weixin_openid = params[:withdrawal][:current_weixin_openid]  
+    if(_current_weixin_openid.blank?)  
+      flash[:error] = "提现失败：当前微信为空！请关闭面页，重新从公众号-我的-进入。"
       render :new
       return false
     end
+    if(_current_weixin_openid!=@withdrawal.user.weixin_openid)
+      flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！当前微信#{_current_weixin_openid}，提现微信#{@withdrawal.user.weixin_openid[0,10]}"
+      render :new
+      return false
+    end
+
     @openid=_current_weixin_openid
+
     if @withdrawal.user.systempay_count<3
        _mobile = params[:withdrawal][:mobile]
       if(_mobile.blank?)
@@ -33,8 +40,6 @@ class WithdrawalsController < ApplicationController
         return false
       end
     end
-
-
 
     if @withdrawal.save
       flash[:success] = "提现申请已提交，等待管理员审核..."
@@ -70,16 +75,6 @@ class WithdrawalsController < ApplicationController
         else
           if params.key? "code"
             @openid = Weixin.get_oauth_access_token(params["code"]).result["openid"]
-            if @openid.blank?
-              if(session[:re_authorize].present?)
-                Log.create(data:"opendid is blank2")
-                flash[:error] = "获取openid失败，请关闭面页，重新从公众号-我的-进入。"
-              else
-                session[:re_authorize]=true
-                Log.create(data:"opendid is blank")
-                redirect_to Weixin.authorize_url(new_withdrawal_path)
-              end
-            end
             session[:openid] = @openid 
           else
             redirect_to Weixin.authorize_url(request.url)
