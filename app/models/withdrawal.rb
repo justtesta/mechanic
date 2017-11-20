@@ -65,6 +65,6 @@ class Withdrawal < ApplicationRecord
   end
 
   def out_left_mobile
-    "#{left_mobile}*****"
+    "请填写#{left_mobile}*****开头的手机号"
   end
 end
