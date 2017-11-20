@@ -247,6 +247,7 @@ class Order < ApplicationRecord
         return false unless self.user.selt_withdrawal? 
         return false if self.numbers.checked_numbers==0
         return false if self.numbers.unchecked_numbers>0 
+        return false if self.hosting_remark.present?
         confirm! 0,"自动确认"
         update_attribute(:automatic_confirm, true)
       end
@@ -257,7 +258,7 @@ class Order < ApplicationRecord
           return false unless ConfirmOrder.create(order_id: self.id).valid?
           update_state(:finished)
           update_attributes({:finish_working_at=>Time.now,:confirm_type=>Order.confirm_types[:before_confirm_no_withdrawal],:confirm_by=>confirm_merchant_id,:confirm_by_merchant_name=>_confirm_by_merchant_name})
-              
+
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)

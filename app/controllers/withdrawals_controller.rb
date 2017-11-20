@@ -13,7 +13,13 @@ class WithdrawalsController < ApplicationController
   def create
     
     @withdrawal = withdrawal_klass.new(withdrawal_params)
-    
+    _current_weixin_openid = params[:withdrawal][:current_weixin_openid]    
+    if(_current_weixin_openid!=@withdrawal.user.weixin_openid)
+      flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！如果因为网页打开过长时间或缓存，请重新进入面页。当前微信#{_current_weixin_openid}，提现微信#{@withdrawal.user.weixin_openid[0,10]}"
+      render :new
+      return false
+    end
+    @openid=_current_weixin_openid
     if @withdrawal.user.systempay_count<3
        _mobile = params[:withdrawal][:mobile]
       if(_mobile.blank?)
@@ -28,12 +34,7 @@ class WithdrawalsController < ApplicationController
       end
     end
 
-    _current_weixin_openid = params[:withdrawal][:current_weixin_openid]
-    if(_current_weixin_openid!=@withdrawal.user.weixin_openid)
-      flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！如果因为网页打开过长时间或缓存，请重新进入面页。当前微信#{_current_weixin_openid}，提现微信#{@withdrawal.user.weixin_openid[0,10]}"
-      render :new
-      return false
-    end
+
 
     if @withdrawal.save
       flash[:success] = "提现申请已提交，等待管理员审核..."
