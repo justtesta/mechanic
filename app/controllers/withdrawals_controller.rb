@@ -30,7 +30,7 @@ class WithdrawalsController < ApplicationController
 
     _current_weixin_openid = params[:withdrawal][:current_weixin_openid]
     if(_current_weixin_openid!=@withdrawal.user.weixin_openid)
-      flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！如果因为网页打开过长时间或缓存，请重新进入面页。"
+      flash[:error] = "提现失败：当前微信不是预设的提现到帐微信,请使用首次绑定的微信提现！如果因为网页打开过长时间或缓存，请重新进入面页。当前微信#{_current_weixin_openid}，提现微信#{@withdrawal.user.weixin_openid[0,10]}"
       render :new
       return false
     end
