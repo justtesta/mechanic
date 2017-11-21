@@ -17,7 +17,7 @@
         <%= te user_group.user, :role %>
       <% end %>
       <%= i.attribute :user_nickname %>
-
+      <%= i.attribute :users_count %>
       <% if action_name == "confirmed" %>
         <%= i.actions do |a| %>
           <%= a.action_link :list, url:  admin_mechanics_path(user_group: i.object), method: :get%>
