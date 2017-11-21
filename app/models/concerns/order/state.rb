@@ -244,7 +244,7 @@ class Order < ApplicationRecord
 
       def automatic_confirm!
         return false if offline?
-        return false unless self.user.self_withdrawal? 
+        return false unless self.mechanic.self_withdrawal? 
         return false if self.numbers.checked_numbers==0
         return false if self.numbers.unchecked_numbers>0 
         return false if self.hosting_remark.present?
