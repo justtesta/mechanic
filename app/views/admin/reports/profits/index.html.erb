@@ -1,6 +1,17 @@
 <div class="row">
   <%= render "admin/reports/side_menu" %>
+  <% @end_date = if(params[:end_date]) 
+      Date.parse(params[:end_date])
+    else
+      Date.today 
+    end 
+  %>
+  <form class="form-inline" id="orders_form" ">
+    <div class="form-group">
+      确认完工时间 <input type="text" id="end_date" name="end_date" value="<%=  @end_date %>">
+    </div>
 
+  </form>
   <div class="col-md-10 col-xs-8">
 
     <%= wice_index_for [ :admin, @orders ], class: "table table-hover" do |i| %>
@@ -28,3 +39,33 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+  
+    $( "#end_date" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      defaultDate:'<%=  @end_date %>',//默认日期  
+      dateFormat: 'yy-mm-dd',
+      monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+      monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'],  
+      dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+      dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+      dayNamesMin: ['日','一','二','三','四','五','六'] 
+    });
+
+    var $form = $("#orders_form");
+    $form.prependTo($(".index_for_filter"));
+
+      $('#end_date').on('keypress',function(event){ 
+         if(event.keyCode == 13) 
+         {  
+             $form.submit();
+         }  
+      });
+
+
+  });
+        
+</script>
