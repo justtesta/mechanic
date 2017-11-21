@@ -243,7 +243,6 @@ class Order < ApplicationRecord
       end
 
       def automatic_confirm!
-        byebug
         return false if offline?
         return false unless self.mechanic.self_withdrawal?
         return false if self.numbers.checked_numbers.count==0
