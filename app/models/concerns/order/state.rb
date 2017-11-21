@@ -248,8 +248,9 @@ class Order < ApplicationRecord
         return false if self.numbers.checked_numbers.count==0
         return false if self.numbers.unchecked_numbers.count>0 
         return false if self.hosting_remark.present?
-        confirm! 0,"自动确认"
-        update_attribute(:automatic_confirm, true)
+        if confirm! 0,"自动确认"
+          update_attributes({:automatic_confirm=>true,:confirm_type=>Order.confirm_types[:confirm_no_withdrawal]})
+        end
       end
 
       def withdrawal! confirm_merchant_id=0,_confirm_by_merchant_name=nil
