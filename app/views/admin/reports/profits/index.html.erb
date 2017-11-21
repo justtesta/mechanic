@@ -7,7 +7,7 @@
     end 
     byebug
     if @end_date.present?
-      @orders.where(finish_working_at: (@end_date)..(@end_date+1.day))
+      @orders=@orders.where(finish_working_at: (@end_date)..(@end_date+1.day))
     end
   %>
   <form class="form-inline" id="orders_form" ">
