@@ -5,10 +5,9 @@
     else
       nil 
     end 
-    
+    byebug
     if @end_date.present?
-      byebug
-      @orders.where("finish_working_at > ? AND finish_working_at < ?",@end_date ,@end_date + 1.day)
+      @orders.where(finish_working_at: (@end_date)..(@end_date+1.day))
     end
   %>
   <form class="form-inline" id="orders_form" ">
