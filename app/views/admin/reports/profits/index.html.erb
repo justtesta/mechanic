@@ -1,10 +1,11 @@
 <div class="row">
   <%= render "admin/reports/side_menu" %>
-  <% @end_date = if(params[:end_date]) 
+  <% @end_date = if(params[:end_date].present?) 
       Date.parse(params[:end_date])
     else
       nil 
     end 
+    byebug
     if @end_date.present?
       @orders.where(finish_working_at: (@end_date)..(@end_date+1.day))
     end
