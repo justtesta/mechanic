@@ -246,8 +246,8 @@ class Order < ApplicationRecord
         byebug
         return false if offline?
         return false unless self.mechanic.self_withdrawal?
-        return false if self.numbers.checked_numbers==0
-        return false if self.numbers.unchecked_numbers>0 
+        return false if self.numbers.checked_numbers.count==0
+        return false if self.numbers.unchecked_numbers.count>0 
         return false if self.hosting_remark.present?
         confirm! 0,"自动确认"
         update_attribute(:automatic_confirm, true)
