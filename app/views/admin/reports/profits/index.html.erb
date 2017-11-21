@@ -26,7 +26,7 @@
       <%= i.attribute :price, sortable: "orders.quoted_price" %>
       <%= i.attribute :mechanic_income %>
       <%= i.attribute :profit, sortable: "orders.procedure_price" %>
-      <%= i.attribute :confirm_by, sortable: "orders.confirm_by" %>
+      <%= i.attribute :out_confirm_by_merchant_name, sortable: "orders.confirm_by" %>
       <%= i.attribute :state, sortable: ["orders.state_cd", "orders.cancel_cd", "orders.refund_cd"], filterable: { "orders.state_cd" => Order.states[I18n.t("enums.state").key(params[:search])], "orders.cancel_cd" => Order.cancels[I18n.t("enums.cancel").key(params[:search])], "orders.refund_cd" => Order.refunds[I18n.t("enums.refund").key(params[:search])] } do |order| %>
         <% if order.canceled? %>
           <%= te order, :cancel %>
@@ -60,14 +60,6 @@
 
     var $form = $("#orders_form");
     $form.prependTo($(".index_for_filter"));
-
-      $('#end_date').on('keypress',function(event){ 
-         if(event.keyCode == 13) 
-         {  
-             $form.submit();
-         }  
-      });
-
 
   });
         
