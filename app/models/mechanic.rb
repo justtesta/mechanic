@@ -83,7 +83,7 @@ class Mechanic < ApplicationRecord
     orders.where(user_id: user).exists?
   end
 
-  def selt_withdrawal?
+  def self_withdrawal?
     orders.where(confirm_type_cd: Order.confirm_types[:confirm_no_withdrawal]).exists?
   end
 

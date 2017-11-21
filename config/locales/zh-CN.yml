@@ -128,7 +128,7 @@ zh-CN:
         mechanic_attach_3: 施工车间全景
         mechanic_attach_4: 技师施工图
         mechanic_attach_5: 前台照片
-        selt_withdrawal?: 自助提现
+        self_withdrawal?: 自助提现
 
 
       merchant:
