@@ -58,6 +58,10 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
        unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
        unassigned_order_klass_order.automatic_repick!
     end 
+    Order.hostings.confirmings.where("hosting_remark is null").each do |confirming_order_klass|
+       confirming_order_klass_order=Order.find(confirming_order_klass.id)
+       confirming_order_klass_order.automatic_confirm!
+    end 
     #trigger automatic_repick
   end 
 
