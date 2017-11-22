@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 
   PendingTimeout = 10.minutes
   PayingTimeout = 60.minutes
-  ConfirmingTimeout = 1.days
+  ConfirmingTimeout = 2.days
   FinishedTimeout = 7.days
 
   belongs_to :user
