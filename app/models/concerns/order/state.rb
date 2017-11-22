@@ -256,8 +256,7 @@ class Order < ApplicationRecord
           return false unless confirming?||working?||paid?
           return false unless assigned?
           return false unless ConfirmOrder.create(order_id: self.id).valid?
-          update_state(:finished)
-          update_attributes({:finish_working_at=>Time.now,:confirm_type=>Order.confirm_types[:before_confirm_no_withdrawal],:confirm_by=>confirm_merchant_id,:confirm_by_merchant_name=>_confirm_by_merchant_name})
+          update_attributes({:state=>Order.states[:finished],:finish_working_at=>Time.now,:confirm_type=>Order.confirm_types[:before_withdrawal],:confirm_by=>confirm_merchant_id,:confirm_by_merchant_name=>_confirm_by_merchant_name})
 
         unless offline?
           # Increase balance
