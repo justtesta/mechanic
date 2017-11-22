@@ -59,7 +59,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
        unassigned_order_klass_order.automatic_repick!
        unassigned_order_klass_order.update_attribute(:automatic_repick_check,true)
     end 
-    Order.hostings.confirmings.where("hosting_remark is null and automatic_confirm_check=false").each do |confirming_order_klass|
+    Order.hostings.confirmings.where("(hosting_remark is null or hosting_remark='') and automatic_confirm_check=false").each do |confirming_order_klass|
        confirming_order_klass_order=Order.find(confirming_order_klass.id)
        confirming_order_klass_order.automatic_confirm!
        confirming_order_klass_order.update_attribute(:automatic_confirm_check,true)
