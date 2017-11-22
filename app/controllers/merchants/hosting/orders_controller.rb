@@ -54,13 +54,15 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
   end
 
   def automatic
-    Order.hostings.unassigneds.where("skill_cd=28 or skill_cd=29 or skill_cd=42 or skill_cd=9 or skill_cd=34 or skill_cd=44 ").each do |unassigned_order_klass|
+    Order.hostings.unassigneds.where("(skill_cd=28 or skill_cd=29 or skill_cd=42 or skill_cd=9 or skill_cd=34 or skill_cd=44) and automatic_repick_check=false").each do |unassigned_order_klass|
        unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
        unassigned_order_klass_order.automatic_repick!
+       unassigned_order_klass_order.update_attribute(:automatic_repick_check,true)
     end 
-    Order.hostings.confirmings.where("hosting_remark is null").each do |confirming_order_klass|
+    Order.hostings.confirmings.where("hosting_remark is null and automatic_confirm_check=false").each do |confirming_order_klass|
        confirming_order_klass_order=Order.find(confirming_order_klass.id)
        confirming_order_klass_order.automatic_confirm!
+       confirming_order_klass_order.update_attribute(:automatic_confirm_check,true)
     end 
     #trigger automatic_repick
   end 
