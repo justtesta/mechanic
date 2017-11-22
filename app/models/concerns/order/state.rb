@@ -36,8 +36,8 @@ class Order < ApplicationRecord
       scope :state_scope, -> (state) { where(state_cd: states.value(state)) }
 
       def update_state to
-        Rails.logger.info "  Order##{id} state change: from :#{state} to :#{to}"
         update_attribute(:state, Order.states[to])
+        #Rails.logger.info "  Order##{id} state change: from :#{state} to :#{to}"
       end
 
       def pend!
@@ -214,8 +214,7 @@ class Order < ApplicationRecord
           return false unless confirming?||working?||paid?
           return false unless assigned?
           return false unless ConfirmOrder.create(order_id: self.id).valid?
-          update_state(:finished)
-          update_attributes({:finish_working_at=>Time.now,:confirm_type=>Order.confirm_types[:before_confirm_no_withdrawal],:confirm_by=>confirm_merchant_id,:confirm_by_merchant_name=>_confirm_by_merchant_name})
+          update_attributes({:state=>Order.states[:finished],:finish_working_at=>Time.now,:confirm_type=>Order.confirm_types[:before_confirm_no_withdrawal],:confirm_by=>confirm_merchant_id,:confirm_by_merchant_name=>_confirm_by_merchant_name})
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)
