@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119142939) do
+ActiveRecord::Schema.define(version: 20171120105354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,13 @@ ActiveRecord::Schema.define(version: 20171119142939) do
     t.text     "remark"
     t.index ["mechanic_id"], name: "index_fellowships_on_mechanic_id", using: :btree
     t.index ["user_id"], name: "index_fellowships_on_user_id", using: :btree
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.string   "data"
+    t.string   "logtype"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "mechanics", force: :cascade do |t|
