@@ -8,7 +8,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
 
 
   def index
-    @state = if %w(unassigneds assigneds workings confirmings finisheds unfinisheds emergencys finished_nochecks unfinished_checks).include? params[:state]
+    @state = if %w(unassigneds assigneds workings confirmings finisheds unfinisheds settleds emergencys finished_all_nochecks finished_part_nochecks unfinished_all_checks unfinished_part_checks).include? params[:state]
         params[:state].to_sym
       else
         :unassigneds
