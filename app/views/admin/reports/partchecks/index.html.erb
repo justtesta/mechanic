@@ -1,7 +1,9 @@
 <h3 class="page-header">部分核销</h3>
 
 <div class="row">
-  <div class="col-md-7">
+  <%= render "admin/reports/side_menu" %>
+
+  <div class="col-md-10 col-xs-8">
 	<%= index_for [ :merchants, :hosting, @partchecks ], class: "table table-hover data-tables" do |i| %>
       <%= i.attribute :created_at, format: :short %>
       <%= i.attribute :quoted_price %>
@@ -11,4 +13,5 @@
       <%= i.attribute :remark %>
       <%= i.attribute :confirm_by  %>
     <% end %>
+  </div>
 </div>
