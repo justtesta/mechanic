@@ -42,6 +42,10 @@
       <%= i.attribute :created_at, format: :long %>
       <%= i.attribute :start_working_at, format: :long %>
       <%= i.attribute :finish_working_at, format: :long %>
+      <%= i.attribute :out_repick_by_merchant_name %>
+      <% if @order.settled? %>
+      <%= i.attribute :out_confirm_by_merchant_name %>
+      <% end %>
       <%= i.attribute :remark %>
       <%= i.attribute :merchant_remark %>
       <%= i.attribute :hosting_remark %>
