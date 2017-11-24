@@ -6,7 +6,7 @@
 	    	@order = Order.find(params[:order_id])
 	    	@order.partchecks
 	    else
-	    	Partcheck.all.includes(:users)
+	    	Partcheck.all
 	    end
 
 
