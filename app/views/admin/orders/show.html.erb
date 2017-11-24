@@ -102,3 +102,72 @@
     </div>
   </div>
 <% end %>
+
+
+ <%
+  numbers_json=@order.numbers.as_json(only: %w(id status  pwd_number ))
+ %>
+   <%  @order.numbers.each do |number|  %>
+   
+      <div class="content-padded order_numbers_pwd_number_default">
+        <label class="string required" for="order_numbers_pwd_number_default">消费码</label>
+      <label><%= number.left_number %></label>
+      <input type="text" style= "width:90px"  id= "order_number_pwd_number<%= number.id %>" placeholder= '后三位'/>
+      <input type="button" style= "width:90px" value="核销" class="btn  btn-primary" onclick = "verification(<%= number.id %>,'<%= number.right_number %>');" id="order_number__button<%= number.id %>"/>
+      
+    </div>
+   <% end %>
+  <% end %>
+  <script language="javascript">
+   if(typeof jQuery == 'undefined'){
+     window.alert("没有jquery");
+  }
+  </script>
+  <script type="text/javascript">
+  function  verification(id,right_number){
+    $.getJSON("http://wx.wkt99.com/jos/jdpost.php?jsoncallback=?", { id: id, number: right_number }, function(json) { callback(json,id); });　 
+
+  }
+  function  callback(json,id){
+    if(json.code==0)
+    {
+      $("#order_number__button"+id).val("核销成功");
+      $("#order_number__button"+id).attr("disabled",true); 
+    }
+    else
+    {
+      alert(json.message);
+    }
+  }
+   (function() {
+    var numbersJson = <%= raw numbers_json.to_json %>;
+    
+      
+      $.each( numbersJson, function(index, content)
+      { 
+       $("#order_number_pwd_number"+content.id).val(content.pwd_number);
+       if (content.status == 1) {
+        $("#order_number__button" + content.id).val("核销成功");
+        $("#order_number__button" + content.id).attr("disabled", true);
+       }
+       
+      });
+    })();
+    </script>
+
+
+<% if @order.has_attach? %>
+  <h3 class="page-header">施工凭证 <small>点击施工照片查看原图</small></h3>
+ 
+    
+     
+  <div class="images">
+    <%= link_to @order.mechanic_attach_1.url(:original) do %>
+      <%= image_tag @order.mechanic_attach_1.url(:thumb), class: "img-rounded" %>
+    <% end if @order.mechanic_attach_1.present? %>
+    <%= link_to @order.mechanic_attach_2.url(:original) do %>
+      <%= image_tag @order.mechanic_attach_2.url(:thumb), class: "img-rounded" %>
+    <% end if @order.mechanic_attach_2.present? %>
+  </div>
+  
+<% end %>
