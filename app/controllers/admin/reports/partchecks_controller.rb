@@ -6,10 +6,10 @@
 	    	@order = Order.find(params[:order_id])
 	    	@order.partchecks
 	    else
-	    	Partcheck.all
+	    	Partcheck.all.join("users")
 	    end
 
 
 	end
-	
+
   end
