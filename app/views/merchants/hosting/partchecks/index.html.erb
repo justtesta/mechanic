@@ -20,9 +20,15 @@
       <%= f.input :mechanic_income %>
       <%= f.input :procedure_price %>
       <%= f.input :remark, input_html: { rows: 2 } %>
-      <%= f.button :reset, "清除", class: "btn-primary" %>
+       <input type="button" style= "width:90px" value="清除" class="btn  btn-primary" onclick = "clear_form();" id="clear__button"/>
       <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
     <% end %>
    
   </div>
 </div>
+
+<script language="javascript">
+  function  clear_form(){
+
+}
+</script>
