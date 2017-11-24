@@ -297,6 +297,7 @@ Rails.application.routes.draw do
       resources :finishedprovinces
       resources :dayreports
       resources :profits
+      resources :partchecks
     end
 
     root to: "users#index"

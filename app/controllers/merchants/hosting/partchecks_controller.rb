@@ -2,7 +2,7 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
   before_action :redirect_user_dispatcher
 
   def index
-    @order = Order.hostings.find(params[:order_id])
+    @order = Order.find(params[:order_id])
     @partchecks = @order.partchecks
 
     @partcheck = Partcheck.new
