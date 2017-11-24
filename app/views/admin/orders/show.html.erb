@@ -70,12 +70,12 @@
       <%= i.attribute :sendpay? %>
     <% end %>
     <div class="pull-right">
-      <%= link_to "修改派单备注", remark_merchants_hosting_order_path(@order), class: "btn btn-primary btn-sm", target: :_blank %>
+      <%= link_to "修改派单备注", remark_merchants_hosting_order_path(@order), class: "btn btn-primary btn-sm", target: :new_blank %>
       <% if @order.assigned?  %>
         <% if @order.partcheck_order? then%>
-          <%= link_to "部分核销(已有)", merchants_hosting_order_partchecks_path(@order), class: "btn btn-danger", target: :_blank %>
+          <%= link_to "部分核销(已有)", merchants_hosting_order_partchecks_path(@order), class: "btn btn-danger", target: :new_blank %>
         <% else %>
-          <%= link_to "部分核销", merchants_hosting_order_partchecks_path(@order), class: "btn btn-primary", target: :_blank %>
+          <%= link_to "部分核销", merchants_hosting_order_partchecks_path(@order), class: "btn btn-primary", target: :new_blank %>
         <% end %>
       <% end %>
     </div>
