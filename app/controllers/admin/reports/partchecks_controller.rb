@@ -9,8 +9,7 @@
 	    	Partcheck.all
 	    end
 
-	    @partcheck = Partcheck.new
-	    @partcheck.set_default(@order) 
+
 	end
 	
   end
