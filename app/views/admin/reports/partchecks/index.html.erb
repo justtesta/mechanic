@@ -19,6 +19,9 @@
       <%= i.attribute :procedure_price %>
       <%= i.attribute :remark %>
       <%= i.attribute :confirm_by  %>
+      <%= i.actions do |a| %>
+      <%= a.action_link :show, url: admin_order_path(i.object.order_id) %>
+      <% end %>
     <% end %>
   </div>
 </div>
