@@ -13,7 +13,7 @@
   <%= render "admin/reports/side_menu" %>
   <form class="form-inline" id="partchecks_form" ">
     <div class="form-group">
-      确认完工时间 <input type="text" id="end_date" name="end_date" value="<%=  @end_date %>"><%= submit_tag("Search") %>
+      核销时间 <input type="text" id="end_date" name="end_date" value="<%=  @end_date %>"><%= submit_tag("Search") %>
     </div>
 
   </form>
@@ -57,7 +57,7 @@
 
     var $form = $("#partchecks_form");
     $form.prependTo($("#partchecks_filter"));
-
+    alert($("#partchecks_filter").html) 
   });
         
 </script>
