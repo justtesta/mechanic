@@ -8,7 +8,7 @@ class Admin::Reports::DayreportsController < Admin::ApplicationController
 	    end 
 	    if @end_date.present?
 	      @orders=Order.settleds.where(finish_working_at: (@end_date)..(@end_date+1.day))
-	      @partchecks=@partchecks.where(created_at: (@end_date)..(@end_date+1.day))
+	      @partchecks=Partchecks.where(created_at: (@end_date)..(@end_date+1.day))
 	    end
 
 	    @orders_profit=@orders.map { |e|  e.profit}.sum
