@@ -11,11 +11,22 @@ class Admin::Reports::DayreportsController < Admin::ApplicationController
 	      @partchecks=Partcheck.where(created_at: (@end_date)..(@end_date+1.day))
 	      @confirm_orders=@orders.where(confirm_type_cd:[1,5])
 	      @withdrawal_orders=@orders.where(confirm_type_cd:[2,3,4])
+	      @confirm_partchecks=@partchecks.where(confirm_type_cd:[1,5])
+	      @withdrawal_partchecks=@partchecks.where(confirm_type_cd:[2,3,4])
 	    end
 
 	    @orders_profit=@orders.map { |e|  e.profit}.sum
 	    @partchecks_profit=@partchecks.map { |e|  e.procedure_price}.sum
 	    @profit=@orders_profit+@partchecks_profit
+	    
+	    @confirm_orders_mechanic_income=@confirm_orders.map { |e|  e.mechanic_income}.sum
+	    @confirm_partchecks_mechanic_income=@confirm_partchecks.map { |e|  e.mechanic_income}.sum
+	    @confirm_mechanic_income=@confirm_orders_mechanic_income+@confirm_partchecks_mechanic_income
+
+	    @withdrawal_orders_mechanic_income=@withdrawal_orders.map { |e|  e.mechanic_income}.sum
+	    @withdrawal_partchecks_mechanic_income=@withdrawal_partchecks.map { |e|  e.mechanic_income}.sum
+	    @cwithdrawal_mechanic_income=@withdrawal_orders_mechanic_income+@withdrawal_partchecks_mechanic_income
+
     
     end
 end
