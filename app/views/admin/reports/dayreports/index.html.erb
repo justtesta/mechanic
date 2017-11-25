@@ -12,7 +12,7 @@
   %>
 
   <form class="form-inline" id="reports_form">日报表时间 <input type="text" id="end_date" name="end_date" value="<%=  @end_date %>"> <%= submit_tag("Search") %></form>
- <h5>本日利润元，其中普通利润元、调整利润元。 </h5>
+ <h5>本日利润元，其中普通利润<%= @orders_profit %>元、调整利润元。 </h5>
  <h5>余额增加元，直接支付元。 </h5>
   </div>
 </div>
