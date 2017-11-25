@@ -10,8 +10,7 @@ class Admin::Reports::DayreportsController < Admin::ApplicationController
 	      @orders=Order.settleds.where(finish_working_at: (@end_date)..(@end_date+1.day))
 	    end
 
-	    @orders_profit=@orders.inject{|sum,item| sum+item.profit}
-    	
+	    @orders_profit=@orders.map { |e|  e.profit}.sum
     
     end
 end
