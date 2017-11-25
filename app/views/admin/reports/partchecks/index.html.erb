@@ -22,16 +22,16 @@
 	<%= wice_index_for [ :merchants, :hosting, @partchecks ], class: "table table-hover" do |i| %>
       <%= i.attribute :created_at, format: :short %>
       <%= i.fields_for :order, model: Order do |ii| %>
-          <%= ii.attribute :store_nickname %>
-          <%= ii.attribute :contact_nickname %>
-          <%= ii.attribute :contact_mobile %>
+          <%= ii.attribute :store_nickname, searchable: "orders.store_nickname"  %>
+          <%= ii.attribute :contact_nickname, searchable: "orders.contact_nickname"  %>
+          <%= ii.attribute :contact_mobile, searchable: "orders.contact_mobile"  %>
           <%= ii.attribute :skill %>
       <% end %>
       <%= i.attribute :quoted_price %>
       <%= i.attribute :quantity %>
       <%= i.attribute :mechanic_income %>
       <%= i.attribute :procedure_price %>
-      <%= i.attribute :remark %>
+      <%= i.attribute :remark , searchable: "partchecks.remark" %>
       <%= i.attribute :confirm_by  %>
       <%= i.actions do |a| %>
       <%= a.action_link :show, url: admin_order_path(i.object.order_id) %>
