@@ -27,10 +27,10 @@
           <%= ii.attribute :contact_mobile, searchable: "orders.contact_mobile"  %>
           <%= ii.attribute :skill %>
       <% end %>
-      <%= i.attribute :quoted_price %>
-      <%= i.attribute :quantity %>
+      <%= i.attribute :quoted_price, sortable: "partchecks.quoted_price" %>
+      <%= i.attribute :quantity, sortable: "partchecks.quantity"  %>
       <%= i.attribute :mechanic_income %>
-      <%= i.attribute :procedure_price %>
+      <%= i.attribute :procedure_price, sortable: "partchecks.procedure_price" %>
       <%= i.attribute :remark , searchable: "partchecks.remark" %>
       <%= i.attribute :confirm_by  %>
       <%= i.actions do |a| %>
