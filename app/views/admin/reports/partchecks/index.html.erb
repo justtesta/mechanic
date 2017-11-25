@@ -1,4 +1,13 @@
 <h3 class="page-header">部分核销</h3>
+  <% @end_date = if(params[:end_date].present?) 
+      Date.parse(params[:end_date])
+    else
+      nil 
+    end 
+    if @end_date.present?
+      @partchecks=@partchecks.where(created_at: (@end_date)..(@end_date+1.day))
+    end
+  %>
 
 <div class="row">
   <%= render "admin/reports/side_menu" %>
