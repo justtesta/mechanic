@@ -9,6 +9,8 @@ class Admin::Reports::DayreportsController < Admin::ApplicationController
 	    if @end_date.present?
 	      @orders=Order.settleds.where(finish_working_at: (@end_date)..(@end_date+1.day))
 	      @partchecks=Partcheck.where(created_at: (@end_date)..(@end_date+1.day))
+	      @confirm_orders=@orders.where(confirm_type_cd:[1,5])
+	      @withdrawal_orders=@orders.where(confirm_type_cd:[2,3,4])
 	    end
 
 	    @orders_profit=@orders.map { |e|  e.profit}.sum
