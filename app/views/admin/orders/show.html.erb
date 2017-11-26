@@ -70,12 +70,12 @@
       <%= i.attribute :sendpay? %>
     <% end %>
     <div class="pull-right">
-      <%= link_to "修改派单备注","http://es.qichetang.cn/#{remark_merchants_hosting_order_path(@order)}" , class: "btn btn-primary btn-sm", target: :abc %>
+      <%= link_to "修改派单备注","http://es.qichetang.cn/" , class: "btn btn-primary btn-sm", target: :abc %>
       <% if @order.assigned?  %>
         <% if @order.partcheck_order? then%>
-          <%= link_to "部分核销(已有)","http://es.qichetang.cn/#{merchants_hosting_order_partchecks_path(@order))}" , class: "btn btn-danger", target: :abc %>
+          <%= link_to "部分核销(已有)","http://es.qichetang.cn/" , class: "btn btn-danger", target: :abc %>
         <% else %>
-          <%= link_to "部分核销", "http://es.qichetang.cn/#{merchants_hosting_order_partchecks_path(@order)}", class: "btn btn-primary", target: :abc %>
+          <%= link_to "部分核销", "http://es.qichetang.cn/", class: "btn btn-primary", target: :abc %>
         <% end %>
       <% end %>
     </div>
