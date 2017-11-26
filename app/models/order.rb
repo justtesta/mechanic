@@ -285,6 +285,7 @@ class Order < ApplicationRecord
     procedure_price unless self.partcheck_order?
     0 if self.procedure_price.nil?
     0 if self.partcheck_order?
+    0
   end
   
   def pre_remark
