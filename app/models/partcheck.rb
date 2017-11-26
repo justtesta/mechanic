@@ -1,6 +1,6 @@
 class Partcheck < ApplicationRecord
 	belongs_to :order
-	as_enum :confirm_type,none: 0, confirm_no_withdrawal: 1, confirm: 2, withdrawal: 3, before_withdrawal: 4,before_confirm_no_withdrawal:5
+	as_enum :confirm_type, confirm_no_withdrawal: 1, withdrawal: 3
 
 	def set_default default_order
 		self.order_id=default_order.id

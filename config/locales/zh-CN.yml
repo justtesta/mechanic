@@ -279,6 +279,7 @@ zh-CN:
         quantity: 数量
         mechanic_income: 技师价格
         procedure_price: 手续费(利润)
+        confirm_type: 完工方式
         profit: 利润
         confirm_by: 确认员工
         created_at: 核销时间
