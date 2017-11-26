@@ -12,7 +12,7 @@ class Admin::Reports::DayreportsController < Admin::ApplicationController
 	      Date.today 
 	    end 
 	    if @end_date.present?
-	      @orders=Order.settleds.where(finish_working_at: (@start_date)..(@end_date+1.day))
+	      @orders=Order.settleds.where(finish_working_at: (@start_date)..(@end_date+1.day)).where(" orders.id not in(select order_id from partchecks where order_id is not null)")
 	      @partchecks=Partcheck.where(created_at: (@start_date)..(@end_date+1.day))
 	      @confirm_orders=@orders.where(confirm_type_cd:[1,5])
 	      @withdrawal_orders=@orders.where(confirm_type_cd:[2,3,4])
@@ -20,15 +20,15 @@ class Admin::Reports::DayreportsController < Admin::ApplicationController
 	      @withdrawal_partchecks=@partchecks.where(confirm_type_cd:[2,3,4])
 	    end
 
-	    @orders_profit=@orders.where(" orders.id not in(select order_id from partchecks where order_id is not null)").sum(:procedure_price)
+	    @orders_profit=@orders.sum(:procedure_price)
 	    @partchecks_profit=@partchecks.map { |e|  e.procedure_price}.sum
 	    @profit=@orders_profit+@partchecks_profit
 	    
-	    @confirm_orders_mechanic_income=@confirm_orders.map { |e|  e.mechanic_income}.sum
+	    @confirm_orders_mechanic_income=@confirm_orders.sum(:price-:procedure_price)
 	    @confirm_partchecks_mechanic_income=@confirm_partchecks.map { |e|  e.mechanic_income}.sum
 	    @confirm_mechanic_income=@confirm_orders_mechanic_income+@confirm_partchecks_mechanic_income
 
-	    @withdrawal_orders_mechanic_income=@withdrawal_orders.map { |e|  e.mechanic_income}.sum
+	    @withdrawal_orders_mechanic_income=@withdrawal_orders.sum(:price-:procedure_price)
 	    @withdrawal_partchecks_mechanic_income=@withdrawal_partchecks.map { |e|  e.mechanic_income}.sum
 	    @cwithdrawal_mechanic_income=@withdrawal_orders_mechanic_income+@withdrawal_partchecks_mechanic_income
 
