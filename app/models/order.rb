@@ -283,7 +283,7 @@ class Order < ApplicationRecord
 
   def profit
     procedure_price unless partcheck_order?
-    0
+    0 if profit.nil?
   end
   
   def pre_remark
