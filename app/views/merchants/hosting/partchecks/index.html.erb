@@ -18,7 +18,7 @@
       <%= f.input :quoted_price %>
       <%= f.input :quantity %>
       <%= f.input :mechanic_income %>
-      <%= f.input :Confirm_type, collection: enum_option_pairs(Partcheck, :Confirm_type) %>
+      <%= f.input :confirm_type, collection: enum_option_pairs(Partcheck, :confirm_type) %>
       <%= f.input :procedure_price %>
       <%= f.input :remark, input_html: { rows: 2 } %>
        <input type="button"  value="清除" class="btn btn-primary" onclick = "clear_form();" id="clear__button"/>
