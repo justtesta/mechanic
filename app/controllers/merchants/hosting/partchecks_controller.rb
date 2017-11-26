@@ -23,7 +23,7 @@ class Merchants::Hosting::PartchecksController < Merchants::ApplicationControlle
 
   def partcheck_params
     params.require(:partcheck).permit(:order_id, :quoted_price, :quantity,
-    :mechanic_income, :procedure_price, :remark)
+    :mechanic_income, :procedure_price, :remark, :confirm_type)
   end
 
 end
