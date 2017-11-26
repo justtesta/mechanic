@@ -30,6 +30,9 @@
       <%= i.attribute :quoted_price, sortable: "partchecks.quoted_price" %>
       <%= i.attribute :quantity, sortable: "partchecks.quantity"  %>
       <%= i.attribute :mechanic_income %>
+      <%= i.attribute :confirm_type do |partcheck| %>
+        <%= te partcheck, :confirm_type %>
+      <% end %>
       <%= i.attribute :procedure_price, sortable: "partchecks.procedure_price" %>
       <%= i.attribute :remark , searchable: "partchecks.remark" %>
       <%= i.attribute :confirm_by  %>
