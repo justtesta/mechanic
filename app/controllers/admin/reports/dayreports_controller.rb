@@ -20,7 +20,7 @@ class Admin::Reports::DayreportsController < Admin::ApplicationController
 	      @withdrawal_partchecks=@partchecks.where(confirm_type_cd:[2,3,4])
 	    end
 
-	    @orders_profit=@orders.where("id not in(select order_id from partchecks").sum(:procedure_price)
+	    @orders_profit=@orders.sum(:procedure_price)
 	    @partchecks_profit=@partchecks.map { |e|  e.procedure_price}.sum
 	    @profit=@orders_profit+@partchecks_profit
 	    
