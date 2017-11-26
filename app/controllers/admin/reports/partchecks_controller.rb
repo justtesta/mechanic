@@ -6,7 +6,7 @@
 	    	@order = Order.find(params[:order_id])
 	    	@order.partchecks
 	    else
-	    	Partcheck.all
+	    	Partcheck.all.order(created_at: :desc)
 	    end
 
 

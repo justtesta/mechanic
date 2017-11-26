@@ -12,6 +12,7 @@ class Partcheck < ApplicationRecord
 	end
 	
 	def profit
-		procedure_price		
+		procedure_price	
+		0 if self.procedure_price.nil?	
 	end
 end
