@@ -24,11 +24,11 @@ class Admin::Reports::DayreportsController < Admin::ApplicationController
 	    @partchecks_profit=@partchecks.map { |e|  e.procedure_price}.sum
 	    @profit=@orders_profit+@partchecks_profit
 	    
-	    @confirm_orders_mechanic_income=@confirm_orders.sum(:price-:procedure_price)
+	    @confirm_orders_mechanic_income=@confirm_orders.sum("price-procedure_price")
 	    @confirm_partchecks_mechanic_income=@confirm_partchecks.map { |e|  e.mechanic_income}.sum
 	    @confirm_mechanic_income=@confirm_orders_mechanic_income+@confirm_partchecks_mechanic_income
 
-	    @withdrawal_orders_mechanic_income=@withdrawal_orders.sum(:price-:procedure_price)
+	    @withdrawal_orders_mechanic_income=@withdrawal_orders.sum("price-procedure_price")
 	    @withdrawal_partchecks_mechanic_income=@withdrawal_partchecks.map { |e|  e.mechanic_income}.sum
 	    @cwithdrawal_mechanic_income=@withdrawal_orders_mechanic_income+@withdrawal_partchecks_mechanic_income
 
