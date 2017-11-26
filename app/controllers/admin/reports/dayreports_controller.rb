@@ -1,14 +1,19 @@
 class Admin::Reports::DayreportsController < Admin::ApplicationController
 	before_action :redirect_user
     def index
+    	@start_date = if(params[:start_date]) 
+	      Date.parse(params[:start_date])
+	    else
+	      Date.today
+	    end
     	@end_date = if(params[:end_date].present?) 
 	      Date.parse(params[:end_date])
 	    else
 	      Date.today 
 	    end 
 	    if @end_date.present?
-	      @orders=Order.settleds.where(finish_working_at: (@end_date)..(@end_date+1.day))
-	      @partchecks=Partcheck.where(created_at: (@end_date)..(@end_date+1.day))
+	      @orders=Order.settleds.where(finish_working_at: (@start_date)..(@end_date+1.day))
+	      @partchecks=Partcheck.where(created_at: (@start_date)..(@end_date+1.day))
 	      @confirm_orders=@orders.where(confirm_type_cd:[1,5])
 	      @withdrawal_orders=@orders.where(confirm_type_cd:[2,3,4])
 	      @confirm_partchecks=@partchecks.where(confirm_type_cd:[1,5])
