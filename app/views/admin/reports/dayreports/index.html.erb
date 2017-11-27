@@ -5,7 +5,7 @@
   <div class="col-md-10 col-xs-8">
 
   <form class="form-inline" id="reports_form">日报表时间<input type="text" id="start_date" name="start_date" value="<%=  @start_date %>"> 到 <input type="text" id="end_date" name="end_date" value="<%=  @end_date %>"> <%= submit_tag("Search") %></form>
- <h5>本日利润<%= @profit %>元，其中普通利润<%= @orders_profit %>元、调整利润<%= @partchecks_profit %>元。 </h5>
+ <h5>本日利润<%= @profit %>元，其中普通利润<%= @orders_profit %>元、调整利润<%= @partchecks_profit %>元。本日普通利润订单数：<%= @orders.count %> </h5>
  <h5>应增技师余额<%= @confirm_mechanic_income %>元，其中普通<%= @confirm_orders_mechanic_income %>元、调整<%= @confirm_partchecks_mechanic_income %>元。 </h5>
  <h5>应直接支付<%= @cwithdrawal_mechanic_income %>元，其中普通<%= @withdrawal_orders_mechanic_income %>元、调整<%= @withdrawal_partchecks_mechanic_income %>元。 </h5>
   </div>
