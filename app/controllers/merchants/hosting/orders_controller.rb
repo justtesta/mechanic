@@ -68,7 +68,9 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
   end 
 
   def service_staff
-    @reviews = @mechanic.orders
+    @order.mechanic.update_attribute(:service_staff,params[:service_staff])
+    flash[:notice] = "订单确认完工！"
+    redirect_to_referer!
   end
 
   private
