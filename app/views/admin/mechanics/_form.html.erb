@@ -49,11 +49,11 @@
         <%= ff.input :province_cd, collection: Province.all, input_html: { class: "select2" } %>
         <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [], input_html: { class: "select2" } %>
         <%= ff.input :district_cd, collection: district_map[ff.object.city_cd] || [], input_html: { class: "select2" } %>
-
+        <%= ff.input :service_staff %>
         <%= ff.input :description, as: :text, input_html: { rows: 4 } %>
       <% end %>
       <%= f.input :withdrawal_remark %>
-      <%= f.input :service_staff %>
+
       <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
     </div>
   </div>
