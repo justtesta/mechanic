@@ -69,6 +69,7 @@ Rails.application.routes.draw do
           get :emergency
           get :unemergency
           post :confirmwithdrawal
+          get :service_staff
         end
         collection do
           get 'automatic'
@@ -87,7 +88,6 @@ Rails.application.routes.draw do
         patch :remark, action: :update_remark
         get :reviews
         get :"skills/:skill", action: :skill, as: :skill
-        get :service_staff
       end
     end
 

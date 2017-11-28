@@ -67,6 +67,10 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
     #trigger automatic_repick
   end 
 
+  def service_staff
+    @reviews = @mechanic.orders
+  end
+
   private
 
     def current_order_path
