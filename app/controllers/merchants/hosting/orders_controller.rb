@@ -69,7 +69,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
 
   def service_staff
     @order.mechanic.update_attribute(:service_staff,params[:service_staff])
-    flash[:notice] = "订单确认完工！"
+    flash[:notice] = "设置微信客服成功"
     redirect_to_referer!
   end
 
