@@ -110,7 +110,7 @@ class Admin::MechanicsController < Admin::ApplicationController
     end
 
     def mechanic_params
-      params.require(:user).permit(:mobile, :nickname, :gender, :address, :weixin_openid,:withdrawal_remark,
+      params.require(:user).permit(:mobile, :nickname, :gender, :address, :weixin_openid,:withdrawal_remark,:service_staff,
         mechanic_attributes: [ :unique_id, :province_cd, :description, :city_cd, :district_cd, :linkman, skills: [[:is_checked, :price, :skill_id]], service_ids: []  ])
     end
 
