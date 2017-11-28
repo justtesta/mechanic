@@ -154,10 +154,10 @@
       <% end %>
     </div>
     <div class="pull-right">
-      <%= link_to "18135687782", remark_merchants_hosting_order_path(@order,state: :state), class: "btn btn-primary btn-sm" %>
-      <%= link_to "18037504462", remark_merchants_hosting_order_path(@order), class: "btn btn-primary btn-sm" %>
-      <%= link_to "17319724003", remark_merchants_hosting_order_path(@order), class: "btn btn-primary btn-sm" %>
-      <%= link_to "17734794849", remark_merchants_hosting_order_path(@order), class: "btn btn-primary btn-sm" %>
+      <%= link_to "18135687782", service_staff_merchants_mechanic_path(@order.mechanic,service_staff: :18135687782), class: "btn btn-primary btn-sm" %>
+      <%= link_to "18037504462", service_staff_merchants_mechanic_path(@order.mechanic,service_staff: :18037504462), class: "btn btn-primary btn-sm" %>
+      <%= link_to "17319724003", service_staff_merchants_mechanic_path(@order.mechanic,service_staff: :17319724003), class: "btn btn-primary btn-sm" %>
+      <%= link_to "17734794849", service_staff_merchants_mechanic_path(@order.mechanic,service_staff: :17734794849), class: "btn btn-primary btn-sm" %>
     </div>
   </div>
     <% if current_merchant.admin? %>

@@ -87,6 +87,7 @@ Rails.application.routes.draw do
         patch :remark, action: :update_remark
         get :reviews
         get :"skills/:skill", action: :skill, as: :skill
+        get :service_staff
       end
     end
 
