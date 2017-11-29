@@ -150,15 +150,16 @@
         <%= i.attribute :professionality_average %>
         <%= i.attribute :timeliness_average %>
         <%= i.attribute :self_withdrawal? %>
-        <%= i.attribute :service_staff %>
+        <%= i.attribute :service_staff %> 
+        <div class="pull-right">
+          <%= link_to "18135687782", service_staff_merchants_hosting_order_path(@order,service_staff: "18135687782"), class: "btn btn-primary btn-sm" %>
+          <%= link_to "18037504462", service_staff_merchants_hosting_order_path(@order,service_staff: "18037504462"), class: "btn btn-primary btn-sm" %>
+          <%= link_to "17319724003", service_staff_merchants_hosting_order_path(@order,service_staff: "17319724003"), class: "btn btn-primary btn-sm" %>
+          <%= link_to "17734794849", service_staff_merchants_hosting_order_path(@order,service_staff: "17734794849"), class: "btn btn-primary btn-sm" %>
+        </div>
       <% end %>
     </div>
-    <div class="pull-right">
-      <%= link_to "18135687782", service_staff_merchants_hosting_order_path(@order,service_staff: "18135687782"), class: "btn btn-primary btn-sm" %>
-      <%= link_to "18037504462", service_staff_merchants_hosting_order_path(@order,service_staff: "18037504462"), class: "btn btn-primary btn-sm" %>
-      <%= link_to "17319724003", service_staff_merchants_hosting_order_path(@order,service_staff: "17319724003"), class: "btn btn-primary btn-sm" %>
-      <%= link_to "17734794849", service_staff_merchants_hosting_order_path(@order,service_staff: "17734794849"), class: "btn btn-primary btn-sm" %>
-    </div>
+   
   </div>
     <% if current_merchant.admin? %>
   	 <%  @order.numbers.each do |number|  %>
