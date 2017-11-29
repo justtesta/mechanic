@@ -80,6 +80,7 @@
 
       $(document).ready(function() {
           $('#orders').DataTable( {
+              "bStateSave": true,
               "pagingType": "full_numbers",
                 'fnDrawCallback': function(table) {    
                     $("#orders_paginate").append("   <input type='text' id='changePage' class='form-control input pagination' style='margin-top:0px;width:50px;height:27px'> ");    
