@@ -109,7 +109,7 @@
       </dd>
       <dt>相关未分配订单</dt>
       <dd>
-        <% @order.related_unassigneds.each do |order| %>
+        <% @order.unassigneds.each do |order| %>
           <%= order.skill %>
           &nbsp;
         <% end %>
