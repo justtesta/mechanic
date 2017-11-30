@@ -107,12 +107,10 @@
           &nbsp;
         <% end %>
       </dd>
-      <dt>接单记录</dt>
+      <dt>相关未分配订单</dt>
       <dd>
-        <% @order.selectmechanic.skills.each do |skill| %>
-          <% skill_cd = Mechanic.skills[skill] %>
-          <%= link_to skill_merchants_mechanic_path(@order.selectmechanic.id, skill: skill_cd) do %>
-            <%= skill %>[<%= @order.selectmechanic.skilled_orders(skill_cd).count %>单]
+        <% @order.related_unassigneds.each do |order| %>
+          <%= order.skill %>
           <% end %>
           &nbsp;
         <% end %>
