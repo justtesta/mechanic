@@ -109,7 +109,7 @@
       </dd>
       <dt>相关未分配订单</dt>
       <dd>
-        <% Order.unassigneds.where(selectmechanic_id: self.selectmechanic_id).where.not(id: self.id).each do |order| %>
+        <% Order.unassigneds.where(selectmechanic_id: @order.selectmechanic_id).where.not(id: @order.id).each do |order| %>
           <%= order.skill %>
           &nbsp;
         <% end %>
