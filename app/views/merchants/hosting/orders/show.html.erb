@@ -107,13 +107,16 @@
           &nbsp;
         <% end %>
       </dd>
+      <% related_orders = Order.unassigneds.where(selectmechanic_id: @order.selectmechanic_id).where.not(id: @order.id) %>
+      <% if related_orders.count>0 %>
       <dt>相关未分配订单</dt>
-      <dd>
-        <% Order.unassigneds.where(selectmechanic_id: @order.selectmechanic_id).where.not(id: @order.id).each do |order| %>
-          <%= order.skill %>
-          &nbsp;
-        <% end %>
-      </dd>
+        <dd>
+          <% related_orders.each do |order| %>
+           <%= link_to order.skill, merchants_hosting_order_path(order) %>
+            &nbsp;
+          <% end %>
+        </dd>
+      <% end %>
     </dl>
   </div>
 </div>
