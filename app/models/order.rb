@@ -29,7 +29,6 @@ class Order < ApplicationRecord
 
   scope :assigneds, -> { paids.where.not(mechanic_id: nil) }
   scope :unassigneds, -> { paids.where(mechanic_id: nil) }
-  scope :related_unassigneds, -> { paids.where(mechanic_id: nil)  }
 
   scope :hostings, -> { where(hosting: true) }
   scope :unfinisheds, -> { where("state_cd=6 or state_cd=7 or state_cd=8 ") }
