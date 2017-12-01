@@ -2,6 +2,9 @@
 
 <%= show_for @user_group, class: "dl-horizontal" do |i| %>
   <%= i.attribute :nickname %>
+  <%= i.fields_for :user do |ii| %>
+     <%= ii.attribute :mobile %>
+  <% end %>
   <%= i.attribute :settled_orders_count %>
   <%= i.attribute :total_commission %>
   <%= i.attribute :users_count %>

@@ -17,6 +17,9 @@
         <%= te user_group.user, :role %>
       <% end %>
       <%= i.attribute :user_nickname %>
+      <%= i.fields_for :user, model: User do |ii| %>
+        <%= ii.attribute :mobile, searchable: true %>
+      <% end %>
       <% if action_name == "confirmed" %>
         <%= i.attribute :users_count %>
         <%= i.actions do |a| %>
