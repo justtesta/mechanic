@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125150240) do
+ActiveRecord::Schema.define(version: 20171128082101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20171125150240) do
     t.integer  "last_available_orders_count"
     t.integer  "last_done_orders_count"
     t.decimal  "done_orders_count_rate",         precision: 10, scale: 2
+    t.string   "service_staff"
     t.index ["city_cd"], name: "index_mechanics_on_city_cd", using: :btree
     t.index ["district_cd"], name: "index_mechanics_on_district_cd", using: :btree
     t.index ["province_cd"], name: "index_mechanics_on_province_cd", using: :btree
@@ -438,6 +439,43 @@ ActiveRecord::Schema.define(version: 20171125150240) do
     t.string   "description"
     t.datetime "created_at",   precision: 6, default: -> { "now()" }, null: false
     t.datetime "updated_at",   precision: 6, default: -> { "now()" }, null: false
+  end
+
+  create_table "temp_mechanics_jd", id: false, force: :cascade do |t|
+    t.string "门店编号",      limit: 255
+    t.string "门店名称*",     limit: 255
+    t.string "门店一级地址*",   limit: 255
+    t.string "门店二级地址*",   limit: 255
+    t.string "门店三级地址*",   limit: 255
+    t.string "详细地址*",     limit: 255
+    t.string "门店联系电话",    limit: 255
+    t.string "门店坐标",      limit: 255
+    t.string "门店组id",     limit: 255
+    t.string "统一信用机构代码",  limit: 255
+    t.string "营业执照号",     limit: 255
+    t.string "门店负责人姓名",   limit: 255
+    t.string "门店负责人身份证号", limit: 255
+    t.string "营业开始时间*",   limit: 255
+    t.string "营业结束时间*",   limit: 255
+    t.string "暂停开始日期",    limit: 255
+    t.string "暂停结束日期",    limit: 255
+    t.string "门店状态*",     limit: 255
+    t.string "客服座机",      limit: 255
+    t.string "客服400电话",   limit: 255
+    t.string "是否支持发货到店*", limit: 255
+    t.string "商家id*",     limit: 255
+    t.string "门店类型",      limit: 255
+    t.string "是否京东认证",    limit: 255
+    t.string "是否删除该门店",   limit: 255
+    t.string "5周年",       limit: 255
+  end
+
+  create_table "temp_mechanics_jd5", id: false, force: :cascade do |t|
+    t.string "名称", limit: 255
+    t.string "电话", limit: 255
+    t.string "店名", limit: 255
+    t.string "地址", limit: 255
+    t.string "匹配", limit: 255
   end
 
   create_table "user_groups", force: :cascade do |t|
