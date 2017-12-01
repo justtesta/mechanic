@@ -22,6 +22,7 @@ class Mechanic < ApplicationRecord
   #has_and_belongs_to_many :skills
   alias_attribute :skill_cds, :skill_ids
   as_enum :skills, Skill, persistence: true, accessor: :multiple
+  as_enum :grade, one_star: 1, two_star: 2, three_star: 3, four_star: 4, five_star: 5
 
   # cache_column :user, :nickname
   # cache_column :user, :mobile

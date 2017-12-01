@@ -15,7 +15,7 @@
         <%= link_to "清除提现微信", clear_withdrawal_weixin_admin_user_path(@mechanic), class: "btn btn-default btn-xs", data: {confirm: "您确定要清除提现微信？不会要求重新登陆，第一个进入公众号‘我的’的人，将绑定为提现微信" } %>
       <% end %>
       <%= f.input :weixin_openid , input_html: { disabled: "disabled" } %>
-     <%= f.input :nickname %>
+      <%= f.input :nickname %>
       <%= f.input :gender, collection: enum_option_pairs(User, :gender) %>
       <%= f.input :address %>
 
@@ -41,16 +41,14 @@
 			</span>
     <% end %>
 	</div>
-    
-	 
-	  
 		 
-		<%= ff.input :service_ids, as: :check_boxes, collection: Service.all %>
+		    <%= ff.input :service_ids, as: :check_boxes, collection: Service.all %>
         <%= ff.input :province_cd, collection: Province.all, input_html: { class: "select2" } %>
         <%= ff.input :city_cd, collection: city_map[ff.object.province_cd] || [], input_html: { class: "select2" } %>
         <%= ff.input :district_cd, collection: district_map[ff.object.city_cd] || [], input_html: { class: "select2" } %>
         <%= ff.input :service_staff %>
         <%= ff.input :description, as: :text, input_html: { rows: 4 } %>
+        <%= ff.input :grade, collection: enum_option_pairs(Mechanic, :grade) %>
       <% end %>
       <%= f.input :withdrawal_remark %>
 

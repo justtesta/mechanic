@@ -70,6 +70,12 @@ zh-CN:
       none: 未知
       system: 系统支付
       manual: 人工支付
+    grade:
+      one_star: 一星店
+      tow_star: 二星店
+      three_star: 三星店
+      four_star: 四星店
+      five_star: 五星店
  
   simple_form:
     labels:
@@ -130,7 +136,7 @@ zh-CN:
         mechanic_attach_5: 前台照片
         self_withdrawal?: 自助提现
         service_staff: 客服微信
-
+        grade: 技师等级
 
       merchant:
         nickname: 姓名
