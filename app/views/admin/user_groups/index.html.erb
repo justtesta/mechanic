@@ -18,7 +18,7 @@
       <% end %>
       <%= i.attribute :user_nickname %>
       <%= i.fields_for :user, model: User do |ii| %>
-        <%= ii.attribute :mobile, searchable: true %>
+        <%= ii.attribute :mobile %>
       <% end %>
       <% if action_name == "confirmed" %>
         <%= i.attribute :users_count %>

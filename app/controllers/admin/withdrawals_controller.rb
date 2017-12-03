@@ -22,7 +22,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
         flash[:error] = "微信支付：#{response["err_code_des"]}"
       end
     else
-      flash[:error] = "订单状态错误！"
+      flash[:error] = "提现状态错误！"
     end
     redirect_to_referer!
   end
@@ -31,7 +31,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
     if @withdrawal.pending?
        @withdrawal.pay! :manual
     else
-      flash[:error] = "订单状态错误！"
+      flash[:error] = "提现状态错误！"
     end
     redirect_to_referer!
   end
@@ -40,7 +40,7 @@ class Admin::WithdrawalsController < Admin::ApplicationController
     if @withdrawal.pending?
       @withdrawal.cancel!
     else
-      flash[:error] = "订单状态错误！"
+      flash[:error] = "提现状态错误！"
     end
     redirect_to_referer!
   end
