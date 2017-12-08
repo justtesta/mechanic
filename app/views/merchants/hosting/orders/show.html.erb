@@ -83,7 +83,7 @@
         <%= i.attribute :user_address %>
 		    <%= i.attribute :skills do |selectmechanic, skills| %>
           <%= raw selectmechanic.works.map {|w| if w.skill_id==@order.skill_cd
-              "<div class='text_danger'>"+w.skill_name_price+"</div>" 
+              "<span class='text-danger'>"+w.skill_name_price+"</span>" 
             else
              w.skill_name_price 
             end  }.join("、") %>
