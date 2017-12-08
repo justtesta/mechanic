@@ -103,7 +103,7 @@
           <% skill_cd = Mechanic.skills[skill] %>
           <% if skill_cd == @order.skill_cd %>
             <%= link_to skill_merchants_mechanic_path(@order.selectmechanic.id, skill: skill_cd),class: "danger" do %>
-              <%= skill %>[<%= @order.selectmechanic.skilled_orders(skill_cd).count %>单]
+              <%= skill %>[<%= @order.selectmechanic.skilled_orders(skill_cd).count %>单3333]
             <% end %>
           <% else %>
             <%= link_to skill_merchants_mechanic_path(@order.selectmechanic.id, skill: skill_cd) do %>
