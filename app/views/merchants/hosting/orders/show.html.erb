@@ -116,7 +116,7 @@
       <% related_orders = Order.unassigneds.where(selectmechanic_id: @order.selectmechanic_id).where.not(id: @order.id) %>
       <% if related_orders.count>0 %>
       <dt>相关未分配订单</dt>
-        <dd class="danger">
+        <dd class="text-danger">
           <% related_orders.each do |order| %>
            <%= link_to order.skill, merchants_hosting_order_path(order), target: "_blank" %>
             &nbsp;
