@@ -82,7 +82,11 @@
         <%= i.attribute :user_mobile %>
         <%= i.attribute :user_address %>
 		    <%= i.attribute :skills do |selectmechanic, skills| %>
-        <%= selectmechanic.works.map {|w| w.skill_name_price }.join("、") %>
+          <%= selectmechanic.works.map {|w| if w.skill_id==@order.skill_cd
+              "<div class='text_danger'>"+w.skill_name_price+"</div>" 
+            else
+             w.skill_name_price 
+            end  }.join("、") %>
         <% end %>
         <%= i.attribute :description %>
         <%= i.attribute :available_orders_count %>
