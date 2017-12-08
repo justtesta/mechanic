@@ -82,7 +82,7 @@
         <%= i.attribute :user_mobile %>
         <%= i.attribute :user_address %>
 		    <%= i.attribute :skills do |selectmechanic, skills| %>
-          <%= selectmechanic.works.map {|w| if w.skill_id==@order.skill_cd
+          <%= raw selectmechanic.works.map {|w| if w.skill_id==@order.skill_cd
               "<div class='text_danger'>"+w.skill_name_price+"</div>" 
             else
              w.skill_name_price 
