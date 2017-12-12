@@ -29,6 +29,7 @@ body, .bar {
 @import "text";
 @import "form";
 @import "table";
+@import "button";
 
 // Rounded corners
 .img-rounded {
@@ -37,6 +38,12 @@ body, .bar {
 // Perfect circle
 .img-circle {
   border-radius: 50%; // set radius in percents
+}
+
+.btn-positive {
+  color: #fff;
+  background-color: #5cb85c;
+  border: 1px solid #5cb85c;
 }
 
 .input.file label {
