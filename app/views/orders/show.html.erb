@@ -74,7 +74,7 @@
 		    	
 				<label><%= number.left_number %></label>
 				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",placeholder: '后三位',style: "width:85px"  %>
-				<input type="button" style= "width:80px" value="核销" class="btn btn-default btn-danger" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
+				<input type="button"  value="核销" class="btn btn-default btn-danger" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
 				
 			</div>
 	 	 <% end %>
