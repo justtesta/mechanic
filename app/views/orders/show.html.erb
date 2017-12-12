@@ -68,9 +68,9 @@
       <%= simple_form_for(@order, url: finish_order_path(@order)) do |f| %>
 	  	 <%= f.simple_fields_for :numbers do |ff| %>
 	  	 <%  @order.numbers.each do |number|  %>
-		 
-		    <div class="order_numbers_pwd_number_default">
-		    	<label class="string required" for="order_numbers_pwd_number_default">消费码</label>
+		 <label class="string required" for="order_numbers_pwd_number_default">消费码:</label>
+		    <div class="content-padded order_numbers_pwd_number_default">
+		    	
 				<label><%= number.left_number %></label>
 				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",placeholder: '后三位',style: "width:85px"  %>
 				<input type="button" style= "width:80px" value="核销" class="btn btn-default btn-danger" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
