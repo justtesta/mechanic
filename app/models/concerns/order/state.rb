@@ -261,10 +261,9 @@ class Order < ApplicationRecord
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)
-          @withdrawal=Withdrawal.create(user_id: mechanic.user_id, amount: mechanic_income,state_cd: Withdrawal.states[:pending])
+          @withdrawal=Withdrawal.create(user_id: mechanic.user_id, amount: mechanic_income,state_cd: Withdrawal.states[:paid], pay_type_cd: Withdrawal.pay_types[:manual] )
           update_attribute(:confirm_type, Order.confirm_types[:withdrawal])
-          @withdrawal.pay! :manual
-          
+         
 
           if client_user_group = user.user_group
             client_user_group.user.increase_balance!(client_commission, "订单分红", self)
