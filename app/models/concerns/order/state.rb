@@ -218,7 +218,7 @@ class Order < ApplicationRecord
         unless offline?
           # Increase balance
           mechanic.user.increase_balance!(mechanic_income, "订单结算", self)
-
+=begin
           if client_user_group = user.user_group
             client_user_group.user.increase_balance!(client_commission, "订单分红", self)
           end
@@ -226,11 +226,12 @@ class Order < ApplicationRecord
           if mechanic_user_group = mechanic.user_group
             mechanic_user_group.user.increase_balance!(mechanic_commission, "订单分红", self)
           end
+=end
         end
 
         # Increase total income / commission
         mechanic.increase_total_income!(mechanic_income)
-
+=begin
         if client_user_group = user.user_group
           client_user_group.increase_total_commission!(client_commission)
         end
@@ -238,6 +239,7 @@ class Order < ApplicationRecord
         if mechanic_user_group = mechanic.user_group
           mechanic_user_group.increase_total_commission!(mechanic_commission)
         end
+=end
         true
       end
 
@@ -265,25 +267,25 @@ class Order < ApplicationRecord
           update_attribute(:confirm_type, Order.confirm_types[:withdrawal])
          
 
-          if client_user_group = user.user_group
-            client_user_group.user.increase_balance!(client_commission, "订单分红", self)
-          end
+          #if client_user_group = user.user_group
+          #  client_user_group.user.increase_balance!(client_commission, "订单分红", self)
+          #end
 
-          if mechanic_user_group = mechanic.user_group
-            mechanic_user_group.user.increase_balance!(mechanic_commission, "订单分红", self)
-          end
+          #if mechanic_user_group = mechanic.user_group
+          #  mechanic_user_group.user.increase_balance!(mechanic_commission, "订单分红", self)
+          #end
         end
 
         # Increase total income / commission
         mechanic.increase_total_income!(mechanic_income)
 
-        if client_user_group = user.user_group
-          client_user_group.increase_total_commission!(client_commission)
-        end
+        #if client_user_group = user.user_group
+        #  client_user_group.increase_total_commission!(client_commission)
+        #end
 
-        if mechanic_user_group = mechanic.user_group
-          mechanic_user_group.increase_total_commission!(mechanic_commission)
-        end
+        #if mechanic_user_group = mechanic.user_group
+        #  mechanic_user_group.increase_total_commission!(mechanic_commission)
+        #end
         true
 
       
