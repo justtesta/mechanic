@@ -194,11 +194,11 @@ class Order < ApplicationRecord
       end
 
       def finish!
-        if(confirming) then
+        if(confirming?) then
           errors.add(:base, "该订单已提交审核，请耐心等待管理员审核")
           return false
         end
-        if(finished) then
+        if(finished?) then
           errors.add(:base, "该订单已确认完工。")
           return false
         end
