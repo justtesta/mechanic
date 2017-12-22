@@ -17,7 +17,15 @@
         <% end %>
       <% end %>
     <% end %>
-
+    <%= i.attribute :state do |order| %>
+        <% if order.canceled? %>
+          <%= te order, :state %> - <%= te order, :cancel %>
+        <% elsif order.refunded? %>
+          <%= te order, :state %> - <%= te order, :refund %>
+        <% else %>
+          <%= te order, :state %>
+        <% end %>
+    <% end %>
     <%= i.attribute :address %>
     <%= i.attribute :appointment, format: :long %>
     <%= i.attribute :skill %>
