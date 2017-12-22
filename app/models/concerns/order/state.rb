@@ -199,7 +199,7 @@ class Order < ApplicationRecord
           return false
         end
         if(finished?) then
-          errors.add(:base, "该订单已确认完工，请查看余额或者已提现")
+          errors.add(:base, "该订单已确认完工，请查看余额或者已结算")
           return false
         end
         unless(working?||paid?) then
