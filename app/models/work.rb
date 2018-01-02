@@ -26,7 +26,7 @@ class Work < ApplicationRecord
 
   def set_work
 
-    Order.availables.where("quantity>0 and mechanic_id>0 and skill_cd>0").each do |order|
+    Order.availables.where("quantity>0 and mechanic_id>0 and skill_cd>0 and id>66912").each do |order|
       @order=order
       temp_quantity=@order.quantity
       @work=Work.where("mechanic_id = ? AND skill_id = ? ",@order.mechanic_id,@order.skill_cd).last
