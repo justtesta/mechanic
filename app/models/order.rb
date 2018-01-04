@@ -34,10 +34,10 @@ class Order < ApplicationRecord
   scope :unfinisheds, -> { where("state_cd=6 or state_cd=7 or state_cd=8 ") }
   scope :paids_and_workings, -> { where("state_cd=6 or state_cd=7") }
   scope :emergencys, -> { where(emergency: true) }
-  scope :finished_all_nochecks, -> { where("id in(select order_id From numbers where status=0) and id not in(select order_id From numbers where status=1)  and state_cd>8 and orders.created_at>'2017-09-09'") }
-  scope :finished_part_nochecks, -> { where("id in(select order_id From numbers where status=0) and id in(select order_id From numbers where status=1)  and state_cd>8 and orders.created_at>'2017-09-09'") }
-  scope :unfinished_all_checks, -> { where("id in(select order_id From numbers where status=1) and id not in(select order_id From numbers where status=0) and state_cd<8 and orders.created_at>'2017-09-09'") }
-  scope :unfinished_part_checks, -> { where("id in(select order_id From numbers where status=1) and id in(select order_id From numbers where status=0) and state_cd<8 and orders.created_at>'2017-09-09'") }
+  scope :finished_all_nochecks, -> { where("id in(select order_id From numbers where status=0) and id not in(select order_id From numbers where status=1)  and state_cd>8 and orders.created_at>'2017-09-13'") }
+  scope :finished_part_nochecks, -> { where("id in(select order_id From numbers where status=0) and id in(select order_id From numbers where status=1)  and state_cd>8 and orders.created_at>'2017-09-13'") }
+  scope :unfinished_all_checks, -> { where("id in(select order_id From numbers where status=1) and id not in(select order_id From numbers where status=0) and state_cd<8 and orders.created_at>'2017-09-13'") }
+  scope :unfinished_part_checks, -> { where("id in(select order_id From numbers where status=1) and id in(select order_id From numbers where status=0) and state_cd<8 and orders.created_at>'2017-09-13'") }
   
   def offline?
     price.zero? || (offline && ["1", 1, true].include?(offline)) || false
