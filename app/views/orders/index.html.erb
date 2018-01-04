@@ -30,7 +30,13 @@
 </div>
 
 
-<% @orders = @orders.includes(mechanic: :user).order(id: :desc) %>
+<% 
+  if @state == :settleds
+    @orders = @orders.includes(mechanic: :user).order(finish_working_at: :desc) 
+  else
+    @orders = @orders.includes(mechanic: :user).order(id: :desc) 
+  end
+%>
 <ul class="table-view" id="hide_orders">
 </ul>
 
@@ -41,6 +47,9 @@
         <%= image_tag order.mechanic.user.avatar.url(:thumb), class: "media-object pull-left" %>
         <div class="media-body">
           <%= order.title %>
+          <% if order.settled? %>
+            <p>完工时间：<%= l order.finish_working_at, format: :short %></p>
+          <% end %>
           <p>预约时间：<%= l order.appointment, format: :short %></p>
 
           <% if current_user.mechanic? %>
