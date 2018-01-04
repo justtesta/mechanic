@@ -67,7 +67,7 @@
       <%= i.attribute :contact_nickname %>
       <%= i.attribute :contact_mobile %>
       <%= i.attribute :appointment, format: :short %>
-      <% if (@state == :finished_all_nochecks || @state == :finished_part_nochecks) && @orders.finish_working_at %>
+      <% if @state == :finished_all_nochecks || @state == :finished_part_nochecks %>
         <%= i.attribute :finish_working_at, format: :short %>
       <% end %>
       <%= i.attribute :skill  %>
