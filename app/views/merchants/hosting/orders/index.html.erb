@@ -43,7 +43,11 @@
     if(@order_field!="")
       @orders = @orders.includes(:store, :mechanic_user)
     else
-      @orders = @orders.includes(:store, :mechanic_user).order(:appointment) 
+      if(@state == :finished_all_nochecks || @state == :finished_part_nochecks)
+        @orders = @orders.includes(:store, :mechanic_user).order(:finished_part_nochecks) 
+      else
+        @orders = @orders.includes(:store, :mechanic_user).order(:appointment) 
+      end
     end
    %>
 
