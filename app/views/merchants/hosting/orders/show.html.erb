@@ -35,6 +35,9 @@
       <% end %>
 
       <%= i.attribute :address %>
+      <% if @order.settled? %>
+      <%= i.attribute :finish_working_at, format: :long %>
+      <% end %>
       <%= i.attribute :appointment, format: :long %>
       <%= i.attribute :skill %>
       <%= i.attribute :brand %>
