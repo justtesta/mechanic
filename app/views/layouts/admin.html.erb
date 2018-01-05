@@ -88,8 +88,9 @@
               <li class="<%= "active" if controller_path == "admin/administrators" and action_name != "password" %>"><%= link_to "管理员", admin_administrators_path %></li>
             <% end %>
           <% end %>
-
-          <li class="<%= "active" if controller_path.start_with? "admin/settings/" %>"><%= link_to "设置", admin_settings_skills_path %></li>
+          <% if current_admin.admin? %>
+            <li class="<%= "active" if controller_path.start_with? "admin/settings/" %>"><%= link_to "设置", admin_settings_skills_path %></li>
+          <% end %>
           <% if current_admin.super_admin? %>
             <li class="<%= "active" if controller_path.start_with? "admin/reports/" %>"><%= link_to "报表", admin_reports_provinces_path %></li>
           <% end %>
