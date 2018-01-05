@@ -5,7 +5,7 @@ class Administrator < ApplicationRecord
 
   attr_accessor :current_password
 
-  as_enum :role, admin: 0, operator: 1
+  as_enum :role, admin: 0, operator: 1, super_admin: 2
 
   validates_presence_of :nickname
 

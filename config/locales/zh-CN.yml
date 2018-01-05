@@ -37,6 +37,7 @@ zh-CN:
       client: 车主
       mechanic: 技师
       merchant: 商户
+      super_admin: 超级管理员
     state:
       pending: 等待应答
       paying: 支付中

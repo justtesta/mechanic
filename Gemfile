@@ -31,22 +31,27 @@ gem 'jbuilder', '~> 2.5'
 
 # Simple, efficient background processing for Ruby
 gem 'sidekiq'
+#a DSL for quickly creating web applications in Ruby with minimal effort
 gem 'sinatra', '>= 2.0.0.beta2', require: false
 
 # Cron jobs in Ruby
+#psql pg_dump pg_restore, create schedule.rb
 gem 'whenever'
 
 # View Helpers
 gem 'simple_form'
 gem 'index_for', github: 'bbtfr/index_for'
+#paginator for modern web app frameworks and ORMs
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
 # Database
 # Use authlogic for authentication
 gem 'authlogic', github: 'binarylogic/authlogic'
+#Paperclip is intended as an easy file attachment library for ActiveRecord. T
 gem 'paperclip'
 gem 'rails-settings-cached'
+#cache_column,cache_method
 gem 'activerecord-redundancy', github: 'bbtfr/activerecord-redundancy'
 # Simple enum-like field support for ActiveModel (including validations and i18n)
 gem 'simple_enum'
