@@ -9,6 +9,10 @@ class Administrator < ApplicationRecord
 
   validates_presence_of :nickname
 
+  def admin?
+    role_cd==0||super_admin?
+  end
+
   def inactive!
     update_attribute(:active, false)
   end
@@ -16,5 +20,6 @@ class Administrator < ApplicationRecord
   def active!
     update_attribute(:active, true)
   end
+
 
 end
