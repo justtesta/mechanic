@@ -1,5 +1,5 @@
 class Admin::Reports::DayreportsController < Admin::ApplicationController
-	before_action :redirect_user
+	before_action :redirect_user,:redirect_super_admin
     def index
     	@start_date = if(params[:start_date]) 
 	      Date.parse(params[:start_date])

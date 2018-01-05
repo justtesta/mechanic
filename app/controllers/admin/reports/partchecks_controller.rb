@@ -1,5 +1,5 @@
   class Admin::Reports::PartchecksController < Admin::ApplicationController
-  	before_action :redirect_user
+  	before_action :redirect_user,:redirect_super_admin
 
 	def index
 	    @partchecks = if params[:order_id] 

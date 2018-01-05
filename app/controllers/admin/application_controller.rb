@@ -38,4 +38,11 @@ class Admin::ApplicationController < ActionController::Base
       end
     end
 
+    def redirect_super_admin
+      if !current_admin.super_admin?
+        flash[:error] = "请使用超级管理员访问此页面！"
+        redirect_to admin_root_path
+      end
+    end
+
 end
