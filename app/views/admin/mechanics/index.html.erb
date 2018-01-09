@@ -42,6 +42,10 @@
     if(@service_cd>0)
       @mechanics = @mechanics.joins(mechanic: :mechanics_services).where("service_id=?",@service_cd)
     end
+
+    if @state ==:userupdate
+      @mechanics = @mechanics.order(updated_at: :desc)
+    end
   %>
   <form class="form-inline" id="mechanics_form" ">
     <div class="form-group">
