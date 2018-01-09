@@ -104,6 +104,7 @@ zh-CN:
         systempay?: 系统支付
         systempay_count: 大于2元系统支付
         withdrawal_remark: 结算备注
+        updated_at: 更新时间
       mechanic:
         unique_id: 店铺编号
         user_nickname: 名称

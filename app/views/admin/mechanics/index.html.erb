@@ -69,6 +69,9 @@
         <%= ii.attribute :total_income %>
       <% end %>
       <%= i.attribute :balance %>
+      <% if @state ==:userupdate %>
+        <%= i.attribute :updated_at , format: :short%>
+      <% end %>
       <%= i.actions do |a| %>
         <%= a.action_link :show, url: admin_mechanic_path(i.object) %>
         <%= a.action_link :edit, url: edit_admin_mechanic_path(i.object) %>
