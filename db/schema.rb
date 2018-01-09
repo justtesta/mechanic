@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128082101) do
+ActiveRecord::Schema.define(version: 20171201084907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20171128082101) do
     t.integer  "last_done_orders_count"
     t.decimal  "done_orders_count_rate",         precision: 10, scale: 2
     t.string   "service_staff"
+    t.integer  "grade_cd"
     t.index ["city_cd"], name: "index_mechanics_on_city_cd", using: :btree
     t.index ["district_cd"], name: "index_mechanics_on_district_cd", using: :btree
     t.index ["province_cd"], name: "index_mechanics_on_province_cd", using: :btree
