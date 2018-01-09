@@ -49,6 +49,16 @@
         <%= ff.input :service_staff %>
         <%= ff.input :description, as: :text, input_html: { rows: 4 } %>
         <%= ff.input :grade, collection: enum_option_pairs(Mechanic, :grade) %>
+        <%= f.input :holiday_start do %>
+          <div class="date-input-group">
+            <%= f.input_field :holiday_start, class: "form-control" %>
+          </div>
+        <% end %>
+        <%= f.input :holiday_end do %>
+          <div class="date-input-group">
+            <%= f.input_field :holiday_end, class: "form-control" %>
+          </div>
+        <% end %>
       <% end %>
       <%= f.input :withdrawal_remark %>
 
