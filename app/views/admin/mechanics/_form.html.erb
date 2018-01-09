@@ -49,7 +49,7 @@
         <%= ff.input :service_staff %>
         <%= ff.input :description, as: :text, input_html: { rows: 4 } %>
         <%= ff.input :grade, collection: enum_option_pairs(Mechanic, :grade) %>
-        <%= ff.input :holiday_start,  value: @mechanic.mechanic.holiday_start  %>
+        <%= ff.input :holiday_start, as: :input, value: @mechanic.mechanic.holiday_start  %>
         <%= ff.input :holiday_end, as: :text %>
       <% end %>
       <%= f.input :withdrawal_remark %>
