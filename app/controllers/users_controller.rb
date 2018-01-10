@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_photo
+  def update_holiday
     if @user.update_attributes(update_holiday_user_params)
       @user.update_attribute(:userupdate, true)
       redirect_to holiday_user_path
