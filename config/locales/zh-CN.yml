@@ -139,8 +139,8 @@ zh-CN:
         self_withdrawal?: 自助提现
         service_staff: 客服微信
         grade: 技师等级
-        holiday_start: 放假开始时间
-        holiday_end: 放假结束时间
+        holiday_start: 放假开始
+        holiday_end: 放假结束
 
       merchant:
         nickname: 姓名
