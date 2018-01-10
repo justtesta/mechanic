@@ -2,7 +2,7 @@
   春节放假时间
 <% end %>
 
-<%= simple_form_for(@user, url: update_photo_user_path, method: :patch) do |f| %>
+<%= simple_form_for(@user, url: update_holiday_user_path, method: :patch) do |f| %>
   <%= f.error_messages %>
 
   <div class="jumbotron vertical-parent">
@@ -16,96 +16,47 @@
   </div>
      <% if @user.mechanic? %>
       <%= f.fields_for :mechanic do |ff| %>
-          <%= ff.input :mechanic_attach_1 do %>
-          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_1_button" readonly></input>
-          <%= ff.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
-          <%= ff.input_field :mechanic_attach_1_media_id, type: :hidden %>
+        <%= ff.input :holiday_start do %>
+          <input type="text" id="user_mechanic_attributes_holiday_start" name="user[mechanic_attributes][holiday_start]" value="<%=  @mechanic.mechanic.holiday_start.strftime('%Y-%m-%d') %>">
         <% end %>
-        <img id="mechanic_mechanic_attach_1_img" src="" class="img-rounded" style="max-width:140px; ">
-         <%= link_to @user.mechanic.mechanic_attach_1.url(:original) do %>
-          <%= image_tag @user.mechanic.mechanic_attach_1.url(:thumb) %>
-        <% end if @user.mechanic.mechanic_attach_1.present? %>
-        <%= ff.input :mechanic_attach_2 do %>
-          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_2_button" readonly></input>
-          <%= ff.input_field :mechanic_attach_2, style: "display: none;", accept: "image/*" %>
-          <%= ff.input_field :mechanic_attach_2_media_id, type: :hidden %>
+        <%= ff.input :holiday_end do %>
+          <input type="text" id="user_mechanic_attributes_holiday_end" name="user[mechanic_attributes][holiday_end]" value="<%=  @mechanic.mechanic.holiday_end.strftime('%Y-%m-%d') %>">
         <% end %>
-        <img id="mechanic_mechanic_attach_2_img" src="" class="img-rounded" style="max-width:140px; ">
-         <%= link_to @user.mechanic.mechanic_attach_2.url(:original) do %>
-          <%= image_tag @user.mechanic.mechanic_attach_2.url(:thumb) %>
-        <% end if @user.mechanic.mechanic_attach_2.present? %>
-        <%= ff.input :mechanic_attach_3 do %>
-          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_3_button" readonly></input>
-          <%= ff.input_field :mechanic_attach_3, style: "display: none;", accept: "image/*" %>
-          <%= ff.input_field :mechanic_attach_3_media_id, type: :hidden %>
-        <% end %>
-        <img id="mechanic_mechanic_attach_3_img" src="" class="img-rounded" style="max-width:140px; ">
-        <%= link_to @user.mechanic.mechanic_attach_3.url(:original) do %>
-          <%= image_tag @user.mechanic.mechanic_attach_3.url(:thumb) %>
-        <% end if @user.mechanic.mechanic_attach_3.present? %>
-        <%= ff.input :mechanic_attach_4 do %>
-          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_4_button" readonly></input>
-          <%= ff.input_field :mechanic_attach_4, style: "display: none;", accept: "image/*" %>
-          <%= ff.input_field :mechanic_attach_4_media_id, type: :hidden %>
-        <% end %>
-        <img id="mechanic_mechanic_attach_4_img" src="" class="img-rounded" style="max-width:140px; ">
-        <%= link_to @user.mechanic.mechanic_attach_4.url(:original) do %>
-          <%= image_tag @user.mechanic.mechanic_attach_4.url(:thumb) %>
-        <% end if @user.mechanic.mechanic_attach_4.present? %>
-        <%= ff.input :mechanic_attach_5 do %>
-          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_5_button" readonly></input>
-          <%= ff.input_field :mechanic_attach_5, style: "display: none;", accept: "image/*" %>
-          <%= ff.input_field :mechanic_attach_5_media_id, type: :hidden %>
-        <% end %>
-        <img id="mechanic_mechanic_attach_5_img" src="" class="img-rounded" style="max-width:140px; ">
-        <%= link_to @user.mechanic.mechanic_attach_5.url(:original) do %>
-          <%= image_tag @user.mechanic.mechanic_attach_5.url(:thumb) %>
-        <% end if @user.mechanic.mechanic_attach_5.present? %>
-       <% end %>
+        
+      <% end %>
     <% end %>
 
     <%= f.button :submit, "确定", class: "btn-block btn-positive" %>
 
      <script type="text/javascript">
-        <% if weixin? %>
-          wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
-          wx.error(function(res) { alert(JSON.stringify(res)) });
-          function fakeFileInput(fileInput, fakeInput, mediaIdInput, mediaIdImg) {
-            fakeInput.addEventListener("click", function() {
-              wx.chooseImage({
-                count: 1,
-                success: function (res) {
-                  mediaIdImg.src=res.localIds[0];
-                  setTimeout(function() {
-                    wx.uploadImage({
-                      localId: res.localIds[0],
-                      isShowProgressTips: true,
-                      success: function (res) {
-                        mediaIdInput.value = res.serverId;
-                        fakeInput.value = "点击更换图片";
-                      }
-                    });
-                  }, 0);
-                }
-              });
-            });
-          }
-        <% else %>
-          function fakeFileInput(fileInput, fakeInput, mediaIdInput, mediaIdImg) {
-            fakeInput.addEventListener("click", function() {
-              fileInput.click();
-            });
-            fileInput.addEventListener("change", function() {
-              fakeInput.value = "点击更换图片";
-            });
-          }
-        <% end %>
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_1, mechanic_mechanic_attach_1_button, user_mechanic_attributes_mechanic_attach_1_media_id, mechanic_mechanic_attach_1_img);
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_2, mechanic_mechanic_attach_2_button, user_mechanic_attributes_mechanic_attach_2_media_id, mechanic_mechanic_attach_2_img);
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_3, mechanic_mechanic_attach_3_button, user_mechanic_attributes_mechanic_attach_3_media_id, mechanic_mechanic_attach_3_img);
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_4, mechanic_mechanic_attach_4_button, user_mechanic_attributes_mechanic_attach_4_media_id, mechanic_mechanic_attach_4_img);
-        fakeFileInput(user_mechanic_attributes_mechanic_attach_5, mechanic_mechanic_attach_5_button, user_mechanic_attributes_mechanic_attach_5_media_id, mechanic_mechanic_attach_5_img);
-        	
+         (function() {
+          
+    $( "#user_mechanic_attributes_holiday_start" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      defaultDate:'<%=  @mechanic.mechanic.holiday_start.strftime('%Y-%m-%d') %>',//默认日期  
+      dateFormat: 'yy-mm-dd',
+      monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+      monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'],  
+      dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+      dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+      dayNamesMin: ['日','一','二','三','四','五','六'] 
+    });
+
+  
+    $( "#user_mechanic_attributes_holiday_end" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      defaultDate:'<%=  @mechanic.mechanic.holiday_end.strftime('%Y-%m-%d') %>',//默认日期  
+      dateFormat: 'yy-mm-dd',
+      monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+      monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'],  
+      dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+      dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+      dayNamesMin: ['日','一','二','三','四','五','六'] 
+    });
+
+  })();
 		  
 	
       </script>
