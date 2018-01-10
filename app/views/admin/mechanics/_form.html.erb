@@ -49,13 +49,16 @@
         <%= ff.input :service_staff %>
         <%= ff.input :description, as: :text, input_html: { rows: 4 } %>
         <%= ff.input :grade, collection: enum_option_pairs(Mechanic, :grade) %>
-        <%= ff.input :holiday_start, as: :text, value: @mechanic.mechanic.holiday_start  %>
+        <%= ff.input :holiday_start do %>
+        <label class="string optional control-label" for="user_mechanic_attributes_holiday_start">放假开始时间</label>
+          <input type="text" id="user_mechanic_attributes_holiday_start" name="user[mechanic_attributes][holiday_start]" value="<%=  @mechanic.mechanic.holiday_start %>">
+        <% end %>
         <%= ff.input :holiday_end do %>
-          <input type="text" id="user_mechanic_attributes_holiday_end" name="user_mechanic_attributes_holiday_end" value="<%=  @mechanic.mechanic.holiday_start %>">
+        <label class="string optional control-label" for="user_mechanic_attributes_holiday_end">放假结束时间</label>
+          <input type="text" id="user_mechanic_attributes_holiday_end" name="user[mechanic_attributes][holiday_end]" value="<%=  @mechanic.mechanic.holiday_end %>">
         <% end %>
       <% end %>
       <%= f.input :withdrawal_remark %>
-<input type="text" id="start_date" name="start_date" value="<%=  @mechanic.mechanic.holiday_start %>">
       <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
     </div>
   </div>
