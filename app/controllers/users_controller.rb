@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     end
 
     def update_holiday_user_params
-      params.require(:user).permit(mechanic_attributes: [:holiday_start, :holiday_end])
+      params.require(:user).permit(mechanic_attributes: [:holiday_start, :holiday_end, service_ids: []])
     end
 
     def authenticate!
