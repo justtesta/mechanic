@@ -21,10 +21,10 @@
      <% if @user.mechanic? %>
       <%= f.fields_for :mechanic do |ff| %>
         <%= ff.input :holiday_start do %>
-          <input type="text" id="user_mechanic_attributes_holiday_start" name="user[mechanic_attributes][holiday_start]" placeholder="点击选择开始日期" value="<%=  @user.mechanic.holiday_start.strftime('%Y-%m-%d') if @user.mechanic.holiday_start %>">
+          <input readonly type="text" id="user_mechanic_attributes_holiday_start" name="user[mechanic_attributes][holiday_start]" placeholder="点击选择开始日期" value="<%=  @user.mechanic.holiday_start.strftime('%Y-%m-%d') if @user.mechanic.holiday_start %>">
         <% end %>
         <%= ff.input :holiday_end do %>
-          <input type="text" id="user_mechanic_attributes_holiday_end" name="user[mechanic_attributes][holiday_end]" placeholder="点击选择结束日期"  value="<%=  @user.mechanic.holiday_end.strftime('%Y-%m-%d') if @user.mechanic.holiday_end %>">
+          <input readonly type="text" id="user_mechanic_attributes_holiday_end" name="user[mechanic_attributes][holiday_end]" placeholder="点击选择结束日期"  value="<%=  @user.mechanic.holiday_end.strftime('%Y-%m-%d') if @user.mechanic.holiday_end %>">
         <% end %>
         
       <% end %>
