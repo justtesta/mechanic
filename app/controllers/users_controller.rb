@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   def update_holiday
     if @user.update_attributes(update_holiday_user_params)
+      flash[:notice] = "春节放假时间更新成功！"
       @user.update_attribute(:userupdate, true)
       redirect_to holiday_user_path
     else
