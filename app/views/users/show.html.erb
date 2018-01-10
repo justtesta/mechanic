@@ -69,7 +69,7 @@
     <%= link_to "联系地址：#{current_user.address}", edit_user_path, class: "navigate-right" %>
   </li>
    <li class="table-view-cell">
-    <%= link_to "春节放假时间：", holiday_user_path, class: "navigate-right" %>
+    <%= link_to "春节放假时间", holiday_user_path, class: "navigate-right" %>
   </li>
   <% unless current_user.mechanic? %>
     <li class="table-view-cell">
