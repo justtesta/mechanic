@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :validate!, except: [ :new, :create ]
-  before_action :find_user, only: [ :new, :create, :edit, :update, :photo, :update_photo ]
+  before_action :find_user, only: [ :new, :create, :edit, :update, :photo, :update_photo, :holiday, :update_holiday ]
 
   def new
     @user.build_mechanic unless @user.mechanic
@@ -32,6 +32,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_photo
+    if @user.update_attributes(update_holiday_user_params)
+      @user.update_attribute(:userupdate, true)
+      redirect_to holiday_user_path
+    else
+      render :holiday
+    end
+  end
+
   private
 
     def find_user
@@ -46,6 +55,10 @@ class UsersController < ApplicationController
 
     def update_photo_user_params
       params.require(:user).permit(mechanic_attributes: [:mechanic_attach_1, :mechanic_attach_2, :mechanic_attach_3,:mechanic_attach_4,:mechanic_attach_5,:mechanic_attach_1_media_id, :mechanic_attach_2_media_id, :mechanic_attach_3_media_id, :mechanic_attach_4_media_id, :mechanic_attach_5_media_id])
+    end
+
+    def update_holiday_user_params
+      params.require(:user).permit(mechanic_attributes: [:holiday_start, :holiday_end])
     end
 
     def authenticate!

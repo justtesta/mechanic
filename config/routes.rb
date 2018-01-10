@@ -125,6 +125,8 @@ Rails.application.routes.draw do
       member do
         get :photo
         patch :update_photo
+        get :holiday
+        patch :update_holiday
       end
     end
   resource :user_session, path: "session" do

@@ -1,0 +1,113 @@
+<%= content_for :title do %>
+  春节放假时间
+<% end %>
+
+<%= simple_form_for(@user, url: update_photo_user_path, method: :patch) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="jumbotron vertical-parent">
+    <div class="text-center vertical-middle">
+      <div class="input image">
+        <%= f.input_field :avatar, accept: "image/*" %>
+        <%= image_tag current_user.avatar.url(:thumb), class: "img-circle", id: "user_avatar_preview" %>
+      </div>
+      <div> <%= @user.nickname %></div>
+    </div>
+  </div>
+     <% if @user.mechanic? %>
+      <%= f.fields_for :mechanic do |ff| %>
+          <%= ff.input :mechanic_attach_1 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_1_button" readonly></input>
+          <%= ff.input_field :mechanic_attach_1, style: "display: none;", accept: "image/*" %>
+          <%= ff.input_field :mechanic_attach_1_media_id, type: :hidden %>
+        <% end %>
+        <img id="mechanic_mechanic_attach_1_img" src="" class="img-rounded" style="max-width:140px; ">
+         <%= link_to @user.mechanic.mechanic_attach_1.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_1.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_1.present? %>
+        <%= ff.input :mechanic_attach_2 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_2_button" readonly></input>
+          <%= ff.input_field :mechanic_attach_2, style: "display: none;", accept: "image/*" %>
+          <%= ff.input_field :mechanic_attach_2_media_id, type: :hidden %>
+        <% end %>
+        <img id="mechanic_mechanic_attach_2_img" src="" class="img-rounded" style="max-width:140px; ">
+         <%= link_to @user.mechanic.mechanic_attach_2.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_2.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_2.present? %>
+        <%= ff.input :mechanic_attach_3 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_3_button" readonly></input>
+          <%= ff.input_field :mechanic_attach_3, style: "display: none;", accept: "image/*" %>
+          <%= ff.input_field :mechanic_attach_3_media_id, type: :hidden %>
+        <% end %>
+        <img id="mechanic_mechanic_attach_3_img" src="" class="img-rounded" style="max-width:140px; ">
+        <%= link_to @user.mechanic.mechanic_attach_3.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_3.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_3.present? %>
+        <%= ff.input :mechanic_attach_4 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_4_button" readonly></input>
+          <%= ff.input_field :mechanic_attach_4, style: "display: none;", accept: "image/*" %>
+          <%= ff.input_field :mechanic_attach_4_media_id, type: :hidden %>
+        <% end %>
+        <img id="mechanic_mechanic_attach_4_img" src="" class="img-rounded" style="max-width:140px; ">
+        <%= link_to @user.mechanic.mechanic_attach_4.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_4.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_4.present? %>
+        <%= ff.input :mechanic_attach_5 do %>
+          <input class="btn btn-block btn-positive" value="点击上传图片" id="mechanic_mechanic_attach_5_button" readonly></input>
+          <%= ff.input_field :mechanic_attach_5, style: "display: none;", accept: "image/*" %>
+          <%= ff.input_field :mechanic_attach_5_media_id, type: :hidden %>
+        <% end %>
+        <img id="mechanic_mechanic_attach_5_img" src="" class="img-rounded" style="max-width:140px; ">
+        <%= link_to @user.mechanic.mechanic_attach_5.url(:original) do %>
+          <%= image_tag @user.mechanic.mechanic_attach_5.url(:thumb) %>
+        <% end if @user.mechanic.mechanic_attach_5.present? %>
+       <% end %>
+    <% end %>
+
+    <%= f.button :submit, "确定", class: "btn-block btn-positive" %>
+
+     <script type="text/javascript">
+        <% if weixin? %>
+          wx.config(<%= raw Weixin.get_jssign_package(request.url).merge(jsApiList: %w(chooseImage uploadImage)).to_json %>);
+          wx.error(function(res) { alert(JSON.stringify(res)) });
+          function fakeFileInput(fileInput, fakeInput, mediaIdInput, mediaIdImg) {
+            fakeInput.addEventListener("click", function() {
+              wx.chooseImage({
+                count: 1,
+                success: function (res) {
+                  mediaIdImg.src=res.localIds[0];
+                  setTimeout(function() {
+                    wx.uploadImage({
+                      localId: res.localIds[0],
+                      isShowProgressTips: true,
+                      success: function (res) {
+                        mediaIdInput.value = res.serverId;
+                        fakeInput.value = "点击更换图片";
+                      }
+                    });
+                  }, 0);
+                }
+              });
+            });
+          }
+        <% else %>
+          function fakeFileInput(fileInput, fakeInput, mediaIdInput, mediaIdImg) {
+            fakeInput.addEventListener("click", function() {
+              fileInput.click();
+            });
+            fileInput.addEventListener("change", function() {
+              fakeInput.value = "点击更换图片";
+            });
+          }
+        <% end %>
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_1, mechanic_mechanic_attach_1_button, user_mechanic_attributes_mechanic_attach_1_media_id, mechanic_mechanic_attach_1_img);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_2, mechanic_mechanic_attach_2_button, user_mechanic_attributes_mechanic_attach_2_media_id, mechanic_mechanic_attach_2_img);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_3, mechanic_mechanic_attach_3_button, user_mechanic_attributes_mechanic_attach_3_media_id, mechanic_mechanic_attach_3_img);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_4, mechanic_mechanic_attach_4_button, user_mechanic_attributes_mechanic_attach_4_media_id, mechanic_mechanic_attach_4_img);
+        fakeFileInput(user_mechanic_attributes_mechanic_attach_5, mechanic_mechanic_attach_5_button, user_mechanic_attributes_mechanic_attach_5_media_id, mechanic_mechanic_attach_5_img);
+        	
+		  
+	
+      </script>
+
+<% end %>	
