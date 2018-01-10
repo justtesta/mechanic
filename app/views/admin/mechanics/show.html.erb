@@ -25,6 +25,9 @@
 		<%= ii.attribute :services do |mechanic| %>
         <%= mechanic.services.join("、") %>
 		<% end %>
+    
+        <%= ii.attribute :holiday_start, format: :long %>
+        <%= ii.attribute :holiday_end, format: :long %>
         <%= ii.attribute :province %>
         <%= ii.attribute :city %>
         <%= ii.attribute :district %>
@@ -41,8 +44,6 @@
         <%= ii.attribute :grade do |mechanic| %>
           <%= te mechanic, :grade %>
         <% end %>
-        <%= ii.attribute :holiday_start, format: :long %>
-        <%= ii.attribute :holiday_end, format: :long %>
         <%= ii.attribute :description %>
         <% if  @mechanic.mechanic.has_attach? %>
           <h3 class="page-header">店面照片<small>点击照片查看原图</small></h3>
