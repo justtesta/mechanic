@@ -52,7 +52,7 @@
    %>
 
   <div class="col-md-10 col-xs-8">
-  <% if  @state == :unfinisheds||@state == :settleds%>
+  <% if  @state == :unfinisheds||@state == :settleds||@state == :assigneds||@state == :finisheds%>
     <%= wice_index_for [ :merchants, :hosting, @orders ], class: "table table-hover" do |i| %>
       <%= i.attribute :store_nickname, searchable: true  %>
       <%= i.attribute :contact_nickname,searchable: "orders.contact_nickname" %>
