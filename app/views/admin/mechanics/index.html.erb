@@ -36,7 +36,7 @@
     if(@skill_cd>0)
       @mechanics = @mechanics.includes(:mechanic).joins(mechanic: :works).where("skill_id=?",@skill_cd)
     else
-      @mechanics = @mechanics.includes(:mechanic)
+      @mechanics = @mechanics.includes(:mechanic).joins(:mechanic)
     end
 
     if(@service_cd>0)
