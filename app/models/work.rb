@@ -24,6 +24,20 @@ class Work < ApplicationRecord
     end 
   end 
 
+  def add_price
+    Work.where("skill_id=28").each do |work|
+      @work_28=work
+        @work_haved=Work.where("mechanic_id = ? AND skill_id = ? ",@work_28.mechanic_id,@work_28.skill_id).last
+        if(@work_haved.nil?)
+          @work=Work.new
+          @work.mechanic_id=@work_28.mechanic_id
+          @work.skill_id=146
+          @work.price = 20
+          @work.save
+        end
+    end 
+  end
+
   def set_work
 
     Order.availables.where("quantity>0 and mechanic_id>0 and skill_cd>0 and id>66912").each do |order|
