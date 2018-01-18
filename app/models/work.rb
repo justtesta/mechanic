@@ -27,7 +27,7 @@ class Work < ApplicationRecord
   def add_price
     Work.where("skill_id=28").each do |work|
       @work_28=work
-        @work_haved=Work.where("mechanic_id = ? AND skill_id = ? ",@work_28.mechanic_id,@work_28.skill_id).last
+        @work_haved=Work.where("mechanic_id = ? AND skill_id = ? ",@work_28.mechanic_id,146).last
         if(@work_haved.nil?)
           @work=Work.new
           @work.mechanic_id=@work_28.mechanic_id
