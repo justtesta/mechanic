@@ -96,11 +96,15 @@ class Order < ApplicationRecord
         return false unless unassigned?
         return false unless selected?
         return false if automatic?
-        return false unless self.skill_cd==28||self.skill_cd==29||self.skill_cd==42||self.skill_cd==9 ||self.skill_cd==34||self.skill_cd==44
+        return false unless self.skill_cd==28||self.skill_cd==29||self.skill_cd==42||self.skill_cd==9 ||self.skill_cd==34||self.skill_cd==44||self.skill_cd==146
         return false if  self.pre_procedure_price.to_i >= self.quoted_price
         return false unless  self.pre_procedure_price.to_i > 0
         mechanic = Mechanic.find(self.selectmechanic_id)
-        return false unless mechanic.skilled_dones_orders(self.skill_cd).count>0
+        if self.skill_cd==28||self.skill_cd==146
+          return false unless mechanic.skilled_dones_orders([28,146]).count>0
+        else
+          return false unless mechanic.skilled_dones_orders(self.skill_cd).count>0
+        end
         return false if mechanic.user.hidden?
         update_attribute(:remark, self.pre_remark) if self.pre_remark
         update_attribute(:procedure_price, self.pre_procedure_price) if self.pre_procedure_price       
