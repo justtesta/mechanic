@@ -54,7 +54,7 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
   end
 
   def automatic
-    Order.hostings.unassigneds.where("(skill_cd=28 or skill_cd=29 or skill_cd=42 or skill_cd=9 or skill_cd=34 or skill_cd=44) and automatic_repick_check=false").each do |unassigned_order_klass|
+    Order.hostings.unassigneds.where("(skill_cd=28 or skill_cd=29 or skill_cd=42 or skill_cd=9 or skill_cd=34 or skill_cd=44 or skill_cd=146) and automatic_repick_check=false").each do |unassigned_order_klass|
        unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
        unassigned_order_klass_order.automatic_repick!
        unassigned_order_klass_order.update_attribute(:automatic_repick_check,true)
