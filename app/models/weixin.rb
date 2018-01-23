@@ -20,7 +20,7 @@ module Weixin
     button: [{
         type: "view",
         name: "批发",
-        url: "http://mp.weixin.qq.com/bizmall/mallshelf?id=&t=mall/list&biz=MzA3MjYwNzYxMA==&shelf_id=2&showwxpaytitle=1#wechat_redirect"
+        url: "http://mp.weixin.qq.com/bizmall/mallshelf?id=&t=mall/list&biz=MzA3MjYwNzYxMA==&shelf_id=3&showwxpaytitle=1#wechat_redirect"
       
     }, {
       name: "服务",
