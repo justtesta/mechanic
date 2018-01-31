@@ -14,6 +14,7 @@ class Order < ApplicationRecord
       as_enum :refund, user_cancel: 0, merchant_revoke: 1, admin_freeze: 2
       as_enum :confirm_type,none: 0, confirm_no_withdrawal: 1, confirm: 2, withdrawal: 3, before_withdrawal: 4,before_confirm_no_withdrawal:5
       as_enum :pay_type, { weixin: 0, alipay: 1, skip: 2, balance: 3 }, prefix: true
+      as_enum :jd_order_type,self_sale: 0, pop: 1
 
       scope :availables, -> { where('"orders"."state_cd" > ?', AVAILABLE_GREATER_THAN) }
       def available?

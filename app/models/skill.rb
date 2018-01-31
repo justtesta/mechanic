@@ -4,6 +4,7 @@ class Skill < ApplicationRecord
   validates_presence_of :name
   
   has_many :works,:dependent => :destroy
+  has_many :products,:dependent => :destroy
   has_many :mechanics, through: :works
  
 
