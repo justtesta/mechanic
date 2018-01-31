@@ -1,10 +1,10 @@
 class Merchants::Hosting::OrdersController < Merchants::OrdersController
   before_action :redirect_user
   before_action :redirect_user_dispatcher, only: [ :confirm, :confirmwithdrawal ]
-  skip_before_action :redirect_user, only: [:automatic]
-  skip_before_action :redirect_user_dispatcher, only: [:automatic]
-  skip_before_action :authenticate!, only: [:automatic]
-  before_action :find_order, except: [ :index, :new, :create, :notify, :not_found , :automatic]
+  skip_before_action :redirect_user, only: [:automatic, :automatic_pop]
+  skip_before_action :redirect_user_dispatcher, only: [:automatic, :automatic_pop]
+  skip_before_action :authenticate!, only: [:automatic, :automatic_pop]
+  before_action :find_order, except: [ :index, :new, :create, :notify, :not_found , :automatic, :automatic_pop]
 
 
   def index
@@ -65,7 +65,15 @@ class Merchants::Hosting::OrdersController < Merchants::OrdersController
        confirming_order_klass_order.update_attribute(:automatic_confirm_check,true)
     end 
     #trigger automatic_repick
-  end 
+  end
+
+  def automatic_pop
+    Order.hostings.unassigneds.where("(skill_cd=28 or skill_cd=29 or skill_cd=42 or skill_cd=9 or skill_cd=34 or skill_cd=44 or skill_cd=146) and automatic_repick_check=false").each do |unassigned_order_klass|
+       unassigned_order_klass_order=Order.find(unassigned_order_klass.id)
+       unassigned_order_klass_order.automatic_repick!
+       unassigned_order_klass_order.update_attribute(:automatic_repick_check,true)
+    end 
+  end  
 
   def service_staff
     @order.mechanic.update_attribute(:service_staff,params[:service_staff])

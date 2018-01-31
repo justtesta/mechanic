@@ -73,6 +73,7 @@ Rails.application.routes.draw do
         end
         collection do
           get 'automatic'
+          get 'automatic_pop'
         end
       end
       resources :numbers
