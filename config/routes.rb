@@ -278,7 +278,9 @@ Rails.application.routes.draw do
         post :active
         post :inactive
         get :settings
-        post :settings, action: :update_settings
+        post :settings, action: :update_product
+        get :product
+        post :product, action: :update_product
       end
     end
     resources :orders
