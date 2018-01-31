@@ -78,7 +78,7 @@ class Admin::MerchantsController < Admin::ApplicationController
     end
 
     def merchant_params
-      params.require(:merchant).permit(
+      params.require(:user).permit(
         merchant_attributes: [skills: [[:is_checked, :price, :skill_id]]  ])
     end
 
