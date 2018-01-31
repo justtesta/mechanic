@@ -77,6 +77,9 @@ zh-CN:
       three_star: 三星店
       four_star: 四星店
       five_star: 五星店
+    jd_order_type:
+      self_sale: 京东自营
+      pop: POP商家
  
   simple_form:
     labels:
