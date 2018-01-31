@@ -51,6 +51,20 @@ class Admin::MerchantsController < Admin::ApplicationController
     redirect_to settings_admin_merchant_path(@merchant)
   end
 
+  def update_product
+    products = Array.new
+    merchant_params[:merchant_attributes][:skills].each{ |product|
+      if product[:is_checked]=="1"
+        product.delete :is_checked
+        products << @merchant.merchant.products.new(product) unless product[:skill_id].empty?
+      end
+    }
+    @merchant_params=merchant_params
+    @merchant_params[:merchant_attributes][:products]=[]
+    @merchant.merchant.products.push(products)
+    redirect_to product_admin_merchant_path(@merchant)
+  end
+
   private
 
     def find_merchant
@@ -62,5 +76,12 @@ class Admin::MerchantsController < Admin::ApplicationController
         :commission_percent, :mobile_commission_percent, :client_commission_percent,
         :mechanic_commission_percent)
     end
+
+    def merchant_params
+      params.require(:merchant).permit(
+        merchant_attributes: [skills: [[:is_checked, :price, :skill_id]]  ])
+    end
+
+
 
 end
