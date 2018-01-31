@@ -9,18 +9,7 @@
   </div>
 
   <div class="col-md-7 col-xs-8">
-    <%= bootstrap_simple_form_for(@merchant.settings, url: settings_admin_merchant_path(@merchant)) do |f| %>
-      <%= f.error_messages %>
-
-      <% use_system_commission_percent = @merchant.settings.use_system_commission_percent %>
-      <%= f.input :use_system_commission_percent, as: :boolean %>
-      <%= f.input :commission_percent, as: :float, readonly: use_system_commission_percent %>
-      <%= f.input :mobile_commission_percent, as: :float, readonly: use_system_commission_percent %>
-      <%= f.input :client_commission_percent, as: :float, readonly: use_system_commission_percent %>
-      <%= f.input :mechanic_commission_percent, as: :float, readonly: use_system_commission_percent %>
-
-      <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
-    <% end %>
+    
   </div>
 
   <script type="text/javascript">
