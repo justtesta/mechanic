@@ -60,7 +60,7 @@ class Admin::MerchantsController < Admin::ApplicationController
       end
     }
     @merchant_params=merchant_params
-    @merchant_params[:merchant_attributes].delete :products
+    @merchant_params[:merchant_attributes].delete :skills
     @merchant_params[:merchant_attributes][:products]=[]
     @merchant.merchant.products.push(products)
     redirect_to product_admin_merchant_path(@merchant)

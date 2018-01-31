@@ -7,6 +7,7 @@ class Merchant < ApplicationRecord
 
   has_many :orders
   has_many :products ,:dependent => :destroy
+  has_many :skills, through: :products
 
   belongs_to :user
   belongs_to :store, foreign_key: :user_id, autosave: true
