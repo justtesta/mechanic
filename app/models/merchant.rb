@@ -6,7 +6,7 @@ class Merchant < ApplicationRecord
   as_enum :role, admin: 0, dispatcher: 1
 
   has_many :orders
-  has_many :product ,:dependent => :destroy
+  has_many :products ,:dependent => :destroy
 
   belongs_to :user
   belongs_to :store, foreign_key: :user_id, autosave: true
