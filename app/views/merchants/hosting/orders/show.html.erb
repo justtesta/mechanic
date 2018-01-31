@@ -50,11 +50,11 @@
       <%= i.attribute :out_confirm_by_merchant_name %>
       <% end %>
       <%= i.attribute :sendpay? %>
-      <%= i.attribute :price %>
-      <%= i.attribute :offline? %>
       <%= i.attribute :jd_order_type do |order| %>
         <%= te order, :jd_order_type %>
       <% end %>
+      <%= i.attribute :price %>
+      <%= i.attribute :offline? %>
       <%= i.attribute :procedure_price %>
       <%= i.attribute :remark %>
       <%= i.attribute :merchant_remark %>
