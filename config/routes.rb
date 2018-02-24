@@ -36,6 +36,8 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :numbers
+
       collection do
         get :"pay/:id", action: :pay, as: :pay
       end
