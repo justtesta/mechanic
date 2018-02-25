@@ -1,6 +1,6 @@
 module LBS
   Config = YAML.load(ERB.new(File.read("#{Rails.root}/config/lbs.yml")).result)[Rails.env]
-  Key = Config["key"]
+  Key = "3GXBZ-IZYRO-YNJWO-SIBU2-4XZFJ-3XBR2"
 
   class << self
     def district_list
