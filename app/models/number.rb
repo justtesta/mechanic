@@ -1,5 +1,5 @@
 class Number < ApplicationRecord
-  as_enum :status, unchecked: 0, checked: 1
+  as_enum :check_status, unchecked: 0, checked: 1, source: :status
   belongs_to :order
   def left_number
     pwd_number_default[0,9]
