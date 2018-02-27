@@ -7,8 +7,8 @@ class Merchants::NumbersController < Merchants::ApplicationController
   end
 
   def new
-    @order = Order.find(params[:order_id])
-    @number =@order.numbers.new()
+    #@order = Order.find(params[:order_id])
+    @number =Number.new
   end
 
   def edit
