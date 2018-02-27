@@ -3,7 +3,9 @@
     <%= bootstrap_simple_form_for([ :merchants, @number ]) do |f| %>
       <%= f.error_messages %>
 
-      
+      <%= f.input :pwd_number_default %>
+
+       <%= f.input :role, collection: enum_option_pairs(Merchant, :role) %>
 
       <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
     <% end %>
