@@ -2,8 +2,13 @@ class Merchants::NumbersController < Merchants::ApplicationController
   before_action :find_note
 
   def index
-    flash[:notice] = "成功更新记事本！"
-    @numbers  = Number.all()
+    @order = Order.find(params[:order_id])
+    @numbers = @order.numbers
+  end
+
+  def new
+    @order = Order.find(params[:order_id])
+    @number =@order.numbers.new()
   end
 
   def edit

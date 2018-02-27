@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-7">
-    <%= bootstrap_simple_form_for([ :merchants, :admin, @merchant ]) do |f| %>
+    <%= bootstrap_simple_form_for([ :merchants, @number ]) do |f| %>
       <%= f.error_messages %>
 
       <%= f.input :nickname %>
