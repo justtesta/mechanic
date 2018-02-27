@@ -9,6 +9,6 @@
   <%= i.attribute :updated_at, format: :short %>     
 
   <%= i.actions  do |a| %>
-   <%= a.action_link :edit, url: merchants_hosting_order_path(i.object.order_id) %>
+   <%= a.action_link :edit, url: edit_merchants_order_number_path(i.object.order_id) %>
   <% end %>
 <% end %>
