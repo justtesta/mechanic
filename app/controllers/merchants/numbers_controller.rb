@@ -6,6 +6,9 @@ class Merchants::NumbersController < Merchants::ApplicationController
     @numbers  = Number.all()
   end
 
+  def edit
+  end
+
   def update
     if @note.update_attributes(note_params)
       flash[:notice] = "成功更新记事本！"
