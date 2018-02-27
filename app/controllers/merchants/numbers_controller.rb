@@ -2,7 +2,8 @@ class Merchants::NumbersController < Merchants::ApplicationController
   before_action :find_note
 
   def index
-    @numbers = Number.first()
+    flash[:notice] = "成功更新记事本！"
+    @numbers  = Number.first()
   end
 
   def update
