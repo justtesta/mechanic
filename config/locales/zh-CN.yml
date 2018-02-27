@@ -293,6 +293,7 @@ zh-CN:
         shop_name: 预约技师
         created_at: 生成时间
         updated_at: 核消时间
+        check_status: 核销状态
       partcheck:
         quoted_price: 价格
         quantity: 数量
