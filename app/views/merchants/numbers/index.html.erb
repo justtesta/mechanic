@@ -3,7 +3,7 @@
   <small><%= link_to "添加核销码", new_merchants_admin_merchant_path %></small>
 </h3>
 
-<%= index_for [ :merchants,:order  @numbers ], class: "table table-hover data-tables" do |i| %>
+<%= index_for [ :merchants, :orders  @numbers ], class: "table table-hover data-tables" do |i| %>
   <%= i.attribute :pwd_number_default %>
   <%= i.attribute :created_at, format: :short %>
   <%= i.attribute :updated_at, format: :short %>     
