@@ -3,15 +3,7 @@
     <%= bootstrap_simple_form_for([ :merchants, @number ]) do |f| %>
       <%= f.error_messages %>
 
-      <%= f.input :nickname %>
-      <%= f.input :mobile %>
-
-      <%= f.input :password %>
-      <%= f.input :password_confirmation %>
-
-      <% unless current_merchant == @merchant %>
-        <%= f.input :role, collection: enum_option_pairs(Merchant, :role) %>
-      <% end %>
+      
 
       <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
     <% end %>
