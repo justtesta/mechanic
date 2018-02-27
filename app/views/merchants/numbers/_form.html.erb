@@ -5,7 +5,7 @@
 
       <%= f.input :pwd_number_default %>
 
-       <%= f.input :role, collection: enum_option_pairs(Merchant, :role) %>
+       <%= f.input :status, collection: enum_option_pairs(Number, :status) %>
 
       <%= f.button :submit, "确定", class: "btn-primary pull-right" %>
     <% end %>
