@@ -1,5 +1,6 @@
 class Merchants::NumbersController < Merchants::ApplicationController
-  before_action :find_note
+  before_action :find_number , only: [ :edit, :update, :destroy ]
+
 
   def index
     @order = Order.find(params[:order_id])
@@ -22,23 +23,28 @@ class Merchants::NumbersController < Merchants::ApplicationController
   end
 
   def edit
-    @order = Order.find(params[:order_id])
-    @number =@order.numbers.find(params[:id])
   end
 
   def update
-    if @note.update_attributes(note_params)
-      flash[:notice] = "成功更新记事本！"
-      redirect_to merchants_note_path
+    if @number.update_attributes(number_params)
+      flash[:notice] = "成功更新核销码！"
+      redirect_to merchants_order_numbers_path
     else
-      render :show
+      render :eidt
     end
+  end
+
+
+  def destroy
+    @number.destroy
+    redirect_to merchants_order_numbers_path
   end
 
   private
 
-    def find_note
-      @note = current_store.notes.first_or_create
+    def find_number
+      @order = Order.find(params[:order_id])
+      @number =@order.numbers.find(params[:id])
     end
 
     def number_params
