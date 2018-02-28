@@ -26,21 +26,26 @@ class Merchants::NumbersController < Merchants::ApplicationController
   end
 
   def update
-    if @number.update_attributes(number_params)
-      flash[:notice] = "成功更新核销码！"
-      redirect_to merchants_order_numbers_path
+    if @number.status==0&&@number.number_type_cd==1
+      if @number.update_attributes(number_params)
+        flash[:notice] = "成功更新核销码！"
+        redirect_to merchants_order_numbers_path
+      else
+        render :show
+      end
     else
+      flash[:error] = "已经核销或者京东生成的核销码不可删除！"
       render :show
     end
   end
 
 
   def destroy
-    if @number.status==0
+    if @number.status==0&&@number.number_type_cd==1
       flash[:notice] = "成功删除核销码！"
       @number.destroy
     else
-      flash[:error] = "已经核销的核销码不可删除！"
+      flash[:error] = "已经核销或者京东生成的核销码不可删除！"
     end
     redirect_to merchants_order_numbers_path
   end
