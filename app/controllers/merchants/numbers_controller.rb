@@ -11,6 +11,16 @@ class Merchants::NumbersController < Merchants::ApplicationController
     @number =@order.numbers.new
   end
 
+  def create
+    @order = Order.find(params[:order_id])
+    @number = @order.numbers.new(number_params)
+    if @number.save
+      redirect_to merchants_numbers_path
+    else
+      render :new
+    end
+  end
+
   def edit
     @order = Order.find(params[:order_id])
     @number =@order.numbers.find(params[:id])
@@ -31,7 +41,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
       @note = current_store.notes.first_or_create
     end
 
-    def note_params
-      params.require(:note).permit(:content)
+    def number_params
+      params.require(:number).permit(:pwd_number_default)
     end
 end
