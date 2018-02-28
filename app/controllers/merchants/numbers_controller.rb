@@ -1,7 +1,7 @@
 class Merchants::NumbersController < Merchants::ApplicationController
   before_action :find_order
   before_action :find_number , only: [ :edit, :update, :destroy ]
-  before_action :redirect_mechanic
+  
 
 
   def index
@@ -57,10 +57,5 @@ class Merchants::NumbersController < Merchants::ApplicationController
       params.require(:number).permit(:pwd_number_default)
     end
 
-    def redirect_mechanic
-      if current_user.mechanic?
-        flash[:error] = "技师无法进行此操作！"
-        redirect_to orders_path
-      end
-    end
+
 end
