@@ -14,6 +14,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
 
   def create
     @number = @order.numbers.new(number_params)
+    @number.number_type_cd=1
     if @number.save
       redirect_to merchants_order_numbers_path
     else
