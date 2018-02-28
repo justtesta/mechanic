@@ -11,7 +11,8 @@ class Number < ApplicationRecord
     pwd_number_default[9,3]
   end
   def left_number2
-    pwd_number_default[0,-3]
+    temp=pwd_number_default.length-3
+    pwd_number_default[0,temp]
   end
   def right_number2
     pwd_number_default.last(3)
