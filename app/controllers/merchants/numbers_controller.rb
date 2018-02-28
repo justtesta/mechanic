@@ -35,7 +35,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
 
 
   def destroy
-    if @number.status=0
+    if @number.status==0
       flash[:notice] = "成功删除核销码！"
       @number.destroy
     else
