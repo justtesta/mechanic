@@ -10,5 +10,6 @@
 
   <%= i.actions  do |a| %>
    <%= a.action_link :edit, url: edit_merchants_order_number_path(i.object.order_id,i.object.id) %>
+   <%= a.action_link :destroy, url: destroy_merchants_order_number_path(i.object.order_id,i.object.id) %>
   <% end %>
 <% end %>
