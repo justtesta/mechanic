@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110070110) do
+ActiveRecord::Schema.define(version: 20180130150740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -329,6 +329,9 @@ ActiveRecord::Schema.define(version: 20180110070110) do
     t.string   "confirm_by_merchant_name"
     t.boolean  "automatic_confirm_check",                      default: false
     t.boolean  "automatic_repick_check",                       default: false
+    t.string   "jd_order_id"
+    t.string   "jd_shop_id"
+    t.integer  "jd_order_type_cd"
     t.index ["bid_id"], name: "index_orders_on_bid_id", using: :btree
     t.index ["cancel_cd"], name: "index_orders_on_cancel_cd", using: :btree
     t.index ["hosting"], name: "index_orders_on_hosting", using: :btree
@@ -351,6 +354,14 @@ ActiveRecord::Schema.define(version: 20180110070110) do
     t.datetime "updated_at",                  null: false
     t.string   "remark"
     t.integer  "confirm_type_cd", default: 0
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.integer  "skill_id"
+    t.integer  "price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -442,6 +453,16 @@ ActiveRecord::Schema.define(version: 20180110070110) do
     t.string   "description"
     t.datetime "created_at",   precision: 6, default: -> { "now()" }, null: false
     t.datetime "updated_at",   precision: 6, default: -> { "now()" }, null: false
+  end
+
+  create_table "temp_mechanics_getweb", force: :cascade do |t|
+    t.string "locshopname", limit: 500
+    t.string "province",    limit: 50
+    t.string "city",        limit: 50
+    t.string "district",    limit: 50
+    t.string "locshopaddr", limit: 500
+    t.string "phone",       limit: 50
+    t.string "bai_tel",     limit: 500
   end
 
   create_table "temp_mechanics_jd", id: false, force: :cascade do |t|
