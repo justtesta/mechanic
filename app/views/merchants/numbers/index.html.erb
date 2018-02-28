@@ -5,6 +5,9 @@
 
 <%= index_for [ :merchants , @numbers ], class: "table table-hover data-tables" do |i| %>
   <%= i.attribute :pwd_number_default %>
+  <%= i.attribute :check_status do |number| %>
+          <%= te number, :check_status %>
+        <% end %>
   <%= i.attribute :created_at, format: :short %>
   <%= i.attribute :updated_at, format: :short %>     
 
