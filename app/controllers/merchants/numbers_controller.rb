@@ -56,4 +56,11 @@ class Merchants::NumbersController < Merchants::ApplicationController
     def number_params
       params.require(:number).permit(:pwd_number_default)
     end
+
+    def redirect_mechanic
+      if current_user.mechanic?
+        flash[:error] = "技师无法进行此操作！"
+        redirect_to orders_path
+      end
+    end
 end
