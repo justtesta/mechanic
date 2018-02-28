@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-7">
-    <%= bootstrap_simple_form_for([ :merchants, @number ],url: merchants_order_numbers_path) do |f| %>
+    <%= bootstrap_simple_form_for([ :merchants, @number ],url: url) do |f| %>
       <%= f.error_messages %>
 
       <%= f.input :pwd_number_default %>
