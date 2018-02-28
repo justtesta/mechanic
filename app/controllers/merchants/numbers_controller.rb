@@ -15,7 +15,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
     @order = Order.find(params[:order_id])
     @number = @order.numbers.new(number_params)
     if @number.save
-      redirect_to merchants_numbers_path
+      redirect_to merchants_order_numbers_path
     else
       render :new
     end
