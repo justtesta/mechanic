@@ -34,7 +34,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
         render :edit
       end
     else
-      flash[:error] = "已经核销或者京东生成的核销码不可删除！"
+      flash[:error] = "已经核销或者京东生成的核销码不可修改！"
       render :edit
     end
   end
