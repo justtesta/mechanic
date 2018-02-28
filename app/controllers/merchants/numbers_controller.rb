@@ -30,7 +30,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
       flash[:notice] = "成功更新核销码！"
       redirect_to merchants_order_numbers_path
     else
-      render :eidt
+      render :show
     end
   end
 
