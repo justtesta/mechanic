@@ -39,7 +39,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
       flash[:notice] = "成功删除核销码！"
       @number.destroy
     else
-      flash[:notice] = "已经核销的核销码不可删除！"
+      flash[:error] = "已经核销的核销码不可删除！"
     end
     redirect_to merchants_order_numbers_path
   end
