@@ -31,11 +31,11 @@ class Merchants::NumbersController < Merchants::ApplicationController
         flash[:notice] = "成功更新核销码！"
         redirect_to merchants_order_numbers_path
       else
-        render :show
+        render :edit
       end
     else
       flash[:error] = "已经核销或者京东生成的核销码不可删除！"
-      render :show
+      render :edit
     end
   end
 
