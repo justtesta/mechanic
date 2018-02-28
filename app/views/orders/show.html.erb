@@ -76,7 +76,7 @@
 		    
         <% if number.number_type_cd==1 %>	
           <%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",placeholder: '输入核销码',style: "width:185px"  %>
-          <input type="button" style= "width:80px" value="核销" class="btn btn-default btn-danger" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
+          <input type="button" style= "width:80px" value="核销" class="btn btn-default btn-danger" onclick = "verification2(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
 
         <% else %>
   				<label><%= number.left_number %></label>
@@ -157,6 +157,12 @@
  			$.getJSON("http://wx.wkt99.com/jos/jdpost.php?jsoncallback=?", { id: id, number: right_number }, function(json) { callback(json,id); });　 
  
 		}
+    function  verification2(id,left_number){
+      right_number=$("#order_number_pwd_number"+id).val();
+      
+      $.getJSON("http://wx.wkt99.com/jos/jdpost2.php?jsoncallback=?", { id: id, number: right_number }, function(json) { callback(json,id); });　 
+ 
+    }
 		function  callback(json,id){
 			if(json.code==0)
 			{
