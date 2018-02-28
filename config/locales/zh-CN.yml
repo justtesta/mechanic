@@ -81,8 +81,8 @@ zh-CN:
       self_sale: 京东自营
       pop: POP商家
     check_status:
-      0: 未核销
-      1: 已核销
+      :0: 未核销
+      :1: 已核销
 
  
   simple_form:
