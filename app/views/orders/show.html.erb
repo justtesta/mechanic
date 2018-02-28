@@ -73,11 +73,16 @@
      <label class="string required" for="order_numbers_pwd_number_default">消费码</label>
 	  	 <%  @order.numbers.each do |number|  %>
 		    <div class="content-padded order_numbers_pwd_number_default">
-		    	
-				<label><%= number.left_number %></label>
-				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",placeholder: '后三位',style: "width:85px"  %>
-				<input type="button" style= "width:80px" value="核销" class="btn btn-default btn-danger" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
-				
+		    
+        <% if number.number_type_cd==1 %>	
+          <%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",placeholder: '输入核销码',style: "width:185px"  %>
+          <input type="button" style= "width:80px" value="核销" class="btn btn-default btn-danger" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
+
+        <% else %>
+  				<label><%= number.left_number %></label>
+  				<%= ff.text_field :pwd_number,id: "order_number_pwd_number#{number[:id]}",name: "order[numbers][#{number[:id]}][price]",placeholder: '后三位',style: "width:85px"  %>
+  				<input type="button" style= "width:80px" value="核销" class="btn btn-default btn-danger" onclick = "verification(<%= number.id %>,<%= number.left_number %>);" id="order_number__button<%= number.id %>"/>
+				<% end %>
 			</div>
 	 	 <% end %>
 		 <% end %>
