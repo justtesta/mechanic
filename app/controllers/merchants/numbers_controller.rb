@@ -5,7 +5,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
 
 
   def index
-    @numbers = @order.numbers
+    @numbers = @order.numbers.where(number_type_cd: 1)
   end
 
   def new
@@ -57,7 +57,7 @@ class Merchants::NumbersController < Merchants::ApplicationController
     end
 
     def find_number
-      @number =@order.numbers.find(params[:id])
+      @number =@order.numbers.where(number_type_cd: 1).find(params[:id])
     end
 
     def order_klass
