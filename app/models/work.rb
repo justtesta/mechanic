@@ -91,7 +91,23 @@ class Work < ApplicationRecord
     when "JZZ"
         9  
     when "DSCP"
-        55      
+        55 
+    when "BXG"
+        135 
+    when "CTB"
+        90 
+    when "BJPQ"
+        129      
+    when "XC"
+        131  
+    when "SZDW"
+        68
+    when "zt"
+        107
+    when "zd"
+        36
+    when "jd"
+        125        
     else
         0
     end
