@@ -36,7 +36,7 @@ class TempMechanic < ApplicationRecord
     else
     print "id:", mechanic_id, "\n"
     Rails.logger.info "error mechanic_id:##{mechanic_id} "
-    update_attribute(:addr,"3")
+    update_attribute(:addr,"4")
     end
     
     
