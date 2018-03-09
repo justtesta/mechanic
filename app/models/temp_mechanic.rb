@@ -3,8 +3,8 @@ class TempMechanic < ApplicationRecord
     s = "M30L30Y10TW20TN90"
     s = description.strip
     s=s.sub('SLDW',"|SZDW:")
-    s=s.sub('BXG',"|BXG:")
-    s=s.sub('CTB',"|CTB:")
+    s=s.sub('BXG',"|BXG:0")
+    s=s.sub('CTB',"|CTB:0")
     s=s.sub('DSCP',"|DSCP:")
     s=s.sub('BJPQ',"|BJPQ:")
     s=s.sub('JLY',"|JZZ:0")
@@ -24,9 +24,9 @@ class TempMechanic < ApplicationRecord
     s=s.sub('HSCP',"|ZSCP:")
     s=s.sub('H',"|H:")
     s=s.sub('XC',"|XC:")
-    s=s.sub('zt',"|zt:")
-    s=s.sub('zd',"|zd:")
-    s=s.sub('jd',"|jd:")
+    s=s.sub('zt',"|zt:0")
+    s=s.sub('zd',"|zd:0")
+    s=s.sub('jd',"|jd:0")
     s[0]=""
     
     array = Array.new
@@ -36,7 +36,7 @@ class TempMechanic < ApplicationRecord
     else
     print "id:", mechanic_id, "\n"
     Rails.logger.info "error mechanic_id:##{mechanic_id} "
-    update_attribute(:addr,"2")
+    update_attribute(:addr,"3")
     end
     
     
