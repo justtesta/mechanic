@@ -1,0 +1,2 @@
+class TempMechanicJdPart < ApplicationRecord
+end
