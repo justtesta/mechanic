@@ -143,7 +143,11 @@ class Work < ApplicationRecord
       @mechanic.works.each do |work|
         @work=work
         group_id="#{@work.skill.group_id},"
-        @mechanic.group_id<<group_id if @mechanic.group_id.index(group_id).nil?
+        if @mechanic.group_id.nil?
+          @mechanic.group_id<<group_id
+        else
+          @mechanic.group_id<<group_id if @mechanic.group_id.index(group_id).nil?
+        end
       end
       @mechanic.save unless @mechanic.group_id.nil?
     end
