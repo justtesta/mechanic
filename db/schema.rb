@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180309123715) do
+ActiveRecord::Schema.define(version: 20180310003744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20180309123715) do
     t.integer  "grade_cd"
     t.datetime "holiday_start"
     t.datetime "holiday_end"
+    t.string   "group_id"
     t.index ["city_cd"], name: "index_mechanics_on_city_cd", using: :btree
     t.index ["district_cd"], name: "index_mechanics_on_district_cd", using: :btree
     t.index ["province_cd"], name: "index_mechanics_on_province_cd", using: :btree
@@ -422,6 +423,16 @@ ActiveRecord::Schema.define(version: 20180309123715) do
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.string "group_id"
+  end
+
+  create_table "temp_mechanic_jd_parts", force: :cascade do |t|
+    t.string   "mechanic_num"
+    t.string   "name"
+    t.string   "unique_id"
+    t.string   "group_id"
+    t.integer  "mechanic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "temp_mechanics", force: :cascade do |t|
