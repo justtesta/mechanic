@@ -139,6 +139,7 @@ class Work < ApplicationRecord
 
   def set_mechanic_group_id
     Mechanic.shown.where(" id>200").each do |mechanic|
+      @mechanic=mechanic
       mechanic.works.each do |work|
         group_id="#{work.skill.group_id},"
         mechanic.group_id<<group_id if mechanic.group_id.index(group_id).nil?
