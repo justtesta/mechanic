@@ -144,7 +144,7 @@ class Work < ApplicationRecord
         @work=work
         group_id="#{@work.skill.group_id},"
         if @mechanic.group_id.nil?
-          @mechanic.group_id<<group_id
+          @mechanic.group_id=group_id
         else
           @mechanic.group_id<<group_id if @mechanic.group_id.index(group_id).nil?
         end
