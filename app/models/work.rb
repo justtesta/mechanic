@@ -138,7 +138,7 @@ class Work < ApplicationRecord
   end
 
   def set_mechanic_group_id
-    Mechanic.where("id<200").each do |mechanic|
+    Mechanic.where("city_cd in (select id from cities where fullname in(select \"市\" from temp_regions )) and ((unique_id>'汽车堂联盟28493店' and unique_id<'汽车堂联盟49999店') or (unique_id>'汽车堂联盟54074店' and unique_id<'汽车堂联盟59999店'))").each do |mechanic|
       @mechanic=mechanic
       @mechanic.works.each do |work|
         @work=work
