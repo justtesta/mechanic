@@ -138,7 +138,7 @@ class Work < ApplicationRecord
   end
 
   def set_mechanic_group_id
-    Mechanic.where("id>1").order("id").each do |mechanic|
+    Mechanic.where("id>1").find_each(batch_size: 1000) do |mechanic|
       @mechanic=mechanic
       @mechanic.works.each do |work|
         @work=work
