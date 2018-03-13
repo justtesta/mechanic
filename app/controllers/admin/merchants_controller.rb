@@ -65,8 +65,9 @@ class Admin::MerchantsController < Admin::ApplicationController
     
     @merchant.merchant.products.clear
     @merchant.merchant.products.push(products)
-    byebug
-    @merchant.update_attributes(store_params)
+    
+    @merchant.venderid=store_params[:venderid]
+    @merchant.save
     redirect_to product_admin_merchant_path(@merchant)
   end
 
