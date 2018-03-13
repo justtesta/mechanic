@@ -160,6 +160,7 @@ zh-CN:
         login_count: 登录次数
         current_login_at: 最近登录时间
         jd_vender_id: 京东商家ID
+        
       administrator:
         nickname: 姓名
         mobile: 手机号码
