@@ -87,7 +87,7 @@ class Admin::MerchantsController < Admin::ApplicationController
 
     def store_params
       params.require(:store).permit(
-        mechanic: [jd_vender_id])
+        mechanic: [:jd_vender_id])
     end
 
 
