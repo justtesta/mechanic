@@ -62,9 +62,11 @@ class Admin::MerchantsController < Admin::ApplicationController
     @merchant_params=merchant_params
     @merchant_params[:merchant_attributes].delete :skills
     @merchant_params[:merchant_attributes][:products]=[]
-    @merchant.update_attributes(store_params)
+    
     @merchant.merchant.products.clear
     @merchant.merchant.products.push(products)
+    byebug
+    @merchant.update_attributes(store_params)
     redirect_to product_admin_merchant_path(@merchant)
   end
 
@@ -85,6 +87,7 @@ class Admin::MerchantsController < Admin::ApplicationController
         merchant_attributes: [skills: [[:is_checked, :price, :skill_id]]  ])
     end
 
+    
     def store_params
       params.require(:store).permit(:venderid)
     end
