@@ -112,7 +112,7 @@ zh-CN:
         systempay_count: 大于2元系统支付
         withdrawal_remark: 结算备注
         updated_at: 更新时间
-        venderid: 京东商家ID
+
       mechanic:
         unique_id: 店铺编号
         user_nickname: 名称
@@ -182,6 +182,7 @@ zh-CN:
         balance: 余额
         balance_update_amount: 余额变动金额
         balance_update_description: 余额变动说明
+        venderid: 京东商家ID
       user_group:
         nickname: 分堂昵称
         user_nickname: 堂主
