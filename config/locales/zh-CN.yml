@@ -112,6 +112,7 @@ zh-CN:
         systempay_count: 大于2元系统支付
         withdrawal_remark: 结算备注
         updated_at: 更新时间
+        jd_vender_id: 京东商家ID
       mechanic:
         unique_id: 店铺编号
         user_nickname: 名称
@@ -159,8 +160,8 @@ zh-CN:
         role: 系统角色
         login_count: 登录次数
         current_login_at: 最近登录时间
-        jd_vender_id: 京东商家ID
         
+
       administrator:
         nickname: 姓名
         mobile: 手机号码
