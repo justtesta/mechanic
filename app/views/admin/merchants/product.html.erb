@@ -15,6 +15,7 @@
   <div class="col-md-7 col-xs-8">
     <%= bootstrap_simple_form_for(@merchant, url: product_admin_merchant_path(@merchant)) do |f| %>
      <%= f.bootstrap_simple_fields_for :mechanic do |ff| %>
+     <%= f.input :jd_vender_id %>
       <div class="form-group check_boxes optional user_mechanic_skill_cds">
       <label class="check_boxes optional control-label">合作技能</label>
       <%  Skill.all.each do |skill|  %>
