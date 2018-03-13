@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313060057) do
+ActiveRecord::Schema.define(version: 20180310003744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -567,7 +567,6 @@ ActiveRecord::Schema.define(version: 20180313060057) do
     t.boolean  "userupdate",                                      default: false
     t.boolean  "systempay",                                       default: false
     t.string   "withdrawal_remark"
-    t.integer  "jd_vender_id"
     t.index ["host"], name: "index_users_on_host", using: :btree
     t.index ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
     t.index ["role_cd"], name: "index_users_on_role_cd", using: :btree
