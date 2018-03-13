@@ -14,7 +14,7 @@
 
   <div class="col-md-7 col-xs-8">
     <%= bootstrap_simple_form_for(@merchant, url: product_admin_merchant_path(@merchant)) do |f| %>
-    <%= ff.input :jd_vender_id %>
+    <%= f.input :jd_vender_id %>
      <%= f.bootstrap_simple_fields_for :merchant do |ff| %>
 
       <div class="form-group check_boxes optional user_mechanic_skill_cds">
